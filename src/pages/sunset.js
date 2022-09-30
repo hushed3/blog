@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Helmet from 'react-helmet'
-import { AnimateSharedLayout, AnimatePresence } from 'framer-motion'
+import { LayoutGroup, AnimatePresence } from 'framer-motion'
 
 import { getImages } from '../api/images'
 
@@ -42,20 +42,20 @@ export default function Sunset() {
 
   return (
     <>
-      {/* <AnimateSharedLayout> */}
-      <Helmet title={`${title} | ${config.siteTitle}`} />
-      <SEO customDescription={description} />
+      <LayoutGroup>
+        <Helmet title={`${title} | ${config.siteTitle}`} />
+        <SEO customDescription={description} />
 
-      <div className="container images">
-        {imageList?.map((item) => {
-          return <CardImage key={item.id} row={item} onHandleClick={onHandleClick}></CardImage>
-        })}
-      </div>
+        <div className="container images">
+          {imageList?.map((item) => {
+            return <CardImage key={item.id} row={item} onHandleClick={onHandleClick}></CardImage>
+          })}
+        </div>
 
-      <AnimatePresence>
-        {selected && <PreviewImage {...selected} onHandleClick={onHandleClick}></PreviewImage>}
-      </AnimatePresence>
-      {/* </AnimateSharedLayout> */}
+        <AnimatePresence>
+          {selected && <PreviewImage {...selected} onHandleClick={onHandleClick}></PreviewImage>}
+        </AnimatePresence>
+      </LayoutGroup>
     </>
   )
 }

@@ -24,13 +24,14 @@ const CardImage = ({ row, onHandleClick }) => {
     /* rotateX 为卡片绕X轴旋转的大小，旋转度看自己，我除以5，也可以大点或小点 */
     let rotateX = (top - y) / 4
     /*为卡片添加transform属性 */
-    card.style.cssText = `transform: perspective(50rem) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.1, 1.1, 1.1); `
+    card.style.cssText = `transform: perspective(50rem) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.1, 1.1, 1.1);`
   }, 16)
 
   const handleMouseOut = _.debounce(() => {
+    if (isBrowser && window.screen.width < 480) return
     const card = imageRef.current
     /* 让卡片的transform属性的绕X，Y轴的rotate都是0deg*/
-    card.style.cssText = `transform: perspective(50rem) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); `
+    card.style.cssText = `transform: perspective(50rem) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);`
   }, 20)
 
   return (
