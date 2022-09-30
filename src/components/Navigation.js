@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import Helmet from 'react-helmet'
+import useTheme from '../utils/hooks/useTheme'
 
 import { ExternalLinkIcon } from '../assets/ExternalLinkIcon'
 import blog from '../assets/nav-blog.png'
@@ -19,13 +21,19 @@ const mainNavItems = [
 
 const socialNavItems = [{ url: 'https://github.com/hushed3', icon: github, label: 'GitHub' }]
 
-export const Navigation = ({ theme, onUpdateTheme }) => {
+export const Navigation = () => {
+  const [theme, setTheme] = useTheme()
+
   const handleTheme = () => {
-    onUpdateTheme()
+    setTheme()
   }
 
   return (
     <section className="navigation">
+      <Helmet>
+        <link rel="shortcut icon" type="image/png" href={floppyLogo} />
+        {theme === 'dark' && <link rel="stylesheet" type="text/css" href="/dark-mode.css" />}
+      </Helmet>
       <div className="container">
         <nav>
           <Link to="/" className="item brand">

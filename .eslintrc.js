@@ -9,5 +9,7 @@ module.exports = {
     'no-unused-vars': 1,
     'import/no-unresolved': 0,
     'no-const-assign': 1,
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 0,
   },
 }
