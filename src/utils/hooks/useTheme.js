@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
+import useMatchMedia from './useMatchMedia.js'
 import { isSSR } from '../func'
+
+const THEME = '(prefers-color-scheme: dark)'
 
 /**
  * @description 获取系统当前主题
@@ -7,13 +10,14 @@ import { isSSR } from '../func'
  */
 const osTheme = () => {
   try {
-    return isSSR && window?.matchMedia('(prefers-color-scheme: dark)') ? 'dark' : 'light'
+    return !isSSR && window?.matchMedia(THEME).matches ? 'dark' : 'light'
   } catch (e) {
-    return 'light'
+    return new Date() > 6 && new Date() < 19 ? 'light' : 'dark'
   }
 }
 
 const useTheme = (key = 'theme', defaultTheme) => {
+  const [themeMedia] = useMatchMedia(THEME)
   const [storedTheme, setStoredTheme] = useState(osTheme() || defaultTheme)
 
   const setStorageTheme = (theme = storedTheme === 'dark' ? 'light' : 'dark') => {
@@ -27,10 +31,9 @@ const useTheme = (key = 'theme', defaultTheme) => {
 
   const listenerOsTheme = (handler) => {
     if (!isSSR) {
-      window?.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
+      window?.matchMedia(THEME).addEventListener('change', (event) => {
         if (typeof handler !== 'function') return
         const osTheme = event.matches ? 'dark' : 'light'
-        console.log('osTheme', osTheme)
 
         handler(osTheme)
       })
@@ -44,11 +47,11 @@ const useTheme = (key = 'theme', defaultTheme) => {
     } else {
       setStorageTheme(storedTheme)
     }
-
-    listenerOsTheme((osTheme) => {
-      setStoredTheme(osTheme)
-    })
   }, [])
+
+  useEffect(() => {
+    setStorageTheme(osTheme())
+  }, [themeMedia])
 
   return [storedTheme, setStorageTheme, listenerOsTheme]
 }
