@@ -7,6 +7,8 @@ export const BgParticles = () => {
     await loadFull(engine)
   }, [])
 
+  console.log('object')
+
   return (
     <>
       <Particles
@@ -31,7 +33,7 @@ export const BgParticles = () => {
           },
           fullScreen: {
             enable: true,
-            zIndex: -1,
+            zIndex: 1,
           },
           fpsLimit: 120,
           particles: {
@@ -50,7 +52,7 @@ export const BgParticles = () => {
             },
             number: {
               limit: 0,
-              value: 100,
+              value: 50,
             },
             opacity: {
               value: {
@@ -69,7 +71,7 @@ export const BgParticles = () => {
               },
             },
             size: {
-              value: 4,
+              value: 3,
               random: {
                 enable: true,
                 minimumValue: 1,

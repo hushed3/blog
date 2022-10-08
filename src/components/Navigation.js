@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'gatsby'
 import Helmet from 'react-helmet'
 import useTheme from '../utils/hooks/useTheme'
+import { GlobalContext } from '../utils/context.js'
 
 import { ExternalLinkIcon } from '../assets/ExternalLinkIcon'
 import blog from '../assets/nav-blog.png'
@@ -22,7 +23,9 @@ const mainNavItems = [
 const socialNavItems = [{ url: 'https://github.com/hushed3', icon: github, label: 'GitHub' }]
 
 export const Navigation = () => {
-  const [theme, setTheme] = useTheme()
+  // const [theme, setTheme] = useTheme()
+
+  const { theme, setTheme } = useContext(GlobalContext)
 
   const handleTheme = () => {
     setTheme()
@@ -32,7 +35,6 @@ export const Navigation = () => {
     <section className="navigation">
       <Helmet>
         <link rel="shortcut icon" type="image/png" href={floppyLogo} />
-        {theme === 'dark' && <link rel="stylesheet" type="text/css" href="/dark-mode.css" />}
       </Helmet>
       <div className="container">
         <nav>
