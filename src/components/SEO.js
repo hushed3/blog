@@ -72,9 +72,7 @@ export const SEO = ({ postNode, postPath, postSEO, customDescription }) => {
       <meta name="description" content={description} />
       <meta name="image" content={image} />
 
-      <script type="application/ld+json">
-        {JSON.stringify(schemaOrgJSONLD)}
-      </script>
+      <script type="application/ld+json">{JSON.stringify(schemaOrgJSONLD)}</script>
 
       <meta property="og:url" content={postSEO ? postURL : config.siteUrl} />
       {postSEO && <meta property="og:type" content="article" />}

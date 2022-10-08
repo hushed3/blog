@@ -125,7 +125,7 @@ html {
   font-size: 13px;
   font-weight: normal;
   font-kerning: normal;
-  background: var(--background-color);
+  /* background: var(--background-color); */
 }
 
 body {
