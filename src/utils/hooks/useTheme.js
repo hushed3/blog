@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import useMatchMedia from './useMatchMedia.js'
 import { isSSR } from '../func'
 
 const THEME = '(prefers-color-scheme: dark)'
@@ -17,6 +16,22 @@ const osTheme = () => {
   }
 }
 
+/**
+ * @description 获取本地缓存中的主题
+ * @date 30/09/2022
+ */
+const storageTheme = (key) => {
+  if (!isSSR) {
+    return localStorage.getItem(key)
+  } else {
+    return undefined
+  }
+}
+
+/**
+ * @description 设置主题样式
+ * @date 30/09/2022
+ */
 const changeThemeAttribute = (theme) => {
   if (!isSSR) {
     if (theme === 'dark') {
@@ -27,14 +42,14 @@ const changeThemeAttribute = (theme) => {
   }
 }
 
-const useTheme = (key = 'theme', defaultTheme) => {
-  const [themeMedia] = useMatchMedia(THEME)
-  const [storedTheme, setStoredTheme] = useState(osTheme() || defaultTheme)
+const useTheme = (key = 'theme') => {
+  const [storedTheme, setStoredTheme] = useState(storageTheme(key) || osTheme())
 
   const setStorageTheme = (theme = storedTheme === 'dark' ? 'light' : 'dark') => {
     if (!isSSR) {
       changeThemeAttribute(theme)
       localStorage.setItem(key, theme)
+
       if (theme !== storedTheme) {
         setStoredTheme(theme)
       }
@@ -53,20 +68,13 @@ const useTheme = (key = 'theme', defaultTheme) => {
   }
 
   useEffect(() => {
-    const storageTheme = localStorage.getItem(key)
-    if (storageTheme) {
-      setStoredTheme(storageTheme)
-    } else {
+    if (!storageTheme(key)) {
       setStorageTheme(storedTheme)
     }
+    listenerOsTheme((theme) => {
+      setStorageTheme(theme)
+    })
   }, [])
-
-  useEffect(() => {
-    setStorageTheme(osTheme())
-    console.log('useEffect', storedTheme)
-  }, [themeMedia])
-
-  console.log('first', storedTheme)
 
   return [storedTheme, setStorageTheme, listenerOsTheme]
 }

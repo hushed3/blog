@@ -1,12 +1,11 @@
 import React, { useContext } from 'react'
 import { Link } from 'gatsby'
 import Helmet from 'react-helmet'
-import useTheme from '../utils/hooks/useTheme'
 import { GlobalContext } from '../utils/context.js'
 
 import { ExternalLinkIcon } from '../assets/ExternalLinkIcon'
 import blog from '../assets/nav-blog.png'
-import floppyLogo from '../assets/logo.png'
+import favicon from '../assets/logo.png'
 import github from '../assets/nav-github.png'
 import projects from '../assets/nav-projects.png'
 import { slugify } from '../utils/helpers'
@@ -23,8 +22,6 @@ const mainNavItems = [
 const socialNavItems = [{ url: 'https://github.com/hushed3', icon: github, label: 'GitHub' }]
 
 export const Navigation = () => {
-  // const [theme, setTheme] = useTheme()
-
   const { theme, setTheme } = useContext(GlobalContext)
 
   const handleTheme = () => {
@@ -34,12 +31,13 @@ export const Navigation = () => {
   return (
     <section className="navigation">
       <Helmet>
-        <link rel="shortcut icon" type="image/png" href={floppyLogo} />
+        <link rel="shortcut icon" type="image/png" href={favicon} />
+        {theme === 'dark' && <link rel="stylesheet" type="text/css" href="/dark-mode.css" />}
       </Helmet>
       <div className="container">
         <nav>
           <Link to="/" className="item brand">
-            <img src={floppyLogo} className="logo" alt="Hush" />
+            <img src={favicon} className="logo" alt="Hush" />
             <span>Hush</span>
           </Link>
           {mainNavItems.map((item) => (

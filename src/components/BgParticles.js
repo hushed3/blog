@@ -7,8 +7,6 @@ export const BgParticles = () => {
     await loadFull(engine)
   }, [])
 
-  console.log('object')
-
   return (
     <>
       <Particles
