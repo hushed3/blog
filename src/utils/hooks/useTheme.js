@@ -12,7 +12,18 @@ const osTheme = () => {
   try {
     return !isSSR && window?.matchMedia(THEME).matches ? 'dark' : 'light'
   } catch (e) {
+    console.err(e)
     return new Date() > 6 && new Date() < 19 ? 'light' : 'dark'
+  }
+}
+
+const changeThemeAttribute = (theme) => {
+  if (!isSSR) {
+    if (theme === 'dark') {
+      document.documentElement.setAttribute('theme', 'dark')
+    } else {
+      document.documentElement.removeAttribute('theme')
+    }
   }
 }
 
@@ -22,6 +33,7 @@ const useTheme = (key = 'theme', defaultTheme) => {
 
   const setStorageTheme = (theme = storedTheme === 'dark' ? 'light' : 'dark') => {
     if (!isSSR) {
+      changeThemeAttribute(theme)
       localStorage.setItem(key, theme)
       if (theme !== storedTheme) {
         setStoredTheme(theme)
@@ -51,7 +63,10 @@ const useTheme = (key = 'theme', defaultTheme) => {
 
   useEffect(() => {
     setStorageTheme(osTheme())
+    console.log('useEffect', storedTheme)
   }, [themeMedia])
+
+  console.log('first', storedTheme)
 
   return [storedTheme, setStorageTheme, listenerOsTheme]
 }

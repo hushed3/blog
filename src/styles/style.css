@@ -111,6 +111,10 @@
 *::after {
   box-sizing: border-box;
 }
+/* 
+html[theme='dark'] {
+  --background-color: var(--gray-8);
+} */
 
 html {
   font-family: var(--font-family-base);
@@ -121,6 +125,7 @@ html {
   font-size: 13px;
   font-weight: normal;
   font-kerning: normal;
+  background: var(--background-color);
 }
 
 body {
