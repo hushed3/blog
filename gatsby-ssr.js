@@ -1,7 +1,12 @@
+import { ThemeProvider } from './src/context/ThemeContext'
 const React = require('react')
 
 export function wrapPageElement({ element, props }) {
   const Layout = element.type.Layout ?? React.Fragment
 
-  return <Layout {...props}>{element}</Layout>
+  return (
+    <ThemeProvider>
+      <Layout {...props}>{element}</Layout>
+    </ThemeProvider>
+  )
 }

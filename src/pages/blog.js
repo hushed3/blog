@@ -2,12 +2,12 @@ import React, { useMemo } from 'react'
 import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 
-import { Layout } from '../components/Layout'
-import { Posts } from '../components/Posts'
-import { SEO } from '../components/SEO'
-import { SidebarLayout } from '../components/SidebarLayout'
-import { getSimplifiedPosts } from '../utils/helpers'
-import config from '../utils/config'
+import { Layout } from '/src/layout/index'
+import { Posts } from '/src/components/Posts'
+import { SEO } from '/src/components/SEO'
+import { SidebarLayout } from '/src/components/SidebarLayout'
+import { getSimplifiedPosts } from '/src/utils/helpers'
+import config from '/src/utils/config'
 
 export default function Blog({ data }) {
   const posts = data.posts.edges

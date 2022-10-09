@@ -3,14 +3,14 @@ import { Link, graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
 
-import { Layout } from '../components/Layout'
-import { SEO } from '../components/SEO'
-import { Heading } from '../components/Heading'
-import { Hero } from '../components/Hero'
-import { projectsList } from '../data/projectsList'
-import { getSimplifiedPosts } from '../utils/helpers'
-import config from '../utils/config'
-import { slugify } from '../utils/helpers'
+import { Layout } from '/src/layout/index'
+import { SEO } from '/src/components/SEO'
+import { Heading } from '/src/components/Heading'
+import { Hero } from '/src/components/Hero'
+import { projectsList } from '/src/data/projectsList'
+import { getSimplifiedPosts } from '/src/utils/helpers'
+import config from '/src/utils/config'
+import { slugify } from '/src/utils/helpers'
 
 export default function Index({ data }) {
   const latest = data.latest.edges

@@ -1,7 +1,7 @@
 import React from 'react'
 
-import gatsby from '../assets/gatsby.png'
-import github from '../assets/nav-github.png'
+import gatsby from '/src/assets/gatsby.png'
+import github from '/src/assets/nav-github.png'
 
 const links = [
   // { url: 'https://taniarascia.substack.com/subscribe', label: 'Newsletter' },

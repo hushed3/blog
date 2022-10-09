@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react'
 import Helmet from 'react-helmet'
 import { Link } from 'gatsby'
 
-import { ExternalLinkIcon } from '../assets/ExternalLinkIcon'
-import { StarIcon } from '../assets/StarIcon'
-import { Layout } from '../components/Layout'
-import { SEO } from '../components/SEO'
-import { Hero } from '../components/Hero'
-import config from '../utils/config'
-import { projectsList } from '../data/projectsList'
+import { ExternalLinkIcon } from '/src/assets/ExternalLinkIcon'
+import { StarIcon } from '/src/assets/StarIcon'
+import { Layout } from '/src/layout/index'
+import { SEO } from '/src/components/SEO'
+import { Hero } from '/src/components/Hero'
+import config from '/src/utils/config'
+import { projectsList } from '/src/data/projectsList'
 
 export default function Projects() {
   const [repos, setRepos] = useState([])
