@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 
-import { Layout } from '../components/Layout'
+import { Layout } from '../layout/index'
 import { SEO } from '../components/SEO'
 import { Posts } from '../components/Posts'
 import { Hero } from '../components/Hero'

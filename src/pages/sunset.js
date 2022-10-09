@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import Helmet from 'react-helmet'
 import { LayoutGroup, AnimatePresence } from 'framer-motion'
 
-import { getImages } from '../api/images'
+import { getImages } from '/src/api/images'
 
-import config from '../utils/config'
-import { Layout } from '../components/Layout'
-import { SEO } from '../components/SEO'
-import CardImage from '../components/CardImage'
-import PreviewImage from '../components/PreviewImage'
+import config from '/src/utils/config'
+import { Layout } from '/src/layout/index'
+import { SEO } from '/src/components/SEO'
+import CardImage from '/src/components/CardImage'
+import PreviewImage from '/src/components/PreviewImage'
 
 export default function Sunset() {
   const title = '夕阳'

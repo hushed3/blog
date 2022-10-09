@@ -1,16 +1,16 @@
 import React, { useContext } from 'react'
 import { Link } from 'gatsby'
 import Helmet from 'react-helmet'
-import { GlobalContext } from '../utils/context.js'
+import ThemeContext from '/src/context/ThemeContext'
 
-import { ExternalLinkIcon } from '../assets/ExternalLinkIcon'
-import blog from '../assets/nav-blog.png'
-import favicon from '../assets/logo.png'
-import github from '../assets/nav-github.png'
-import projects from '../assets/nav-projects.png'
-import { slugify } from '../utils/helpers'
-import dark from '../assets/svg/dark.svg'
-import light from '../assets/svg/light.svg'
+import { ExternalLinkIcon } from '/src/assets/ExternalLinkIcon'
+import blog from '/src/assets/nav-blog.png'
+import favicon from '/src/assets/logo.png'
+import github from '/src/assets/nav-github.png'
+import projects from '/src/assets/nav-projects.png'
+import { slugify } from '/src/utils/helpers'
+import dark from '/src/assets/svg/dark.svg'
+import light from '/src/assets/svg/light.svg'
 
 const mainNavItems = [
   // { url: '/me', icon: floppy, label: 'About me' },
@@ -22,7 +22,7 @@ const mainNavItems = [
 const socialNavItems = [{ url: 'https://github.com/hushed3', icon: github, label: 'GitHub' }]
 
 export const Navigation = () => {
-  const { theme, setTheme } = useContext(GlobalContext)
+  const { theme, setTheme } = useContext(ThemeContext)
 
   const handleTheme = () => {
     setTheme()
@@ -32,7 +32,6 @@ export const Navigation = () => {
     <section className="navigation">
       <Helmet>
         <link rel="shortcut icon" type="image/png" href={favicon} />
-        {theme === 'dark' && <link rel="stylesheet" type="text/css" href="/dark-mode.css" />}
       </Helmet>
       <div className="container">
         <nav>
