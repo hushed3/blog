@@ -51,13 +51,11 @@ const useTheme = (key = KEY) => {
       changeThemeAttribute(theme)
       localStorage.setItem(key, theme)
 
-      if (theme !== storedTheme) {
-        setStoredTheme(theme)
-      }
+      setStoredTheme(theme)
     }
   }
 
-  const listenerOsTheme = (handler) => {
+  const listenerOSTheme = (handler) => {
     if (!isSSR) {
       window?.matchMedia(THEME).addEventListener('change', (event) => {
         if (typeof handler !== 'function') return
@@ -72,12 +70,12 @@ const useTheme = (key = KEY) => {
     if (!storageTheme(key)) {
       setStorageTheme(storedTheme)
     }
-    listenerOsTheme((theme) => {
+    listenerOSTheme((theme) => {
       setStorageTheme(theme)
     })
   }, [])
 
-  return [storedTheme, setStorageTheme, listenerOsTheme]
+  return [storedTheme, setStorageTheme, listenerOSTheme]
 }
 
 export default useTheme
