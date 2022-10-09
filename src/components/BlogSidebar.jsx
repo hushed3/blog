@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 
 import { slugify } from '../utils/helpers'
-import { useGetTaxonomies } from '../utils/hooks/useGetTaxonomies'
+import { useGetTaxonomies } from '../hooks/useGetTaxonomies'
 
 /**
  * @description 归档页面 - 侧边类别、标签信息
