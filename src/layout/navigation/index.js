@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'gatsby'
 import Helmet from 'react-helmet'
 import ThemeContext from '/src/context/ThemeContext'
@@ -27,6 +27,10 @@ export const Navigation = () => {
   const handleTheme = () => {
     setTheme()
   }
+
+  useEffect(() => {
+    console.log('theme', theme)
+  }, [theme])
 
   return (
     <section className="navigation">
@@ -65,7 +69,8 @@ export const Navigation = () => {
         </nav>
         <div className="theme-toggle">
           <button onClick={handleTheme}>
-            {theme === 'dark' ? <img src={dark} alt="Theme" /> : <img src={light} alt="Theme" />}
+            <div style={{ display: 'none' }}>{theme === 'dark' ? 'dark' : 'light'}</div>
+            <img src={theme === 'dark' ? dark : light} alt="theme" key={theme} />
           </button>
         </div>
       </div>
