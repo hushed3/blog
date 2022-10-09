@@ -2,7 +2,7 @@
 date: 2022-07-15
 title: 'JavaScript 原型及原型链'
 template: post
-thumbnail: ''
+thumbnail: '../thumbnails/js.png'
 slug: prototype
 categories:
   - JavaScript
@@ -46,7 +46,7 @@ arr.__proto__ === Array.prototype //true
 ```
 
 ```javascript
-const str = "str"
+const str = 'str'
 str.__proto__ === String.prototype //true
 //原型链是 str -> String.prototype -> Object.prototype -> null
 ```
@@ -55,17 +55,17 @@ str.__proto__ === String.prototype //true
 // 父类
 function Father() {}
 Father.prototype.draw = function () {
-  console.log("Father Draw")
+  console.log('Father Draw')
 }
 Father.prototype.clear = function () {
-  console.log("Father Clear")
+  console.log('Father Clear')
 }
 
 // 子类
 function Son() {}
 
 Son.prototype.draw = function () {
-  console.log("Son Draw")
+  console.log('Son Draw')
 }
 
 const son = new Son()
