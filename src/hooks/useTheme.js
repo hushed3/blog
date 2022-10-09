@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { isSSR } from '../func'
+import { isSSR } from '../utils/func'
 
 const THEME = '(prefers-color-scheme: dark)'
 const KEY = 'theme'

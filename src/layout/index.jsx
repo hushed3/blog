@@ -5,10 +5,9 @@ import { Footer } from './footer/index'
 import { BgParticles } from '/src/components/BgParticles'
 
 import '../styles/global.less'
-import '../styles/dark-mode.less'
+import '../styles/theme.less'
 import '../styles/custom.less'
 import '../styles/new-moon.less'
-import '../styles/image-card.less'
 
 export const Layout = ({ children }) => {
   return (

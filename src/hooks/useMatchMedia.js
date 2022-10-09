@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { isSSR } from '../func'
+import { isSSR } from '../utils/func'
 
 /**
  * @description 获取 表示指定的媒体查询 (en-US)字符串解析后的结果

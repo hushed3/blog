@@ -19,7 +19,7 @@ export default function Index({ data }) {
     () => getSimplifiedPosts(Populars, { shortTitle: false, thumbnails: true }),
     [Populars]
   )
-  console.log(simplifiedPopulars)
+
   return (
     <div>
       <Helmet title={config.siteTitle} />

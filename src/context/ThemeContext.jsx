@@ -1,6 +1,6 @@
 import React, { createContext } from 'react'
 
-import useTheme from '/src/utils/hooks/useTheme'
+import useTheme from '/src/hooks/useTheme'
 
 const ThemeContext = createContext({ theme: null, setTheme: () => {} })
 
