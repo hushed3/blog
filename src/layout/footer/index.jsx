@@ -10,7 +10,7 @@ const links = [
   // { url: 'https://www.taniarascia.com/rss.xml', label: 'RSS' },
 ]
 const madeWithLinks = [
-  { url: 'https://www.gatsbyjs.org/', label: 'Gatsby', icon: gatsby },
+  // { url: 'https://www.gatsbyjs.org/', label: 'Gatsby', icon: gatsby },
   { url: 'https://github.com/hushed3', label: 'GitHub', icon: github },
 ]
 
