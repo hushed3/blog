@@ -1,19 +1,20 @@
 /* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;700;900&family=Merriweather:wght@400;700&display=swap'); */
 
 ::selection {
-  // background: #747bff;
-  // background: #bcc0ff;
   background: var(--selection-color);
   color: var(--gray-2);
 }
 
 ::-webkit-scrollbar {
   background-color: transparent;
-  width: 12px;
+  width: 10px;
+  height: 10px;
+
   z-index: 1000;
+  padding: 0px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 8px;
   background-clip: content-box;
   border: 2px solid transparent;
@@ -107,7 +108,7 @@ blockquote {
   margin: 1.5rem 0;
   border-left: 4px solid var(--indigo-light);
   margin-left: 0;
-  padding: 1rem;
+  padding: 0.8rem 1rem;
   background: var(--blockquote-background);
   border-radius: var(--border-radius);
 }
