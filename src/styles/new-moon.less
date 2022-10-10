@@ -58,7 +58,7 @@ pre[class*='language-'] {
   margin-bottom: 1.5rem;
   padding: 1;
   background: var(--code-background-color);
-  overflow: initial;
+  overflow: overlay;
   border-radius: 4px;
 }
 
@@ -101,39 +101,39 @@ code.language-shell::before {
   color: var(--comment);
 }
 
-.gatsby-highlight pre[class*='language-'] {
-  background-color: transparent;
-  margin: 0;
-  padding: 0;
-  overflow: initial;
-  float: left;
-  min-width: 100%;
-}
-
 .gatsby-highlight {
   background: var(--code-background-color);
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
   border-radius: 6px;
-  overflow: auto;
-  padding: 1.4rem 1.2rem 1rem 1.2rem;
+  overflow: overlay;
   margin: 0.5rem 0 1.8rem 0;
   max-width: 100%;
   position: relative;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.gatsby-highlight pre[class*='language-'] {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  overflow: overlay;
+  min-width: 100%;
+  padding: 1rem 1.2rem 1rem 1.2rem;
 }
 
 .gatsby-highlight::before {
   content: attr(data-language);
   position: absolute;
-  right: 0;
+  right: 1rem;
   top: 0;
   color: var(--indigo-light);
-  text-shadow: 0 0 10px #747bff;
+  filter: drop-shadow(0 0 5px #747bff);
   font-weight: bold;
-  text-align: right;
-  line-height: 1.8rem;
-  padding: 0 8px;
-  font-size: 11px;
+  text-transform: capitalize;
+  font-size: 12px;
+  transform: scale(0.85);
+  transform-origin: 100% 10%;
 }
 
 .gatsby-highlight pre.language-terminal {
