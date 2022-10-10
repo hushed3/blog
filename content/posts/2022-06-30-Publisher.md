@@ -1,6 +1,6 @@
 ---
 date: 2022-06-30
-title: '发布订阅模式'
+title: 'JavaScript - 发布订阅模式'
 template: post
 thumbnail: '../thumbnails/js.png'
 slug: publisher

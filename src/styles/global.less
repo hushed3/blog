@@ -358,6 +358,7 @@ a.button:hover {
   background: var(--navbar);
   height: var(--navbar-height-small);
   border-bottom: 1px solid var(--navbar-border);
+  backdrop-filter: blur(8px);
 }
 
 .navigation .container {
@@ -936,12 +937,13 @@ a.post time {
 a.tag {
   font-size: 0.75rem;
   font-weight: 400;
-  padding: 0.2rem 0.4rem;
+  padding: 0.05rem 0.5rem 0.15rem 0.5rem;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   color: var(--font-color-base);
   background: var(--button-background-color) !important;
   text-decoration: none;
+  text-transform: capitalize;
 }
 
 a.tag:hover {

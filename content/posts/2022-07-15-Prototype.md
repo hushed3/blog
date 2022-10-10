@@ -1,6 +1,6 @@
 ---
 date: 2022-07-15
-title: 'JavaScript 原型及原型链'
+title: 'JavaScript - 原型及原型链'
 template: post
 thumbnail: '../thumbnails/js.png'
 slug: prototype
