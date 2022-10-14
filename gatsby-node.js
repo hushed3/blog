@@ -29,10 +29,10 @@ function slugify(str) {
 const createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const blogPage = path.resolve('./src/templates/post.jsx')
-  const pagePage = path.resolve('./src/templates/page.jsx')
-  const tagPage = path.resolve('./src/templates/tag.jsx')
-  const categoryPage = path.resolve('./src/templates/category.jsx')
+  const blogPage = path.resolve('./src/templates/post.tsx')
+  const mePage = path.resolve('./src/templates/me.tsx')
+  const tagPage = path.resolve('./src/templates/tag.tsx')
+  const categoryPage = path.resolve('./src/templates/category.tsx')
 
   const result = await graphql(
     `
@@ -99,13 +99,13 @@ const createPages = async ({ graphql, actions }) => {
   })
 
   // =====================================================================================
-  // Pages
+  // mePage
   // =====================================================================================
 
   pages.forEach((page) => {
     createPage({
       path: page.node.fields.slug,
-      component: pagePage,
+      component: mePage,
       context: {
         slug: page.node.fields.slug,
       },
