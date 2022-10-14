@@ -17,6 +17,12 @@ module.exports = {
     // ===================================================================================
     // Meta
     // ===================================================================================
+    {
+      resolve: `gatsby-plugin-graphql-codegen`,
+      options: {
+        fileName: './src/typings/graphql-type.d.ts',
+      },
+    },
 
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-netlify',
@@ -32,6 +38,14 @@ module.exports = {
         theme_color: '#6b76f3',
         display: 'minimal-ui',
         icon: `static/logo.png`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /\.svg$/,
+        },
       },
     },
     {
