@@ -1,7 +1,7 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+import React from 'react'
 
-export default function HTML(props) {
+export default function HTML(props: any) {
   return (
     <html {...props.htmlAttributes}>
       <head>
@@ -13,7 +13,9 @@ export default function HTML(props) {
 
       <body {...props.bodyAttributes}>
         {props.preBodyComponents}
+
         <div key={`body`} id="___gatsby" dangerouslySetInnerHTML={{ __html: props.body }} />
+
         {props.postBodyComponents}
       </body>
       <script
