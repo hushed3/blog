@@ -851,23 +851,17 @@ a.post time {
   min-width: 0;
 }
 
-.sidebar-content {
-}
-
 .links {
   margin-top: 1rem;
 }
 
 /* Sidebar */
 
-.post-sidebar {
+.post-sidebar-sticky {
   position: sticky;
   top: 8rem;
-  & > div:only-child {
-    position: sticky;
-    top: 8rem;
-  }
 }
+
 .post-sidebar-card {
   background: var(--card-background-color);
   padding: 1.25rem;
@@ -1006,9 +1000,6 @@ a.category.active .count {
 
 /* Helpers */
 
-.width.small {
-  /* max-width: var(--content-width--small); */
-}
 .width.medium {
   max-width: var(--content-width--medium);
 }

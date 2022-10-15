@@ -23,12 +23,13 @@ export const PostSidebar = ({
 
   return (
     <aside className="post-sidebar">
-      {thumbnail && (
-        <div className="post-image">
-          <Img fixed={thumbnail.childImageSharp?.fixed} />
-        </div>
-      )}
-      {/* <div className="post-sidebar-card">
+      <div className="post-sidebar-sticky">
+        {thumbnail && (
+          <div className="post-image">
+            <Img fixed={thumbnail.childImageSharp?.fixed} />
+          </div>
+        )}
+        {/* <div className="post-sidebar-card">
         <h2>About me</h2>
         <img alt="Tania" className="sidebar-avatar" />
         <p>
@@ -42,32 +43,33 @@ export const PostSidebar = ({
         </p>
         <p>I hope you enjoy the post and have a nice day.</p>
       </div> */}
-      <div className="post-sidebar-card">
-        <h2>日期</h2>
-        <ul>
-          <li>发布于 {date}</li>
-        </ul>
+        <div className="post-sidebar-card">
+          <h2>日期</h2>
+          <ul>
+            <li>发布于 {date}</li>
+          </ul>
 
-        {category && (
-          <div>
-            <h2>类别</h2>
-            <ul>
-              <li>
-                <Link to={`/categories/${slugify(category)}`}>{category}</Link>
-              </li>
-            </ul>
+          {category && (
+            <div>
+              <h2>类别</h2>
+              <ul>
+                <li>
+                  <Link to={`/categories/${slugify(category)}`}>{category}</Link>
+                </li>
+              </ul>
+            </div>
+          )}
+
+          <h2>标签</h2>
+          <div className="tags">
+            {tags.map((tag) => {
+              return (
+                <Link key={tag} to={`/tags/${slugify(tag)}`} className="tag" activeClassName="active">
+                  {tag}
+                </Link>
+              )
+            })}
           </div>
-        )}
-
-        <h2>标签</h2>
-        <div className="tags">
-          {tags.map((tag) => {
-            return (
-              <Link key={tag} to={`/tags/${slugify(tag)}`} className="tag" activeClassName="active">
-                {tag}
-              </Link>
-            )
-          })}
         </div>
       </div>
     </aside>

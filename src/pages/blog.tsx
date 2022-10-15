@@ -5,6 +5,7 @@ import Helmet from 'react-helmet'
 import { BlogContainer } from '../components/BlogContainer'
 import { Posts } from '../components/Posts'
 import { SEO } from '../components/SEO'
+import { Layout } from '../layout/index'
 import { BlogQueryQuery } from '../typings/graphql-type'
 import config from '../utils/config'
 import { getSimplifiedPosts } from '../utils/helpers'
@@ -28,6 +29,9 @@ export default function Blog({ data }: { data: BlogQueryQuery }) {
     </div>
   )
 }
+
+Blog.Layout = Layout
+
 
 export const blogQuery = graphql`
   query BlogQuery {
