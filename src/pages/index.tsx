@@ -1,7 +1,21 @@
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import React, { useMemo } from 'react'
 import Helmet from 'react-helmet'
+import { GlobalContainer } from '../styles/global'
+import {
+  Description,
+  HeroWrapper,
+  PopularCard,
+  PopularPreview,
+  PostCard,
+  PostPreview,
+  Section,
+  TagLink,
+  TagLinks,
+  Time,
+  TitleLink,
+} from './styles/index'
 
 import { Heading } from '../components/Heading'
 import { Hero } from '../components/Hero'
@@ -25,71 +39,67 @@ export default function Index({ data }: { data: IndexQueryQuery }) {
       <Helmet title={config.siteTitle} />
       <SEO />
 
-      <div className="container">
-        <div className="hero-wrapper">
+      <GlobalContainer>
+        <HeroWrapper>
           <Hero title="Hi, I'm  Hush" index>
-            <p className="hero-description small width">
+            <Description>
               𝑰 𝒉𝒐𝒑𝒆 𝒚𝒐𝒖 𝒍𝒊𝒗𝒆 𝒂 𝒍𝒊𝒇𝒆 𝒚𝒐𝒖‘𝒓𝒆 𝒑𝒓𝒐𝒖𝒅 𝒐𝒇. 𝑰𝒇 𝒚𝒐𝒖 𝒇𝒊𝒏𝒅 𝒕𝒉𝒂𝒕 𝒚𝒐𝒖’𝒓𝒆 𝒏𝒐𝒕, 𝑰 𝒉𝒐𝒑𝒆 𝒚𝒐𝒖 𝒉𝒂𝒗𝒆 𝒕𝒉𝒆 𝒔𝒕𝒓𝒆𝒏𝒈𝒕𝒉 𝒕𝒐 𝒔𝒕𝒂𝒓𝒕
               𝒂𝒍𝒍 𝒐𝒗𝒆𝒓 𝒂𝒈𝒂𝒊𝒏. <br />
               <br />
               我希望你过着自己引以为傲的生活。 如果你发现事实并非如此，我希望你有勇气重新开始。
-            </p>
-            <p className="hero-description small width">𝑯𝒂𝒗𝒆 𝒂 𝒈𝒐𝒐𝒅 𝒅𝒂𝒚. </p>
+            </Description>
+            <Description>𝑯𝒂𝒗𝒆 𝒂 𝒈𝒐𝒐𝒅 𝒅𝒂𝒚. </Description>
           </Hero>
-        </div>
-      </div>
-      <div className="container">
-        <section className="segment">
+        </HeroWrapper>
+      </GlobalContainer>
+      <GlobalContainer>
+        <Section>
           <Heading title="最近内容" slug="/blog" />
 
-          <div className="post-preview">
+          <PostPreview>
             {simplifiedLatest.map((post) => {
               return (
-                <div className="anchored card" key={post.slug}>
-                  <time>{post.date}</time>
-                  <Link className="card-header" to={post.slug}>
-                    {post.title}
-                  </Link>
-                  <div className="anchored categories">
+                <PostCard key={post.slug}>
+                  {/* <GlobalCard className="anchored card" key={post.slug}> */}
+                  <Time type="post">{post.date}</Time>
+                  <TitleLink to={post.slug}>{post.title}</TitleLink>
+                  <TagLinks>
                     {post.categories
-                      .filter((cat) => cat !== 'Highlight')
+                      .filter((cat) => cat !== 'Popular')
                       .map((cat) => {
                         return (
-                          <Link className="cat" to={`/categories/${slugify(cat)}`} key={slugify(cat)}>
+                          <TagLink to={`/categories/${slugify(cat)}`} key={slugify(cat)}>
                             {cat}
-                          </Link>
+                          </TagLink>
                         )
                       })}
-                  </div>
-                </div>
+                  </TagLinks>
+                </PostCard>
               )
             })}
-          </div>
-        </section>
-
+          </PostPreview>
+        </Section>
         {/* 查找posts目录下带有 Popular 的markdown文件 */}
         {simplifiedPopulars.length > 0 && (
-          <section className="segment">
+          <Section>
             <Heading title="热门内容" />
 
-            <div className="highlight-preview">
+            <PopularPreview>
               {simplifiedPopulars.map((post) => {
                 return (
-                  <div className="muted card flex" key={`popular-${post.slug}`}>
+                  <PopularCard key={`popular-${post.slug}`}>
                     {post.thumbnail && <Img style={{ marginRight: '5px' }} fixed={post.thumbnail} />}
                     <div>
-                      <time>{post.date}</time>
-                      <Link className="card-header" to={post.slug}>
-                        {post.title}
-                      </Link>
+                      <Time>{post.date}</Time>
+                      <TitleLink to={post.slug}>{post.title}</TitleLink>
                     </div>
-                  </div>
+                  </PopularCard>
                 )
               })}
-            </div>
-          </section>
+            </PopularPreview>
+          </Section>
         )}
-      </div>
+      </GlobalContainer>
     </div>
   )
 }
