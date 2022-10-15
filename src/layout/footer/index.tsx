@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { A, FooterContainer, Img, Nav, Section, Span } from './style'
 import github from '/src/assets/nav-github.png'
 
 type Links = {
@@ -17,31 +18,31 @@ const madeWithLinks: Links[] = [
 export const Footer = () => {
   const year = new Date().getFullYear() === 2022 ? '' : `- ${new Date().getFullYear()}`
   return (
-    <footer className="footer">
-      <section>
-        <nav>
-          <span className="desktop-only">© 2022 {year} By Hush</span>
+    <FooterContainer>
+      <Section>
+        <Nav>
+          <Span className="desktop-only">© 2022 {year} By Hush</Span>
           {links.map((link) => (
-            <a href={link.url} target="_blank" rel="noopener noreferrer" key={link.url}>
+            <A href={link.url} target="_blank" rel="noopener noreferrer" key={link.url}>
               {link.label}
-            </a>
+            </A>
           ))}
-        </nav>
-        <nav>
+        </Nav>
+        <Nav>
           {madeWithLinks.map((link) => (
-            <a href={link.url} title={link.label} target="_blank" rel="noopener noreferrer" key={link.url}>
-              <span>{link.label}</span>
-              <img src={link.icon} alt={link.label} />
-            </a>
+            <A href={link.url} title={link.label} target="_blank" rel="noopener noreferrer" key={link.url}>
+              <Span>{link.label}</Span>
+              <Img src={link.icon} alt={link.label} />
+            </A>
           ))}
-        </nav>
+        </Nav>
 
-        <nav>
-          <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
+        <Nav>
+          <A href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
             蜀ICP备2022009836号
-          </a>
-        </nav>
-      </section>
-    </footer>
+          </A>
+        </Nav>
+      </Section>
+    </FooterContainer>
   )
 }

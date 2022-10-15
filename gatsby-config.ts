@@ -23,6 +23,12 @@ module.exports = {
         fileName: './src/typings/graphql-type.d.ts',
       },
     },
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        displayName: true,
+      },
+    },
 
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-netlify',

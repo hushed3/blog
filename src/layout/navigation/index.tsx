@@ -1,4 +1,3 @@
-import { Link } from 'gatsby'
 import React, { useContext } from 'react'
 import Helmet from 'react-helmet'
 import ThemeContext from '../../context/ThemeContext'
@@ -11,9 +10,10 @@ import DarkIcon from '../../assets/svg/dark.svg'
 import LightIcon from '../../assets/svg/light.svg'
 import LinkIcon from '../../assets/svg/link.svg'
 import { slugify } from '../../utils/helpers'
+import { Nav, NavContainer, NavImage, NavItemRouter, NavLink, Section, ThemeToggle } from './style'
 
 const mainNavItems = [
-  // { url: '/me', icon: blog, label: 'About me', name: ' me ' },
+  // { url: '/me', icon: blog, label: 'About', name: ' me ' },
   { url: '/blog', icon: blog, label: 'Writing', name: ' 归 档 ' },
   { url: '/sunset', icon: sunset, label: 'Sunset', name: ' 夕 阳 ' },
 ]
@@ -24,51 +24,47 @@ export const Navigation = () => {
   const { theme, setTheme } = useContext(ThemeContext)
 
   const handleTheme = () => {
-    setTheme()
+    setTheme(theme === 'dark' ? 'light' : 'dark')
   }
 
   return (
-    <section className="navigation">
+    <Section>
       <Helmet>
         <link rel="shortcut icon" type="image/png" href={favicon} />
       </Helmet>
-      <div className="container">
-        <nav>
-          <Link to="/" className="item brand">
+      <NavContainer>
+        <Nav>
+          <NavLink to="/" className="brand">
             <img src={favicon} className="logo" alt="Hush" />
             <span>Hush</span>
-          </Link>
+          </NavLink>
           {mainNavItems.map((item) => (
-            <div className="nav-item-outer" key={item.label}>
-              <img src={item.icon} alt={item.label} className="nav-image" />
-              <Link to={item.url} activeClassName="active" className={`item ${slugify(item.label)}`}>
+            <NavItemRouter key={item.label}>
+              <NavImage src={item.icon} alt={item.label} />
+              <NavLink to={item.url} className={`${slugify(item.label)}`} activeClassName="active">
                 <span>{item.name}</span>
-              </Link>
-            </div>
+              </NavLink>
+            </NavItemRouter>
           ))}
 
           {socialNavItems.map((item) => (
-            <div className="nav-item-outer" key={item.label}>
-              <img src={item.icon} alt={item.label} className="nav-image" />
-              <a
-                href={item.url}
-                className={`desktop-only item ${slugify(item.label)}`}
-                target="_blank"
-                rel="noreferrer"
-              >
+            <NavItemRouter key={item.label}>
+              <NavImage src={item.icon} alt={item.label} />
+              <NavLink as="a" href={item.url} className={`${slugify(item.label)}`} target="_blank" rel="noreferrer">
                 <span>{item.label}</span>
                 <LinkIcon />
-              </a>
-            </div>
+              </NavLink>
+            </NavItemRouter>
           ))}
-        </nav>
-        <div className="theme-toggle">
+        </Nav>
+
+        <ThemeToggle>
           <button onClick={handleTheme}>
             <div style={{ display: 'none' }}>{theme === 'dark' ? 'dark' : 'light'}</div>
             {theme === 'dark' ? <DarkIcon /> : <LightIcon />}
           </button>
-        </div>
-      </div>
-    </section>
+        </ThemeToggle>
+      </NavContainer>
+    </Section>
   )
 }
