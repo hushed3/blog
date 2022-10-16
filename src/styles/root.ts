@@ -1,6 +1,6 @@
 import { createGlobalStyle, DefaultTheme, GlobalStyleComponent } from 'styled-components'
 
-export const GlobalStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalStyle`
+export const RootStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalStyle`
   :root{
     --gray-0: #f8f9fa;
     --gray-05: #f3f6f9;
@@ -50,6 +50,38 @@ export const GlobalStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobal
     --indigo-dark: #4509cf;
     --indigo-light: #969bf6;
     --indigo-muted: #f1f2fd;
+  }
+
+  ::selection {
+    background: var(--selection-color);
+    color: var(--gray-2);
+  }
+
+  ::-webkit-scrollbar {
+    background-color: transparent;
+    width: 10px;
+    height: 10px;
+
+    z-index: 1000;
+    padding: 0px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    background-clip: content-box;
+    border: 2px solid transparent;
+    z-index: 10000;
+  }
+  body[scroll],
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: 0s;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
   }
 
   html {
@@ -272,4 +304,31 @@ export const GlobalStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobal
         border-color: ${(props) => props.theme.borderColorHover};
       }
   }
+
+  .tag {
+    display: inline-flex;
+    position: relative;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    padding: 0.1rem 0.5rem;
+    margin-bottom: 0.8rem;
+    align-items: center;
+    background: rgba(24, 144, 255, 0.15);
+    color: rgb(24, 144, 255);
+    line-height: 20px;
+
+    &.success {
+      background: rgba(82, 196, 26, 0.15);
+      color: rgb(82, 196, 26);
+    }
+    &.warning {
+      background: rgba(250, 173, 20, 0.15);
+      color: rgb(250, 173, 20);
+    }
+    &.error {
+      background: rgba(255, 77, 79, 0.15);
+      color: rgb(255, 77, 79);
+    }
+  }
+
 `

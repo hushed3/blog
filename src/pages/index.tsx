@@ -4,21 +4,21 @@ import React, { useMemo } from 'react'
 import Helmet from 'react-helmet'
 import { GlobalContainer } from '../styles/global'
 import {
-  Description,
-  HeroWrapper,
-  PopularCard,
-  PopularPreview,
-  PostCard,
-  PostPreview,
-  Section,
+  BriefDescription,
+  BriefWrapper,
+  HighlightCard,
+  HighlightPreview,
+  IndexSection,
+  RecentCard,
+  RecentPreview,
   TagLink,
   TagLinks,
   Time,
   TitleLink,
-} from './styles/index'
+} from './styles'
 
+import { BriefHeader } from '../components/BriefHeader'
 import { Heading } from '../components/Heading'
-import { Hero } from '../components/Hero'
 import { SEO } from '../components/SEO'
 import { Layout } from '../layout/index'
 import { IndexQueryQuery } from '../typings/graphql-type'
@@ -27,45 +27,44 @@ import { getSimplifiedPosts, slugify } from '../utils/helpers'
 
 export default function Index({ data }: { data: IndexQueryQuery }) {
   const latest = data.latest.edges
-  const Populars = data.Populars.edges
+  const Highlights = data.Highlights.edges
   const simplifiedLatest = useMemo(() => getSimplifiedPosts(latest), [latest])
-  const simplifiedPopulars = useMemo(
-    () => getSimplifiedPosts(Populars, { shortTitle: false, thumbnails: true }),
-    [Populars]
+  const simplifiedHighlights = useMemo(
+    () => getSimplifiedPosts(Highlights, { shortTitle: false, thumbnails: true }),
+    [Highlights]
   )
 
   return (
-    <div>
+    <>
       <Helmet title={config.siteTitle} />
       <SEO />
 
       <GlobalContainer>
-        <HeroWrapper>
-          <Hero title="Hi, I'm  Hush" index>
-            <Description>
+        <BriefWrapper>
+          <BriefHeader title="Hi, I'm  Hush" index>
+            <BriefDescription>
               𝑰 𝒉𝒐𝒑𝒆 𝒚𝒐𝒖 𝒍𝒊𝒗𝒆 𝒂 𝒍𝒊𝒇𝒆 𝒚𝒐𝒖‘𝒓𝒆 𝒑𝒓𝒐𝒖𝒅 𝒐𝒇. 𝑰𝒇 𝒚𝒐𝒖 𝒇𝒊𝒏𝒅 𝒕𝒉𝒂𝒕 𝒚𝒐𝒖’𝒓𝒆 𝒏𝒐𝒕, 𝑰 𝒉𝒐𝒑𝒆 𝒚𝒐𝒖 𝒉𝒂𝒗𝒆 𝒕𝒉𝒆 𝒔𝒕𝒓𝒆𝒏𝒈𝒕𝒉 𝒕𝒐 𝒔𝒕𝒂𝒓𝒕
               𝒂𝒍𝒍 𝒐𝒗𝒆𝒓 𝒂𝒈𝒂𝒊𝒏. <br />
               <br />
               我希望你过着自己引以为傲的生活。 如果你发现事实并非如此，我希望你有勇气重新开始。
-            </Description>
-            <Description>𝑯𝒂𝒗𝒆 𝒂 𝒈𝒐𝒐𝒅 𝒅𝒂𝒚. </Description>
-          </Hero>
-        </HeroWrapper>
+            </BriefDescription>
+            <BriefDescription>𝑯𝒂𝒗𝒆 𝒂 𝒈𝒐𝒐𝒅 𝒅𝒂𝒚. </BriefDescription>
+          </BriefHeader>
+        </BriefWrapper>
       </GlobalContainer>
-      <GlobalContainer>
-        <Section>
-          <Heading title="最近内容" slug="/blog" />
 
-          <PostPreview>
+      <GlobalContainer>
+        <IndexSection>
+          <Heading title="最近内容" slug="/blog" />
+          <RecentPreview>
             {simplifiedLatest.map((post) => {
               return (
-                <PostCard key={post.slug}>
-                  {/* <GlobalCard className="anchored card" key={post.slug}> */}
-                  <Time type="post">{post.date}</Time>
+                <RecentCard key={post.slug}>
+                  <Time className="recent">{post.date}</Time>
                   <TitleLink to={post.slug}>{post.title}</TitleLink>
                   <TagLinks>
                     {post.categories
-                      .filter((cat) => cat !== 'Popular')
+                      .filter((cat) => cat !== 'Highlight')
                       .map((cat) => {
                         return (
                           <TagLink to={`/categories/${slugify(cat)}`} key={slugify(cat)}>
@@ -74,33 +73,33 @@ export default function Index({ data }: { data: IndexQueryQuery }) {
                         )
                       })}
                   </TagLinks>
-                </PostCard>
+                </RecentCard>
               )
             })}
-          </PostPreview>
-        </Section>
-        {/* 查找posts目录下带有 Popular 的markdown文件 */}
-        {simplifiedPopulars.length > 0 && (
-          <Section>
+          </RecentPreview>
+        </IndexSection>
+        {/* 查找posts目录下带有 Highlight 的markdown文件 */}
+        {simplifiedHighlights.length > 0 && (
+          <IndexSection>
             <Heading title="热门内容" />
 
-            <PopularPreview>
-              {simplifiedPopulars.map((post) => {
+            <HighlightPreview>
+              {simplifiedHighlights.map((post) => {
                 return (
-                  <PopularCard key={`popular-${post.slug}`}>
+                  <HighlightCard key={`Highlight-${post.slug}`}>
                     {post.thumbnail && <Img style={{ marginRight: '5px' }} fixed={post.thumbnail} />}
                     <div>
                       <Time>{post.date}</Time>
                       <TitleLink to={post.slug}>{post.title}</TitleLink>
                     </div>
-                  </PopularCard>
+                  </HighlightCard>
                 )
               })}
-            </PopularPreview>
-          </Section>
+            </HighlightPreview>
+          </IndexSection>
         )}
       </GlobalContainer>
-    </div>
+    </>
   )
 }
 
@@ -128,10 +127,10 @@ export const pageQuery = graphql`
         }
       }
     }
-    Populars: allMarkdownRemark(
+    Highlights: allMarkdownRemark(
       limit: 12
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { categories: { eq: "Popular" } } }
+      filter: { frontmatter: { categories: { eq: "Highlight" } } }
     ) {
       edges {
         node {

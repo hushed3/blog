@@ -1,8 +1,8 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { MarkdownRemark } from '../typings/graphql-type'
+import { MarkdownRemark } from '../../typings/graphql-type'
 
-import config from '../utils/config'
+import config from '../../utils/config'
 
 interface Props {
   postNode?: MarkdownRemark

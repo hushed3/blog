@@ -9,6 +9,7 @@ import PreviewImage from '../components/PreviewImage'
 import { SEO } from '../components/SEO'
 import { Layout } from '../layout/index'
 import config from '../utils/config'
+import { SunsetContainer } from './styles'
 
 export default function Sunset() {
   const title = '夕阳'
@@ -46,11 +47,11 @@ export default function Sunset() {
         <Helmet title={`${title} | ${config.siteTitle}`} />
         <SEO customDescription={description} />
 
-        <div className="container images">
+        <SunsetContainer>
           {imageList?.map((item) => {
             return <CardImage key={item.id} row={item} onHandleClick={onHandleClick}></CardImage>
           })}
-        </div>
+        </SunsetContainer>
 
         <AnimatePresence>
           {selected && <PreviewImage {...selected} onHandleClick={onHandleClick}></PreviewImage>}

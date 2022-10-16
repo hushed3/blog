@@ -3931,7 +3931,7 @@ export type BlogQueryQuery = { posts: { edges: Array<{ node: { id: string, field
 export type IndexQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type IndexQueryQuery = { latest: { edges: Array<{ node: { id: string, fields?: { slug?: string | null } | null, frontmatter?: { date?: any | null, title?: string | null, tags?: Array<string | null> | null, categories?: Array<string | null> | null } | null } }> }, Populars: { edges: Array<{ node: { id: string, fields?: { slug?: string | null } | null, frontmatter?: { date?: any | null, title?: string | null, tags?: Array<string | null> | null, thumbnail?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null } | null } }> } };
+export type IndexQueryQuery = { latest: { edges: Array<{ node: { id: string, fields?: { slug?: string | null } | null, frontmatter?: { date?: any | null, title?: string | null, tags?: Array<string | null> | null, categories?: Array<string | null> | null } | null } }> }, Highlights: { edges: Array<{ node: { id: string, fields?: { slug?: string | null } | null, frontmatter?: { date?: any | null, title?: string | null, tags?: Array<string | null> | null, thumbnail?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null } | null } }> } };
 
 export type CategoryPageQueryVariables = Exact<{
   category?: InputMaybe<Scalars['String']>;

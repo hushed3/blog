@@ -1,5 +1,5 @@
 import React from 'react'
-import { HeadingLink, HeadingTitle, HomeHeading } from './style'
+import { HeadingContainer, HeadingLink, HeadingTitle } from './style'
 
 interface Props {
   title: string
@@ -13,11 +13,11 @@ interface Props {
 
 export const Heading = ({ title, slug }: Props) => {
   return (
-    <HomeHeading>
+    <HeadingContainer>
       <div>
         <HeadingTitle>{title}</HeadingTitle>
       </div>
       {slug && <HeadingLink to={slug}>View all</HeadingLink>}
-    </HomeHeading>
+    </HeadingContainer>
   )
 }

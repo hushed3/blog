@@ -2,10 +2,12 @@ import { graphql } from 'gatsby'
 import React from 'react'
 import Helmet from 'react-helmet'
 
-import { PostSidebar } from '../components/PostSidebar'
 import { SEO } from '../components/SEO'
+import { PostSidebar } from '../components/Sidebar/PostSidebar'
 import { Layout } from '../layout/index'
+import { GlobalContainer } from '../styles/global'
 import config from '../utils/config'
+import { TemplateContent, TemplateGrid, TemplateHeader, TemplateSection } from './style'
 
 /**
  * @description 文章 页面
@@ -22,20 +24,18 @@ export default function PostTemplate({ data }: { data: any }) {
     <>
       <Helmet title={`${post.frontmatter.title} | ${config.siteTitle}`} />
       <SEO postPath={post.fields.slug} postNode={post} postSEO />
-      <div className="container">
-        <div className="grid">
-          <div className="article-content">
-            <div className="post-header medium width">
-              <h1>{title}</h1>
-            </div>
-            <section className="segment small">
-              <div id={post.fields.slug} className="post-content" dangerouslySetInnerHTML={{ __html: post.html }} />
-            </section>
-          </div>
+      <GlobalContainer>
+        <TemplateGrid>
+          <TemplateContent>
+            <TemplateHeader>{title}</TemplateHeader>
+            <TemplateSection>
+              <div id={post.fields.slug} dangerouslySetInnerHTML={{ __html: post.html }} />
+            </TemplateSection>
+          </TemplateContent>
 
           <PostSidebar date={date} tags={tags} categories={categories} thumbnail={thumbnail} />
-        </div>
-      </div>
+        </TemplateGrid>
+      </GlobalContainer>
     </>
   )
 }

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { GlobalContainer } from '../../styles/global'
 
-export const Section = styled.section`
+export const NavSection = styled.section`
   position: fixed;
   top: 0;
   left: 0;
@@ -41,7 +41,7 @@ export const NavContainer = styled(GlobalContainer)`
   }
 `
 
-export const Nav = styled.nav`
+export const NavLeft = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -52,7 +52,7 @@ export const Nav = styled.nav`
   }
 `
 
-export const NavItemRouter = styled.div.attrs((props) => ({
+export const NavRouter = styled.div.attrs((props) => ({
   key: props.key,
 }))`
   display: flex;

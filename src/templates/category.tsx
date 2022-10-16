@@ -1,15 +1,17 @@
 import { graphql } from 'gatsby'
 import React, { useMemo } from 'react'
 import Helmet from 'react-helmet'
+import { BriefHeader } from '../components/BriefHeader'
+import { BlogSidebar } from '../components/Sidebar/BlogSidebar'
 
-import { BlogContainer } from '../components/BlogContainer'
-import { Hero } from '../components/Hero'
 import { Posts } from '../components/Posts'
 import { SEO } from '../components/SEO'
 import { Layout } from '../layout/index'
+import { GlobalContainer } from '../styles/global'
 import { CategoryPageQuery } from '../typings/graphql-type'
 import config from '../utils/config'
 import { getSimplifiedPosts } from '../utils/helpers'
+import { TemplateContent, TemplateGrid } from './style'
 
 /**
  * @description 类别 页面
@@ -26,22 +28,27 @@ export default function CategoryTemplate({
   data: CategoryPageQuery
   pageContext: { category: string }
 }) {
-  let { category } = pageContext
+  const { category } = pageContext
   const { totalCount } = data.allMarkdownRemark
   const posts = data.allMarkdownRemark.edges
   const simplifiedPosts = useMemo(() => getSimplifiedPosts(posts), [posts])
   const message = totalCount === 1 ? ' post categorized as:' : ' posts categorized as:'
 
   return (
-    <div>
+    <>
       <Helmet title={`${category} | ${config.siteTitle}`} />
       <SEO />
 
-      <BlogContainer>
-        <Hero highlight={totalCount} subTitle={message} title={category} />
-        <Posts data={simplifiedPosts} />
-      </BlogContainer>
-    </div>
+      <GlobalContainer as="header">
+        <TemplateGrid>
+          <TemplateContent>
+            <BriefHeader highlight={totalCount} subTitle={message} title={category} />
+            <Posts data={simplifiedPosts} />
+          </TemplateContent>
+          <BlogSidebar />
+        </TemplateGrid>
+      </GlobalContainer>
+    </>
   )
 }
 

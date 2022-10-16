@@ -1,8 +1,8 @@
 import { Link } from 'gatsby'
-import Img from 'gatsby-image'
 import React from 'react'
+import { PostSideImage, SideCard, SideSticky, SideTag, SideTags, SideTitle } from './style'
 
-import { slugify } from '../utils/helpers'
+import { slugify } from '../../utils/helpers'
 
 /**
  * @description 侧边文章详细信息
@@ -19,17 +19,17 @@ export const PostSidebar = ({
   categories: string[]
   thumbnail: Record<string, any>
 }) => {
-  const category = categories?.filter((category) => category !== 'Popular')
+  const category = categories?.filter((category) => category !== 'Highlight')
 
   return (
-    <aside className="post-sidebar">
-      <div className="post-sidebar-sticky">
+    <aside>
+      <SideSticky>
         {thumbnail && (
-          <div className="post-image">
-            <Img fixed={thumbnail.childImageSharp?.fixed} />
-          </div>
+          // <div className="post-image">
+          // </div>
+          <PostSideImage fixed={thumbnail.childImageSharp?.fixed} />
         )}
-        {/* <div className="post-sidebar-card">
+        {/* <SideCard>
         <h2>About me</h2>
         <img alt="Tania" className="sidebar-avatar" />
         <p>
@@ -42,16 +42,16 @@ export const PostSidebar = ({
           trackers, social media, affiliates, and sponsored posts.
         </p>
         <p>I hope you enjoy the post and have a nice day.</p>
-      </div> */}
-        <div className="post-sidebar-card">
-          <h2>日期</h2>
+      </SideCard> */}
+        <SideCard>
+          <SideTitle>日期</SideTitle>
           <ul>
             <li>发布于 {date}</li>
           </ul>
 
           {category && (
             <div>
-              <h2>类别</h2>
+              <SideTitle>类别</SideTitle>
               <ul>
                 <li>
                   <Link to={`/categories/${slugify(category)}`}>{category}</Link>
@@ -60,18 +60,18 @@ export const PostSidebar = ({
             </div>
           )}
 
-          <h2>标签</h2>
-          <div className="tags">
+          <SideTitle>标签</SideTitle>
+          <SideTags>
             {tags.map((tag) => {
               return (
-                <Link key={tag} to={`/tags/${slugify(tag)}`} className="tag" activeClassName="active">
+                <SideTag key={tag} to={`/tags/${slugify(tag)}`} activeClassName="active">
                   {tag}
-                </Link>
+                </SideTag>
               )
             })}
-          </div>
-        </div>
-      </div>
+          </SideTags>
+        </SideCard>
+      </SideSticky>
     </aside>
   )
 }

@@ -7,9 +7,7 @@ export const GlobalContainer = styled.div`
   margin-right: auto;
 
   @media screen and (min-width: 700px) {
-    .container {
-      padding: 0 1.5rem;
-    }
+    padding: 0 1.5rem;
   }
 `
 
@@ -20,5 +18,30 @@ export const GlobalCard = styled.div`
   position: relative;
   @media screen and (min-width: 700px) {
     padding: 1.2rem;
+  }
+`
+
+export const GlobalSection = styled.section`
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  &.small {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &.large {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+
+  @media screen and (min-width: 700px) {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+
+    &.small {
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
   }
 `

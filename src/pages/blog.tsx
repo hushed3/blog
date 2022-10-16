@@ -2,13 +2,16 @@ import { graphql } from 'gatsby'
 import React, { useMemo } from 'react'
 import Helmet from 'react-helmet'
 
-import { BlogContainer } from '../components/BlogContainer'
+import { BriefHeader } from '../components/BriefHeader'
 import { Posts } from '../components/Posts'
 import { SEO } from '../components/SEO'
+import { BlogSidebar } from '../components/Sidebar/BlogSidebar'
 import { Layout } from '../layout/index'
+import { GlobalContainer } from '../styles/global'
 import { BlogQueryQuery } from '../typings/graphql-type'
 import config from '../utils/config'
 import { getSimplifiedPosts } from '../utils/helpers'
+import { BlogContent, BlogGrid } from './styles'
 
 export default function Blog({ data }: { data: BlogQueryQuery }) {
   const posts = data.posts.edges
@@ -16,22 +19,24 @@ export default function Blog({ data }: { data: BlogQueryQuery }) {
   const title = '文章归档'
   const description = 'Notes & tutorials'
   return (
-    <div>
+    <>
       <Helmet title={`${title} | ${config.siteTitle}`} />
       <SEO customDescription={description} />
 
-      <BlogContainer>
-        <header className="hero">
-          <h1>{title}</h1>
-        </header>
-        <Posts data={simplifiedPosts} />
-      </BlogContainer>
-    </div>
+      <GlobalContainer as="header">
+        <BlogGrid>
+          <BlogContent>
+            <BriefHeader title={title} />
+            <Posts data={simplifiedPosts} />
+          </BlogContent>
+          <BlogSidebar />
+        </BlogGrid>
+      </GlobalContainer>
+    </>
   )
 }
 
 Blog.Layout = Layout
-
 
 export const blogQuery = graphql`
   query BlogQuery {
