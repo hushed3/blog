@@ -2,14 +2,16 @@ import { graphql } from 'gatsby'
 import React, { useMemo } from 'react'
 import Helmet from 'react-helmet'
 
-import { BlogContainer } from '../components/BlogContainer'
-import { Hero } from '../components/Hero'
+import { BriefHeader } from '../components/BriefHeader'
 import { Posts } from '../components/Posts'
 import { SEO } from '../components/SEO'
+import { BlogSidebar } from '../components/Sidebar/BlogSidebar'
 import { Layout } from '../layout/index'
+import { GlobalContainer } from '../styles/global'
 import { TagPageQuery } from '../typings/graphql-type'
 import config from '../utils/config'
 import { getSimplifiedPosts } from '../utils/helpers'
+import { TemplateContent, TemplateGrid } from './style'
 
 /**
  * @description 标签 页面
@@ -26,15 +28,20 @@ export default function TagTemplate({ data, pageContext }: { data: TagPageQuery;
   const message = totalCount === 1 ? ' post tagged:' : ' posts tagged:'
 
   return (
-    <div>
+    <>
       <Helmet title={`Posts tagged: ${tag} | ${config.siteTitle}`} />
       <SEO />
 
-      <BlogContainer>
-        <Hero highlight={totalCount} subTitle={message} title={tag} />
-        <Posts data={simplifiedPosts} />
-      </BlogContainer>
-    </div>
+      <GlobalContainer as="header">
+        <TemplateGrid>
+          <TemplateContent>
+            <BriefHeader highlight={totalCount} subTitle={message} title={tag} />
+            <Posts data={simplifiedPosts} />
+          </TemplateContent>
+          <BlogSidebar />
+        </TemplateGrid>
+      </GlobalContainer>
+    </>
   )
 }
 

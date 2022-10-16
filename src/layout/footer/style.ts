@@ -5,32 +5,32 @@ export const FooterContainer = styled.footer`
   font-family: ${(props) => props.theme.fontFamilyBase};
 `
 
-export const Section = styled.section`
+export const FooterSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.25rem;
 `
 
-export const Nav = styled.nav`
+export const FooterNav = styled.nav`
   display: flex;
   gap: 0.25rem;
   margin: 0 1rem;
 `
 
-export const Span = styled.span`
+export const FooterSpan = styled.span`
   display: flex;
   align-items: center;
-  color: var(--font-color-base);
+  color: ${(props) => props.theme.fontColorBase};
   font-size: 0.9rem;
   line-height: 1.2;
   padding: 0 0.5rem;
 `
 
-export const A = styled.a`
+export const FooterA = styled.a`
   display: flex;
   align-items: center;
-  color: var(--font-color-base);
+  color: ${(props) => props.theme.fontColorBase};
   font-size: 0.9rem;
   line-height: 1.2;
   padding: 0 0.5rem;
@@ -40,7 +40,7 @@ export const A = styled.a`
   }
 `
 
-export const Img = styled.img`
+export const FooterImg = styled.img`
   display: inline-block;
   max-height: 20px;
   width: auto;

@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { ImageContainer, Mask, PreviewContent, PreviewImg } from './style'
 
 interface Props {
   id: number
@@ -15,12 +15,7 @@ interface Props {
 const PreviewImage = ({ id, name, url, onHandleClick }: Props) => {
   return ReactDOM.createPortal(
     <>
-      <div className="previewImage">
-        <motion.div className="previewImage-content" layoutId={`preview-${id}`}>
-          <img className="previewImage-image" src={url} alt="" />
-        </motion.div>
-      </div>
-      <motion.div
+      <Mask
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0, transition: { duration: 0.15 } }}
@@ -28,7 +23,12 @@ const PreviewImage = ({ id, name, url, onHandleClick }: Props) => {
         style={{ pointerEvents: 'auto' }}
         className="overlay"
         onClick={() => onHandleClick()}
-      ></motion.div>
+      ></Mask>
+      <ImageContainer>
+        <PreviewContent layoutId={`preview-${id}`}>
+          <PreviewImg src={url} alt="" />
+        </PreviewContent>
+      </ImageContainer>
     </>,
     document.body
   )

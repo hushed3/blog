@@ -1,7 +1,7 @@
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 
-export const HomeHeading = styled.h2`
+export const HeadingContainer = styled.h2`
   margin-bottom: 1rem;
   display: flex;
   align-items: center;

@@ -5,10 +5,6 @@ import { Footer } from './footer/index'
 import { Navigation } from './navigation/index'
 
 import styled from 'styled-components'
-import '../styles/custom.less'
-import '../styles/global.less'
-import '../styles/new-moon.less'
-import '../styles/theme.less'
 
 const LayoutContainer = styled.div.attrs({
   id: 'layout',

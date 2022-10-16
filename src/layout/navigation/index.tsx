@@ -10,7 +10,7 @@ import DarkIcon from '../../assets/svg/dark.svg'
 import LightIcon from '../../assets/svg/light.svg'
 import LinkIcon from '../../assets/svg/link.svg'
 import { slugify } from '../../utils/helpers'
-import { Nav, NavContainer, NavImage, NavItemRouter, NavLink, Section, ThemeToggle } from './style'
+import { NavContainer, NavImage, NavLeft, NavLink, NavRouter, NavSection, ThemeToggle } from './style'
 
 const mainNavItems = [
   // { url: '/me', icon: blog, label: 'About', name: ' me ' },
@@ -28,35 +28,35 @@ export const Navigation = () => {
   }
 
   return (
-    <Section>
+    <NavSection>
       <Helmet>
         <link rel="shortcut icon" type="image/png" href={favicon} />
       </Helmet>
       <NavContainer>
-        <Nav>
+        <NavLeft>
           <NavLink to="/" className="brand">
             <img src={favicon} className="logo" alt="Hush" />
             <span>Hush</span>
           </NavLink>
           {mainNavItems.map((item) => (
-            <NavItemRouter key={item.label}>
+            <NavRouter key={item.label}>
               <NavImage src={item.icon} alt={item.label} />
               <NavLink to={item.url} className={`${slugify(item.label)}`} activeClassName="active">
                 <span>{item.name}</span>
               </NavLink>
-            </NavItemRouter>
+            </NavRouter>
           ))}
 
           {socialNavItems.map((item) => (
-            <NavItemRouter key={item.label}>
+            <NavRouter key={item.label}>
               <NavImage src={item.icon} alt={item.label} />
               <NavLink as="a" href={item.url} className={`${slugify(item.label)}`} target="_blank" rel="noreferrer">
                 <span>{item.label}</span>
                 <LinkIcon />
               </NavLink>
-            </NavItemRouter>
+            </NavRouter>
           ))}
-        </Nav>
+        </NavLeft>
 
         <ThemeToggle>
           <button onClick={handleTheme}>
@@ -65,6 +65,6 @@ export const Navigation = () => {
           </button>
         </ThemeToggle>
       </NavContainer>
-    </Section>
+    </NavSection>
   )
 }

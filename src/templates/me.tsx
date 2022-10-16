@@ -2,10 +2,12 @@ import { graphql } from 'gatsby'
 import React from 'react'
 import Helmet from 'react-helmet'
 
-import { MeSidebar } from '../components/MeSidebar'
 import { SEO } from '../components/SEO'
+import { MeSidebar } from '../components/Sidebar/MeSidebar'
 import { Layout } from '../layout/index'
+import { GlobalContainer } from '../styles/global'
 import config from '../utils/config'
+import { TemplateContent, TemplateGrid, TemplateHeader, TemplateSection } from './style'
 
 /**
  * @description Me 页面
@@ -19,24 +21,22 @@ export default function PageTemplate({ data }: { data: any }) {
   const { title } = post.frontmatter
 
   return (
-    <div>
+    <>
       <Helmet title={`${title} | ${config.siteTitle}`} />
       <SEO />
-      <div className="container">
-        <div className="grid">
-          <div className="article-content">
-            <div className="hero">
-              <h1>{title}</h1>
-            </div>
-            <section className="segment small">
-              <div className="post-content" dangerouslySetInnerHTML={{ __html: post.html }} />
-            </section>
-          </div>
+      <GlobalContainer>
+        <TemplateGrid>
+          <TemplateContent>
+            <TemplateHeader>{title}</TemplateHeader>
+            <TemplateSection>
+              <div dangerouslySetInnerHTML={{ __html: post.html }} />
+            </TemplateSection>
+          </TemplateContent>
 
           <MeSidebar />
-        </div>
-      </div>
-    </div>
+        </TemplateGrid>
+      </GlobalContainer>
+    </>
   )
 }
 

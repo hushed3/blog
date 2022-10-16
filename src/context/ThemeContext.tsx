@@ -1,7 +1,8 @@
 import React, { createContext } from 'react'
 import { ThemeProvider } from 'styled-components'
 import useTheme from '../hooks/useTheme'
-import { GlobalStyle } from '../styles/root'
+import { CodeStyle } from '../styles/code'
+import { RootStyle } from '../styles/root'
 import { dark, light } from '../styles/theme'
 
 type Content = {
@@ -19,8 +20,8 @@ const ThemeProviderWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <ThemeProvider theme={theme === 'dark' ? dark : light}>
-        {/* <ThemeStyle /> */}
-        <GlobalStyle />
+        <RootStyle />
+        <CodeStyle />
         <ThemeContext.Provider value={contextValue}>{children}</ThemeContext.Provider>
       </ThemeProvider>
     </>
