@@ -8,10 +8,10 @@ import { SEO } from '../components/SEO'
 import { BlogSidebar } from '../components/Sidebar/BlogSidebar'
 import { Layout } from '../layout/index'
 import { GlobalContainer } from '../styles/global'
+import { BlogContent, BlogGrid } from '../styles/page'
 import { BlogQueryQuery } from '../typings/graphql-type'
 import config from '../utils/config'
 import { getSimplifiedPosts } from '../utils/helpers'
-import { BlogContent, BlogGrid } from './styles'
 
 export default function Blog({ data }: { data: BlogQueryQuery }) {
   const posts = data.posts.edges

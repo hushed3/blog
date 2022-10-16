@@ -1,7 +1,7 @@
 import { Link } from 'gatsby'
 import styled from 'styled-components'
-import { GlobalCard, GlobalContainer } from '../../styles/global'
-import { TemplateContent, TemplateGrid, TemplateSection } from '../../templates/style'
+import { GlobalCard, GlobalContainer } from './global'
+import { TemplateContent, TemplateGrid, TemplateSection } from '../templates/style'
 
 export const BlogGrid = styled(TemplateGrid)``
 
