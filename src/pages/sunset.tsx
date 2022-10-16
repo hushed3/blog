@@ -8,8 +8,8 @@ import CardImage from '../components/CardImage'
 import PreviewImage from '../components/PreviewImage'
 import { SEO } from '../components/SEO'
 import { Layout } from '../layout/index'
+import { SunsetContainer } from '../styles/page'
 import config from '../utils/config'
-import { SunsetContainer } from './styles'
 
 export default function Sunset() {
   const title = '夕阳'

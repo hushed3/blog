@@ -15,7 +15,7 @@ import {
   TagLinks,
   Time,
   TitleLink,
-} from './styles'
+} from '../styles/page'
 
 import { BriefHeader } from '../components/BriefHeader'
 import { Heading } from '../components/Heading'
