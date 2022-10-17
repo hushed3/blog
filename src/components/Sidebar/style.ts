@@ -74,10 +74,10 @@ export const SideTags = styled.div`
 `
 
 export const SideTag = styled(Link)`
-  line-height: 18px;
+  line-height: 22px;
   font-size: 0.75rem;
   font-weight: 400;
-  padding: 0.05rem 0.5rem 0.15rem 0.5rem;
+  padding: 0rem 0.5rem 0.05rem 0.5rem;
   border: 1px solid ${(props) => props.theme.borderColor};
   border-radius: ${(props) => props.theme.borderRadius};
   color: ${(props) => props.theme.fontColorBase};

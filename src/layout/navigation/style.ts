@@ -1,7 +1,7 @@
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 
-import { GlobalContainer } from '../../styles/global'
+import { GlobalContainer } from '../../styles/components/global'
 
 export const NavSection = styled.section`
   position: fixed;

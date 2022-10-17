@@ -2,7 +2,7 @@ import React from 'react'
 import { BriefHeader as Header, BriefPurpleTitle as PurpleTitle, BriefSubTitle, BriefTitle } from './style'
 
 interface Props {
-  title: string
+  title?: string | null
   highlight?: number
   subTitle?: string
   children?: React.ReactNode

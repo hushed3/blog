@@ -53,7 +53,7 @@ export const RootStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
   }
 
   ::selection {
-    background: var(--selection-color);
+    background: ${(props) => props.theme.selectionColor};
     color: var(--gray-2);
   }
 
@@ -93,8 +93,6 @@ export const RootStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
     font-size: 13px;
     font-weight: normal;
     font-kerning: normal;
-
-
   }
 
   body {

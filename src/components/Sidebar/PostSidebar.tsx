@@ -2,6 +2,8 @@ import { Link } from 'gatsby'
 import React from 'react'
 import { PostSideImage, SideCard, SideSticky, SideTag, SideTags, SideTitle } from './style'
 
+import { FixedObject } from 'gatsby-image'
+import { PostBySlug_markdownRemark_frontmatter_thumbnail } from '../../templates/__generated__/PostBySlug'
 import { slugify } from '../../utils/helpers'
 
 /**
@@ -14,21 +16,18 @@ export const PostSidebar = ({
   categories = [],
   thumbnail,
 }: {
-  tags: string[]
   date: string
-  categories: string[]
-  thumbnail: Record<string, any>
+  tags?: (string | null)[] | null
+  categories?: (string | null)[] | null
+  thumbnail?: PostBySlug_markdownRemark_frontmatter_thumbnail | null
 }) => {
   const category = categories?.filter((category) => category !== 'Highlight')
+  const { fixed } = { ...thumbnail?.childImageSharp }
 
   return (
     <aside>
       <SideSticky>
-        {thumbnail && (
-          // <div className="post-image">
-          // </div>
-          <PostSideImage fixed={thumbnail.childImageSharp?.fixed} />
-        )}
+        {thumbnail && <PostSideImage fixed={fixed as FixedObject} />}
         {/* <SideCard>
         <h2>About me</h2>
         <img alt="Tania" className="sidebar-avatar" />
@@ -62,13 +61,14 @@ export const PostSidebar = ({
 
           <SideTitle>标签</SideTitle>
           <SideTags>
-            {tags.map((tag) => {
-              return (
-                <SideTag key={tag} to={`/tags/${slugify(tag)}`} activeClassName="active">
-                  {tag}
-                </SideTag>
-              )
-            })}
+            {tags &&
+              tags.map((tag) => {
+                return (
+                  <SideTag key={tag} to={`/tags/${slugify(tag!)}`} activeClassName="active">
+                    {tag}
+                  </SideTag>
+                )
+              })}
           </SideTags>
         </SideCard>
       </SideSticky>

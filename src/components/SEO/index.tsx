@@ -1,12 +1,12 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { MarkdownRemark } from '../../typings/graphql-type'
+import { PostBySlug_markdownRemark } from '../../templates/__generated__/PostBySlug'
 
 import config from '../../utils/config'
 
 interface Props {
-  postNode?: MarkdownRemark
-  postPath?: string
+  postNode?: PostBySlug_markdownRemark | null
+  postPath?: string | null
   postSEO?: boolean
   customDescription?: string
 }

@@ -1,8 +1,8 @@
-import { graphql } from 'gatsby'
+import { graphql, PageProps } from 'gatsby'
 import Img from 'gatsby-image'
 import React, { useMemo } from 'react'
 import Helmet from 'react-helmet'
-import { GlobalContainer } from '../styles/global'
+import { GlobalContainer } from '../styles/components/global'
 import {
   BriefDescription,
   BriefWrapper,
@@ -15,17 +15,17 @@ import {
   TagLinks,
   Time,
   TitleLink,
-} from '../styles/page'
+} from '../styles/components/pages'
 
 import { BriefHeader } from '../components/BriefHeader'
 import { Heading } from '../components/Heading'
 import { SEO } from '../components/SEO'
 import { Layout } from '../layout/index'
-import { IndexQueryQuery } from '../typings/graphql-type'
 import config from '../utils/config'
 import { getSimplifiedPosts, slugify } from '../utils/helpers'
+import { IndexQuery } from './__generated__/IndexQuery'
 
-export default function Index({ data }: { data: IndexQueryQuery }) {
+export default function Index({ data }: PageProps<IndexQuery>) {
   const latest = data.latest.edges
   const Highlights = data.Highlights.edges
   const simplifiedLatest = useMemo(() => getSimplifiedPosts(latest), [latest])
