@@ -18,10 +18,10 @@ export default function HTML(props: any) {
             const KEY = 'theme'
             const theme = localStorage.getItem(KEY) || (window?.matchMedia(THEME).matches ? 'dark' : 'light')
             if (theme === 'dark') {
-              document.documentElement.setAttribute(KEY, 'dark')
+              //document.documentElement.setAttribute(KEY, 'dark')
               document.documentElement.setAttribute('style', 'background:#31363b')
             } else {
-              document.documentElement.removeAttribute(KEY)
+              //document.documentElement.removeAttribute(KEY)
               document.documentElement.removeAttribute('style')
             }
         `,

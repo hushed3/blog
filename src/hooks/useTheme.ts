@@ -35,11 +35,11 @@ export const storageTheme = (key = KEY) => {
 const changeThemeAttribute = (theme: string) => {
   if (!isSSR) {
     if (theme === 'dark') {
-      document.documentElement.setAttribute(KEY, 'dark')
-      document.documentElement.setAttribute('style', 'background:#31363b')
+      // document.documentElement.setAttribute(KEY, 'dark')
+      // document.documentElement.setAttribute('style', 'background:#31363b')
     } else {
-      document.documentElement.removeAttribute(KEY)
-      document.documentElement.removeAttribute('style')
+      // document.documentElement.removeAttribute(KEY)
+      // document.documentElement.removeAttribute('style')
     }
   }
 }

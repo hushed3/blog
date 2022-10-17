@@ -1,6 +1,6 @@
-import React, { createContext } from 'react'
+import React, { createContext, useEffect } from 'react'
 import { ThemeProvider as StyledProvider } from 'styled-components'
-import useTheme from '../hooks/useTheme'
+import useTheme, { osTheme, storageTheme } from '../hooks/useTheme'
 import { CodeStyle } from '../styles/code'
 import { RootStyle } from '../styles/root'
 import { dark, light } from '../styles/theme'
@@ -10,20 +10,26 @@ type Content = {
   setTheme: (e: string) => void
 }
 
-const ThemeContext = createContext<Content>({} as Content)
+const ThemeContext = createContext<Content>({ theme: storageTheme() || osTheme() } as Content)
 
 const ThemeProviderWrapper = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useTheme()
   const contextValue = { theme, setTheme }
 
+  useEffect(() => {
+    console.log('ThemeProviderWrapper', theme, storageTheme() || osTheme())
+  }, [theme])
+
   return (
-    <React.Fragment>
-      <StyledProvider theme={theme === 'dark' ? dark : light}>
-        <RootStyle />
-        <CodeStyle />
-        <ThemeContext.Provider value={contextValue}>{children}</ThemeContext.Provider>
-      </StyledProvider>
-    </React.Fragment>
+    <>
+      <ThemeContext.Provider value={contextValue}>
+        <StyledProvider theme={theme === 'dark' ? dark : light}>
+          <RootStyle />
+          <CodeStyle />
+          {children}
+        </StyledProvider>
+      </ThemeContext.Provider>
+    </>
   )
 }
 
