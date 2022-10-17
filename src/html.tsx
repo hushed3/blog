@@ -11,13 +11,6 @@ export default function HTML(props: any) {
         {props.headComponents}
       </head>
 
-      <body {...props.bodyAttributes}>
-        {props.preBodyComponents}
-
-        <div key={`body`} id="___gatsby" dangerouslySetInnerHTML={{ __html: props.body }} />
-
-        {props.postBodyComponents}
-      </body>
       <script
         dangerouslySetInnerHTML={{
           __html: `
@@ -26,12 +19,22 @@ export default function HTML(props: any) {
             const theme = localStorage.getItem(KEY) || (window?.matchMedia(THEME).matches ? 'dark' : 'light')
             if (theme === 'dark') {
               document.documentElement.setAttribute(KEY, 'dark')
+              document.documentElement.setAttribute('style', 'background:#31363b')
             } else {
               document.documentElement.removeAttribute(KEY)
+              document.documentElement.removeAttribute('style')
             }
         `,
         }}
       ></script>
+
+      <body {...props.bodyAttributes}>
+        {props.preBodyComponents}
+
+        <div key={`body`} id="___gatsby" dangerouslySetInnerHTML={{ __html: props.body }} />
+
+        {props.postBodyComponents}
+      </body>
     </html>
   )
 }

@@ -1,19 +1,22 @@
-export function getSimplifiedPosts(posts: any, options: any = {}): SimplifiedData[] {
-  return posts.map((post: any) => ({
-    id: post.node.id,
-    date: post.node.frontmatter.date,
-    slug: post.node.fields.slug,
-    tags: post.node.frontmatter.tags,
-    categories: post.node.frontmatter.categories,
-    title: options.shortTitle ? post.node.frontmatter.shortTitle : post.node.frontmatter.title,
-    description: post.node.frontmatter.description,
-    ...(options.thumbnails && {
-      thumbnail: post.node.frontmatter?.thumbnail?.childImageSharp?.fixed,
-    }),
-  }))
+export function getSimplifiedPosts(posts: any[], options: any = {}): SimplifiedData[] {
+  return posts.map((post) => {
+    const { id, frontmatter, fields } = { ...post?.node } as any
+    return {
+      id: id,
+      date: frontmatter?.date,
+      slug: fields?.slug,
+      tags: frontmatter?.tags,
+      categories: frontmatter?.categories,
+      title: options.shortTitle ? frontmatter?.shortTitle : frontmatter?.title,
+      description: frontmatter?.description,
+      ...(options.thumbnails && {
+        thumbnail: frontmatter?.thumbnail?.childImageSharp?.fixed,
+      }),
+    }
+  })
 }
 
-export function slugify(string: string | string[]): string {
+export function slugify(string: string | (string | null)[]): string {
   return (
     string &&
     `${string}`

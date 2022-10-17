@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby'
+import { graphql, PageProps } from 'gatsby'
 import React, { useMemo } from 'react'
 import Helmet from 'react-helmet'
 
@@ -7,13 +7,13 @@ import { Posts } from '../components/Posts'
 import { SEO } from '../components/SEO'
 import { BlogSidebar } from '../components/Sidebar/BlogSidebar'
 import { Layout } from '../layout/index'
-import { GlobalContainer } from '../styles/global'
-import { BlogContent, BlogGrid } from '../styles/page'
-import { BlogQueryQuery } from '../typings/graphql-type'
+import { GlobalContainer } from '../styles/components/global'
+import { BlogContent, BlogGrid } from '../styles/components/pages'
 import config from '../utils/config'
 import { getSimplifiedPosts } from '../utils/helpers'
+import { BlogQuery } from './__generated__/BlogQuery'
 
-export default function Blog({ data }: { data: BlogQueryQuery }) {
+export default function Blog({ data }: PageProps<BlogQuery>) {
   const posts = data.posts.edges
   const simplifiedPosts = useMemo<SimplifiedData[]>(() => getSimplifiedPosts(posts), [posts])
   const title = '文章归档'

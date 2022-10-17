@@ -1,24 +1,26 @@
-import { graphql } from 'gatsby'
+import { graphql, PageProps } from 'gatsby'
 import React from 'react'
 import Helmet from 'react-helmet'
 
 import { SEO } from '../components/SEO'
 import { MeSidebar } from '../components/Sidebar/MeSidebar'
-import { Layout } from '../layout/index'
-import { GlobalContainer } from '../styles/global'
+import { GlobalContainer } from '../styles/components/global'
+import { TemplateContent, TemplateGrid, TemplateHeader, TemplateSection } from '../styles/components/templates'
 import config from '../utils/config'
-import { TemplateContent, TemplateGrid, TemplateHeader, TemplateSection } from './style'
+
+import { MeBySlug } from './__generated__/MeBySlug'
 
 /**
  * @description Me 页面
- * @date 09/10/2022
+ * @date 17/10/2022
  * @export
- * @param {*} { data }
+ * @param {PageProps<MeBySlug>} { data }
  * @return {*}
  */
-export default function PageTemplate({ data }: { data: any }) {
-  const post = data.markdownRemark
-  const { title } = post.frontmatter
+
+export default function MeTemplate({ data }: PageProps<MeBySlug>) {
+  const post = data.markdownRemark!
+  const { title } = { ...post.frontmatter }
 
   return (
     <>
@@ -29,7 +31,7 @@ export default function PageTemplate({ data }: { data: any }) {
           <TemplateContent>
             <TemplateHeader>{title}</TemplateHeader>
             <TemplateSection>
-              <div dangerouslySetInnerHTML={{ __html: post.html }} />
+              <div dangerouslySetInnerHTML={{ __html: post.html as string }} />
             </TemplateSection>
           </TemplateContent>
 
@@ -40,10 +42,8 @@ export default function PageTemplate({ data }: { data: any }) {
   )
 }
 
-PageTemplate.Layout = Layout
-
 export const pageQuery = graphql`
-  query PageBySlug($slug: String!) {
+  query MeBySlug($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {

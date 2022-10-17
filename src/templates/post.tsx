@@ -1,35 +1,37 @@
-import { graphql } from 'gatsby'
+import { graphql, PageProps } from 'gatsby'
 import React from 'react'
 import Helmet from 'react-helmet'
 
 import { SEO } from '../components/SEO'
 import { PostSidebar } from '../components/Sidebar/PostSidebar'
 import { Layout } from '../layout/index'
-import { GlobalContainer } from '../styles/global'
+import { GlobalContainer } from '../styles/components/global'
+import { TemplateContent, TemplateGrid, TemplateHeader, TemplateSection } from '../styles/components/templates'
 import config from '../utils/config'
-import { TemplateContent, TemplateGrid, TemplateHeader, TemplateSection } from './style'
+import { PostBySlug, PostBySlug_markdownRemark } from './__generated__/PostBySlug'
 
 /**
- * @description 文章 页面
- * @date 09/10/2022
+ * @description  文章 页面
+ * @date 17/10/2022
  * @export
- * @param {*} { data }
+ * @param {PageProps<PostBySlug>} { data }
  * @return {*}
  */
-export default function PostTemplate({ data }: { data: any }) {
-  const post = data.markdownRemark
-  const { tags, categories, title, date, thumbnail } = post.frontmatter
+export default function PostTemplate({ data }: PageProps<PostBySlug>) {
+  const post = data.markdownRemark!
+  const { tags, categories, title, date, thumbnail } = { ...post?.frontmatter }
+  const { slug } = { ...post?.fields }
 
   return (
     <>
-      <Helmet title={`${post.frontmatter.title} | ${config.siteTitle}`} />
-      <SEO postPath={post.fields.slug} postNode={post} postSEO />
+      <Helmet title={`${title} | ${config.siteTitle}`} />
+      <SEO postPath={slug} postNode={post as PostBySlug_markdownRemark} postSEO />
       <GlobalContainer>
         <TemplateGrid>
           <TemplateContent>
             <TemplateHeader>{title}</TemplateHeader>
             <TemplateSection>
-              <div id={post.fields.slug} dangerouslySetInnerHTML={{ __html: post.html }} />
+              <div id={slug as string} dangerouslySetInnerHTML={{ __html: post?.html as string }} />
             </TemplateSection>
           </TemplateContent>
 
@@ -43,7 +45,7 @@ export default function PostTemplate({ data }: { data: any }) {
 PostTemplate.Layout = Layout
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query PostBySlug($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       excerpt

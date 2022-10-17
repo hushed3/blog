@@ -17,10 +17,11 @@ module.exports = {
     // ===================================================================================
     // Meta
     // ===================================================================================
+
     {
-      resolve: `gatsby-plugin-graphql-codegen`,
+      resolve: `gatsby-plugin-codegen`,
       options: {
-        fileName: './src/typings/graphql-type.d.ts',
+        watch: true,
       },
     },
     {

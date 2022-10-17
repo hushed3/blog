@@ -1,6 +1,6 @@
 import { Link } from 'gatsby'
 import styled from 'styled-components'
-import { GlobalSection } from '../../styles/global'
+import { GlobalSection } from '../../styles/components/global'
 
 export const PostSection = styled(GlobalSection)``
 
