@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Helmet from 'react-helmet'
-import ThemeContext from '../../context/ThemeContext'
+import useTheme from '../../hooks/useTheme'
 
 import favicon from '../../assets/logo.png'
 import blog from '../../assets/nav-blog.png'
@@ -21,7 +21,8 @@ const mainNavItems = [
 const socialNavItems = [{ url: 'https://github.com/hushed3', icon: github, label: 'GitHub' }]
 
 export const Navigation = () => {
-  const { theme, setTheme } = useContext(ThemeContext)
+  const [theme, setTheme] = useTheme()
+  // const { theme, setTheme } = useContext(ThemeContext)
 
   const handleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark')

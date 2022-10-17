@@ -1,4 +1,5 @@
 import React from 'react'
+import { ThemeProviderWrapper } from '../context/ThemeContext'
 
 import { BgParticles } from '../components/BgParticles'
 import { Footer } from './footer/index'
@@ -27,11 +28,13 @@ const Main = styled.main.attrs({
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <LayoutContainer>
-      <BgParticles />
-      <Navigation />
-      <Main>{children}</Main>
-      <Footer />
-    </LayoutContainer>
+    <ThemeProviderWrapper>
+      <LayoutContainer>
+        <BgParticles />
+        <Navigation />
+        <Main>{children}</Main>
+        <Footer />
+      </LayoutContainer>
+    </ThemeProviderWrapper>
   )
 }
