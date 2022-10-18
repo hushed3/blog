@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { FooterA, FooterContainer, FooterImg, FooterNav, FooterSection, FooterSpan } from './style'
+import gatsby from '/src/assets/gatsby.png'
 import github from '/src/assets/nav-github.png'
 
 type Links = {
@@ -11,7 +12,7 @@ type Links = {
 
 const links: Links[] = []
 const madeWithLinks: Links[] = [
-  // { url: 'https://www.gatsbyjs.org/', label: 'Gatsby', icon: gatsby },
+  { url: 'https://www.gatsbyjs.org/', label: 'Gatsby', icon: gatsby },
   { url: 'https://github.com/hushed3', label: 'GitHub', icon: github },
 ]
 

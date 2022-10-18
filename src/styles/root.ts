@@ -102,6 +102,10 @@ export const RootStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
     position: relative;
     background: ${(props) => props.theme.backgroundColor};
   }
+  
+  .dark-mode{
+    background: #31363b !important;
+  }
 
   a {
     color: ${(props) => props.theme.link};
