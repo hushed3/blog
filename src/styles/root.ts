@@ -102,9 +102,24 @@ export const RootStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
     position: relative;
     background: ${(props) => props.theme.backgroundColor};
   }
-  
+
   .dark-mode{
-    background: #31363b !important;
+    background: var(--gray-8) !important;
+  }
+
+  .dark-mode .NavSection{
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--gray-7);
+    backdrop-filter: blur(8px);
+  }
+
+  .dark-mode .NavLink{
+    color: var(--gray-4);
+  }
+
+  .dark-mode .NavThemeButton{
+    background: var(--gray-8);
+    border-color: var(--gray-7);
   }
 
   a {

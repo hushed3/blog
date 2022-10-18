@@ -28,20 +28,20 @@ export const Navigation = memo(function Navigation() {
   }
 
   return (
-    <NavSection>
+    <NavSection className="NavSection">
       <Helmet>
         <link rel="shortcut icon" type="image/png" href={favicon} />
       </Helmet>
       <NavContainer>
         <NavLeft>
-          <NavLink to="/" className="brand">
+          <NavLink to="/" className="NavLink brand">
             <img src={favicon} className="logo" alt="Hush" />
             <span>Hush</span>
           </NavLink>
           {mainNavItems.map((item) => (
             <NavRouter key={item.label}>
               <NavImage src={item.icon} alt={item.label} />
-              <NavLink to={item.url} className={`${slugify(item.label)}`} activeClassName="active">
+              <NavLink to={item.url} className={`NavLink ${slugify(item.label)}`} activeClassName="active">
                 <span>{item.name}</span>
               </NavLink>
             </NavRouter>
@@ -50,7 +50,13 @@ export const Navigation = memo(function Navigation() {
           {socialNavItems.map((item) => (
             <NavRouter key={item.label}>
               <NavImage src={item.icon} alt={item.label} />
-              <NavLink as="a" href={item.url} className={`${slugify(item.label)}`} target="_blank" rel="noreferrer">
+              <NavLink
+                as="a"
+                href={item.url}
+                className={`NavLink ${slugify(item.label)}`}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <span>{item.label}</span>
                 <LinkIcon />
               </NavLink>
@@ -59,7 +65,9 @@ export const Navigation = memo(function Navigation() {
         </NavLeft>
 
         <ThemeToggle>
-          <button onClick={handleTheme}>{darkMode ? <DarkIcon /> : <LightIcon />}</button>
+          <button className="NavThemeButton" onClick={handleTheme}>
+            {darkMode ? <DarkIcon /> : <LightIcon />}
+          </button>
         </ThemeToggle>
       </NavContainer>
     </NavSection>
