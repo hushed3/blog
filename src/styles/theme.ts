@@ -70,7 +70,7 @@ export const light: DefaultTheme = {
   class: '#a346a0',
   tag: '#365ccd',
   error: '#b0292c',
-} as DefaultTheme
+}
 
 export const dark: DefaultTheme = {
   ...base,

@@ -1,29 +1,30 @@
-import React, { createContext, useEffect } from 'react'
+import React, { createContext } from 'react'
 import { ThemeProvider as StyledProvider } from 'styled-components'
-import useTheme, { osTheme, storageTheme } from '../hooks/useTheme'
+import useDarkMode from 'use-dark-mode'
 import { CodeStyle } from '../styles/code'
 import { RootStyle } from '../styles/root'
 import { dark, light } from '../styles/theme'
 
-type Content = {
-  theme: string
-  setTheme: (e: string) => void
+export type Content = {
+  darkMode: boolean
+  toggleTheme: () => void
 }
 
-const ThemeContext = createContext<Content>({ theme: storageTheme() || osTheme() } as Content)
+const ThemeContext = createContext<Content>({} as Content)
 
 const ThemeProviderWrapper = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useTheme()
-  const contextValue = { theme, setTheme }
+  const darkMode = useDarkMode(false)
 
-  useEffect(() => {
-    console.log('ThemeProviderWrapper', theme, storageTheme() || osTheme())
-  }, [theme])
+  const toggleTheme = () => {
+    darkMode.toggle()
+  }
+
+  const contextValue = { darkMode: darkMode.value, toggleTheme }
 
   return (
     <>
       <ThemeContext.Provider value={contextValue}>
-        <StyledProvider theme={theme === 'dark' ? dark : light}>
+        <StyledProvider theme={darkMode.value ? dark : light}>
           <RootStyle />
           <CodeStyle />
           {children}
