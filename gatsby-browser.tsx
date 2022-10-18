@@ -6,3 +6,8 @@ export function wrapPageElement({ element, props }) {
 
   return <Layout {...props}>{element}</Layout>
 }
+
+// import type { GatsbyBrowser } from 'gatsby'
+// import { ThemeProviderWrapper } from './src/context/ThemeContext'
+
+// export const wrapRootElement: GatsbyBrowser['wrapRootElement'] = ThemeProviderWrapper
