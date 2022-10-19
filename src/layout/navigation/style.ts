@@ -78,7 +78,7 @@ export const NavLink = styled(Link).attrs((props) => {
     { key: 'writing', value: 'var(--rainbow-4);' },
     { key: 'sunset', value: 'var(--rainbow-5);' },
   ]
-  const color = colorList.find((item) => item.key === props.className)?.value
+  const color = colorList.find((item) => props.className && props.className.includes(item.key))?.value
   return {
     color,
   }
