@@ -15,20 +15,19 @@ interface Props {
 const PreviewImage = ({ id, name, url, onHandleClick }: Props) => {
   return ReactDOM.createPortal(
     <>
+      <ImageContainer>
+        <PreviewContent layoutId={`preview-${id}`}>
+          <PreviewImg src={url} alt="" onClick={() => onHandleClick()} />
+        </PreviewContent>
+      </ImageContainer>
       <Mask
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0, transition: { duration: 0.15 } }}
         transition={{ duration: 0.2, delay: 0.15 }}
         style={{ pointerEvents: 'auto' }}
-        className="overlay"
         onClick={() => onHandleClick()}
       ></Mask>
-      <ImageContainer>
-        <PreviewContent layoutId={`preview-${id}`}>
-          <PreviewImg src={url} alt="" />
-        </PreviewContent>
-      </ImageContainer>
     </>,
     document.body
   )

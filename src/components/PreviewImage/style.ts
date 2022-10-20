@@ -38,6 +38,18 @@ export const PreviewContent = styled(motion.div)`
 export const PreviewImg = styled.img`
   width: 100%;
   height: 100%;
+  object-fit: contain;
 `
 
-export const Mask = styled(motion.div)``
+export const Mask = styled(motion.div)`
+  z-index: 10;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.3);
+  will-change: opacity;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(5px);
+`
