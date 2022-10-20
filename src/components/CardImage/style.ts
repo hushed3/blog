@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 export const ImageContainer = styled.div`
   aspect-ratio: 16/10;
@@ -26,4 +27,8 @@ export const ImageContent = styled(motion.div)`
   @media screen and (max-width: 480px) {
     border-radius: 1px !important;
   }
+`
+
+export const LazyImage = styled(LazyLoadImage)`
+  object-fit: cover;
 `

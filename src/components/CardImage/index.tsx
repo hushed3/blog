@@ -1,8 +1,7 @@
 import React, { useRef } from 'react'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { isBrowser } from '../../utils/func'
 
-import { ImageContainer, ImageContent } from './style'
+import { ImageContainer, ImageContent, LazyImage } from './style'
 
 import _ from 'lodash'
 
@@ -48,7 +47,7 @@ const CardImage = ({ row, onHandleClick }: Props) => {
     <>
       <ImageContainer ref={imageRef} onMouseMove={handleMouseMove} onMouseOut={handleMouseOut}>
         <ImageContent layoutId={`preview-${row.id}`}>
-          <LazyLoadImage src={row.url} onClick={() => onHandleClick(row)} alt="" />
+          <LazyImage src={row.url} onClick={() => onHandleClick(row)} alt="" />
         </ImageContent>
       </ImageContainer>
     </>
