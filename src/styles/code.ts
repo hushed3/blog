@@ -17,8 +17,7 @@ export const CodeStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
     word-spacing: normal;
     word-break: normal;
     word-wrap: normal;
-    line-height: 1.45;
-
+    line-height: 1.8;
     -moz-tab-size: 2;
     -o-tab-size: 2;
     tab-size: 2;
@@ -83,22 +82,12 @@ export const CodeStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
     text-size-adjust: none;
     border-radius: 6px;
     overflow: overlay;
-    margin: 0.5rem 0 1.8rem 0;
+    margin: 1.5rem 0 1.8rem 0;
     max-width: 100%;
     position: relative;
     transform: matrix(1, 0, 0, 1, 0, 0);
-  }
 
-  .gatsby-highlight pre[class*='language-'] {
-    background-color: transparent;
-    margin: 0;
-    padding: 0;
-    overflow: overlay;
-    min-width: 100%;
-    padding: 1rem 1.2rem 1rem 1.2rem;
-  }
-
-  .gatsby-highlight::before {
+    &::before{
     content: attr(data-language);
     position: absolute;
     right: 1rem;
@@ -108,8 +97,52 @@ export const CodeStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
     font-weight: bold;
     text-transform: capitalize;
     font-size: 12px;
-    transform: scale(0.85);
+    line-height: 2.4rem;
+    transform: scale(0.95);
     transform-origin: 100% 10%;
+    }
+
+    &::after{
+    content: '';
+    position: absolute;
+    left: 1.1rem;
+    top: 0.8rem;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background-color: #EC6A5E;
+    }
+  }
+
+
+  .gatsby-highlight pre[class*='language-'] {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    overflow: overlay;
+    min-width: 100%;
+    padding: 2.5rem 1.1rem 0.9rem 1.1rem;
+
+    &::before{
+      content: '';
+      position: absolute;
+      left: 2.5rem;
+      top: 0.8rem;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background-color: #F4BE4F;
+    }
+    &::after{
+      content: '';
+      position: absolute;
+      left: 3.9rem;
+      top: 0.8rem;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background-color: #62C454;
+    }
   }
 
   .gatsby-highlight pre.language-terminal {
@@ -176,22 +209,6 @@ export const CodeStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
     margin-right: -1rem;
     padding-left: calc(1rem - 4px);
     border-left: 4px solid #74cf74;
-  }
-
-  .filename {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background:  ${(props) => props.theme.fileBackground};
-    padding: 0.3rem 1rem;
-    color:  ${(props) => props.theme.fontColorBase};
-    line-height: 1.5;
-    font-size: 0.7rem;
-    font-weight: 500;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    margin-bottom: -1.5rem;
-    max-width: 100%;
   }
 
   /* Colors */

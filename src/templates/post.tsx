@@ -9,7 +9,6 @@ import { GlobalContainer } from '../styles/components/global'
 import { TemplateContent, TemplateGrid, TemplateHeader, TemplateSection } from '../styles/components/templates'
 import config from '../utils/config'
 import { PostBySlug, PostBySlug_markdownRemark } from './__generated__/PostBySlug'
-
 /**
  * @description  文章 页面
  * @date 17/10/2022
