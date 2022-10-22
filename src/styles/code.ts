@@ -86,6 +86,7 @@ export const CodeStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
     max-width: 100%;
     position: relative;
     transform: matrix(1, 0, 0, 1, 0, 0);
+    box-shadow: 0 0 10px ${(props) => props.theme.cardShadow};
 
     &::before{
     content: attr(data-language);
@@ -93,7 +94,7 @@ export const CodeStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
     right: 1rem;
     top: 0;
     color:  ${(props) => props.theme.indigoLight};
-    filter: drop-shadow(0 0 6px #747bff);
+    filter: drop-shadow(0 0 8px #747bff);
     font-weight: bold;
     text-transform: capitalize;
     font-size: 12px;

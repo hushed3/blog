@@ -2,14 +2,14 @@ import { AnimatePresence, LayoutGroup } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import Helmet from 'react-helmet'
 
-import { getImages } from '../api/images'
-
 import CardImage from '../components/CardImage'
 import PreviewImage from '../components/PreviewImage'
 import { SEO } from '../components/SEO'
 import { Layout } from '../layout/index'
 import { SunsetContainer } from '../styles/components/pages'
 import config from '../utils/config'
+
+import { getServerData } from '../data/index'
 
 export default function Sunset() {
   const title = '夕阳'
@@ -19,8 +19,8 @@ export default function Sunset() {
 
   const init = async () => {
     try {
-      const { data } = await getImages()
-      setImageList(data)
+      const { props } = await getServerData<ImageItem[]>()
+      setImageList(props!)
     } catch (error) {
       throw new Error(error as string)
     }

@@ -18,7 +18,7 @@ export const ImageContainer = styled.div`
 export const ImageContent = styled(motion.div)`
   width: 100%;
   height: 100%;
-  box-shadow: 0 0 12px 0 ${(props) => props.theme.shadowColor};
+  box-shadow: 0 0 10px 0 ${(props) => props.theme.cardShadow};
   border-radius: ${(props) => props.theme.borderRadius};
   overflow: hidden;
   @media screen and (max-width: 1000px) {

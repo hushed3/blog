@@ -29,15 +29,22 @@ export const BriefDescription = styled.p`
   font-weight: 500;
 `
 
-export const RecentPreview = styled.div`
+
+const Preview = styled.div`
   display: grid;
-  gap: 1rem;
+  gap: 1.9rem;
 
   @media screen and (min-width: 700px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.4rem;
+  }
+
+  @media screen and (min-width: 1060px) {
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
   }
 `
+
+export const RecentPreview = styled(Preview)``
 
 export const RecentCard = styled(GlobalCard)`
   flex: 1;
@@ -46,19 +53,7 @@ export const RecentCard = styled(GlobalCard)`
   min-height: 9rem;
 `
 
-export const HighlightPreview = styled.div`
-  display: grid;
-  gap: 1rem;
-
-  @media screen and (min-width: 700px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-
-  @media screen and (min-width: 1060px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-`
+export const HighlightPreview = styled(Preview)``
 
 export const HighlightCard = styled(GlobalCard)`
   background: transparent;
