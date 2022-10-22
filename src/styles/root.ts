@@ -158,11 +158,12 @@ export const RootStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
     padding: 0.8rem 1rem;
     background: ${(props) => props.theme.blockquoteBackground};
     border-radius: ${(props) => props.theme.borderRadius};
+    box-shadow: 0 0 8px ${(props) => props.theme.blockquoteBackground};
   }
 
   blockquote p {
     font-size: 1rem;
-    line-height: 1.7;
+    line-height: 1.9;
     font-weight: 400;
   }
 
@@ -304,12 +305,13 @@ export const RootStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
     position: relative;
     font-size: 0.9rem;
     border-radius: 5px;
-    padding: 0.1rem 0.5rem;
+    padding: 0.3rem 0.5rem;
     margin-bottom: 0.8rem;
     align-items: center;
     background: rgba(24, 144, 255, 0.15);
     color: rgb(24, 144, 255);
     line-height: 20px;
+    box-shadow: 0 0 8px rgba(24, 144, 255, 0.15);
 
     &.success {
       background: rgba(82, 196, 26, 0.15);

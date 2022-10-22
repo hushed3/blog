@@ -5,7 +5,6 @@ const base = {
   fontFamilyMonospace: "'IBM Plex Mono', Menlo, monospace",
   fontFamilyHeading: "'Merriweather', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif",
   borderRadius: '4px',
-  shadowColor: 'rgba(10, 10, 10, 0.3)',
   contentWidth: '1060px',
   contentWidthSmall: '560px',
   contentWidthMedium: '700px',
@@ -18,7 +17,7 @@ export const light: DefaultTheme = {
   ...base,
   backgroundColor: 'white',
   buttonBackgroundColor: 'white',
-  cardBackgroundColor: 'var(--gray-05)',
+  cardBackgroundColor: 'var(--gray-0)',
   inlineCodeBackgroundColor: 'rgba(0, 0, 0, 0.05)',
   fileBackground: '#e9ecef',
   blockquoteBackground: 'var(--indigo-muted)',
@@ -49,6 +48,8 @@ export const light: DefaultTheme = {
   projectTimeColor: 'var(--font-color-muted)',
   highlightColor: 'var(--green)',
   selectionColor: '#7c82f7',
+
+  cardShadow: 'rgba(0,0,0,0.09)',
 
   codeFontColor: '#232529',
   codeBackgroundColor: 'var(--gray-0)',
@@ -107,6 +108,8 @@ export const dark: DefaultTheme = {
   projectTimeColor: 'var(--star)',
   highlightColor: 'var(--rainbow-4)',
   selectionColor: '#646cff',
+
+  cardShadow: 'rgba(0,0,0,0.2)',
 
   codeFontColor: '#b3b9c5',
   codeBackgroundColor: 'var(--gray-9)',

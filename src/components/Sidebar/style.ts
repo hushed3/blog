@@ -1,6 +1,7 @@
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
+import { GlobalCard } from '../../styles/components/global'
 
 export const SideSticky = styled.div.attrs((props: { top: number }) => ({
   top: `${props.top || 8}rem`,
@@ -9,10 +10,7 @@ export const SideSticky = styled.div.attrs((props: { top: number }) => ({
   top: ${(props) => props.top};
 `
 
-export const SideCard = styled.div`
-  background: ${(props) => props.theme.cardBackgroundColor};
-  padding: 1.25rem;
-  border-radius: ${(props) => props.theme.borderRadius};
+export const SideCard = styled(GlobalCard)`
   margin: 2rem 0;
 `
 
