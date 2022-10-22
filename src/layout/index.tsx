@@ -15,9 +15,7 @@ const LayoutContainer = styled.div.attrs({
   min-height: 100vh;
 `
 
-const Main = styled.main.attrs({
-  id: 'main',
-})`
+const Main = styled.main.attrs({})`
   margin-top: ${(props) => props.theme.navbarHeightSmall};
   flex: 1;
 
@@ -30,10 +28,10 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <ThemeProviderWrapper>
       <LayoutContainer>
-        <BgParticles />
         <Navigation />
         <Main>{children}</Main>
         <Footer />
+        <BgParticles />
       </LayoutContainer>
     </ThemeProviderWrapper>
   )

@@ -103,25 +103,6 @@ export const RootStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
     background: ${(props) => props.theme.backgroundColor};
   }
 
-  .dark-mode{
-    background: var(--gray-8) !important;
-  }
-
-  .dark-mode .NavSection{
-    background: rgba(0, 0, 0, 0.3);
-    border-bottom: 1px solid var(--gray-7);
-    backdrop-filter: blur(8px);
-  }
-
-  .dark-mode .NavLink{
-    color: var(--gray-4);
-  }
-
-  .dark-mode .NavThemeButton{
-    background: var(--gray-8);
-    border-color: var(--gray-7);
-  }
-
   a {
     color: ${(props) => props.theme.link};
     text-decoration: none;
@@ -166,10 +147,6 @@ export const RootStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
     font-size: 1.1rem;
     line-height: 1;
     color: ${(props) => props.theme.marker};
-  }
-
-  main {
-    margin-top: ${(props) => props.theme.navbarHeightSmall};
   }
 
   /* Blockquote */
