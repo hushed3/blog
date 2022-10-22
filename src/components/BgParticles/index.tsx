@@ -1,6 +1,16 @@
 import React, { useCallback } from 'react'
 import Particles from 'react-particles'
+import styled from 'styled-components'
 import { loadFull } from 'tsparticles'
+
+const BgAnimation = styled(Particles)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+`
 
 /**
  * @description 背景动画
@@ -13,7 +23,7 @@ export const BgParticles = () => {
 
   return (
     <>
-      <Particles
+      <BgAnimation
         id="tsparticles"
         init={particlesInit}
         options={{

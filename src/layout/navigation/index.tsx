@@ -21,7 +21,7 @@ const mainNavItems = [
 const socialNavItems = [{ url: 'https://github.com/hushed3', icon: github, label: 'GitHub' }]
 
 export const Navigation = memo(function Navigation() {
-  const { darkMode, toggleTheme } = useContext(ThemeContext)
+  const { theme, toggleTheme } = useContext(ThemeContext)
 
   const handleTheme = () => {
     toggleTheme()
@@ -66,7 +66,7 @@ export const Navigation = memo(function Navigation() {
 
         <ThemeToggle>
           <button className="NavThemeButton" onClick={handleTheme}>
-            {darkMode ? <DarkIcon /> : <LightIcon />}
+            {theme === 'dark' ? <DarkIcon /> : <LightIcon />}
           </button>
         </ThemeToggle>
       </NavContainer>

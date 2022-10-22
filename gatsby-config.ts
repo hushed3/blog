@@ -33,7 +33,6 @@ module.exports = {
 
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-netlify',
-    'gatsby-plugin-use-dark-mode',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
