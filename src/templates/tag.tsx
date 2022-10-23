@@ -1,6 +1,7 @@
 import { graphql, PageProps } from 'gatsby'
 import React, { useMemo } from 'react'
 import Helmet from 'react-helmet'
+import { TagPageQuery, TagPageQueryVariables } from '../../gatsby-graphql'
 
 import { BriefHeader } from '../components/BriefHeader'
 import { Posts } from '../components/Posts'
@@ -11,16 +12,15 @@ import { GlobalContainer } from '../styles/components/global'
 import { TemplateContent, TemplateGrid } from '../styles/components/templates'
 import config from '../utils/config'
 import { getSimplifiedPosts } from '../utils/helpers'
-import { TagPage, TagPageVariables } from './__generated__/TagPage'
 
 /**
- * @description  标签 页面
- * @date 17/10/2022
+ * @description 标签页面
+ * @date 23/10/2022
  * @export
- * @param {PageProps<TagPage, TagPageVariables>} { data, pageContext }
+ * @param {PageProps<TagPageQuery, TagPageQueryVariables>} { data, pageContext }
  * @return {*}
  */
-export default function TagTemplate({ data, pageContext }: PageProps<TagPage, TagPageVariables>) {
+export default function TagTemplate({ data, pageContext }: PageProps<TagPageQuery, TagPageQueryVariables>) {
   const { tag } = pageContext
   const { totalCount } = data.allMarkdownRemark
   const posts = data.allMarkdownRemark.edges

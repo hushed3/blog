@@ -1,6 +1,7 @@
 import { graphql, PageProps } from 'gatsby'
 import React from 'react'
 import Helmet from 'react-helmet'
+import { PostBySlugQuery } from '../../gatsby-graphql'
 
 import { SEO } from '../components/SEO'
 import { PostSidebar } from '../components/Sidebar/PostSidebar'
@@ -8,15 +9,15 @@ import { Layout } from '../layout/index'
 import { GlobalContainer } from '../styles/components/global'
 import { TemplateContent, TemplateGrid, TemplateHeader, TemplateSection } from '../styles/components/templates'
 import config from '../utils/config'
-import { PostBySlug, PostBySlug_markdownRemark } from './__generated__/PostBySlug'
+
 /**
- * @description  文章 页面
- * @date 17/10/2022
+ * @description 文章页面
+ * @date 23/10/2022
  * @export
- * @param {PageProps<PostBySlug>} { data }
+ * @param {PageProps<PostBySlugQuery>} { data }
  * @return {*}
  */
-export default function PostTemplate({ data }: PageProps<PostBySlug>) {
+export default function PostTemplate({ data }: PageProps<PostBySlugQuery>) {
   const post = data.markdownRemark!
   const { tags, categories, title, date, thumbnail } = { ...post?.frontmatter }
   const { slug } = { ...post?.fields }
@@ -24,7 +25,7 @@ export default function PostTemplate({ data }: PageProps<PostBySlug>) {
   return (
     <>
       <Helmet title={`${title} | ${config.siteTitle}`} />
-      <SEO postPath={slug} postNode={post as PostBySlug_markdownRemark} postSEO />
+      <SEO postPath={slug} postNode={post} postSEO />
       <GlobalContainer>
         <TemplateGrid>
           <TemplateContent>
@@ -58,9 +59,7 @@ export const pageQuery = graphql`
         categories
         thumbnail {
           childImageSharp {
-            fixed(width: 80, height: 80) {
-              ...GatsbyImageSharpFixed
-            }
+            gatsbyImageData(width: 100, height: 100)
           }
         }
       }

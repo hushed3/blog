@@ -1,11 +1,10 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { PostBySlug_markdownRemark } from '../../templates/__generated__/PostBySlug'
 
 import config from '../../utils/config'
 
 interface Props {
-  postNode?: PostBySlug_markdownRemark | null
+  postNode?: any | null
   postPath?: string | null
   postSEO?: boolean
   customDescription?: string
@@ -23,7 +22,7 @@ export const SEO = ({ postNode, postPath, postSEO, customDescription }: Props) =
     description = postNode?.excerpt
 
     if (postMeta?.thumbnail) {
-      image = postMeta?.thumbnail?.childImageSharp?.fixed?.src as string
+      image = postMeta?.thumbnail?.childImageSharp?.gatsbyImageData.images.fallback.src
     }
 
     postURL = `${config.siteUrl}${postPath}`
@@ -33,6 +32,7 @@ export const SEO = ({ postNode, postPath, postSEO, customDescription }: Props) =
   }
 
   image = `${config.siteUrl}${image}`
+
   const schemaOrgJSONLD: any[] = [
     {
       '@context': 'http://schema.org',

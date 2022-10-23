@@ -1,5 +1,5 @@
 import { Link } from 'gatsby'
-import Img from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import styled from 'styled-components'
 import { GlobalCard } from '../../styles/components/global'
 
@@ -99,9 +99,10 @@ export const SideTag = styled(Link)`
   }
 `
 
-export const PostSideImage = styled(Img)`
+export const PostSideImage = styled(GatsbyImage)`
   margin: 0 auto;
   margin-top: 2rem;
   text-align: center;
   display: block !important;
+  width: 100px;
 `

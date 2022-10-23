@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 import { BriefHeader } from '../components/BriefHeader'
 import { BlogSidebar } from '../components/Sidebar/BlogSidebar'
 
+import { CategoryPageQuery, CategoryPageQueryVariables } from '../../gatsby-graphql'
 import { Posts } from '../components/Posts'
 import { SEO } from '../components/SEO'
 import { Layout } from '../layout/index'
@@ -11,16 +12,21 @@ import { GlobalContainer } from '../styles/components/global'
 import { TemplateContent, TemplateGrid } from '../styles/components/templates'
 import config from '../utils/config'
 import { getSimplifiedPosts } from '../utils/helpers'
-import { CategoryPage, CategoryPageVariables } from './__generated__/CategoryPage'
 
 /**
- * @description  类别 页面
- * @date 17/10/2022
+ * @description 类别页面
+ * @date 23/10/2022
  * @export
- * @param {PageProps<CategoryPage, CategoryPageVariables>} { data, pageContext }
+ * @param {PageProps<CategoryPageQuery, CategoryPageQueryVariables>} {
+ *   data,
+ *   pageContext,
+ * }
  * @return {*}
  */
-export default function CategoryTemplate({ data, pageContext }: PageProps<CategoryPage, CategoryPageVariables>) {
+export default function CategoryTemplate({
+  data,
+  pageContext,
+}: PageProps<CategoryPageQuery, CategoryPageQueryVariables>) {
   const { category } = pageContext
   const { totalCount } = data.allMarkdownRemark
   const posts = data.allMarkdownRemark.edges

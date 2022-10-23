@@ -16,9 +16,8 @@ ksPE8YYWJIvmR3EgBWtVBrsCAwEAAQ==
 -----END PUBLIC KEY-----
 `
 
-export const encryp = (data: any) => {
-  // 加密
-
+// 加密
+export const encryp = (data: string) => {
   const encryptor = new JsEncrypt()
   encryptor.setPublicKey(publicKey)
   const encryptData = encryptor.encrypt(data)

@@ -19,9 +19,9 @@ module.exports = {
     // ===================================================================================
 
     {
-      resolve: `gatsby-plugin-codegen`,
+      resolve: `gatsby-plugin-graphql-codegen`,
       options: {
-        watch: true,
+        fileName: `./gatsby-graphql.d.ts`,
       },
     },
     {
@@ -71,16 +71,18 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.edges.map((edge) => {
-                return Object.assign({}, edge.node.frontmatter, {
-                  description: edge.node.excerpt,
-                  date: edge.node.frontmatter.date,
-                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  custom_elements: [{ 'content:encoded': edge.node.html }, { author: 'hello@taniarascia.com' }],
-                })
-              })
+            serialize: ({ query: { site, allMarkdownRemark } }: any) => {
+              return allMarkdownRemark.edges.map(
+                (edge: { node: { frontmatter: { date: any }; excerpt: any; fields: { slug: any }; html: any } }) => {
+                  return Object.assign({}, edge.node.frontmatter, {
+                    description: edge.node.excerpt,
+                    date: edge.node.frontmatter.date,
+                    url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                    guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                    custom_elements: [{ 'content:encoded': edge.node.html }, { author: 'hello@taniarascia.com' }],
+                  })
+                }
+              )
             },
             query: `
               {
@@ -117,8 +119,17 @@ module.exports = {
     // Images and static
     // ===================================================================================
 
-    'gatsby-plugin-sharp',
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          placeholder: `none`,
+          backgroundColor: `transparent`,
+        },
+      },
+    },
     'gatsby-transformer-sharp',
+    'gatsby-plugin-image',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -203,16 +214,22 @@ module.exports = {
         ref: 'id',
         index: ['title', 'tags'],
         store: ['id', 'slug', 'title', 'tags', 'date'],
-        normalizer: ({ data }) =>
-          data.allMarkdownRemark.nodes.map((node) => ({
-            id: node.id,
-            slug: `/${node.frontmatter.slug}`,
-            title: node.frontmatter.title,
-            body: node.rawMarkdownBody,
-            tags: node.frontmatter.tags,
-            categories: node.frontmatter.categories,
-            date: node.frontmatter.date,
-          })),
+        normalizer: ({ data }: any) =>
+          data.allMarkdownRemark.nodes.map(
+            (node: {
+              id: any
+              frontmatter: { slug: any; title: any; tags: any; categories: any; date: any }
+              rawMarkdownBody: any
+            }) => ({
+              id: node.id,
+              slug: `/${node.frontmatter.slug}`,
+              title: node.frontmatter.title,
+              body: node.rawMarkdownBody,
+              tags: node.frontmatter.tags,
+              categories: node.frontmatter.categories,
+              date: node.frontmatter.date,
+            })
+          ),
       },
     },
   ],

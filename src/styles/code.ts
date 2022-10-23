@@ -94,12 +94,12 @@ export const CodeStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
     right: 1rem;
     top: 0;
     color:  ${(props) => props.theme.indigoLight};
-    filter: drop-shadow(0 0 8px #747bff);
+    filter: drop-shadow(0 0 10px #747bff);
     font-weight: bold;
     text-transform: capitalize;
     font-size: 12px;
     line-height: 2.4rem;
-    transform: scale(0.95);
+    transform: scale(0.85);
     transform-origin: 100% 10%;
     }
 

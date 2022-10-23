@@ -11,7 +11,6 @@ export const NavSection = styled.section`
   z-index: 3;
   background: ${(props) => props.theme.navbar};
   height: ${(props) => props.theme.navbarHeightSmall};
-  border-bottom: 1px solid ${(props) => props.theme.navbarBorder};
   backdrop-filter: blur(8px);
 
   @media screen and (min-width: 850px) {
