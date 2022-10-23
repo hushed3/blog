@@ -2,8 +2,8 @@ import { Link } from 'gatsby'
 import React from 'react'
 import { PostSideImage, SideCard, SideSticky, SideTag, SideTags, SideTitle } from './style'
 
-import { FixedObject } from 'gatsby-image'
-import { PostBySlug_markdownRemark_frontmatter_thumbnail } from '../../templates/__generated__/PostBySlug'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
+import { FileFilterInput } from '../../../gatsby-graphql'
 import { slugify } from '../../utils/helpers'
 
 /**
@@ -19,15 +19,15 @@ export const PostSidebar = ({
   date: string
   tags?: (string | null)[] | null
   categories?: (string | null)[] | null
-  thumbnail?: PostBySlug_markdownRemark_frontmatter_thumbnail | null
+  thumbnail?: FileFilterInput | null
 }) => {
   const category = categories?.filter((category) => category !== 'Highlight')
-  const { fixed } = { ...thumbnail?.childImageSharp }
+  const { gatsbyImageData } = { ...thumbnail?.childImageSharp }
 
   return (
     <aside>
       <SideSticky>
-        {thumbnail && <PostSideImage fixed={fixed as FixedObject} />}
+        {thumbnail && <PostSideImage image={gatsbyImageData as IGatsbyImageData} alt="" />}
         {/* <SideCard>
         <h2>About me</h2>
         <img alt="Tania" className="sidebar-avatar" />
@@ -53,7 +53,7 @@ export const PostSidebar = ({
               <SideTitle>类别</SideTitle>
               <ul>
                 <li>
-                  <Link to={`/categories/${slugify(category)}`}>{category}</Link>
+                  <Link to={`/categories/${slugify(category!)}`}>{category}</Link>
                 </li>
               </ul>
             </div>

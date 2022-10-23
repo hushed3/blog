@@ -1,5 +1,5 @@
 import { graphql, PageProps } from 'gatsby'
-import Img from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import React, { useMemo } from 'react'
 import Helmet from 'react-helmet'
 import { GlobalContainer } from '../styles/components/global'
@@ -17,15 +17,22 @@ import {
   TitleLink,
 } from '../styles/components/pages'
 
+import { IndexQueryQuery } from '../../gatsby-graphql'
 import { BriefHeader } from '../components/BriefHeader'
 import { Heading } from '../components/Heading'
 import { SEO } from '../components/SEO'
 import { Layout } from '../layout/index'
 import config from '../utils/config'
 import { getSimplifiedPosts, slugify } from '../utils/helpers'
-import { IndexQuery } from './__generated__/IndexQuery'
 
-export default function Index({ data }: PageProps<IndexQuery>) {
+/**
+ * @description 首页
+ * @date 23/10/2022
+ * @export
+ * @param {PageProps<IndexQueryQuery>} { data }
+ * @return {*}
+ */
+export default function Index({ data }: PageProps<IndexQueryQuery>) {
   const latest = data.latest.edges
   const Highlights = data.Highlights.edges
   const simplifiedLatest = useMemo(() => getSimplifiedPosts(latest), [latest])
@@ -54,6 +61,7 @@ export default function Index({ data }: PageProps<IndexQuery>) {
       </GlobalContainer>
 
       <GlobalContainer>
+        ; ; ; ; ; ; ; ; ;
         <IndexSection>
           <Heading title="最近内容" slug="/blog" />
           <RecentPreview>
@@ -63,15 +71,16 @@ export default function Index({ data }: PageProps<IndexQuery>) {
                   <Time className="recent">{post.date}</Time>
                   <TitleLink to={post.slug}>{post.title}</TitleLink>
                   <TagLinks>
-                    {post.categories
-                      .filter((cat) => cat !== 'Highlight')
-                      .map((cat) => {
-                        return (
-                          <TagLink to={`/categories/${slugify(cat)}`} key={slugify(cat)}>
-                            {cat}
-                          </TagLink>
-                        )
-                      })}
+                    {post.categories &&
+                      post.categories
+                        .filter((cat) => cat !== 'Highlight')
+                        .map((cat) => {
+                          return (
+                            <TagLink to={`/categories/${slugify(cat)}`} key={slugify(cat)}>
+                              {cat}
+                            </TagLink>
+                          )
+                        })}
                   </TagLinks>
                 </RecentCard>
               )
@@ -87,7 +96,7 @@ export default function Index({ data }: PageProps<IndexQuery>) {
               {simplifiedHighlights.map((post) => {
                 return (
                   <HighlightCard key={`Highlight-${post.slug}`}>
-                    {post.thumbnail && <Img style={{ marginRight: '5px' }} fixed={post.thumbnail} />}
+                    {post.thumbnail && <GatsbyImage image={post.thumbnail} alt="" />}
                     <div>
                       <Time>{post.date}</Time>
                       <TitleLink to={post.slug}>{post.title}</TitleLink>
@@ -144,9 +153,7 @@ export const pageQuery = graphql`
             tags
             thumbnail {
               childImageSharp {
-                fixed(width: 50, height: 50) {
-                  ...GatsbyImageSharpFixed
-                }
+                gatsbyImageData(width: 80, height: 80)
               }
             }
           }

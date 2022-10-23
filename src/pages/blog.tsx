@@ -1,6 +1,7 @@
 import { graphql, PageProps } from 'gatsby'
 import React, { useMemo } from 'react'
 import Helmet from 'react-helmet'
+import { BlogQueryQuery } from '../../gatsby-graphql'
 
 import { BriefHeader } from '../components/BriefHeader'
 import { Posts } from '../components/Posts'
@@ -11,11 +12,17 @@ import { GlobalContainer } from '../styles/components/global'
 import { BlogContent, BlogGrid } from '../styles/components/pages'
 import config from '../utils/config'
 import { getSimplifiedPosts } from '../utils/helpers'
-import { BlogQuery } from './__generated__/BlogQuery'
 
-export default function Blog({ data }: PageProps<BlogQuery>) {
+/**
+ * @description 归档页面
+ * @date 23/10/2022
+ * @export
+ * @param {PageProps<BlogQueryQuery>} { data }
+ * @return {*}
+ */
+export default function Blog({ data }: PageProps<BlogQueryQuery>) {
   const posts = data.posts.edges
-  const simplifiedPosts = useMemo<SimplifiedData[]>(() => getSimplifiedPosts(posts), [posts])
+  const simplifiedPosts = useMemo(() => getSimplifiedPosts(posts), [posts])
   const title = '文章归档'
   const description = 'Notes & tutorials'
   return (

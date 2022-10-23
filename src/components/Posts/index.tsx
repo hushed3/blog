@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react'
+import { SimplifiedData, YearListData } from '../../typings/pages'
 
 import { PostH5, PostLink, PostSection, PostTime, PostYear } from './style'
 

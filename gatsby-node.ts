@@ -1,6 +1,6 @@
 import path from 'path'
 
-const onCreateWebpackConfig = ({ stage, loaders, actions }) => {
+const onCreateWebpackConfig = ({ stage, loaders, actions }: { stage: any; loaders: any; actions: any }) => {
   if (stage === 'build-html' || stage === 'develop-html') {
     actions.setWebpackConfig({
       module: {
@@ -16,17 +16,17 @@ const onCreateWebpackConfig = ({ stage, loaders, actions }) => {
 }
 
 // Helpers
-function slugify(str) {
+function slugify<T extends string>(str: T) {
   return (
     str &&
     str
-      .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+      .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)!
       .map((x) => x.toLowerCase())
       .join('-')
   )
 }
 
-const createPages = async ({ graphql, actions }) => {
+const createPages = async ({ graphql, actions }: { graphql: any; actions: any }) => {
   const { createPage } = actions
 
   const blogPage = path.resolve('./src/templates/post.tsx')
@@ -62,8 +62,12 @@ const createPages = async ({ graphql, actions }) => {
   }
 
   const all = result.data.allMarkdownRemark.edges
-  const posts = all.filter((post) => post.node.frontmatter.template === 'post')
-  const pages = all.filter((post) => post.node.frontmatter.template === 'page')
+  const posts = all.filter(
+    (post: { node: { frontmatter: { template: string } } }) => post.node.frontmatter.template === 'post'
+  )
+  const pages = all.filter(
+    (post: { node: { frontmatter: { template: string } } }) => post.node.frontmatter.template === 'page'
+  )
   const tagSet = new Set()
   const categorySet = new Set()
 
@@ -71,38 +75,40 @@ const createPages = async ({ graphql, actions }) => {
   // Posts
   // =====================================================================================
 
-  posts.forEach((post, i) => {
-    const previous = i === posts.length - 1 ? null : posts[i + 1].node
-    const next = i === 0 ? null : posts[i - 1].node
+  posts.forEach(
+    (post: { node: { frontmatter: { tags: any[]; categories: any[] }; fields: { slug: any } } }, i: number) => {
+      const previous = i === posts.length - 1 ? null : posts[i + 1].node
+      const next = i === 0 ? null : posts[i - 1].node
 
-    if (post.node.frontmatter.tags) {
-      post.node.frontmatter.tags.forEach((tag) => {
-        tagSet.add(tag)
+      if (post.node.frontmatter.tags) {
+        post.node.frontmatter.tags.forEach((tag: unknown) => {
+          tagSet.add(tag)
+        })
+      }
+
+      if (post.node.frontmatter.categories) {
+        post.node.frontmatter.categories.forEach((category: unknown) => {
+          categorySet.add(category)
+        })
+      }
+
+      createPage({
+        path: post.node.fields.slug,
+        component: blogPage,
+        context: {
+          slug: post.node.fields.slug,
+          previous,
+          next,
+        },
       })
     }
-
-    if (post.node.frontmatter.categories) {
-      post.node.frontmatter.categories.forEach((category) => {
-        categorySet.add(category)
-      })
-    }
-
-    createPage({
-      path: post.node.fields.slug,
-      component: blogPage,
-      context: {
-        slug: post.node.fields.slug,
-        previous,
-        next,
-      },
-    })
-  })
+  )
 
   // =====================================================================================
   // mePage
   // =====================================================================================
 
-  pages.forEach((page) => {
+  pages.forEach((page: { node: { fields: { slug: any } } }) => {
     createPage({
       path: page.node.fields.slug,
       component: mePage,
@@ -119,7 +125,7 @@ const createPages = async ({ graphql, actions }) => {
   const tagList = Array.from(tagSet)
   tagList.forEach((tag) => {
     createPage({
-      path: `/tags/${slugify(tag)}/`,
+      path: `/tags/${slugify(tag as string)}/`,
       component: tagPage,
       context: {
         tag,
@@ -134,7 +140,7 @@ const createPages = async ({ graphql, actions }) => {
   const categoryList = Array.from(categorySet)
   categoryList.forEach((category) => {
     createPage({
-      path: `/categories/${slugify(category)}/`,
+      path: `/categories/${slugify(category as string)}/`,
       component: categoryPage,
       context: {
         category,
@@ -143,7 +149,7 @@ const createPages = async ({ graphql, actions }) => {
   })
 }
 
-const createNode = ({ node, actions, getNode }) => {
+const createNode = ({ node, actions, getNode }: { node: any; actions: any; getNode: any }) => {
   const { createNodeField } = actions
 
   // =====================================================================================

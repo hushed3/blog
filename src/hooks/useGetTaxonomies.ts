@@ -1,6 +1,7 @@
 import { graphql, useStaticQuery } from 'gatsby'
+import { TaxonomyQueryQuery } from '../../gatsby-graphql'
 
-export const useGetTaxonomies = (): SideData => {
+export const useGetTaxonomies = (): TaxonomyQueryQuery => {
   const data = useStaticQuery(graphql`
     query TaxonomyQuery {
       tags: allMarkdownRemark {

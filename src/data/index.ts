@@ -5,10 +5,9 @@ const { GATSBY_API_URL } = process.env
 
 export const getServerData = async <T>(): GetServerDataReturn<T | null> => {
   try {
-    const keywords = encryp(`hush${new Date().getTime()}`) as string
+    const keywords = encryp(`hushes${new Date().getTime()}`) as string
     const res = await fetch(`${GATSBY_API_URL}/sunset/getImages`, { headers: { keywords } })
     if (!res.ok) throw new Error(`Couldn’t get response!`)
-    console.log(res)
     const { data } = await res.json()
     return {
       status: 200,

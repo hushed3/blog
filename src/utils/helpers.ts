@@ -1,22 +1,26 @@
-export function getSimplifiedPosts(posts: any[], options: any = {}): SimplifiedData[] {
-  return posts.map((post) => {
-    const { id, frontmatter, fields } = { ...post?.node } as any
+import { SimplifiedData } from '../typings/pages'
+
+interface Options {
+  shortTitle: boolean
+  thumbnails: boolean
+}
+
+export const getSimplifiedPosts = <T extends any[]>(posts: T, options?: Options): SimplifiedData[] =>
+  posts.map((post) => {
+    const { id, frontmatter, fields } = post.node
+
     return {
       id: id,
+      title: frontmatter?.title,
       date: frontmatter?.date,
       slug: fields?.slug,
       tags: frontmatter?.tags,
       categories: frontmatter?.categories,
-      title: options.shortTitle ? frontmatter?.shortTitle : frontmatter?.title,
-      description: frontmatter?.description,
-      ...(options.thumbnails && {
-        thumbnail: frontmatter?.thumbnail?.childImageSharp?.fixed,
-      }),
-    }
+      thumbnail: options?.thumbnails ? frontmatter?.thumbnail?.childImageSharp?.gatsbyImageData : {},
+    } as SimplifiedData
   })
-}
 
-export function slugify(string: string | (string | null)[]): string {
+export const slugify = <T>(string: T) => {
   return (
     string &&
     `${string}`

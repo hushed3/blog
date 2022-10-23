@@ -58,7 +58,7 @@ export const HighlightPreview = styled(Preview)``
 export const HighlightCard = styled(GlobalCard)`
   background: transparent;
   padding: 1.5rem;
-  border: 2px solid ${(props) => props.theme.borderColor};
+  /* border: 2px solid ${(props) => props.theme.borderColor}; */
   display: flex;
   align-items: center;
   gap: 1rem;

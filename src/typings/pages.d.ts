@@ -1,24 +1,25 @@
-interface SimplifiedData {
+import { IGatsbyImageData } from 'gatsby-plugin-image'
+
+export type SimplifiedData = {
   id: string
   date: string
+  title: string
   slug: string
   tags: string[]
-  categories: string[]
-  title: string
-  description: string
-  thumbnail?: FixedObject | FixedObject[]
+  categories?: string[]
+  thumbnail?: IGatsbyImageData
 }
 
-type YearListData = Record<string, SimplifiedData[]>
+export type YearListData = Record<string, SimplifiedData[]>
 
-interface SideGroupItem {
+export interface SideGroupItem {
   name: string
   totalCount: number
 }
 
-type SideData = Record<string, Record<string, SideGroupItem[]>>
+export type SideData = Record<string, Record<string, SideGroupItem[]>>
 
-interface ImageItem {
+export interface ImageItem {
   id: number
   name: string
   url: string

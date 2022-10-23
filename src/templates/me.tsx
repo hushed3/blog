@@ -1,6 +1,7 @@
 import { graphql, PageProps } from 'gatsby'
 import React from 'react'
 import Helmet from 'react-helmet'
+import { MeBySlugQuery } from '../../gatsby-graphql'
 
 import { SEO } from '../components/SEO'
 import { MeSidebar } from '../components/Sidebar/MeSidebar'
@@ -8,17 +9,14 @@ import { GlobalContainer } from '../styles/components/global'
 import { TemplateContent, TemplateGrid, TemplateHeader, TemplateSection } from '../styles/components/templates'
 import config from '../utils/config'
 
-import { MeBySlug } from './__generated__/MeBySlug'
-
 /**
- * @description Me 页面
- * @date 17/10/2022
+ * @description 个人介绍页面
+ * @date 23/10/2022
  * @export
- * @param {PageProps<MeBySlug>} { data }
+ * @param {PageProps<MeBySlugQuery>} { data }
  * @return {*}
  */
-
-export default function MeTemplate({ data }: PageProps<MeBySlug>) {
+export default function MeTemplate({ data }: PageProps<MeBySlugQuery>) {
   const post = data.markdownRemark!
   const { title } = { ...post.frontmatter }
 
