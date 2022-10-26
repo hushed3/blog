@@ -61,7 +61,6 @@ export default function Index({ data }: PageProps<IndexQueryQuery>) {
       </GlobalContainer>
 
       <GlobalContainer>
-        ; ; ; ; ; ; ; ; ;
         <IndexSection>
           <Heading title="最近内容" slug="/blog" />
           <RecentPreview>

@@ -1,55 +1,55 @@
-import React, { useRef } from 'react'
-import { isBrowser } from '../../utils/func'
-
-import { ImageContainer, ImageContent, LazyImage } from './style'
-
-import _ from 'lodash'
+import { useSpring } from '@react-spring/web'
+import React, { useRef, useState } from 'react'
+import { ImageItem } from '../../typings/pages'
+import { AnimatedWrapper, Image, ImageContent, LazyLoadWrapper } from './style'
 
 interface Props {
+  move: boolean
   row: ImageItem
-  onHandleClick: (row?: ImageItem) => void
+  onClick: (row?: ImageItem) => void
 }
+
+const calc = (x: number, y: number, rect: DOMRect) => [
+  -(y - rect.top - rect.height / 2) / 5,
+  (x - rect.left - rect.width / 2) / 5,
+  1.22,
+]
+const trans = (x: number, y: number, s: number) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
 
 /**
  * @description 3D交互卡片
  */
+const CardImage = ({ move, row, onClick }: Props) => {
+  const imgRef = useRef<HTMLDivElement>(null)
+  const [xys, set] = useState([0, 0, 1])
+  const props = useSpring({ xys, config: { tension: 180, friction: 12 } })
 
-const CardImage = ({ row, onHandleClick }: Props) => {
-  const imageRef = useRef<HTMLDivElement>(null)
+  const mouseMove = (e: any) => {
+    if (!move) return
+    const rect = imgRef.current?.getBoundingClientRect() as any
+    set(calc(e.clientX, e.clientY, rect))
+  }
 
-  const handleMouseMove = _.throttle((event) => {
-    if (isBrowser() && window.screen.width < 480) return
-    const card: HTMLDivElement = imageRef.current!
-    /* x为鼠标距离页面左侧距离减去底层盒子距离页面左侧距离*/
-    const x = event.pageX - card.offsetLeft
-    /* left为底层盒子宽度的一半*/
-    const left = card.offsetWidth / 2
-    /* rotateY 为卡片绕Y轴旋转的大小，旋转度看自己，我除以5，也可以大点或小点 */
-    const rotateY = -(left - x) / 6
-    /* y为鼠标距离页面顶侧距离减去底层盒子距离页面顶侧距离*/
-    const y = event.pageY - card.offsetTop
-    /* top为底层盒子高度的一半*/
-    const top = card.offsetHeight / 2
-    /* rotateX 为卡片绕X轴旋转的大小，旋转度看自己，我除以5，也可以大点或小点 */
-    const rotateX = (top - y) / 4
-    /*为卡片添加transform属性 */
-    card.style.cssText = `transform: perspective(50rem) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.1, 1.1, 1.1);`
-  }, 16)
-
-  const handleMouseOut = _.debounce(() => {
-    if (isBrowser() && window.screen.width < 480) return
-    const card: HTMLDivElement = imageRef.current!
-    /* 让卡片的transform属性的绕X，Y轴的rotate都是0deg*/
-    card.style.cssText = `transform: perspective(50rem) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);`
-  }, 20)
+  const mouseLeave = () => {
+    set([0, 0, 1])
+  }
 
   return (
     <>
-      <ImageContainer ref={imageRef} onMouseMove={handleMouseMove} onMouseOut={handleMouseOut}>
+      <AnimatedWrapper
+        ref={imgRef}
+        // eslint-disable-next-line react/prop-types
+        style={{ transform: props.xys.to(trans) }}
+        onMouseLeave={mouseLeave}
+        onMouseMove={mouseMove}
+        onClick={() => onClick(row)}
+      >
         <ImageContent layoutId={`preview-${row.id}`}>
-          <LazyImage src={row.url} onClick={() => onHandleClick(row)} alt="" />
+          <LazyLoadWrapper>
+            <Image src={row.url}></Image>
+          </LazyLoadWrapper>
         </ImageContent>
-      </ImageContainer>
+      </AnimatedWrapper>
     </>
   )
 }
