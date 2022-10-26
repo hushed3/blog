@@ -123,6 +123,7 @@ module.exports = {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaults: {
+          formats: [`auto`, `webp`, 'png'],
           placeholder: `none`,
           backgroundColor: `transparent`,
         },

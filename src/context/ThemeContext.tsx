@@ -1,12 +1,11 @@
 import React, { createContext } from 'react'
 import { ThemeProvider as StyledProvider } from 'styled-components'
-// import useDarkMode from 'use-dark-mode'
 import useTheme from '../hooks/useTheme'
 import { CodeStyle } from '../styles/code'
 import { RootStyle } from '../styles/root'
 import { dark, light } from '../styles/theme'
 
-export type Content = {
+type Content = {
   theme: string
   toggleTheme: () => void
 }

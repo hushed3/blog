@@ -30,6 +30,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
+    "@react-spring/web": "^9.5.5",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "@types/react-helmet": "^6.1.5",
@@ -66,7 +67,7 @@
     "node-jsencrypt": "^1.0.0",
     "postcss": "^8.3.6",
     "prettier": "^2.7.1",
-    "react-lazy-load-image-component": "^1.5.5",
+    "react-lazyload": "^3.2.0",
     "react-particles": "^2.2.4",
     "styled-components": "^5.3.6",
     "tsparticles": "^2.2.4",

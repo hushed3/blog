@@ -12,15 +12,9 @@ export type SimplifiedData = {
 
 export type YearListData = Record<string, SimplifiedData[]>
 
-export interface SideGroupItem {
-  name: string
-  totalCount: number
-}
-
-export type SideData = Record<string, Record<string, SideGroupItem[]>>
-
 export interface ImageItem {
   id: number
   name: string
   url: string
+  thumbnail: string
 }
