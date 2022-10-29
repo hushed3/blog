@@ -1,4 +1,4 @@
-import { LayoutGroup } from 'framer-motion'
+import { AnimatePresence, LayoutGroup } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import Helmet from 'react-helmet'
 
@@ -54,12 +54,12 @@ export default function Sunset() {
         <SEO customDescription={description} />
 
         <SunsetContainer>
-          {imageList?.map((item) => {
-            return <CardImage move={move} key={item.id} row={item} onClick={onClick}></CardImage>
+          {imageList?.map((item, idx: number) => {
+            return <CardImage move={move} key={item.id} row={{ ...item, idx }} onClick={onClick}></CardImage>
           })}
         </SunsetContainer>
 
-        {selected && <PreviewImage {...selected} onClick={onClick}></PreviewImage>}
+        <AnimatePresence>{selected && <PreviewImage {...selected} onClick={onClick}></PreviewImage>}</AnimatePresence>
       </LayoutGroup>
     </>
   )

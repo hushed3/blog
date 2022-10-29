@@ -24,6 +24,8 @@ const CardImage = ({ move, row, onClick }: Props) => {
   const [xys, set] = useState([0, 0, 1])
   const props = useSpring({ xys, config: { tension: 180, friction: 12 } })
 
+  const [show, setShow] = useState(false)
+
   const mouseMove = (e: any) => {
     if (!move) return
     const rect = imgRef.current?.getBoundingClientRect() as any
@@ -45,8 +47,15 @@ const CardImage = ({ move, row, onClick }: Props) => {
         onClick={() => onClick(row)}
       >
         <ImageContent layoutId={`preview-${row.id}`}>
-          <LazyLoadWrapper>
-            <Image src={row.url}></Image>
+          <LazyLoadWrapper style={{ height: '100%', opacity: show ? 1 : 0 }}>
+            <Image
+              src={row.url}
+              onLoad={() => {
+                setTimeout(() => {
+                  setShow(true)
+                }, Math.floor(Math.random() * (200 - 1 + 1)) + 1)
+              }}
+            ></Image>
           </LazyLoadWrapper>
         </ImageContent>
       </AnimatedWrapper>
