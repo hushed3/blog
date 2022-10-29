@@ -14,6 +14,7 @@ export type YearListData = Record<string, SimplifiedData[]>
 
 export interface ImageItem {
   id: number
+  idx: number
   name: string
   url: string
   thumbnail: string

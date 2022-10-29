@@ -24,6 +24,7 @@ export const ImageContent = styled(motion.div)`
 
 export const LazyLoadWrapper = styled(LazyLoad)`
   height: 100%;
+  transition: opacity 0.5s ease-in-out;
 `
 
 export const Image = styled.img`
