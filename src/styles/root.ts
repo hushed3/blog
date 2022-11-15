@@ -93,6 +93,7 @@ export const RootStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
     font-size: 13px;
     font-weight: normal;
     font-kerning: normal;
+    scroll-behavior: smooth;
   }
 
   body {

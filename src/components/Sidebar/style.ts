@@ -106,3 +106,15 @@ export const PostSideImage = styled(GatsbyImage)`
   display: block !important;
   width: 100px;
 `
+
+export const AnchorPoint = styled.div`
+  ul {
+    margin-bottom: 0.1rem;
+  }
+  li {
+    margin-bottom: 0.65rem;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+`
