@@ -1,6 +1,6 @@
 import { Link } from 'gatsby'
 import React from 'react'
-import { PostSideImage, SideCard, SideSticky, SideTag, SideTags, SideTitle } from './style'
+import { AnchorPoint, PostSideImage, SideCard, SideSticky, SideTag, SideTags, SideTitle } from './style'
 
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import { FileFilterInput } from '../../../gatsby-graphql'
@@ -10,18 +10,16 @@ import { slugify } from '../../utils/helpers'
  * @description 侧边文章详细信息
  */
 
-export const PostSidebar = ({
-  tags = [],
-  date,
-  categories = [],
-  thumbnail,
-}: {
+interface Props {
   date: string
   tags?: (string | null)[] | null
   categories?: (string | null)[] | null
   thumbnail?: FileFilterInput | null
-}) => {
-  const category = categories?.filter((category) => category !== 'Highlight')
+  tableOfContents?: string | null
+}
+
+export const PostSidebar = ({ tags = [], date, categories = [], thumbnail, tableOfContents }: Props) => {
+  const categorys = categories?.filter((category) => category !== 'Highlight')
   const { gatsbyImageData } = { ...thumbnail?.childImageSharp }
 
   return (
@@ -42,21 +40,24 @@ export const PostSidebar = ({
         </p>
         <p>I hope you enjoy the post and have a nice day.</p>
       </SideCard> */}
+
         <SideCard>
           <SideTitle>日期</SideTitle>
           <ul>
             <li>发布于 {date}</li>
           </ul>
 
-          {category && (
-            <div>
-              <SideTitle>类别</SideTitle>
-              <ul>
-                <li>
-                  <Link to={`/categories/${slugify(category!)}`}>{category}</Link>
-                </li>
-              </ul>
-            </div>
+          <SideTitle>类别</SideTitle>
+          {categorys && (
+            <ul>
+              {categorys.map((category) => {
+                return (
+                  <li key="category">
+                    <Link to={`/categories/${slugify(category!)}`}>{category}</Link>
+                  </li>
+                )
+              })}
+            </ul>
           )}
 
           <SideTitle>标签</SideTitle>
@@ -70,6 +71,11 @@ export const PostSidebar = ({
                 )
               })}
           </SideTags>
+        </SideCard>
+
+        <SideCard>
+          <SideTitle>目录</SideTitle>
+          <AnchorPoint dangerouslySetInnerHTML={{ __html: tableOfContents as string }} />
         </SideCard>
       </SideSticky>
     </aside>
