@@ -19,18 +19,16 @@ export const BlogSidebar = () => {
         <SideSticky>
           <SideCard>
             <SideTitle>类别</SideTitle>
-            <div>
-              {categories
-                .filter((category) => category.name !== 'Highlight')
-                .map((category) => {
-                  return (
-                    <SideLink key={category.name} to={`/categories/${slugify(category.name)}`} activeClassName="active">
-                      <div>{category.name}</div>
-                      <SlidLinkCount>{category.totalCount}</SlidLinkCount>
-                    </SideLink>
-                  )
-                })}
-            </div>
+            {categories
+              .filter((category) => category.name !== 'Highlight')
+              .map((category) => {
+                return (
+                  <SideLink key={category.name} to={`/categories/${slugify(category.name)}`} activeClassName="active">
+                    <span>{category.name}</span>
+                    <SlidLinkCount>{category.totalCount}</SlidLinkCount>
+                  </SideLink>
+                )
+              })}
           </SideCard>
 
           <SideCard>

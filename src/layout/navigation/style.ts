@@ -72,7 +72,7 @@ export const NavImage = styled.img`
 
 export const NavLink = styled(Link).attrs((props) => {
   const colorList: { key: string; value: string }[] = [
-    { key: 'git-hub', value: 'var(--rainbow-1);' },
+    { key: 'git-hub', value: 'var(--rainbow-2);' },
     { key: 'about-me', value: 'var(--rainbow-3);' },
     { key: 'writing', value: 'var(--rainbow-4);' },
     { key: 'sunset', value: 'var(--rainbow-5);' },
@@ -114,7 +114,7 @@ export const NavLink = styled(Link).attrs((props) => {
       font-size: 1.2rem;
     }
     &:hover {
-      border-bottom-color: var(--rainbow-2);
+      border-bottom-color: var(--rainbow-1);
     }
   }
 

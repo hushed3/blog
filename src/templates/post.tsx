@@ -19,7 +19,7 @@ import config from '../utils/config'
  */
 export default function PostTemplate({ data }: PageProps<PostBySlugQuery>) {
   const post = data.markdownRemark!
-  const { tableOfContents } = post
+  const { headings } = post
   const { tags, categories, title, date, thumbnail } = { ...post?.frontmatter }
   const { slug } = { ...post?.fields }
 
@@ -36,13 +36,7 @@ export default function PostTemplate({ data }: PageProps<PostBySlugQuery>) {
             </TemplateSection>
           </TemplateContent>
 
-          <PostSidebar
-            date={date}
-            tags={tags}
-            categories={categories}
-            thumbnail={thumbnail}
-            tableOfContents={tableOfContents}
-          />
+          <PostSidebar date={date} tags={tags} categories={categories} thumbnail={thumbnail} headings={headings} />
         </TemplateGrid>
       </GlobalContainer>
     </>
@@ -54,7 +48,9 @@ PostTemplate.Layout = Layout
 export const pageQuery = graphql`
   query PostBySlug($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
-      tableOfContents
+      headings(depth: h4) {
+        id
+      }
       html
       excerpt
       fields {

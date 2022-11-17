@@ -159,7 +159,7 @@ export const RootStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
     padding: 0.8rem 1rem;
     background: ${(props) => props.theme.blockquoteBackground};
     border-radius: ${(props) => props.theme.borderRadius};
-    box-shadow: 0 0 8px ${(props) => props.theme.blockquoteBackground};
+    box-shadow: 0 0 8px ${(props) => props.theme.blockquoteBoxShadow};
   }
 
   blockquote p {
@@ -281,7 +281,6 @@ export const RootStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
 
   button {
     -webkit-appearance: none;
-    background: ${(props) => props.theme.buttonBackgroundColor};
     display: inline-flex;
     align-items: center;
     padding: 0.6rem 1rem;
@@ -301,6 +300,10 @@ export const RootStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
       }
   }
 
+  .anchor{
+    display: none;
+  }
+
   .tag {
     display: inline-flex;
     position: relative;
@@ -308,6 +311,7 @@ export const RootStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
     border-radius: 5px;
     padding: 0.3rem 0.5rem;
     margin-bottom: 0.8rem;
+    margin-right: 0.3rem;
     align-items: center;
     background: rgba(24, 144, 255, 0.15);
     color: rgb(24, 144, 255);
@@ -317,14 +321,17 @@ export const RootStyle: GlobalStyleComponent<any, DefaultTheme> = createGlobalSt
     &.success {
       background: rgba(82, 196, 26, 0.15);
       color: rgb(82, 196, 26);
+      box-shadow: 0 0 8px rgba(82, 196, 26, 0.15);
     }
     &.warning {
       background: rgba(250, 173, 20, 0.15);
       color: rgb(250, 173, 20);
+      box-shadow: 0 0 8px rgba(250, 173, 20, 0.15);
     }
     &.error {
       background: rgba(255, 77, 79, 0.15);
       color: rgb(255, 77, 79);
+      box-shadow: 0 0 8px rgba(255, 77, 79, 0.15);
     }
   }
 

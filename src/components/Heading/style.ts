@@ -23,7 +23,6 @@ export const HeadingTitle = styled.div`
 
 export const HeadingLink = styled(Link)`
   -webkit-appearance: none;
-  background: ${(props) => props.theme.buttonBackgroundColor};
   display: inline-flex;
   align-items: center;
   padding: 0.6rem 1rem;

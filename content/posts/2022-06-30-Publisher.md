@@ -10,7 +10,7 @@ tags:
   - javascript
 ---
 
-#### 1、实现一个发布者 Publisher 类
+#### 实现一个发布者 Publisher 类
 
 ```javascript
 class Publisher {
@@ -26,7 +26,7 @@ class Publisher {
 }
 ```
 
-#### 2、实现一个订阅者 Subscriber 类
+#### 实现一个订阅者 Subscriber 类
 
 ```javascript
 class Subscriber {
@@ -40,7 +40,7 @@ class Subscriber {
 }
 ```
 
-#### 3、实现一个调度中心 Dep 类,处理消息
+#### 实现一个调度中心 Dep 类,处理消息
 
 ```javascript
 class Dep {
@@ -58,13 +58,13 @@ class Dep {
 }
 ```
 
-#### 4、实例化一个发布者
+#### 实例化一个发布者
 
 ```javascript
 let pub = new Pub() // 实例化一个发布者
 ```
 
-#### 5、实例化一个调度中心，传入一个用于处理数据的函数；
+#### 实例化一个调度中心，传入一个用于处理数据的函数；
 
 ```javascript
 const dep = new Dep((data) =>
@@ -72,23 +72,19 @@ const dep = new Dep((data) =>
 )
 ```
 
-#### 6、实例化一个订阅者
+#### 实例化一个订阅者
 
 ```javascript
 let sub1 = new Sub('订阅者1') // 实例化订阅者
 let sub2 = new Sub('订阅者2') // 实例化订阅者
 ```
 
-#### 7、添加订阅者到调度中心,推送消息
+#### 添加订阅者到调度中心,推送消息
 
 ```javascript
 dep.addSub(sub1) // 调度中心添加订阅者1
 dep.addSub(sub2) // 调度中心添加订阅者2
-```
 
-#### 8、添加订阅者到调度中心,推送消息
-
-```javascript
 pub.publish(dep) // 发布者把消息推给调度者
 
 // 我是调度中心，我先把消息处理一下，然后发给 ==> 订阅者1
