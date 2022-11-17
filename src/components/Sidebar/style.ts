@@ -41,19 +41,17 @@ export const SideLink = styled(Link)`
   }
 
   &.active {
-    background: ${(props) => props.theme.highlightColor};
-    color: white;
+    color: ${(props) => props.theme.highlightColor};
     div {
-      color: white;
+      color: inherit;
     }
   }
 
   &:hover {
-    background: ${(props) => props.theme.highlightColor};
-    color: white;
+    color: ${(props) => props.theme.highlightColor};
     text-decoration: none;
     div {
-      color: white;
+      color: inherit;
     }
   }
 `
@@ -79,22 +77,21 @@ export const SideTag = styled(Link)`
   border: 1px solid ${(props) => props.theme.borderColor};
   border-radius: ${(props) => props.theme.borderRadius};
   color: ${(props) => props.theme.fontColorBase};
-  background: ${(props) => props.theme.buttonBackgroundColor} !important;
   text-decoration: none;
   text-transform: capitalize;
   display: inline-block;
   text-align: center;
 
   &.active {
-    background: ${(props) => props.theme.highlightColor} !important;
-    border-color: ${(props) => props.theme.highlightColor} !important;
-    color: white !important;
-    font-weight: 600;
+    color: ${(props) => props.theme.highlightColor};
+    border-color: rgba(81, 182, 129, 0.3);
+    background-color: rgba(81, 182, 129, 0.18);
   }
 
   &:hover {
-    color: ${(props) => props.theme.fontColorBright};
-    border-color: ${(props) => props.theme.borderColorHover};
+    color: ${(props) => props.theme.highlightColor};
+    border-color: rgba(81, 182, 129, 0.3);
+    background-color: rgba(81, 182, 129, 0.15);
     text-decoration: none;
   }
 `
@@ -107,14 +104,11 @@ export const PostSideImage = styled(GatsbyImage)`
   width: 100px;
 `
 
-export const AnchorPoint = styled.div`
-  ul {
-    margin-bottom: 0.1rem;
-  }
-  li {
-    margin-bottom: 0.65rem;
-    &:last-child {
-      margin-bottom: 0;
-    }
+export const Anchor = styled.li`
+  margin-bottom: 0.65rem;
+  color: ${(props) => props.theme.link};
+  cursor: pointer;
+  &:last-child {
+    margin-bottom: 0;
   }
 `

@@ -9,3 +9,38 @@ export const isSSR = (function () {
     return true
   }
 })()
+
+/**
+ * @description 提取href值
+ * @date 16/11/2022
+ * @param {string} str
+ * @return {*}  {string}
+ */
+export const getHref = (str: string): string => {
+  const value = /(?<=<a.*href=").*(?=")/.exec(str)
+  return value?.length ? value[0] : ''
+}
+
+/**
+ * @description 提取标签内的值
+ * @date 16/11/2022
+ * @param {string} str
+ * @return {*}  {string}
+ */
+export const getValue = (str: string): string => {
+  const value = /(?<=">).*(?=<\/a)/.exec(str)
+  return value?.length ? value[0] : ''
+}
+
+/**
+ * @description 提取标签的id
+ * @date 16/11/2022
+ * @param {string} str
+ * @return {*}  {string}
+ */
+export const getID = (str: string): string => {
+  // const value = /(?<=<h4.*id=").*(?="\sstyle)/.exec(str)
+  const value = str.match(/(?<=<h4.*id=").*(?="\sstyle)/)
+  console.log(str, value)
+  return value?.length ? value[0].replace(/-/g, ' ') : ''
+}

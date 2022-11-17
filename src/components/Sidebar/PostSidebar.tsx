@@ -1,6 +1,6 @@
 import { Link } from 'gatsby'
 import React from 'react'
-import { AnchorPoint, PostSideImage, SideCard, SideSticky, SideTag, SideTags, SideTitle } from './style'
+import { Anchor, PostSideImage, SideCard, SideSticky, SideTag, SideTags, SideTitle } from './style'
 
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import { FileFilterInput } from '../../../gatsby-graphql'
@@ -15,13 +15,17 @@ interface Props {
   tags?: (string | null)[] | null
   categories?: (string | null)[] | null
   thumbnail?: FileFilterInput | null
-  tableOfContents?: string | null
+  headings?: ({ id?: string | null } | null)[] | null
 }
 
-export const PostSidebar = ({ tags = [], date, categories = [], thumbnail, tableOfContents }: Props) => {
+export const PostSidebar = ({ tags = [], date, categories = [], thumbnail, headings }: Props) => {
   const categorys = categories?.filter((category) => category !== 'Highlight')
   const { gatsbyImageData } = { ...thumbnail?.childImageSharp }
 
+  const onclick = (row: { id?: string | null }) => {
+    console.log(row, document.getElementById(row.id!))
+    document.getElementById(row.id!)?.scrollIntoView(true)
+  }
   return (
     <aside>
       <SideSticky>
@@ -75,7 +79,18 @@ export const PostSidebar = ({ tags = [], date, categories = [], thumbnail, table
 
         <SideCard>
           <SideTitle>目录</SideTitle>
-          <AnchorPoint dangerouslySetInnerHTML={{ __html: tableOfContents as string }} />
+          <ul style={{ marginBottom: 0 }}>
+            {headings &&
+              headings.map((item) => {
+                return (
+                  item && (
+                    <Anchor key={item.id} onClick={() => onclick(item)}>
+                      {item.id}
+                    </Anchor>
+                  )
+                )
+              })}
+          </ul>
         </SideCard>
       </SideSticky>
     </aside>
