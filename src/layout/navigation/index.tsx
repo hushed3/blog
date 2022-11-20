@@ -10,7 +10,7 @@ import LightIcon from '../../assets/svg/light.svg'
 import LinkIcon from '../../assets/svg/link.svg'
 import ThemeContext from '../../context/ThemeContext'
 import { slugify } from '../../utils/helpers'
-import { NavContainer, NavImage, NavLeft, NavLink, NavRouter, NavSection, ThemeToggle } from './style'
+import { NavA, NavContainer, NavImage, NavLeft, NavLink, NavRouter, NavSection, ThemeToggle } from './style'
 
 const mainNavItems = [
   // { url: '/me', icon: blog, label: 'About', name: ' me ' },
@@ -50,16 +50,16 @@ export const Navigation = memo(function Navigation() {
           {socialNavItems.map((item) => (
             <NavRouter key={item.label}>
               <NavImage src={item.icon} alt={item.label} />
-              <NavLink
-                as="a"
+              <NavA
                 href={item.url}
                 className={`NavLink ${slugify(item.label)}`}
                 target="_blank"
                 rel="noreferrer"
+                to={''}
               >
                 <span>{item.label}</span>
                 <LinkIcon />
-              </NavLink>
+              </NavA>
             </NavRouter>
           ))}
         </NavLeft>

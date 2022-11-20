@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
-export const BriefHeader = styled.header`
+export const BriefContainer = styled.header`
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -36,5 +36,5 @@ export const BriefTitle = styled.h1`
 `
 
 export const BriefPurpleTitle = styled.span`
-  color: ${(props) => props.theme.highlightColor};
+  color: rgb(${(props) => props.theme.purple5});
 `

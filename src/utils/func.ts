@@ -39,8 +39,6 @@ export const getValue = (str: string): string => {
  * @return {*}  {string}
  */
 export const getID = (str: string): string => {
-  // const value = /(?<=<h4.*id=").*(?="\sstyle)/.exec(str)
   const value = str.match(/(?<=<h4.*id=").*(?="\sstyle)/)
-  console.log(str, value)
   return value?.length ? value[0].replace(/-/g, ' ') : ''
 }

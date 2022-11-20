@@ -1,6 +1,6 @@
 import { Link } from 'gatsby'
 import React from 'react'
-import { Anchor, PostSideImage, SideCard, SideSticky, SideTag, SideTags, SideTitle } from './style'
+import { Anchor, PostSideImage, PostSideTag, SideCard, SideSticky, SideTags, SideTitle } from './style'
 
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import { FileFilterInput } from '../../../gatsby-graphql'
@@ -23,7 +23,6 @@ export const PostSidebar = ({ tags = [], date, categories = [], thumbnail, headi
   const { gatsbyImageData } = { ...thumbnail?.childImageSharp }
 
   const onclick = (row: { id?: string | null }) => {
-    console.log(row, document.getElementById(row.id!))
     document.getElementById(row.id!)?.scrollIntoView(true)
   }
   return (
@@ -69,9 +68,9 @@ export const PostSidebar = ({ tags = [], date, categories = [], thumbnail, headi
             {tags &&
               tags.map((tag) => {
                 return (
-                  <SideTag key={tag} to={`/tags/${slugify(tag!)}`} activeClassName="active">
+                  <PostSideTag key={tag} to={`/tags/${slugify(tag!)}`} activeClassName="active">
                     {tag}
-                  </SideTag>
+                  </PostSideTag>
                 )
               })}
           </SideTags>

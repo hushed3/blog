@@ -1,14 +1,15 @@
+import styled from '@emotion/styled'
 import { Link } from 'gatsby'
-import styled from 'styled-components'
-import { GlobalCard, GlobalContainer } from './global'
-import { TemplateContent, TemplateGrid, TemplateSection } from './templates'
+import { GlobalCard, GlobalContainer, GlobalSection } from './global'
+import { TemplateContent, TemplateGrid } from './templates'
 
 export const BlogGrid = styled(TemplateGrid)``
 
 export const BlogContent = styled(TemplateContent)``
 
-export const IndexSection = styled(TemplateSection)``
+export const IndexSection = styled(GlobalSection)``
 
+// index
 export const BriefWrapper = styled.div`
   display: block;
 
@@ -28,7 +29,6 @@ export const BriefDescription = styled.p`
   color: ${(props) => props.theme.fontColorBase};
   font-weight: 500;
 `
-
 
 const Preview = styled.div`
   display: grid;
@@ -50,28 +50,36 @@ export const RecentCard = styled(GlobalCard)`
   flex: 1;
   display: flex;
   flex-wrap: wrap;
-  min-height: 9rem;
+  min-height: 10rem;
+
+  time {
+    font-family: ${(props) => props.theme.fontFamilyMonospace};
+    color: rgb(${(props) => props.theme.magenta6});
+    font-size: 0.8rem;
+  }
 `
 
 export const HighlightPreview = styled(Preview)``
 
 export const HighlightCard = styled(GlobalCard)`
-  background: transparent;
   padding: 1.5rem;
-  /* border: 2px solid ${(props) => props.theme.borderColor}; */
   display: flex;
   align-items: center;
+  min-height: 9rem;
   gap: 1rem;
-`
 
-export const Time = styled.time`
-  display: block;
-  font-family: ${(props) => props.theme.fontFamilyMonospace};
-  color: ${(props) => props.theme.fontColorBright};
-  font-size: 0.8rem;
+  time {
+    display: block;
+    font-family: ${(props) => props.theme.fontFamilyMonospace};
+    color: rgb(${(props) => props.theme.magenta6});
+    font-size: 0.8rem;
+  }
 
-  &.recent {
-    color: ${(props) => props.theme.cardTimeColor};
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    height: 100%;
   }
 `
 
@@ -83,7 +91,6 @@ export const TitleLink = styled(Link)`
   font-family: ${(props) => props.theme.fontFamilyBase};
   color: ${(props) => props.theme.fontColorHeading};
   font-weight: 700;
-  margin: 0.25rem 0 0.5rem;
   padding: 0;
   border: 0;
   text-decoration: none;
@@ -97,15 +104,16 @@ export const TitleLink = styled(Link)`
 export const TagLinks = styled.div`
   display: flex;
   align-items: flex-end;
+
+  a {
+    font-family: ${(props) => props.theme.fontFamilyMonospace};
+    font-size: 0.8rem;
+    color: ${(props) => props.theme.fontColorMuted};
+    text-decoration: underline;
+  }
 `
 
-export const TagLink = styled(Link)`
-  font-family: ${(props) => props.theme.fontFamilyMonospace};
-  font-size: 0.8rem;
-  color: ${(props) => props.theme.fontColorMuted};
-  text-decoration: underline;
-`
-
+// Sunset
 export const SunsetContainer = styled(GlobalContainer)`
   padding-top: 3rem;
   display: grid;

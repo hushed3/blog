@@ -1,5 +1,5 @@
+import styled from '@emotion/styled'
 import { Link } from 'gatsby'
-import styled from 'styled-components'
 import { GlobalSection } from '../../styles/components/global'
 
 export const PostSection = styled(GlobalSection)``
@@ -23,7 +23,7 @@ export const PostTime = styled.time`
   display: block;
   margin-left: auto;
   font-family: ${(props) => props.theme.fontFamilyMonospace};
-  color: ${(props) => props.theme.postTimeColor};
+  color: rgb(${(props) => props.theme.gray6});
   font-size: 0.8rem;
   font-weight: 500;
 `
@@ -42,6 +42,6 @@ export const PostH5 = styled.h5`
 `
 
 export const PostYear = styled.h2`
-  color: ${(props) => props.theme.year};
+  color: rgb(${(props) => props.theme.purple6});
   padding-bottom: 0.8rem;
 `

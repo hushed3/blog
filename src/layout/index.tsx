@@ -5,17 +5,15 @@ import { BgParticles } from '../components/BgParticles'
 import { Footer } from './footer/index'
 import { Navigation } from './navigation/index'
 
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
-const LayoutContainer = styled.div.attrs({
-  id: 'layout',
-})`
+const LayoutContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 `
 
-const Main = styled.main.attrs({})`
+const Main = styled.main`
   margin-top: ${(props) => props.theme.navbarHeightSmall};
   flex: 1;
 

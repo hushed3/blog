@@ -18,16 +18,11 @@ module.exports = {
     // Meta
     // ===================================================================================
 
+    `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-graphql-codegen`,
       options: {
         fileName: `./gatsby-graphql.d.ts`,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-styled-components`,
-      options: {
-        displayName: true,
       },
     },
 

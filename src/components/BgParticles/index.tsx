@@ -1,6 +1,6 @@
+import styled from '@emotion/styled'
 import React, { useCallback } from 'react'
 import Particles from 'react-particles'
-import styled from 'styled-components'
 import { loadFull } from 'tsparticles'
 
 const BgAnimation = styled(Particles)`
