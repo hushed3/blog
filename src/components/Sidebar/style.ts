@@ -1,13 +1,11 @@
+import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
-import styled from 'styled-components'
 import { GlobalCard } from '../../styles/components/global'
 
-export const SideSticky = styled.div.attrs((props: { top: number }) => ({
-  top: `${props.top || 8}rem`,
-}))`
+export const SideSticky = styled.div`
   position: sticky;
-  top: ${(props) => props.top};
+  top: ${(props: any) => props.top ?? 8}rem;
 `
 
 export const SideCard = styled(GlobalCard)`
@@ -41,14 +39,14 @@ export const SideLink = styled(Link)`
   }
 
   &.active {
-    color: ${(props) => props.theme.highlightColor};
+    color: rgb(${(props) => props.theme.purple6});
     div {
       color: inherit;
     }
   }
 
   &:hover {
-    color: ${(props) => props.theme.highlightColor};
+    color: rgb(${(props) => props.theme.purple6});
     text-decoration: none;
     div {
       color: inherit;
@@ -83,15 +81,24 @@ export const SideTag = styled(Link)`
   text-align: center;
 
   &.active {
-    color: ${(props) => props.theme.highlightColor};
-    border-color: rgba(81, 182, 129, 0.3);
-    background-color: rgba(81, 182, 129, 0.18);
+    color: rgb(${(props) => props.theme.purple6});
+    border-color: rgba(${(props) => props.theme.purple6}, 0.3);
+    background-color: rgba(${(props) => props.theme.purple5}, 0.1);
   }
 
   &:hover {
-    color: ${(props) => props.theme.highlightColor};
-    border-color: rgba(81, 182, 129, 0.3);
-    background-color: rgba(81, 182, 129, 0.15);
+    color: rgb(${(props) => props.theme.purple6});
+    border-color: rgba(${(props) => props.theme.purple6}, 0.3);
+    background-color: rgba(${(props) => props.theme.purple5}, 0.1);
+    text-decoration: none;
+  }
+`
+
+export const PostSideTag = styled(SideTag)`
+  &:hover {
+    color: rgb(${(props) => props.theme.purple6});
+    border-color: rgba(${(props) => props.theme.purple6}, 0.3);
+    background-color: rgba(${(props) => props.theme.purple5}, 0.1);
     text-decoration: none;
   }
 `
@@ -106,7 +113,7 @@ export const PostSideImage = styled(GatsbyImage)`
 
 export const Anchor = styled.li`
   margin-bottom: 0.65rem;
-  color: ${(props) => props.theme.link};
+  color: rgb(${(props) => props.theme.purple5});
   cursor: pointer;
   &:last-child {
     margin-bottom: 0;

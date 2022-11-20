@@ -1,5 +1,5 @@
+import styled from '@emotion/styled'
 import { Link } from 'gatsby'
-import styled from 'styled-components'
 
 import { GlobalContainer } from '../../styles/components/global'
 
@@ -9,7 +9,7 @@ export const NavSection = styled.section`
   left: 0;
   width: 100%;
   z-index: 3;
-  background: ${(props) => props.theme.navbar};
+  background: ${(props) => props.theme.navbarBackgroundColor};
   height: ${(props) => props.theme.navbarHeightSmall};
   backdrop-filter: blur(8px);
 
@@ -51,9 +51,7 @@ export const NavLeft = styled.nav`
   }
 `
 
-export const NavRouter = styled.div.attrs((props) => ({
-  key: props.key,
-}))`
+export const NavRouter = styled.div`
   display: flex;
   align-items: center;
 `
@@ -70,18 +68,7 @@ export const NavImage = styled.img`
   }
 `
 
-export const NavLink = styled(Link).attrs((props) => {
-  const colorList: { key: string; value: string }[] = [
-    { key: 'git-hub', value: 'var(--rainbow-2);' },
-    { key: 'about-me', value: 'var(--rainbow-3);' },
-    { key: 'writing', value: 'var(--rainbow-4);' },
-    { key: 'sunset', value: 'var(--rainbow-5);' },
-  ]
-  const color = colorList.find((item) => props.className && props.className.includes(item.key))?.value
-  return {
-    color,
-  }
-})`
+export const NavLink = styled(Link)`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -97,11 +84,24 @@ export const NavLink = styled(Link).attrs((props) => {
   border-bottom: 2px solid transparent;
   margin: 0 0.5rem;
 
-  &:hover {
-    border-bottom-color: ${(props) => props.color};
+  &.about-me,
+  &.writing,
+  &.git-hub {
+    &:hover {
+      border-bottom-color: rgb(${(props) => props.theme.purple6});
+    }
+    &.active {
+      border-bottom-color: rgb(${(props) => props.theme.purple6});
+    }
   }
-  &.active {
-    border-bottom-color: ${(props) => props.color};
+
+  &.sunset {
+    &:hover {
+      border-bottom-color: rgb(${(props) => props.theme.gold6});
+    }
+    &.active {
+      border-bottom-color: rgb(${(props) => props.theme.gold6});
+    }
   }
 
   &.brand {
@@ -114,7 +114,7 @@ export const NavLink = styled(Link).attrs((props) => {
       font-size: 1.2rem;
     }
     &:hover {
-      border-bottom-color: var(--rainbow-1);
+      border-bottom-color: rgb(${(props) => props.theme.magenta6});
     }
   }
 
@@ -126,19 +126,19 @@ export const NavLink = styled(Link).attrs((props) => {
   }
 `
 
+export const NavA = NavLink.withComponent('a')
+
 export const ThemeToggle = styled.div`
   align-self: center;
   button {
-    padding: 0.7rem;
-    background: ${(props) => props.theme.themeButtonBackground};
-
-    border-color: ${(props) => props.theme.themeButtonBorder};
-    color: ${(props) => props.theme.themeButtonColor};
+    padding: 0.9rem;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    transition: all 0.3s;
 
     &:hover {
       background: ${(props) => props.theme.themeButtonBackgroundHover};
-      border-color: ${(props) => props.theme.themeButtonBorderHover};
-      color: ${(props) => props.theme.themeButtonColorHover};
     }
   }
 `

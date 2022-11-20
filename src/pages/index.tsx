@@ -1,4 +1,4 @@
-import { graphql, PageProps } from 'gatsby'
+import { graphql, Link, PageProps } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import React, { useMemo } from 'react'
 import Helmet from 'react-helmet'
@@ -11,9 +11,7 @@ import {
   IndexSection,
   RecentCard,
   RecentPreview,
-  TagLink,
   TagLinks,
-  Time,
   TitleLink,
 } from '../styles/components/pages'
 
@@ -48,7 +46,7 @@ export default function Index({ data }: PageProps<IndexQueryQuery>) {
 
       <GlobalContainer>
         <BriefWrapper>
-          <BriefHeader title="Hi, I'm  Hush" index>
+          <BriefHeader title="Hi, I'm  Hush">
             <BriefDescription>
               𝑰 𝒉𝒐𝒑𝒆 𝒚𝒐𝒖 𝒍𝒊𝒗𝒆 𝒂 𝒍𝒊𝒇𝒆 𝒚𝒐𝒖‘𝒓𝒆 𝒑𝒓𝒐𝒖𝒅 𝒐𝒇. 𝑰𝒇 𝒚𝒐𝒖 𝒇𝒊𝒏𝒅 𝒕𝒉𝒂𝒕 𝒚𝒐𝒖’𝒓𝒆 𝒏𝒐𝒕, 𝑰 𝒉𝒐𝒑𝒆 𝒚𝒐𝒖 𝒉𝒂𝒗𝒆 𝒕𝒉𝒆 𝒔𝒕𝒓𝒆𝒏𝒈𝒕𝒉 𝒕𝒐 𝒔𝒕𝒂𝒓𝒕
               𝒂𝒍𝒍 𝒐𝒗𝒆𝒓 𝒂𝒈𝒂𝒊𝒏. <br />
@@ -67,7 +65,7 @@ export default function Index({ data }: PageProps<IndexQueryQuery>) {
             {simplifiedLatest.map((post) => {
               return (
                 <RecentCard key={post.slug}>
-                  <Time className="recent">{post.date}</Time>
+                  <time className="recent">{post.date}</time>
                   <TitleLink to={post.slug}>{post.title}</TitleLink>
                   <TagLinks>
                     {post.categories &&
@@ -75,9 +73,9 @@ export default function Index({ data }: PageProps<IndexQueryQuery>) {
                         .filter((cat) => cat !== 'Highlight')
                         .map((cat) => {
                           return (
-                            <TagLink to={`/categories/${slugify(cat)}`} key={slugify(cat)}>
+                            <Link to={`/categories/${slugify(cat)}`} key={slugify(cat)}>
                               {cat}
-                            </TagLink>
+                            </Link>
                           )
                         })}
                   </TagLinks>
@@ -96,8 +94,8 @@ export default function Index({ data }: PageProps<IndexQueryQuery>) {
                 return (
                   <HighlightCard key={`Highlight-${post.slug}`}>
                     {post.thumbnail && <GatsbyImage image={post.thumbnail} alt="" />}
-                    <div>
-                      <Time>{post.date}</Time>
+                    <div className="content">
+                      <time>{post.date}</time>
                       <TitleLink to={post.slug}>{post.title}</TitleLink>
                     </div>
                   </HighlightCard>
@@ -152,7 +150,7 @@ export const pageQuery = graphql`
             tags
             thumbnail {
               childImageSharp {
-                gatsbyImageData(width: 80, height: 80)
+                gatsbyImageData(width: 100, height: 100)
               }
             }
           }

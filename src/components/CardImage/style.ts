@@ -1,7 +1,7 @@
+import styled from '@emotion/styled'
 import { animated } from '@react-spring/web'
 import { motion } from 'framer-motion'
 import LazyLoad from 'react-lazyload'
-import styled from 'styled-components'
 
 export const AnimatedWrapper = styled(animated.div)`
   aspect-ratio: 16/10;

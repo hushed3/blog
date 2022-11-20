@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 export const GlobalContainer = styled.div`
   max-width: ${(props) => props.theme.contentWidth};
@@ -16,7 +16,7 @@ export const GlobalCard = styled.div`
   background: ${(props) => props.theme.cardBackgroundColor};
   padding: 1rem;
   position: relative;
-  box-shadow: 0px 0px 10px ${(props) => props.theme.cardShadow};
+  box-shadow: 0px 0px 14px ${(props) => props.theme.cardShadow};
   @media screen and (min-width: 700px) {
     padding: 1.25rem;
   }

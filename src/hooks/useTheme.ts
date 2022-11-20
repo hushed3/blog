@@ -1,10 +1,51 @@
 import { useEffect, useState } from 'react'
+import { dark, light } from '../styles/theme'
 import { isSSR } from '../utils/func'
 
-type ThemeData = 'light' | 'dark'
+export type ThemeData = 'light' | 'dark'
 
-const THEME = '(prefers-color-scheme: dark)'
 const KEY = 'theme'
+const THEME = '(prefers-color-scheme: dark)'
+
+const useTheme = (key = KEY): [any, ThemeData, (value?: ThemeData) => void] => {
+  const [theme, setTheme] = useState<ThemeData>(osTheme())
+  const [colors, setColors] = useState<any>(osTheme() === 'dark' ? dark : light)
+
+  const toggleTheme = (Theme?: ThemeData) => {
+    if (!isSSR) {
+      const CurrentTheme = Theme || (theme === 'dark' ? 'light' : 'dark')
+
+      setTheme(CurrentTheme)
+      toggleColor(CurrentTheme)
+
+      localStorage.setItem(key, CurrentTheme)
+    }
+  }
+
+  const listenerOSTheme = (handler: (value: ThemeData) => void) => {
+    if (!isSSR) {
+      window?.matchMedia(THEME).addEventListener('change', (event) => {
+        const osTheme = event.matches ? 'dark' : 'light'
+
+        handler(osTheme)
+      })
+    }
+  }
+
+  const toggleColor = (color: any) => {
+    setColors(color === 'dark' ? dark : light)
+  }
+
+  useEffect(() => {
+    toggleTheme(theme)
+
+    listenerOSTheme((theme) => {
+      toggleTheme(theme)
+    })
+  }, [])
+
+  return [colors, theme, toggleTheme]
+}
 
 /**
  * @description 获取本地缓存中的主题
@@ -22,39 +63,6 @@ export const osTheme = (): ThemeData => {
   } else {
     return storageTheme() || (window?.matchMedia(THEME).matches ? 'dark' : 'light')
   }
-}
-
-const useTheme = (key = KEY): [string, (value?: ThemeData) => void] => {
-  const [theme, setTheme] = useState<ThemeData>(osTheme())
-
-  const toggleTheme = (Theme?: ThemeData) => {
-    if (!isSSR) {
-      const CurrentTheme = Theme || (theme === 'dark' ? 'light' : 'dark')
-
-      setTheme(CurrentTheme)
-      localStorage.setItem(key, CurrentTheme)
-    }
-  }
-
-  const listenerOSTheme = (handler: (value: ThemeData) => void) => {
-    if (!isSSR) {
-      window?.matchMedia(THEME).addEventListener('change', (event) => {
-        const osTheme = event.matches ? 'dark' : 'light'
-
-        handler(osTheme)
-      })
-    }
-  }
-
-  useEffect(() => {
-    toggleTheme(theme)
-
-    listenerOSTheme((theme) => {
-      toggleTheme(theme)
-    })
-  }, [])
-
-  return [theme, toggleTheme]
 }
 
 export default useTheme
