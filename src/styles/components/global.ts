@@ -13,10 +13,10 @@ export const GlobalContainer = styled.div`
 
 export const GlobalCard = styled.div`
   border-radius: ${(props) => props.theme.borderRadius};
-  background: ${(props) => props.theme.cardBackgroundColor};
+  background: rgb(${(props) => props.theme.gray3});
   padding: 1rem;
   position: relative;
-  box-shadow: 0px 0px 14px ${(props) => props.theme.cardShadow};
+  box-shadow: 0px 0px 10px ${(props) => props.theme.cardShadow};
   @media screen and (min-width: 700px) {
     padding: 1.25rem;
   }

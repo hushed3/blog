@@ -26,7 +26,7 @@ export const BriefDescription = styled.p`
   margin-bottom: 0;
   font-size: 1.1rem;
   line-height: 1.4;
-  color: ${(props) => props.theme.fontColorBase};
+  color: rgb(${(props) => props.theme.gray9});
   font-weight: 500;
 `
 
@@ -89,7 +89,7 @@ export const TitleLink = styled(Link)`
   font-size: 1.1rem;
   line-height: 1.2;
   font-family: ${(props) => props.theme.fontFamilyBase};
-  color: ${(props) => props.theme.fontColorHeading};
+  color: rgb(${(props) => props.theme.gray10});
   font-weight: 700;
   padding: 0;
   border: 0;
@@ -97,7 +97,7 @@ export const TitleLink = styled(Link)`
 
   &:hover {
     text-decoration: underline;
-    color: ${(props) => props.theme.fontColorBright};
+    color: rgb(${(props) => props.theme.gray10});
   }
 `
 
@@ -108,7 +108,7 @@ export const TagLinks = styled.div`
   a {
     font-family: ${(props) => props.theme.fontFamilyMonospace};
     font-size: 0.8rem;
-    color: ${(props) => props.theme.fontColorMuted};
+    color: rgb(${(props) => props.theme.gray8});
     text-decoration: underline;
   }
 `

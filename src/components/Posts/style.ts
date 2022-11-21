@@ -14,7 +14,7 @@ export const PostLink = styled(Link)`
   text-decoration: none;
 
   &:hover {
-    color: ${(props) => props.theme.fontColorBright};
+    color: rgb(${(props) => props.theme.gray10});
     text-decoration: underline;
   }
 `
@@ -30,7 +30,7 @@ export const PostTime = styled.time`
 export const PostH5 = styled.h5`
   margin: 0;
   font-size: 0.9rem;
-  color: ${(props) => props.theme.fontColorHeading};
+  color: rgb(${(props) => props.theme.gray10});
   font-weight: 500;
   font-family: ${(props) => props.theme.fontFamilyBase};
   line-height: 1.3;
@@ -44,4 +44,5 @@ export const PostH5 = styled.h5`
 export const PostYear = styled.h2`
   color: rgb(${(props) => props.theme.purple6});
   padding-bottom: 0.8rem;
+  border-bottom-width: 2px;
 `
