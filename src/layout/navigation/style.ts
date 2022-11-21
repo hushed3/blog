@@ -9,7 +9,7 @@ export const NavSection = styled.section`
   left: 0;
   width: 100%;
   z-index: 3;
-  background: ${(props) => props.theme.navbarBackgroundColor};
+  background: rgba(0, 0, 0, 0);
   height: ${(props) => props.theme.navbarHeightSmall};
   backdrop-filter: blur(8px);
 
@@ -76,7 +76,7 @@ export const NavLink = styled(Link)`
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 500;
-  color: ${(props) => props.theme.navbarColor};
+  color: rgb(${(props) => props.theme.gray10});
   padding: 0;
   border: none;
   border-radius: 0;
@@ -138,7 +138,7 @@ export const ThemeToggle = styled.div`
     transition: all 0.3s;
 
     &:hover {
-      background: ${(props) => props.theme.themeButtonBackgroundHover};
+      background: rgb(${(props) => props.theme.gray4});
     }
   }
 `

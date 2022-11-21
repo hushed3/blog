@@ -13,7 +13,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
         styles={css`
           ::selection {
             background: rgba(${theme.purple6}, 0.3);
-            color: ${theme.fontColorBase};
+            color: rgb(${theme.gray9});
           }
 
           ::-webkit-scrollbar {
@@ -60,7 +60,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             padding: 0;
             overflow: overlay;
             position: relative;
-            background: ${theme.pageBackgroundColor};
+            background: rgb(${theme.gray1});
           }
 
           a {
@@ -74,7 +74,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
           ul,
           table,
           blockquote {
-            color: ${theme.fontColorBase};
+            color: rgb(${theme.gray9});
           }
 
           p,
@@ -138,7 +138,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
           h3,
           h4,
           h5 {
-            color: ${theme.fontColorHeading};
+            color: rgb(${theme.gray10});
             line-height: 1.1;
             margin-top: 0;
             margin-bottom: 1.5rem;
@@ -162,8 +162,8 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             margin: 0 0 1rem;
             font-weight: 700;
             padding-bottom: 0.3rem;
-            border-bottom: 1px solid ${theme.borderColor};
-            color: ${theme.fontColorHeading};
+            border-bottom: 1px solid rgb(${theme.gray3});
+            color: rgb(${theme.gray10});
             letter-spacing: -0.03rem;
           }
 
@@ -175,7 +175,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             font-size: 1.5rem;
             font-weight: 900;
             margin-bottom: 1rem;
-            color: ${theme.fontColorHeading};
+            color: rgb(${theme.gray10});
             font-family: ${theme.fontFamilyHeading};
           }
 
@@ -184,7 +184,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
           }
 
           h4 {
-            color: ${theme.fontColorHeading};
+            color: rgb(${theme.gray10});
             margin-bottom: 1.5rem;
             font-size: 1.3rem;
             font-weight: 800;
@@ -197,7 +197,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
           }
 
           h5 {
-            color: ${theme.fontColorBase};
+            color: rgb(${theme.gray9});
             margin-bottom: 1rem;
             font-size: 1rem;
             font-weight: 700;
@@ -206,7 +206,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
           }
 
           table {
-            border: 1px solid ${theme.borderColor};
+            border: 1px solid rgb(${theme.gray3});
             display: table;
             border-collapse: separate;
             border-spacing: 0;
@@ -224,12 +224,12 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             padding: 0.5rem;
             text-align: left;
             word-break: break-word;
-            border-bottom: 1px solid ${theme.borderColor};
+            border-bottom: 1px solid rgb(${theme.gray3});
           }
 
           th {
-            background: ${theme.cardBackgroundColor};
-            border-bottom: 2px solid ${theme.borderColor};
+            background: rgb(${theme.gray3});
+            border-bottom: 2px solid rgb(${theme.gray3});
           }
 
           img {
@@ -248,13 +248,13 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             font-size: 0.9rem;
             cursor: pointer;
             font-weight: 500;
-            color: ${theme.fontColorBase};
-            border: 1px solid ${theme.borderColor};
+            color: rgb(${theme.gray9});
+            border: 1px solid rgb(${theme.gray3});
             gap: 0.25rem;
 
             &:hover {
-              color: ${theme.fontColorBright};
-              border-color: ${theme.borderColorHover};
+              color: rgb(${theme.gray10});
+              border-color: rgb(${theme.gray4});
             }
           }
 
@@ -274,22 +274,22 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             line-height: 20px;
             background: rgba(${theme.blue6}, 0.2);
             color: rgb(${theme.blue6});
-            box-shadow: 0 0 8px rgba(${theme.blue6}, 0.15);
+            box-shadow: 0 0 8px rgba(${theme.blue7}, 0.15);
 
             &.success {
-              background: rgba(${theme.green6}, 0.15);
+              background: rgba(${theme.green6}, 0.2);
               color: rgb(${theme.green6});
-              box-shadow: 0 0 8px rgba(${theme.green6}, 0.15);
+              box-shadow: 0 0 8px rgba(${theme.green7}, 0.15);
             }
             &.warning {
-              background: rgba(${theme.gold6}, 0.15);
+              background: rgba(${theme.gold6}, 0.2);
               color: rgb(${theme.gold6});
-              box-shadow: 0 0 8px rgba(${theme.gold6}, 0.2);
+              box-shadow: 0 0 8px rgba(${theme.gold7}, 0.15);
             }
             &.error {
-              background: rgba(${theme.red6}, 0.15);
+              background: rgba(${theme.red6}, 0.2);
               color: rgb(${theme.red6});
-              box-shadow: 0 0 8px rgba(${theme.red6}, 0.15);
+              box-shadow: 0 0 8px rgba(${theme.red7}, 0.15);
             }
           }
 
@@ -323,7 +323,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             margin-top: 1.5rem;
             margin-bottom: 1.5rem;
             padding: 1;
-            background: ${theme.codeBackgroundColor};
+            background: rgb(${theme.gray3});
             overflow: overlay;
             border-radius: 4px;
           }
@@ -345,7 +345,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
           /* Inline code */
           :not(pre) > code[class*='language-'] {
             -webkit-font-smoothing: subpixel-antialiased;
-            background: ${theme.inlineCodeBackgroundColor};
+            background: rgb(${theme.gray3});
             color: rgb(${theme.purple6});
             padding: 0.2rem 0.3rem;
             font-weight: 500;
@@ -354,11 +354,11 @@ export const GlobalStyles = ({ theme, children }: Props) => {
           }
 
           :not(pre) > a code[class*='language-'] {
-            /* color:  ${theme.link}; */
+            color: rgb(${theme.gray3});
           }
 
           :not(pre) > a code[class*='language-']:hover {
-            /* color:  ${theme.linkHoverColor}; */
+            color: rgb(${theme.gray4});
           }
 
           code.language-shell::before {
@@ -367,7 +367,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
           }
 
           .gatsby-highlight {
-            background: ${theme.codeBackgroundColor};
+            background: rgb(${theme.gray3});
             -webkit-text-size-adjust: none;
             text-size-adjust: none;
             border-radius: 6px;
@@ -383,7 +383,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
               position: absolute;
               right: 1rem;
               top: 0;
-              color: rgb(${theme.gray5});
+              color: rgb(${theme.gray6});
               font-weight: bold;
               text-transform: capitalize;
               font-size: 12px;
@@ -442,7 +442,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             -webkit-text-size-adjust: none;
             border-top-left-radius: 6px;
             border-top-right-radius: 6px;
-            background: ${theme.terminalBackgroundColor};
+            background: rgb(${theme.gray3});
             max-width: 100%;
           }
 
@@ -463,7 +463,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             padding: 0.5rem 1.5rem 0.7rem;
             color: #a19ea1;
             border-top: 1px solid ${theme.terminalAccent};
-            border-bottom: 1px solid ${theme.borderColor};
+            border-bottom: 1px solid rgb(${theme.gray3});
             width: 100%;
             font-size: 2.5rem;
             margin: 0;
@@ -471,7 +471,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             padding: 15px 0 12px;
             text-indent: 6px;
             letter-spacing: -5px;
-            border-bottom: 1px solid ${theme.borderColor};
+            border-bottom: 1px solid rgb(${theme.gray3});
             border-top-left-radius: 6px;
             border-top-right-radius: 6px;
           }

@@ -13,7 +13,7 @@ export const SideCard = styled(GlobalCard)`
 `
 
 export const SideTitle = styled.h2`
-  color: ${(props) => props.theme.fontColorMuted};
+  color: rgb(${(props) => props.theme.gray8});
   font-size: 0.9rem;
   border: none;
   margin: 0 0 1rem !important;
@@ -28,7 +28,7 @@ export const SideLink = styled(Link)`
   text-decoration: none;
   background-color: transparent;
   border-radius: ${(props) => props.theme.borderRadius};
-  color: ${(props) => props.theme.fontColorBase};
+  color: rgb(${(props) => props.theme.gray9});
   font-size: 0.9rem;
   font-weight: 600;
   margin-bottom: 0.6rem;
@@ -57,7 +57,7 @@ export const SideLink = styled(Link)`
 export const SlidLinkCount = styled.div`
   font-weight: 400;
   font-size: 0.8rem;
-  color: ${(props) => props.theme.fontColorMuted};
+  color: rgb(${(props) => props.theme.gray8});
   font-family: ${(props) => props.theme.fontFamilyMonospace};
 `
 
@@ -72,9 +72,9 @@ export const SideTag = styled(Link)`
   font-size: 0.75rem;
   font-weight: 400;
   padding: 0rem 0.5rem 0.05rem 0.5rem;
-  border: 1px solid ${(props) => props.theme.borderColor};
+  border: 1px solid rgb(${(props) => props.theme.gray3});
   border-radius: ${(props) => props.theme.borderRadius};
-  color: ${(props) => props.theme.fontColorBase};
+  color: rgb(${(props) => props.theme.gray9});
   text-decoration: none;
   text-transform: capitalize;
   display: inline-block;

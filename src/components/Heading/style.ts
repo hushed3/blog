@@ -32,12 +32,12 @@ export const HeadingLink = styled(Link)`
   font-size: 0.9rem;
   cursor: pointer;
   font-weight: 500;
-  color: ${(props) => props.theme.fontColorBase};
-  border: 1px solid ${(props) => props.theme.borderColor};
+  color: rgb(${(props) => props.theme.gray9});
+  border: 1px solid rgb(${(props) => props.theme.gray3});
   gap: 0.25rem;
 
   &:hover {
-    color: ${(props) => props.theme.fontColorBright};
-    border-color: ${(props) => props.theme.borderColorHover};
+    color: rgb(${(props) => props.theme.gray10});
+    border-color: rgb(${(props) => props.theme.gray4});
   }
 `
