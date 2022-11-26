@@ -1,4 +1,4 @@
-# blog.hushes.com
+# blog.hushes.cn
 
 
 # commit-message 分别由如下部分构成:

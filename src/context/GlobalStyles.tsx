@@ -12,7 +12,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
       <Global
         styles={css`
           ::selection {
-            background: rgba(${theme.purple6}, 0.3);
+            background: rgba(${theme.purple6}, 0.45);
             color: rgb(${theme.gray9});
           }
 

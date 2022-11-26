@@ -23,6 +23,9 @@ export const Footer = () => {
       <FooterSection>
         <FooterNav>
           <FooterSpan className="desktop-only">© 2022 {year} By Hush</FooterSpan>
+          <FooterSpan id="busuanzi_container_site_pv" style={{ display: 'none' }}>
+            总访问量<span id="busuanzi_value_site_pv"></span>次
+          </FooterSpan>
           {links.map((link) => (
             <FooterA href={link.url} target="_blank" rel="noopener noreferrer" key={link.url}>
               {link.label}
