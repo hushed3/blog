@@ -61,11 +61,14 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             overflow: overlay;
             position: relative;
             background: rgb(${theme.gray1});
+            transition: background-color ease-out 0.1s;
           }
 
           a {
             color: rgb(${theme.purple6});
             text-decoration: none;
+            transition: all ease-out 0.1s;
+            transition: border ease-out 0.1s;
           }
 
           p,
@@ -340,6 +343,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
 
           code.language-text {
             color: #646cff;
+            transition: background-color ease-out 0.1s;
           }
 
           /* Inline code */
@@ -377,6 +381,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             position: relative;
             transform: matrix(1, 0, 0, 1, 0, 0);
             box-shadow: 0 0 10px ${theme.cardShadow};
+            transition: background-color ease-out 0.1s;
 
             &::before {
               content: attr(data-language);

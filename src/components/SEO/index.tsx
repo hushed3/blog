@@ -82,7 +82,6 @@ export const SEO = ({ postNode, postPath, postSEO, customDescription }: Props) =
       <meta name="image" content={image} />
 
       <script type="application/ld+json">{JSON.stringify(schemaOrgJSONLD)}</script>
-      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
       <meta property="og:url" content={postSEO ? postURL : config.siteUrl} />
       {postSEO && <meta property="og:type" content="article" />}

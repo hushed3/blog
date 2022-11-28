@@ -17,6 +17,8 @@ export const GlobalCard = styled.div`
   padding: 1rem;
   position: relative;
   box-shadow: 0px 0px 10px ${(props) => props.theme.cardShadow};
+  transition: all ease-out 0.1s;
+
   @media screen and (min-width: 700px) {
     padding: 1.25rem;
   }
