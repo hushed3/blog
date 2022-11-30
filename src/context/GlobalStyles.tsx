@@ -7,6 +7,7 @@ interface Props {
 }
 
 export const GlobalStyles = ({ theme, children }: Props) => {
+  console.log(theme, theme.keyword)
   return (
     <ThemeProvider theme={theme}>
       <Global
@@ -20,20 +21,22 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             background-color: transparent;
             width: 10px;
             height: 10px;
-
             z-index: 1000;
             padding: 0px;
           }
+
+          body[scroll],
           ::-webkit-scrollbar-thumb {
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: rgba(${theme.gray7}, 0.35);
             border-radius: 8px;
             background-clip: content-box;
             border: 2px solid transparent;
             z-index: 10000;
           }
+
           body[scroll],
           ::-webkit-scrollbar-thumb:hover {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(${theme.gray7}, 0.45);
             transition: 0s;
           }
 
@@ -67,7 +70,6 @@ export const GlobalStyles = ({ theme, children }: Props) => {
           a {
             color: rgb(${theme.purple6});
             text-decoration: none;
-            transition: all ease-out 0.1s;
             transition: border ease-out 0.1s;
           }
 
@@ -296,10 +298,6 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             }
           }
 
-          pre {
-            border: 0;
-          }
-
           code[class*='language-'],
           pre[class*='language-'] {
             -webkit-font-smoothing: subpixel-antialiased;
@@ -320,54 +318,6 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             -moz-hyphens: none;
             -ms-hyphens: none;
             hyphens: none;
-          }
-
-          pre[class*='language-'] {
-            margin-top: 1.5rem;
-            margin-bottom: 1.5rem;
-            padding: 1;
-            background: rgb(${theme.gray3});
-            overflow: overlay;
-            border-radius: 4px;
-          }
-
-          pre.language-text {
-            background: transparent;
-            -webkit-font-smoothing: subpixel-antialiased;
-            margin-left: 0;
-            padding-left: 0;
-            padding-bottom: 0;
-            border: none;
-            box-shadow: none;
-          }
-
-          code.language-text {
-            color: #646cff;
-            transition: background-color ease-out 0.1s;
-          }
-
-          /* Inline code */
-          :not(pre) > code[class*='language-'] {
-            -webkit-font-smoothing: subpixel-antialiased;
-            background: rgb(${theme.gray3});
-            color: rgb(${theme.purple6});
-            padding: 0.2rem 0.3rem;
-            font-weight: 500;
-            font-size: 0.9rem;
-            border-radius: 4px;
-          }
-
-          :not(pre) > a code[class*='language-'] {
-            color: rgb(${theme.gray3});
-          }
-
-          :not(pre) > a code[class*='language-']:hover {
-            color: rgb(${theme.gray4});
-          }
-
-          code.language-shell::before {
-            content: '$ ';
-            color: ${theme.comment};
           }
 
           .gatsby-highlight {
@@ -407,86 +357,55 @@ export const GlobalStyles = ({ theme, children }: Props) => {
               border-radius: 50%;
               background-color: #ec6a5e;
             }
-          }
 
-          .gatsby-highlight pre[class*='language-'] {
-            background-color: transparent;
-            margin: 0;
-            padding: 0;
-            overflow: overlay;
-            min-width: 100%;
-            padding: 2.5rem 1.1rem 0.9rem 1.1rem;
+            & > pre[class*='language-'] {
+              margin: 0;
+              padding: 0;
+              overflow: overlay;
+              min-width: 100%;
+              padding: 2.5rem 1.1rem 0.9rem 1.1rem;
 
-            &::before {
-              content: '';
-              position: absolute;
-              left: 2.5rem;
-              top: 0.8rem;
-              width: 11px;
-              height: 11px;
-              border-radius: 50%;
-              background-color: #f4be4f;
+              &::before {
+                content: '';
+                position: absolute;
+                left: 2.5rem;
+                top: 0.8rem;
+                width: 11px;
+                height: 11px;
+                border-radius: 50%;
+                background-color: #f4be4f;
+              }
+              &::after {
+                content: '';
+                position: absolute;
+                left: 3.9rem;
+                top: 0.8rem;
+                width: 11px;
+                height: 11px;
+                border-radius: 50%;
+                background-color: #62c454;
+              }
             }
-            &::after {
-              content: '';
-              position: absolute;
-              left: 3.9rem;
-              top: 0.8rem;
-              width: 11px;
-              height: 11px;
-              border-radius: 50%;
-              background-color: #62c454;
-            }
           }
 
-          .gatsby-highlight pre.language-terminal {
-            padding: 1rem;
-            position: relative;
-            padding-top: 3rem;
-            white-space: unset;
-            -webkit-text-size-adjust: none;
-            border-top-left-radius: 6px;
-            border-top-right-radius: 6px;
-            background: rgb(${theme.gray3});
-            max-width: 100%;
+          code.language-shell::before {
+            content: '$ ';
+            color: ${theme.comment};
           }
 
-          code.language-terminal {
-            -webkit-font-smoothing: antialiased;
-            -webkit-text-size-adjust: none;
-            text-size-adjust: none;
-            white-space: pre-wrap;
-            word-break: break-all;
-          }
-
-          pre.language-terminal::before {
-            content: '\2022 \2022 \2022';
-            position: absolute;
-            top: 0;
-            left: 0;
-            background: ${theme.terminalBar};
-            padding: 0.5rem 1.5rem 0.7rem;
-            color: #a19ea1;
-            border-top: 1px solid ${theme.terminalAccent};
-            border-bottom: 1px solid rgb(${theme.gray3});
-            width: 100%;
-            font-size: 2.5rem;
-            margin: 0;
-            line-height: 0;
-            padding: 15px 0 12px;
-            text-indent: 6px;
-            letter-spacing: -5px;
-            border-bottom: 1px solid rgb(${theme.gray3});
-            border-top-left-radius: 6px;
-            border-top-right-radius: 6px;
-          }
-
-          .gatsby-highlight[data-language='terminal'] {
-            box-shadow: none;
-            padding: 0;
+          pre.language-text {
             background: transparent;
-            overflow: auto;
-            box-shadow: rgba(0, 0, 0, 0.05) 0px 15px 20px, rgba(0, 0, 0, 0.03) 0px 5px 7px;
+            -webkit-font-smoothing: subpixel-antialiased;
+            margin-left: 0;
+            padding-left: 0;
+            padding-bottom: 0;
+            border: none;
+            box-shadow: none;
+          }
+
+          code.language-text {
+            color: #646cff;
+            transition: background-color ease-out 0.1s;
           }
 
           .gatsby-highlight[data-language='text'] {
