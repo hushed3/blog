@@ -4,7 +4,7 @@ export const BriefContainer = styled.header`
   position: relative;
   overflow: hidden;
   width: 100%;
-  padding: 0.5rem 0;
+  padding: 1.5rem 0;
   position: relative;
   @media screen and (min-width: 700px) {
     padding: 2.5rem 0 0.5rem;

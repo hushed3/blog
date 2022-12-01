@@ -2,7 +2,10 @@ const base = {
   fontFamilyBase: "'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif",
   fontFamilyMonospace: "'IBM Plex Mono', Menlo, monospace",
   fontFamilyHeading: "'Merriweather', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif",
-  borderRadius: '4px',
+  borderRadiusMini: '2px',
+  borderRadiusSmall: '4px',
+  borderRadiusMedium: '6px',
+  borderRadiusLarge: '8px',
   contentWidth: '1060px',
   contentWidthSmall: '560px',
   contentWidthMedium: '700px',
@@ -13,7 +16,9 @@ const base = {
 export const light = {
   ...base,
 
-  cardShadow: `rgba(190,190,190,.46)`,
+  pageBackground: 'rgb(255, 255, 255)',
+  cardBackground: 'rgb(246, 246, 246)',
+  cardShadow: `0 1px 2px 0 rgb(0 0 0 / 4%), 0 1px 6px -1px rgb(0 0 0 / 3%), 0 2px 4px 0 rgb(0 0 0 / 3%)`,
 
   codeFontColor: '#232529',
   terminalBar: 'webkit-linear-gradient(top, #ebebeb, #d5d5d5)',
@@ -42,7 +47,7 @@ export const light = {
   gray9: '44, 44, 44',
   gray10: '36, 36, 36',
   gray11: '31, 31, 31',
-  gray12: '24, 24, 24',
+  gray12: '22, 22, 22',
 
   red1: '255, 236, 232',
   red2: '253, 205, 197',
@@ -114,7 +119,9 @@ export const light = {
 export const dark = {
   ...base,
 
-  cardShadow: `rgba(60, 60, 60,.25)`,
+  pageBackground: 'rgb(19, 19, 19)',
+  cardBackground: 'rgb(30, 30, 30)',
+  cardShadow: `0 1px 2px 0 rgb(0 0 0 / 3%), 0 1px 6px -1px rgb(0 0 0 / 2%), 0 2px 4px 0 rgb(0 0 0 / 2%)`,
 
   codeFontColor: '#b3b9c5',
   terminalBar: 'webkit-linear-gradient(top, #444, #222)',
@@ -133,7 +140,7 @@ export const dark = {
   tag: '#6ab0f3',
   error: '#b0292c',
 
-  gray1: '24, 24, 24',
+  gray1: '22, 22, 22',
   gray2: '31, 31, 31',
   gray3: '36, 36, 36',
   gray4: '44, 44, 44',

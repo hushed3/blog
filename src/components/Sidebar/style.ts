@@ -27,7 +27,7 @@ export const SideLink = styled(Link)`
   justify-content: space-between;
   text-decoration: none;
   background-color: transparent;
-  border-radius: ${(props) => props.theme.borderRadius};
+  border-radius: ${(props) => props.theme.borderRadiusLarge};
   color: rgb(${(props) => props.theme.gray9});
   font-size: 0.9rem;
   font-weight: 600;
@@ -72,8 +72,8 @@ export const SideTag = styled(Link)`
   font-size: 0.75rem;
   font-weight: 400;
   padding: 0rem 0.5rem 0.05rem 0.5rem;
-  border: 1px solid rgb(${(props) => props.theme.gray3});
-  border-radius: ${(props) => props.theme.borderRadius};
+  border: 1px solid rgb(${(props) => props.theme.gray4});
+  border-radius: ${(props) => props.theme.borderRadiusMedium};
   color: rgb(${(props) => props.theme.gray9});
   text-decoration: none;
   text-transform: capitalize;
@@ -94,14 +94,7 @@ export const SideTag = styled(Link)`
   }
 `
 
-export const PostSideTag = styled(SideTag)`
-  &:hover {
-    color: rgb(${(props) => props.theme.purple6});
-    border-color: rgba(${(props) => props.theme.purple6}, 0.3);
-    background-color: rgba(${(props) => props.theme.purple5}, 0.1);
-    text-decoration: none;
-  }
-`
+export const PostSideTag = styled(SideTag)``
 
 export const PostSideImage = styled(GatsbyImage)`
   margin: 0 auto;
@@ -113,7 +106,7 @@ export const PostSideImage = styled(GatsbyImage)`
 
 export const Anchor = styled.li`
   margin-bottom: 0.65rem;
-  color: rgb(${(props) => props.theme.purple5});
+  color: rgb(${(props) => props.theme.purple6});
   cursor: pointer;
   &:last-child {
     margin-bottom: 0;

@@ -1,6 +1,6 @@
 import { Link } from 'gatsby'
 import React from 'react'
-import { Anchor, PostSideImage, PostSideTag, SideCard, SideSticky, SideTags, SideTitle } from './style'
+import { Anchor, PostSideImage, SideCard, SideSticky, SideTag, SideTags, SideTitle } from './style'
 
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import { FileFilterInput } from '../../../gatsby-graphql'
@@ -68,9 +68,9 @@ export const PostSidebar = ({ tags = [], date, categories = [], thumbnail, headi
             {tags &&
               tags.map((tag) => {
                 return (
-                  <PostSideTag key={tag} to={`/tags/${slugify(tag!)}`} activeClassName="active">
+                  <SideTag key={tag} to={`/tags/${slugify(tag!)}`} activeClassName="active">
                     {tag}
-                  </PostSideTag>
+                  </SideTag>
                 )
               })}
           </SideTags>
