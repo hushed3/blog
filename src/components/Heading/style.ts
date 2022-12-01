@@ -28,7 +28,7 @@ export const HeadingLink = styled(Link)`
   padding: 0.6rem 1rem;
   font-family: ${(props) => props.theme.fontFamilyBase};
   line-height: 1;
-  border-radius: ${(props) => props.theme.borderRadius};
+  border-radius: ${(props) => props.theme.borderRadiusLarge};
   font-size: 0.9rem;
   cursor: pointer;
   font-weight: 500;

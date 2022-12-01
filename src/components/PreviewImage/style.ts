@@ -18,7 +18,7 @@ export const ImageContainer = styled.div`
 export const PreviewContent = styled(motion.div)`
   pointer-events: auto;
   position: relative;
-  border-radius: ${(props) => props.theme.borderRadius};
+  border-radius: ${(props) => props.theme.borderRadiusLarge};
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
   overflow: hidden;

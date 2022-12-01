@@ -7,7 +7,6 @@ interface Props {
 }
 
 export const GlobalStyles = ({ theme, children }: Props) => {
-  console.log(theme, theme.keyword)
   return (
     <ThemeProvider theme={theme}>
       <Global
@@ -28,7 +27,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
           body[scroll],
           ::-webkit-scrollbar-thumb {
             background-color: rgba(${theme.gray7}, 0.35);
-            border-radius: 8px;
+            border-radius: ${theme.borderRadiusLarge};
             background-clip: content-box;
             border: 2px solid transparent;
             z-index: 10000;
@@ -63,7 +62,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             padding: 0;
             overflow: overlay;
             position: relative;
-            background: rgb(${theme.gray1});
+            background: ${theme.pageBackground};
             transition: background-color ease-out 0.1s;
           }
 
@@ -122,8 +121,12 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             margin-left: 0;
             padding: 0.8rem 1rem;
             background: rgba(${theme.purple5}, 0.15);
-            border-radius: ${theme.borderRadius};
-            box-shadow: 0 0 8px rgba(${theme.purple6}, 0.1);
+            border-radius: ${theme.borderRadiusLarge};
+            box-shadow: 0 0 4px rgba(${theme.purple6}, 0.1);
+
+            & code.language-text {
+              background-color: transparent;
+            }
           }
 
           blockquote p {
@@ -249,7 +252,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             padding: 0.6rem 1rem;
             font-family: ${theme.fontFamilyBase};
             line-height: 1;
-            border-radius: ${theme.borderRadius};
+            border-radius: ${theme.borderRadiusLarge};
             font-size: 0.9rem;
             cursor: pointer;
             font-weight: 500;
@@ -271,7 +274,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             display: inline-flex;
             position: relative;
             font-size: 0.9rem;
-            border-radius: 5px;
+            border-radius: ${theme.borderRadiusMedium};
             padding: 0.3rem 0.7rem;
             margin-bottom: 0.8rem;
             margin-right: 0.3rem;
@@ -279,58 +282,37 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             line-height: 20px;
             background: rgba(${theme.blue6}, 0.2);
             color: rgb(${theme.blue6});
-            box-shadow: 0 0 8px rgba(${theme.blue7}, 0.15);
+            box-shadow: 0 0 2px rgba(${theme.blue7}, 0.2);
 
             &.success {
               background: rgba(${theme.green6}, 0.2);
               color: rgb(${theme.green6});
-              box-shadow: 0 0 8px rgba(${theme.green7}, 0.15);
+              box-shadow: 0 0 2px rgba(${theme.green7}, 0.2);
             }
             &.warning {
               background: rgba(${theme.gold6}, 0.2);
               color: rgb(${theme.gold6});
-              box-shadow: 0 0 8px rgba(${theme.gold7}, 0.15);
+              box-shadow: 0 0 2px rgba(${theme.gold7}, 0.2);
             }
             &.error {
               background: rgba(${theme.red6}, 0.2);
               color: rgb(${theme.red6});
-              box-shadow: 0 0 8px rgba(${theme.red7}, 0.15);
+              box-shadow: 0 0 2px rgba(${theme.red7}, 0.2);
             }
           }
 
-          code[class*='language-'],
-          pre[class*='language-'] {
-            -webkit-font-smoothing: subpixel-antialiased;
-            color: ${theme.codeFontColor};
-            font-family: 'Menlo', ${theme.fontFamilyMonospace};
-            font-size: 0.9rem;
-            text-align: left;
-            white-space: pre;
-            word-spacing: normal;
-            word-break: normal;
-            word-wrap: normal;
-            line-height: 1.8;
-            -moz-tab-size: 2;
-            -o-tab-size: 2;
-            tab-size: 2;
-
-            -webkit-hyphens: none;
-            -moz-hyphens: none;
-            -ms-hyphens: none;
-            hyphens: none;
-          }
-
           .gatsby-highlight {
-            background: rgb(${theme.gray3});
+            background: ${theme.cardBackground};
             -webkit-text-size-adjust: none;
             text-size-adjust: none;
-            border-radius: 6px;
+            border-radius: ${theme.borderRadiusMedium};
             overflow: overlay;
             margin: 1.5rem 0 1.8rem 0;
+            padding: 1rem;
             max-width: 100%;
             position: relative;
             transform: matrix(1, 0, 0, 1, 0, 0);
-            box-shadow: 0 0 10px ${theme.cardShadow};
+            box-shadow: ${theme.cardShadow};
             transition: background-color ease-out 0.1s;
 
             &::before {
@@ -359,12 +341,6 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             }
 
             & > pre[class*='language-'] {
-              margin: 0;
-              padding: 0;
-              overflow: overlay;
-              min-width: 100%;
-              padding: 2.5rem 1.1rem 0.9rem 1.1rem;
-
               &::before {
                 content: '';
                 position: absolute;
@@ -388,6 +364,32 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             }
           }
 
+          code[class*='language-'],
+          pre[class*='language-'] {
+            -webkit-font-smoothing: subpixel-antialiased;
+            color: ${theme.codeFontColor};
+            font-family: 'Menlo', ${theme.fontFamilyMonospace};
+            font-size: 0.9rem;
+            text-align: left;
+            white-space: pre;
+            word-spacing: normal;
+            word-break: normal;
+            word-wrap: normal;
+            line-height: 1.8;
+            -moz-tab-size: 2;
+            -o-tab-size: 2;
+            tab-size: 2;
+            margin: 1.5rem 0 0 0;
+            padding: 0;
+            overflow: overlay;
+            width: 100%;
+
+            -webkit-hyphens: none;
+            -moz-hyphens: none;
+            -ms-hyphens: none;
+            hyphens: none;
+          }
+
           code.language-shell::before {
             content: '$ ';
             color: ${theme.comment};
@@ -406,6 +408,9 @@ export const GlobalStyles = ({ theme, children }: Props) => {
           code.language-text {
             color: #646cff;
             transition: background-color ease-out 0.1s;
+            background-color: rgba(${theme.gray3}, 0.95);
+            padding: 0.2rem 0.35rem;
+            border-radius: ${theme.borderRadiusSmall};
           }
 
           .gatsby-highlight[data-language='text'] {

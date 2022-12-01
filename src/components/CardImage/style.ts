@@ -15,10 +15,10 @@ export const ImageContent = styled(motion.div)`
   height: 100%;
 
   @media screen and (max-width: 1000px) {
-    border-radius: 2px !important;
+    border-radius: ${(props) => props.theme.borderRadiusSmall} !important;
   }
   @media screen and (max-width: 480px) {
-    border-radius: 1px !important;
+    border-radius: ${(props) => props.theme.borderRadiusMini} !important;
   }
 `
 
@@ -32,14 +32,14 @@ export const Image = styled.img`
   z-index: 10;
   width: 100%;
   height: 100%;
-  border-radius: 5px;
+  border-radius: ${(props) => props.theme.borderRadiusMedium};
   box-shadow: 0 0 10px 0 ${(props) => props.theme.cardShadow};
-  border-radius: ${(props) => props.theme.borderRadius};
+  border-radius: ${(props) => props.theme.borderRadiusLarge};
 
   @media screen and (max-width: 1000px) {
-    border-radius: 2px !important;
+    border-radius: ${(props) => props.theme.borderRadiusSmall} !important;
   }
   @media screen and (max-width: 480px) {
-    border-radius: 1px !important;
+    border-radius: ${(props) => props.theme.borderRadiusMini} !important;
   }
 `

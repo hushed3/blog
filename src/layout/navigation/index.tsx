@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 import favicon from '../../assets/logo.png'
 import blog from '../../assets/nav-blog.png'
 import github from '../../assets/nav-github.png'
-import sunset from '../../assets/nav-sunset.png'
+// import sunset from '../../assets/nav-sunset.png'
 import DarkIcon from '../../assets/svg/dark.svg'
 import LightIcon from '../../assets/svg/light.svg'
 import LinkIcon from '../../assets/svg/link.svg'
@@ -15,7 +15,7 @@ import { NavA, NavContainer, NavImage, NavLeft, NavLink, NavRouter, NavSection, 
 const mainNavItems = [
   // { url: '/me', icon: blog, label: 'About', name: ' me ' },
   { url: '/blog', icon: blog, label: 'Writing', name: ' 归 档 ' },
-  { url: '/sunset', icon: sunset, label: 'Sunset', name: ' 夕 阳 ' },
+  // { url: '/sunset', icon: sunset, label: 'Sunset', name: ' 夕 阳 ' },
 ]
 
 const socialNavItems = [{ url: 'https://github.com/hushed3', icon: github, label: 'GitHub' }]

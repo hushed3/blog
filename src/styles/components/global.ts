@@ -12,11 +12,11 @@ export const GlobalContainer = styled.div`
 `
 
 export const GlobalCard = styled.div`
-  border-radius: ${(props) => props.theme.borderRadius};
-  background: rgb(${(props) => props.theme.gray3});
+  border-radius: ${(props) => props.theme.borderRadiusLarge};
+  background: ${(props) => props.theme.cardBackground};
   padding: 1rem;
   position: relative;
-  box-shadow: 0px 0px 10px ${(props) => props.theme.cardShadow};
+  box-shadow: ${(props) => props.theme.cardShadow};
   transition: all ease-out 0.1s;
 
   @media screen and (min-width: 700px) {

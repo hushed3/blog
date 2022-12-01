@@ -130,15 +130,15 @@ export const NavA = NavLink.withComponent('a')
 
 export const ThemeToggle = styled.div`
   align-self: center;
+  transition: all 0.3s;
   button {
     padding: 0.9rem;
     background: transparent;
     border: none;
     border-radius: 50%;
-    transition: all 0.3s;
 
     &:hover {
-      background: rgb(${(props) => props.theme.gray4});
+      background: rgb(${(props) => props.theme.gray3});
     }
   }
 `
