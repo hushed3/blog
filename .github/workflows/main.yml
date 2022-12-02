@@ -1,0 +1,26 @@
+name: GitHub Actions Build and Deploy Demo   # 这个构建的名字，会出现在github action的actions选项中
+on:                                          # 监听"哪个分支" 的 "那个动作" 这里的意思是监听master分支的push动作
+  push:
+    branches:
+      - master
+jobs:                                        # 表示执行的一项或者多项任务
+  build-and-deploy:                          # job的id
+    runs-on: ubuntu-latest                   # 指所需的运行环境
+    steps:                                   # job的运行步骤
+      - name: Checkout                       # 步骤名称
+        uses: actions/checkout@v2            # 使用那个action
+        with:                                # 定义环境变量 
+          persist-credentials: false         # 设置这个是听取GitHub上一个例子的建议，删掉也没事  
+      - name: Install and Build
+        run: |                               # 步骤运行的命令
+          yarn install
+          yarn build
+      - name: Deploy
+        uses: easingthemes/ssh-deploy@v2.0.7
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
+          ARGS: "-avz --delete"
+          SOURCE: "public/"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.TARGET }}
