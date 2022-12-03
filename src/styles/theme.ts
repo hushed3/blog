@@ -120,7 +120,7 @@ export const dark = {
   ...base,
 
   pageBackground: 'rgb(19, 19, 19)',
-  cardBackground: 'rgb(30, 30, 30)',
+  cardBackground: 'rgb(31, 31, 31)',
   cardShadow: `0 1px 2px 0 rgb(0 0 0 / 3%), 0 1px 6px -1px rgb(0 0 0 / 2%), 0 2px 4px 0 rgb(0 0 0 / 2%)`,
 
   codeFontColor: '#b3b9c5',
