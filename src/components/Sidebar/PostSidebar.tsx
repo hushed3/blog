@@ -7,7 +7,7 @@ import { FileFilterInput } from '../../../gatsby-graphql'
 import { slugify } from '../../utils/helpers'
 
 /**
- * @description 侧边文章详细信息
+ * @description 文章详细信息侧边
  */
 
 interface Props {
