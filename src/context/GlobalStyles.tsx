@@ -10,6 +10,14 @@ export const GlobalStyles = ({ theme, children }: Props) => {
   return (
     <ThemeProvider theme={theme}>
       <Global
+        styles={{
+          '@font-face': {
+            fontFamily: 'SF Mono Regular',
+            src: "url('../../static/fonts/SFMono-Regular.otf') format('otf')",
+          },
+        }}
+      ></Global>
+      <Global
         styles={css`
           ::selection {
             background: rgba(${theme.purple6}, 0.45);
@@ -152,6 +160,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             margin-bottom: 1.5rem;
             font-weight: 600;
             scroll-margin-top: 100px;
+            font-family: ${theme.fontFamilyHeading};
           }
 
           h1:not(:first-of-type),
@@ -274,30 +283,30 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             display: inline-flex;
             position: relative;
             font-size: 0.9rem;
-            border-radius: ${theme.borderRadiusMedium};
-            padding: 0.3rem 0.7rem;
+            border-radius: ${theme.borderRadiusSmall};
+            padding: 0.2rem 0.6rem;
             margin-bottom: 0.8rem;
             margin-right: 0.3rem;
             align-items: center;
-            line-height: 20px;
-            background: rgba(${theme.blue6}, 0.2);
+            line-height: calc(0.9rem + 8px);
+            background: rgba(${theme.blue5}, 0.15);
             color: rgb(${theme.blue6});
-            box-shadow: 0 0 2px rgba(${theme.blue7}, 0.2);
+            box-shadow: 0 0 2px rgba(${theme.blue7}, 0.1);
 
             &.success {
-              background: rgba(${theme.green6}, 0.2);
+              background: rgba(${theme.green5}, 0.15);
               color: rgb(${theme.green6});
-              box-shadow: 0 0 2px rgba(${theme.green7}, 0.2);
+              box-shadow: 0 0 2px rgba(${theme.green7}, 0.1);
             }
             &.warning {
-              background: rgba(${theme.gold6}, 0.2);
+              background: rgba(${theme.gold5}, 0.15);
               color: rgb(${theme.gold6});
-              box-shadow: 0 0 2px rgba(${theme.gold7}, 0.2);
+              box-shadow: 0 0 2px rgba(${theme.gold7}, 0.1);
             }
             &.error {
-              background: rgba(${theme.red6}, 0.2);
+              background: rgba(${theme.red5}, 0.15);
               color: rgb(${theme.red6});
-              box-shadow: 0 0 2px rgba(${theme.red7}, 0.2);
+              box-shadow: 0 0 2px rgba(${theme.red7}, 0.1);
             }
           }
 
@@ -307,7 +316,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             text-size-adjust: none;
             border-radius: ${theme.borderRadiusMedium};
             overflow: overlay;
-            margin: 1.5rem 0 1.8rem 0;
+            margin: 0.6rem 0 2rem 0;
             padding: 1rem;
             max-width: 100%;
             position: relative;
