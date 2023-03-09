@@ -23,8 +23,8 @@ jobs:
           yarn install
           yarn build
       # Deploy
-      - name: Deploy
-        uses: easingthemes/ssh-deploy@main
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.4.1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
           ARGS: "-avz --delete"
