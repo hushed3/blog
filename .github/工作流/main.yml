@@ -11,7 +11,7 @@ jobs:
       # 切换分支
       - name: Checkout
         uses: actions/checkout@master
-      # npm install
+      # npm install 
       - name: yarn install
         run: |
           yarn clean
