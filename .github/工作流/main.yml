@@ -11,11 +11,6 @@ jobs:
       # 切换分支
       - name: Checkout
         uses: actions/checkout@master
-      # 使用 node:10
-      - name: use Node.js 18
-        uses: actions/setup-node@v1
-        with:
-          node-version: 18
       # npm install
       - name: yarn install
         run: |
