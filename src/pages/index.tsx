@@ -7,7 +7,7 @@ import {
   BriefDescription,
   BriefWrapper,
   CardTagLinks,
-  CardTitle,
+  CardTime,
   CardTitleLink,
   HighlightCard,
   HighlightPreview,
@@ -66,7 +66,7 @@ export default function Index({ data }: PageProps<IndexQueryQuery>) {
             {simplifiedLatest.map((post) => {
               return (
                 <RecentCard key={post.slug}>
-                  <CardTitle>{post.date}</CardTitle>
+                  <CardTime>{post.date}</CardTime>
                   <CardTitleLink to={post.slug}>{post.title}</CardTitleLink>
                   <CardTagLinks>
                     {post.categories &&
@@ -96,7 +96,7 @@ export default function Index({ data }: PageProps<IndexQueryQuery>) {
                   <HighlightCard key={`Highlight-${post.slug}`}>
                     {post.thumbnail && <GatsbyImage image={post.thumbnail} alt="" />}
                     <div className="content">
-                      <CardTitle>{post.date}</CardTitle>
+                      <CardTime>{post.date}</CardTime>
                       <CardTitleLink to={post.slug}>{post.title}</CardTitleLink>
                     </div>
                   </HighlightCard>

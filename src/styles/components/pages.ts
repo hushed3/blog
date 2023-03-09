@@ -69,18 +69,22 @@ export const HighlightCard = styled(GlobalCard)`
   }
 `
 
-export const CardTitle = styled.time`
+export const CardTime = styled.time`
   display: block;
   font-family: ${(props) => props.theme.fontFamilyMonospace};
   color: rgba(${(props) => props.theme.magenta6}, 0.8);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
+
+  @media screen and (min-width: 850px) {
+    font-size: 0.75rem;
+  }
 `
 
 export const CardTitleLink = styled(Link)`
   display: flex;
   align-items: center;
   width: 100%;
-  font-size: 0.96rem;
+  font-size: 0.85rem;
   line-height: 1.2;
   font-family: ${(props) => props.theme.fontFamilyBase};
   color: ${(props) => props.theme.color4};
@@ -92,6 +96,10 @@ export const CardTitleLink = styled(Link)`
   &:hover {
     text-decoration: underline;
     color: ${(props) => props.theme.color2};
+  }
+
+  @media screen and (min-width: 850px) {
+    font-size: 0.96rem;
   }
 `
 
@@ -106,6 +114,10 @@ export const CardTagLinks = styled.div`
     &:hover {
       text-decoration: underline;
       color: ${(props) => props.theme.color3};
+    }
+
+    @media screen and (min-width: 850px) {
+      font-size: 0.75rem;
     }
   }
 `

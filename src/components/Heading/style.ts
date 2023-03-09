@@ -11,7 +11,7 @@ export const HeadingContainer = styled.h2`
 `
 
 export const HeadingTitle = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   margin-bottom: 0.75rem;
   font-family: ${(props) => props.theme.fontFamilyBase};
   font-weight: 700;

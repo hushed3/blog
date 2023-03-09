@@ -19,11 +19,15 @@ export const SideCard = styled(GlobalCard)`
 
 export const SideTitle = styled.h2`
   color: ${(props) => props.theme.color4};
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   border: none;
   margin: 0 0 1rem !important;
   text-transform: uppercase;
   font-weight: 700;
+
+  @media screen and (min-width: 850px) {
+    font-size: 0.9rem;
+  }
 `
 
 export const SideLink = styled(Link)`
@@ -34,9 +38,13 @@ export const SideLink = styled(Link)`
   background-color: transparent;
   border-radius: ${(props) => props.theme.borderRadiusLarge};
   color: ${(props) => props.theme.color3};
-  font-size: 0.86rem;
+  font-size: 0.76rem;
   margin-bottom: 0.6rem;
   padding: 0.1rem 0.3rem;
+
+  @media screen and (min-width: 850px) {
+    font-size: 0.86rem;
+  }
 
   &:last-child {
     margin-bottom: 0rem;

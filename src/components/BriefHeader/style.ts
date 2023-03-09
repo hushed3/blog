@@ -22,7 +22,7 @@ export const BriefSubTitle = styled.div`
 `
 
 export const BriefTitle = styled.h1`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   line-height: 1.1;
   font-weight: 700;
   letter-spacing: -0.06rem;
