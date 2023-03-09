@@ -19,6 +19,7 @@ jobs:
       # npm install
       - name: yarn install
         run: |
+          yarn clean
           yarn install
           yarn build
       # Deploy
