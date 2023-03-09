@@ -9,15 +9,24 @@ const base = {
   contentWidth: '1060px',
   contentWidthSmall: '560px',
   contentWidthMedium: '700px',
-  navbarHeightLarge: '80px',
-  navbarHeightSmall: '60px',
+  navbarHeightLarge: '60px',
+  navbarHeightSmall: '50px',
 }
 
 export const light = {
   ...base,
 
+  color1: 'rgb(15, 15, 15)',
+  color2: 'rgb(35, 35, 35)',
+  color3: 'rgb(55, 55, 55)',
+  color4: 'rgb(75, 75, 75)',
+  color5: 'rgb(95, 95, 95)',
+  color6: 'rgb(115, 115, 115)',
+  color7: 'rgb(135, 135, 135)',
+  color8: 'rgb(155, 155, 155)',
+
   pageBackground: 'rgb(255, 255, 255)',
-  cardBackground: 'rgb(250, 250, 250)',
+  cardBackground: 'rgb(248, 248, 248)',
   cardShadow: `0 1px 2px 0 rgb(0 0 0 / 4%), 0 1px 6px -1px rgb(0 0 0 / 3%), 0 2px 4px 0 rgb(0 0 0 / 3%)`,
 
   codeFontColor: '#232529',
@@ -42,9 +51,9 @@ export const light = {
   gray4: '229, 229, 229',
   gray5: '191, 191, 191',
   gray6: '150, 150, 150',
-  gray7: '89, 89, 89',
-  gray8: '60, 60, 60',
-  gray9: '44, 44, 44',
+  gray7: '110, 110, 110',
+  gray8: '75, 75, 75',
+  gray9: '50, 50, 50',
   gray10: '36, 36, 36',
   gray11: '31, 31, 31',
   gray12: '22, 22, 22',
@@ -119,8 +128,17 @@ export const light = {
 export const dark = {
   ...base,
 
-  pageBackground: 'rgb(19, 19, 19)',
-  cardBackground: 'rgb(31, 31, 31)',
+  color1: 'rgb(245, 245, 245)',
+  color2: 'rgb(225, 225, 225)',
+  color3: 'rgb(205, 205, 205)',
+  color4: 'rgb(185, 185, 185)',
+  color5: 'rgb(165, 165, 165)',
+  color6: 'rgb(145 145, 145)',
+  color7: 'rgb(125, 125, 125)',
+  color8: 'rgb(105, 105, 105)',
+
+  pageBackground: 'rgb(5, 5, 5)',
+  cardBackground: 'rgb(20, 20, 20)',
   cardShadow: `0 1px 2px 0 rgb(0 0 0 / 3%), 0 1px 6px -1px rgb(0 0 0 / 2%), 0 2px 4px 0 rgb(0 0 0 / 2%)`,
 
   codeFontColor: '#b3b9c5',
@@ -146,7 +164,7 @@ export const dark = {
   gray4: '44, 44, 44',
   gray5: '60, 60, 60',
   gray6: '89, 89, 89',
-  gray7: '150, 150, 150',
+  gray7: '160, 160, 160',
   gray8: '191, 191, 191',
   gray9: '229, 229, 229',
   gray10: '246, 246, 246',

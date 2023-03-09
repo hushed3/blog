@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useInsertionEffect, useState } from 'react'
 import { dark, light } from '../styles/theme'
 import { isSSR } from '../utils/func'
 
@@ -7,6 +7,12 @@ export type ThemeData = 'light' | 'dark'
 const KEY = 'theme'
 const THEME = '(prefers-color-scheme: dark)'
 
+/**
+ * @description 获取主题
+ * @date 22/02/2023
+ * @param {*} [key=KEY]
+ * @return {*}  {[any, ThemeData, (value?: ThemeData) => void]}
+ */
 const useTheme = (key = KEY): [any, ThemeData, (value?: ThemeData) => void] => {
   const [theme, setTheme] = useState<ThemeData>(osTheme())
   const [colors, setColors] = useState<any>(osTheme() === 'dark' ? dark : light)
@@ -36,7 +42,7 @@ const useTheme = (key = KEY): [any, ThemeData, (value?: ThemeData) => void] => {
     setColors(color === 'dark' ? dark : light)
   }
 
-  useEffect(() => {
+  useInsertionEffect(() => {
     toggleTheme(theme)
 
     listenerOSTheme((theme) => {

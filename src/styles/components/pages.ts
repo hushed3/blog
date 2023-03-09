@@ -24,10 +24,9 @@ export const BriefDescription = styled.p`
   -webkit-font-smoothing: antialiased;
   margin-top: 3rem;
   margin-bottom: 0;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   line-height: 1.4;
-  color: rgb(${(props) => props.theme.gray9});
-  font-weight: 500;
+  color: ${(props) => props.theme.color3};
 `
 
 const Preview = styled.div`
@@ -50,13 +49,7 @@ export const RecentCard = styled(GlobalCard)`
   flex: 1;
   display: flex;
   flex-wrap: wrap;
-  min-height: 10rem;
-
-  time {
-    font-family: ${(props) => props.theme.fontFamilyMonospace};
-    color: rgb(${(props) => props.theme.magenta6});
-    font-size: 0.8rem;
-  }
+  min-height: 9rem;
 `
 
 export const HighlightPreview = styled(Preview)``
@@ -68,13 +61,6 @@ export const HighlightCard = styled(GlobalCard)`
   min-height: 9rem;
   gap: 1rem;
 
-  time {
-    display: block;
-    font-family: ${(props) => props.theme.fontFamilyMonospace};
-    color: rgb(${(props) => props.theme.magenta6});
-    font-size: 0.8rem;
-  }
-
   .content {
     display: flex;
     flex-wrap: wrap;
@@ -83,13 +69,21 @@ export const HighlightCard = styled(GlobalCard)`
   }
 `
 
-export const TitleLink = styled(Link)`
+export const CardTitle = styled.time`
   display: block;
+  font-family: ${(props) => props.theme.fontFamilyMonospace};
+  color: rgba(${(props) => props.theme.magenta6}, 0.8);
+  font-size: 0.75rem;
+`
+
+export const CardTitleLink = styled(Link)`
+  display: flex;
+  align-items: center;
   width: 100%;
-  font-size: 1.1rem;
+  font-size: 0.96rem;
   line-height: 1.2;
   font-family: ${(props) => props.theme.fontFamilyBase};
-  color: rgb(${(props) => props.theme.gray10});
+  color: ${(props) => props.theme.color4};
   font-weight: 700;
   padding: 0;
   border: 0;
@@ -97,19 +91,22 @@ export const TitleLink = styled(Link)`
 
   &:hover {
     text-decoration: underline;
-    color: rgb(${(props) => props.theme.gray10});
+    color: ${(props) => props.theme.color2};
   }
 `
 
-export const TagLinks = styled.div`
+export const CardTagLinks = styled.div`
   display: flex;
   align-items: flex-end;
 
   a {
     font-family: ${(props) => props.theme.fontFamilyMonospace};
-    font-size: 0.8rem;
-    color: rgb(${(props) => props.theme.gray8});
-    text-decoration: underline;
+    font-size: 0.7rem;
+    color: ${(props) => props.theme.color6};
+    &:hover {
+      text-decoration: underline;
+      color: ${(props) => props.theme.color3};
+    }
   }
 `
 

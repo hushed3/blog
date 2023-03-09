@@ -6,38 +6,41 @@ export const PostSection = styled(GlobalSection)``
 
 export const PostLink = styled(Link)`
   display: grid;
-  grid-template-columns: 1fr 100px;
-  gap: 1.5rem;
-  padding: 0;
+  grid-template-columns: 1fr 120px;
+  gap: 1rem;
+  padding: 0.3rem 0;
   margin: 1.6rem 0;
+  color: ${(props) => props.theme.color5};
   background: transparent;
-  text-decoration: none;
 
   &:hover {
-    color: rgb(${(props) => props.theme.gray10});
-    text-decoration: underline;
+    color: ${(props) => props.theme.color2};
+    time {
+      color: ${(props) => props.theme.color3};
+    }
   }
-`
 
-export const PostTime = styled.time`
-  display: block;
-  margin-left: auto;
-  font-family: ${(props) => props.theme.fontFamilyMonospace};
-  color: rgb(${(props) => props.theme.gray6});
-  font-size: 0.8rem;
-  font-weight: 500;
-`
-export const PostH5 = styled.h5`
-  margin: 0;
-  font-size: 0.9rem;
-  color: rgb(${(props) => props.theme.gray10});
-  font-weight: 500;
-  font-family: ${(props) => props.theme.fontFamilyBase};
-  line-height: 1.3;
+  h5 {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+    font-family: ${(props) => props.theme.fontFamilyBase};
+    line-height: 1.3;
+    color: inherit;
 
-  @media screen and (min-width: 700px) {
-    font-size: 1rem;
-    font-weight: 600;
+    @media screen and (min-width: 700px) {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+  }
+
+  time {
+    display: block;
+    margin-left: auto;
+    font-family: ${(props) => props.theme.fontFamilyMonospace};
+    color: ${(props) => props.theme.color7};
+    font-size: 0.8rem;
+    font-weight: 500;
   }
 `
 
@@ -45,4 +48,8 @@ export const PostYear = styled.h2`
   color: rgb(${(props) => props.theme.purple6});
   padding-bottom: 0.8rem;
   border-bottom-width: 2px;
+  font-size: 1.3rem;
+  @media screen and (min-width: 700px) {
+    font-size: 1.5rem;
+  }
 `

@@ -10,10 +10,15 @@ export const SideSticky = styled.div`
 
 export const SideCard = styled(GlobalCard)`
   margin: 2rem 0;
+
+  li {
+    font-size: 0.86rem;
+    color: ${(props) => props.theme.color5};
+  }
 `
 
 export const SideTitle = styled.h2`
-  color: rgb(${(props) => props.theme.gray8});
+  color: ${(props) => props.theme.color4};
   font-size: 0.9rem;
   border: none;
   margin: 0 0 1rem !important;
@@ -28,9 +33,8 @@ export const SideLink = styled(Link)`
   text-decoration: none;
   background-color: transparent;
   border-radius: ${(props) => props.theme.borderRadiusLarge};
-  color: rgb(${(props) => props.theme.gray9});
-  font-size: 0.9rem;
-  font-weight: 600;
+  color: ${(props) => props.theme.color3};
+  font-size: 0.86rem;
   margin-bottom: 0.6rem;
   padding: 0.1rem 0.3rem;
 
@@ -40,6 +44,7 @@ export const SideLink = styled(Link)`
 
   &.active {
     color: rgb(${(props) => props.theme.purple6});
+    font-weight: bold;
     div {
       color: inherit;
     }
@@ -57,7 +62,7 @@ export const SideLink = styled(Link)`
 export const SlidLinkCount = styled.div`
   font-weight: 400;
   font-size: 0.8rem;
-  color: rgb(${(props) => props.theme.gray8});
+  color: ${(props) => props.theme.color4};
   font-family: ${(props) => props.theme.fontFamilyMonospace};
 `
 
@@ -74,7 +79,7 @@ export const SideTag = styled(Link)`
   padding: 0rem 0.5rem 0.05rem 0.5rem;
   border: 1px solid rgb(${(props) => props.theme.gray4});
   border-radius: ${(props) => props.theme.borderRadiusMedium};
-  color: rgb(${(props) => props.theme.gray9});
+  color: ${(props) => props.theme.color4};
   text-decoration: none;
   text-transform: capitalize;
   display: inline-block;
@@ -106,7 +111,7 @@ export const PostSideImage = styled(GatsbyImage)`
 
 export const Anchor = styled.li`
   margin-bottom: 0.65rem;
-  color: rgb(${(props) => props.theme.purple6});
+  color: rgb(${(props) => props.theme.purple6}) !important;
   cursor: pointer;
   &:last-child {
     margin-bottom: 0;

@@ -21,8 +21,8 @@ export const FooterNav = styled.nav`
 export const FooterSpan = styled.span`
   display: flex;
   align-items: center;
-  color: rgb(${(props) => props.theme.gray6});
-  font-size: 0.9rem;
+  color: ${(props) => props.theme.color8};
+  font-size: 0.85rem;
   line-height: 1.2;
   padding: 0 0.5rem;
 `
@@ -30,8 +30,8 @@ export const FooterSpan = styled.span`
 export const FooterA = styled.a`
   display: flex;
   align-items: center;
-  color: rgb(${(props) => props.theme.gray6});
-  font-size: 0.9rem;
+  color: ${(props) => props.theme.color8};
+  font-size: 0.85rem;
   line-height: 1.2;
   padding: 0 0.5rem;
 
