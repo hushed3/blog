@@ -15,7 +15,7 @@ export const TemplateHeader = styled.h1`
   padding: 1.5rem 0 2rem;
   margin-top: 0.25rem !important;
   margin-bottom: 0.75rem;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   letter-spacing: -0.07rem;
   font-weight: 700;
   line-height: 1.05;
@@ -23,7 +23,7 @@ export const TemplateHeader = styled.h1`
 
   @media screen and (min-width: 700px) {
     padding: 2.5rem 0 1rem;
-    font-size: 2rem;
+    font-size: 1.85rem;
   }
 `
 

@@ -8,7 +8,7 @@ type Config = {
 const config: Config = {
   siteTitle: 'Hush blog',
   siteUrl: 'https://blog.hushes.cn',
-  siteLogo: '/logo.png',
+  siteLogo: '../assets/image/logo.ico',
   description: 'Software engineer and open source creator. ',
 }
 

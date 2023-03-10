@@ -11,33 +11,33 @@ export const HeadingContainer = styled.h2`
 `
 
 export const HeadingTitle = styled.div`
-  font-size: 1.4rem;
+  font-size: 1.15rem;
   margin-bottom: 0.75rem;
   font-family: ${(props) => props.theme.fontFamilyBase};
   font-weight: 700;
   letter-spacing: -0.03rem;
-  @media screen and (min-width: 700px) {
-    font-size: 1.6rem;
+  @media screen and (min-width: 850px) {
+    font-size: 1.4rem;
   }
 `
 
-export const HeadingLink = styled(Link)`
+export const ViewAllLink = styled(Link)`
   -webkit-appearance: none;
   display: inline-flex;
   align-items: center;
-  padding: 0.6rem 1rem;
+  padding: 0.5rem 0.9rem;
   font-family: ${(props) => props.theme.fontFamilyBase};
   line-height: 1;
-  border-radius: ${(props) => props.theme.borderRadiusLarge};
-  font-size: 0.9rem;
+  border-radius: ${(props) => props.theme.borderRadiusMedium};
+  font-size: 0.85rem;
   cursor: pointer;
   font-weight: 500;
-  color: rgb(${(props) => props.theme.gray9});
-  border: 1px solid rgb(${(props) => props.theme.gray3});
+  color: ${(props) => props.theme.color6};
+  border: 1px solid rgb(${(props) => props.theme.gray4});
   gap: 0.25rem;
 
   &:hover {
-    color: rgb(${(props) => props.theme.gray10});
-    border-color: rgb(${(props) => props.theme.gray4});
+    color: ${(props) => props.theme.color2};
+    border-color: rgb(${(props) => props.theme.gray5});
   }
 `

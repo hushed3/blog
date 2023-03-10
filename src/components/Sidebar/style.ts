@@ -10,15 +10,24 @@ export const SideSticky = styled.div`
 
 export const SideCard = styled(GlobalCard)`
   margin: 2rem 0;
+
+  li {
+    font-size: 0.85rem;
+    color: ${(props) => props.theme.color7};
+  }
 `
 
 export const SideTitle = styled.h2`
-  color: rgb(${(props) => props.theme.gray8});
-  font-size: 0.9rem;
+  color: ${(props) => props.theme.color5};
+  font-size: 0.8rem;
   border: none;
   margin: 0 0 1rem !important;
   text-transform: uppercase;
   font-weight: 700;
+
+  @media screen and (min-width: 850px) {
+    font-size: 0.9rem;
+  }
 `
 
 export const SideLink = styled(Link)`
@@ -28,11 +37,14 @@ export const SideLink = styled(Link)`
   text-decoration: none;
   background-color: transparent;
   border-radius: ${(props) => props.theme.borderRadiusLarge};
-  color: rgb(${(props) => props.theme.gray9});
-  font-size: 0.9rem;
-  font-weight: 600;
+  color: ${(props) => props.theme.color4};
+  font-size: 0.76rem;
   margin-bottom: 0.6rem;
   padding: 0.1rem 0.3rem;
+
+  @media screen and (min-width: 850px) {
+    font-size: 0.86rem;
+  }
 
   &:last-child {
     margin-bottom: 0rem;
@@ -40,6 +52,7 @@ export const SideLink = styled(Link)`
 
   &.active {
     color: rgb(${(props) => props.theme.purple6});
+    font-weight: bold;
     div {
       color: inherit;
     }
@@ -57,7 +70,7 @@ export const SideLink = styled(Link)`
 export const SlidLinkCount = styled.div`
   font-weight: 400;
   font-size: 0.8rem;
-  color: rgb(${(props) => props.theme.gray8});
+  color: ${(props) => props.theme.color5};
   font-family: ${(props) => props.theme.fontFamilyMonospace};
 `
 
@@ -72,9 +85,9 @@ export const SideTag = styled(Link)`
   font-size: 0.75rem;
   font-weight: 400;
   padding: 0rem 0.5rem 0.05rem 0.5rem;
-  border: 1px solid rgb(${(props) => props.theme.gray4});
+  border: 1px solid rgba(${(props) => props.theme.gray5}, 0.6);
   border-radius: ${(props) => props.theme.borderRadiusMedium};
-  color: rgb(${(props) => props.theme.gray9});
+  color: ${(props) => props.theme.color5};
   text-decoration: none;
   text-transform: capitalize;
   display: inline-block;
@@ -82,7 +95,7 @@ export const SideTag = styled(Link)`
 
   &.active {
     color: rgb(${(props) => props.theme.purple6});
-    border-color: rgba(${(props) => props.theme.purple6}, 0.3);
+    border-color: rgba(${(props) => props.theme.purple5}, 0.5);
     background-color: rgba(${(props) => props.theme.purple5}, 0.1);
   }
 
@@ -106,7 +119,7 @@ export const PostSideImage = styled(GatsbyImage)`
 
 export const Anchor = styled.li`
   margin-bottom: 0.65rem;
-  color: rgb(${(props) => props.theme.purple6});
+  color: rgb(${(props) => props.theme.purple6}) !important;
   cursor: pointer;
   &:last-child {
     margin-bottom: 0;
