@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { FooterA, FooterContainer, FooterImg, FooterNav, FooterSection, FooterSpan } from './style'
-import gatsby from '/src/assets/gatsby.png'
-import github from '/src/assets/nav-github.png'
+import gatsby from '/src/assets/image/gatsby.png'
+import github from '/src/assets/image/github.png'
 
 type Links = {
   url: string

@@ -22,21 +22,10 @@ export const NavContainer = styled(GlobalContainer)`
   display: flex;
   justify-content: space-between;
   height: ${(props) => props.theme.navbarHeightSmall};
-
-  .logo {
-    height: 22px;
-    width: 22px;
-    min-height: 22px;
-    min-width: 22px;
-  }
+  color: ${(props) => props.theme.color6};
 
   @media screen and (min-width: 850px) {
     height: ${(props) => props.theme.navbarHeightLarge};
-
-    .logo {
-      display: none;
-      margin-right: 0;
-    }
   }
 `
 
@@ -47,13 +36,28 @@ export const NavLeft = styled.nav`
   gap: 0.25rem;
 
   @media screen and (min-width: 850px) {
-    gap: 1.5rem;
+    gap: 0.75rem;
   }
 `
 
 export const NavRouter = styled.div`
   display: flex;
   align-items: center;
+  .icon {
+    display: block;
+  }
+  .label {
+    display: none;
+  }
+
+  @media screen and (min-width: 850px) {
+    .label {
+      display: block;
+    }
+    .icon {
+      display: none;
+    }
+  }
 `
 
 export const NavImage = styled.img`
@@ -74,55 +78,31 @@ export const NavLink = styled(Link)`
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: rgb(${(props) => props.theme.gray10});
+  font-size: 1rem;
+  font-weight: 600;
+  color: inherit;
   padding: 0;
   border: none;
   border-radius: 0;
   border-top: 2px solid transparent;
   border-bottom: 2px solid transparent;
-  margin: 0 0.5rem;
+  margin: 0 0.6rem;
 
-  &.about-me,
-  &.writing,
-  &.git-hub {
-    &:hover {
-      border-bottom-color: rgb(${(props) => props.theme.purple6});
-    }
-    &.active {
-      border-bottom-color: rgb(${(props) => props.theme.purple6});
-    }
+  @media screen and (min-width: 850px) {
+    margin: 0 0.4rem;
   }
 
-  &.sunset {
-    &:hover {
-      border-bottom-color: rgb(${(props) => props.theme.gold6});
-    }
-    &.active {
-      border-bottom-color: rgb(${(props) => props.theme.gold6});
-    }
-  }
-
-  &.brand {
+  &.J {
     line-height: 1.2;
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin: 0 0.5rem 0 0.25rem;
-
-    @media screen and (min-width: 850px) {
-      font-size: 1.2rem;
-    }
-    &:hover {
-      border-bottom-color: rgb(${(props) => props.theme.magenta6});
+    font-size: 1.4rem;
+    font-weight: normal;
+    span {
+      color: inherit;
     }
   }
 
-  &.git-hub {
-    display: none !important;
-    @media screen and (min-width: 700px) {
-      display: flex !important;
-    }
+  &:hover {
+    color: ${(props) => props.theme.color1};
   }
 `
 
@@ -132,13 +112,10 @@ export const ThemeToggle = styled.div`
   align-self: center;
   transition: all 0.3s;
   button {
-    padding: 0.9rem;
+    padding: 0.2rem;
     background: transparent;
     border: none;
     border-radius: 50%;
-
-    &:hover {
-      background: rgb(${(props) => props.theme.gray3});
-    }
+    color: inherit;
   }
 `

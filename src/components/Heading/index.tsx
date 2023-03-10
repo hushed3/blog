@@ -1,5 +1,5 @@
 import React from 'react'
-import { HeadingContainer, HeadingLink, HeadingTitle } from './style'
+import { HeadingContainer, ViewAllLink, HeadingTitle } from './style'
 
 interface Props {
   title: string
@@ -17,7 +17,7 @@ export const Heading = ({ title, slug }: Props) => {
       <div>
         <HeadingTitle>{title}</HeadingTitle>
       </div>
-      {slug && <HeadingLink to={slug}>View all</HeadingLink>}
+      {slug && <ViewAllLink to={slug}>View all</ViewAllLink>}
     </HeadingContainer>
   )
 }

@@ -11,7 +11,7 @@ const ThemeContext = createContext<Content>({} as Content)
 
 const ThemeProviderWrapper = ({ children }: { children: React.ReactNode }) => {
   const [colors, theme, toggleTheme] = useTheme()
-
+  console.log(theme)
   const contextValue = { theme, toggleTheme }
 
   return (

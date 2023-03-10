@@ -6,13 +6,14 @@ import { GlobalContainer } from '../styles/components/global'
 import {
   BriefDescription,
   BriefWrapper,
+  CardTagLinks,
+  CardTime,
+  CardTitleLink,
   HighlightCard,
   HighlightPreview,
   IndexSection,
   RecentCard,
   RecentPreview,
-  TagLinks,
-  TitleLink,
 } from '../styles/components/pages'
 
 import { IndexQueryQuery } from '../../gatsby-graphql'
@@ -65,9 +66,9 @@ export default function Index({ data }: PageProps<IndexQueryQuery>) {
             {simplifiedLatest.map((post) => {
               return (
                 <RecentCard key={post.slug}>
-                  <time className="recent">{post.date}</time>
-                  <TitleLink to={post.slug}>{post.title}</TitleLink>
-                  <TagLinks>
+                  <CardTime>{post.date}</CardTime>
+                  <CardTitleLink to={post.slug}>{post.title}</CardTitleLink>
+                  <CardTagLinks>
                     {post.categories &&
                       post.categories
                         .filter((cat) => cat !== 'Highlight')
@@ -78,7 +79,7 @@ export default function Index({ data }: PageProps<IndexQueryQuery>) {
                             </Link>
                           )
                         })}
-                  </TagLinks>
+                  </CardTagLinks>
                 </RecentCard>
               )
             })}
@@ -95,8 +96,8 @@ export default function Index({ data }: PageProps<IndexQueryQuery>) {
                   <HighlightCard key={`Highlight-${post.slug}`}>
                     {post.thumbnail && <GatsbyImage image={post.thumbnail} alt="" />}
                     <div className="content">
-                      <time>{post.date}</time>
-                      <TitleLink to={post.slug}>{post.title}</TitleLink>
+                      <CardTime>{post.date}</CardTime>
+                      <CardTitleLink to={post.slug}>{post.title}</CardTitleLink>
                     </div>
                   </HighlightCard>
                 )

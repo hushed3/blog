@@ -15,22 +15,22 @@ export const BriefContainer = styled.header`
 `
 
 export const BriefSubTitle = styled.div`
-  color: rgb(${(props) => props.theme.gray8});
+  color: ${(props) => props.theme.color7};
   font-weight: 500;
   font-size: 1rem;
   margin-bottom: 0.4rem;
 `
 
 export const BriefTitle = styled.h1`
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   line-height: 1.1;
   font-weight: 700;
   letter-spacing: -0.06rem;
-  color: rgb(${(props) => props.theme.gray10});
+  /* color: ${(props) => props.theme.color4}; */
   margin: 0 !important;
 
   @media screen and (min-width: 700px) {
-    font-size: 2rem;
+    font-size: 1.7rem;
     letter-spacing: -0.08rem;
   }
 `

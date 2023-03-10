@@ -21,7 +21,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
         styles={css`
           ::selection {
             background: rgba(${theme.purple6}, 0.45);
-            color: rgb(${theme.gray9});
+            color: ${theme.color4};
           }
 
           ::-webkit-scrollbar {
@@ -43,7 +43,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
 
           body[scroll],
           ::-webkit-scrollbar-thumb:hover {
-            background-color: rgba(${theme.gray7}, 0.45);
+            background-color: rgba(${theme.gray1}, 1);
             transition: 0s;
           }
 
@@ -86,7 +86,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
           ul,
           table,
           blockquote {
-            color: rgb(${theme.gray9});
+            color: ${theme.color4};
           }
 
           p,
@@ -154,7 +154,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
           h3,
           h4,
           h5 {
-            color: rgb(${theme.gray10});
+            color: ${theme.color1};
             line-height: 1.1;
             margin-top: 0;
             margin-bottom: 1.5rem;
@@ -180,7 +180,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             font-weight: 700;
             padding-bottom: 0.3rem;
             border-bottom: 1px solid rgb(${theme.gray3});
-            color: rgb(${theme.gray10});
+            color: ${theme.color1};
             letter-spacing: -0.03rem;
           }
 
@@ -192,7 +192,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             font-size: 1.5rem;
             font-weight: 900;
             margin-bottom: 1rem;
-            color: rgb(${theme.gray10});
+            color: ${theme.color2};
             font-family: ${theme.fontFamilyHeading};
           }
 
@@ -201,11 +201,10 @@ export const GlobalStyles = ({ theme, children }: Props) => {
           }
 
           h4 {
-            color: rgb(${theme.gray10});
+            color: ${theme.color2};
             margin-bottom: 1.5rem;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 800;
-            /* text-transform: uppercase; */
             font-family: ${theme.fontFamilyHeading};
           }
 
@@ -214,7 +213,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
           }
 
           h5 {
-            color: rgb(${theme.gray9});
+            color: ${theme.color4};
             margin-bottom: 1rem;
             font-size: 1rem;
             font-weight: 700;
@@ -265,12 +264,12 @@ export const GlobalStyles = ({ theme, children }: Props) => {
             font-size: 0.9rem;
             cursor: pointer;
             font-weight: 500;
-            color: rgb(${theme.gray9});
+            color: ${theme.color3};
             border: 1px solid rgb(${theme.gray3});
             gap: 0.25rem;
 
             &:hover {
-              color: rgb(${theme.gray10});
+              color: ${theme.color4};
               border-color: rgb(${theme.gray4});
             }
           }
@@ -329,7 +328,7 @@ export const GlobalStyles = ({ theme, children }: Props) => {
               position: absolute;
               right: 1rem;
               top: 0;
-              color: rgb(${theme.gray6});
+              color: ${theme.color9};
               font-weight: bold;
               text-transform: capitalize;
               font-size: 12px;
