@@ -14,6 +14,7 @@ const base = {
 }
 
 export const light = {
+  type: 'light',
   ...base,
 
   color1: 'rgb(5, 5, 5)',
@@ -26,16 +27,6 @@ export const light = {
   color8: 'rgb(145, 145, 145)',
   color9: 'rgb(165, 165, 165)',
   color10: 'rgb(185, 185, 185)',
-  // color1: 'rgb(10, 10, 10)',
-  // color2: 'rgb(30, 30, 30)',
-  // color3: 'rgb(45, 45, 45)',
-  // color4: 'rgb(60, 60, 60)',
-  // color5: 'rgb(75, 75, 75)',
-  // color6: 'rgb(90, 90, 90)',
-  // color7: 'rgb(115, 115, 115)',
-  // color8: 'rgb(130, 130, 130)',
-  // color9: 'rgb(145, 145, 145)',
-  // color10: 'rgb(160, 160, 160)',
 
   pageBackground: 'rgb(255, 255, 255)',
   cardBackground: 'rgb(248, 248, 248)',
@@ -138,6 +129,7 @@ export const light = {
 }
 
 export const dark = {
+  type: 'dark',
   ...base,
 
   color1: 'rgb(250, 250, 250)',

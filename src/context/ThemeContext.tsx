@@ -1,9 +1,10 @@
+import { ThemeProvider } from '@emotion/react'
 import React, { createContext } from 'react'
-import useTheme from '../hooks/useTheme'
+import useTheme, { ThemeData } from '../hooks/useTheme'
 import { GlobalStyles } from './GlobalStyles'
 
-type Content = {
-  theme: string
+export type Content = {
+  theme: ThemeData
   toggleTheme: () => void
 }
 
@@ -11,13 +12,16 @@ const ThemeContext = createContext<Content>({} as Content)
 
 const ThemeProviderWrapper = ({ children }: { children: React.ReactNode }) => {
   const [colors, theme, toggleTheme] = useTheme()
-  console.log(theme)
+
   const contextValue = { theme, toggleTheme }
 
   return (
     <>
       <ThemeContext.Provider value={contextValue}>
-        <GlobalStyles theme={colors}>{children}</GlobalStyles>
+        <ThemeProvider theme={colors}>
+          <GlobalStyles themeColors={colors} />
+          {children}
+        </ThemeProvider>
       </ThemeContext.Provider>
     </>
   )
