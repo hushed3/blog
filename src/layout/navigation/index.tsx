@@ -62,9 +62,8 @@ export const Navigation = memo(function Navigation() {
         </NavLeft>
 
         <ThemeToggle>
-          <button className="NavThemeButton" onClick={handleTheme}>
-            {theme === 'dark' ? <DarkIcon /> : <LightIcon />}
-          </button>
+          <span style={{ display: 'none' }}>{theme}</span>
+          <button onClick={handleTheme}>{theme === 'dark' ? <DarkIcon /> : <LightIcon />}</button>
         </ThemeToggle>
       </NavContainer>
     </NavSection>

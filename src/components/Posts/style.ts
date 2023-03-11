@@ -11,7 +11,7 @@ export const PostLink = styled(Link)`
   padding: 0.3rem 0;
   margin: 1.6rem 0;
   color: ${(props) => props.theme.color6};
-  background: transparent;
+  background-color: transparent;
 
   &:hover {
     color: ${(props) => props.theme.color1};

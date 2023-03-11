@@ -9,7 +9,7 @@ export const NavSection = styled.section`
   left: 0;
   width: 100%;
   z-index: 3;
-  background: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
   height: ${(props) => props.theme.navbarHeightSmall};
   backdrop-filter: blur(8px);
 
@@ -113,7 +113,7 @@ export const ThemeToggle = styled.div`
   transition: all 0.3s;
   button {
     padding: 0.2rem;
-    background: transparent;
+    background-color: transparent;
     border: none;
     border-radius: 50%;
     color: inherit;

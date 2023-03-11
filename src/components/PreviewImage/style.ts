@@ -19,7 +19,7 @@ export const PreviewContent = styled(motion.div)`
   pointer-events: auto;
   position: relative;
   border-radius: ${(props) => props.theme.borderRadiusLarge};
-  background: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
   overflow: hidden;
   aspect-ratio: 16/10;
@@ -44,7 +44,7 @@ export const PreviewImg = styled.img`
 export const Mask = styled(motion.div)`
   z-index: 10;
   position: fixed;
-  background: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   will-change: opacity;
   top: 0;
   left: 0;

@@ -19,12 +19,13 @@ const useTheme = (key = KEY): [any, ThemeData, (value?: ThemeData) => void] => {
 
   const toggleTheme = (Theme?: ThemeData) => {
     if (!isSSR) {
-      const CurrentTheme = Theme || (theme === 'dark' ? 'light' : 'dark')
+      const currentTheme = Theme || (theme === 'dark' ? 'light' : 'dark')
+      const currentColor = currentTheme === 'dark' ? dark : light
 
-      setTheme(CurrentTheme)
-      toggleColor(CurrentTheme)
+      setTheme(currentTheme)
+      toggleColor(currentColor)
 
-      localStorage.setItem(key, CurrentTheme)
+      localStorage.setItem(key, currentTheme)
     }
   }
 
@@ -39,7 +40,7 @@ const useTheme = (key = KEY): [any, ThemeData, (value?: ThemeData) => void] => {
   }
 
   const toggleColor = (color: any) => {
-    setColors(color === 'dark' ? dark : light)
+    setColors(color)
   }
 
   useInsertionEffect(() => {
@@ -57,7 +58,7 @@ const useTheme = (key = KEY): [any, ThemeData, (value?: ThemeData) => void] => {
  * @description 获取本地缓存中的主题
  * @date 30/09/2022
  */
-export const storageTheme = (): ThemeData => localStorage.getItem(KEY) as ThemeData
+export const storageTheme = (): ThemeData => localStorage?.getItem(KEY) as ThemeData
 
 /**
  * @description 获取系统当前主题

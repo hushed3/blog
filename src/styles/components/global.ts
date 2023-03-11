@@ -13,7 +13,7 @@ export const GlobalContainer = styled.div`
 
 export const GlobalCard = styled.div`
   border-radius: ${(props) => props.theme.borderRadiusLarge};
-  background: ${(props) => props.theme.cardBackground};
+  background-color: ${(props) => props.theme.cardBackground};
   padding: 1rem;
   position: relative;
   box-shadow: ${(props) => props.theme.cardShadow};
