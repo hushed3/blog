@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 
-import { GlobalContainer } from '../../styles/components/global'
+import { GlobalContainer } from '../../components/global'
 
 export const NavSection = styled.section`
   position: fixed;
@@ -9,23 +9,38 @@ export const NavSection = styled.section`
   left: 0;
   width: 100%;
   z-index: 3;
-  background-color: rgba(0, 0, 0, 0);
-  height: ${(props) => props.theme.navbarHeightSmall};
+  background-color: rgba(${(props) => props.theme.pageBackground}, 0.4);
+  height: ${(props) => props.theme.navbarHeightLarge};
   backdrop-filter: blur(8px);
 
-  @media screen and (min-width: 850px) {
-    height: ${(props) => props.theme.navbarHeightLarge};
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: calc(100% - 48px);
+    height: 10px;
+    z-index: -1;
+    margin: auto;
+    border-radius: 50%;
+    background-color: transparent;
+    box-shadow: rgb(${(props) => props.theme.gray3}, 0.15) 0px 6px 8px 0px;
+  }
+
+  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
+    height: ${(props) => props.theme.navbarHeightSmall};
   }
 `
 
 export const NavContainer = styled(GlobalContainer)`
   display: flex;
   justify-content: space-between;
-  height: ${(props) => props.theme.navbarHeightSmall};
-  color: ${(props) => props.theme.color6};
+  height: ${(props) => props.theme.navbarHeightLarge};
+  color: ${(props) => props.theme.colorText2};
 
-  @media screen and (min-width: 850px) {
-    height: ${(props) => props.theme.navbarHeightLarge};
+  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
+    height: ${(props) => props.theme.navbarHeightSmall};
   }
 `
 
@@ -33,42 +48,43 @@ export const NavLeft = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.25rem;
+  gap: 0.75rem;
 
-  @media screen and (min-width: 850px) {
-    gap: 0.75rem;
+  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
+    gap: 0.25rem;
   }
 `
 
 export const NavRouter = styled.div`
   display: flex;
   align-items: center;
-  .icon {
+
+  .label {
     display: block;
   }
-  .label {
+  .icon {
     display: none;
   }
 
-  @media screen and (min-width: 850px) {
+  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
     .label {
-      display: block;
+      display: none;
     }
     .icon {
-      display: none;
+      display: block;
     }
   }
 `
 
 export const NavImage = styled.img`
-  display: none;
+  display: block;
   height: 20px;
   width: 20px;
   min-height: 20px;
   min-width: 20px;
 
-  @media screen and (min-width: 850px) {
-    display: block;
+  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
+    display: none;
   }
 `
 
@@ -86,10 +102,10 @@ export const NavLink = styled(Link)`
   border-radius: 0;
   border-top: 2px solid transparent;
   border-bottom: 2px solid transparent;
-  margin: 0 0.6rem;
+  margin: 0 0.4rem;
 
-  @media screen and (min-width: 850px) {
-    margin: 0 0.4rem;
+  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
+    margin: 0 0.6rem;
   }
 
   &.J {
@@ -102,7 +118,7 @@ export const NavLink = styled(Link)`
   }
 
   &:hover {
-    color: ${(props) => props.theme.color1};
+    color: ${(props) => props.theme.colorText0};
   }
 `
 

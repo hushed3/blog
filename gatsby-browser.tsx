@@ -1,12 +1,13 @@
 import React from 'react'
+import { BlogThemeProvider } from './src/context/BlogThemeContext'
+import { Layout } from './src/layout'
 
-export function wrapPageElement({ element, props }) {
-  const Layout = element.type.Layout ?? React.Fragment
+import type { GatsbyBrowser } from 'gatsby'
 
-  return <Layout {...props}>{element}</Layout>
+export const wrapRootElement: GatsbyBrowser['wrapRootElement'] = ({ element }: { element: React.ReactElement }) => {
+  return (
+    <BlogThemeProvider>
+      <Layout>{element}</Layout>
+    </BlogThemeProvider>
+  )
 }
-
-// import type { GatsbyBrowser } from 'gatsby'
-// import { ThemeProviderWrapper } from './src/context/ThemeContext'
-
-// export const wrapRootElement: GatsbyBrowser['wrapRootElement'] = ThemeProviderWrapper

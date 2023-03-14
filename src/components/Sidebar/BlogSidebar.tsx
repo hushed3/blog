@@ -1,5 +1,5 @@
 import React from 'react'
-import { SideCard, SideLink, SideSticky, SideTag, SideTags, SideTitle, SlidLinkCount } from './style'
+import { SideCard, SideLink, SideSticky, SideTag, SideTags, SideTitle } from './style'
 
 import { useGetTaxonomies } from '../../hooks/useGetTaxonomies'
 import { slugify } from '../../utils/helpers'
@@ -25,7 +25,7 @@ export const BlogSidebar = () => {
                 return (
                   <SideLink key={category.name} to={`/categories/${slugify(category.name)}`} activeClassName="active">
                     <span>{category.name}</span>
-                    <SlidLinkCount>{category.totalCount}</SlidLinkCount>
+                    <span>{category.totalCount}</span>
                   </SideLink>
                 )
               })}

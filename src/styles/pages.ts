@@ -1,20 +1,22 @@
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
-import { GlobalCard, GlobalContainer, GlobalSection } from './global'
-import { TemplateContent, TemplateGrid } from './templates'
+import { GlobalCard, GlobalContainer, GlobalSection } from '../components/global'
+import { TemplateContainer, TemplateContent } from './templates'
 
-export const BlogGrid = styled(TemplateGrid)``
+export const BlogContainer = styled(TemplateContainer)``
 
 export const BlogContent = styled(TemplateContent)``
 
-export const IndexSection = styled(GlobalSection)``
+export const IndexSection = styled(GlobalSection)`
+  margin-top: 2rem;
+`
 
 // index
 export const BriefWrapper = styled.div`
-  display: block;
+  display: flex;
 
-  @media screen and (min-width: 700px) {
-    display: flex;
+  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
+    display: block;
     align-items: center;
     gap: 3rem;
   }
@@ -22,24 +24,31 @@ export const BriefWrapper = styled.div`
 
 export const BriefDescription = styled.p`
   -webkit-font-smoothing: antialiased;
-  margin-top: 3rem;
+  margin-top: 2rem;
   margin-bottom: 0;
   font-size: 0.95rem;
   line-height: 1.4;
-  color: ${(props) => props.theme.color4};
+  color: ${(props) => props.theme.colorText1};
+
+  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
+    font-size: 0.85rem;
+    margin-top: 2rem;
+  }
 `
 
 const Preview = styled.div`
   display: grid;
-  gap: 1.9rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.4rem;
 
-  @media screen and (min-width: 700px) {
+  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
     grid-template-columns: repeat(2, 1fr);
-    gap: 2.4rem;
+    gap: 1.9rem;
   }
 
-  @media screen and (min-width: 1060px) {
-    grid-template-columns: repeat(3, 1fr);
+  @media screen and (max-width: ${(props) => props.theme.contentWidthSmall}) {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.4rem;
   }
 `
 
@@ -72,11 +81,11 @@ export const HighlightCard = styled(GlobalCard)`
 export const CardTime = styled.time`
   display: block;
   font-family: ${(props) => props.theme.fontFamilyMonospace};
-  color: rgba(${(props) => props.theme.magenta6}, 0.95);
-  font-size: 0.7rem;
+  color: rgba(${(props) => props.theme.magenta5}, 0.95);
+  font-size: 0.75rem;
 
-  @media screen and (min-width: 850px) {
-    font-size: 0.75rem;
+  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
+    font-size: 0.7rem;
   }
 `
 
@@ -84,10 +93,10 @@ export const CardTitleLink = styled(Link)`
   display: flex;
   align-items: center;
   width: 100%;
-  font-size: 0.88rem;
+  font-size: 0.98rem;
   line-height: 1.2;
   font-family: ${(props) => props.theme.fontFamilyBase};
-  color: ${(props) => props.theme.color4};
+  color: ${(props) => props.theme.colorText1};
   font-weight: 600;
   padding: 0;
   border: 0;
@@ -95,11 +104,11 @@ export const CardTitleLink = styled(Link)`
 
   &:hover {
     text-decoration: underline;
-    color: ${(props) => props.theme.color1};
+    color: ${(props) => props.theme.colorText0};
   }
 
-  @media screen and (min-width: 850px) {
-    font-size: 0.98rem;
+  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
+    font-size: 0.88rem;
   }
 `
 
@@ -109,15 +118,15 @@ export const CardTagLinks = styled.div`
 
   a {
     font-family: ${(props) => props.theme.fontFamilyMonospace};
-    font-size: 0.7rem;
-    color: ${(props) => props.theme.color8};
+    font-size: 0.75rem;
+    color: ${(props) => props.theme.colorText2};
     &:hover {
       text-decoration: underline;
-      color: ${(props) => props.theme.color2};
+      color: ${(props) => props.theme.colorText0};
     }
 
-    @media screen and (min-width: 850px) {
-      font-size: 0.75rem;
+    @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
+      font-size: 0.7rem;
     }
   }
 `
@@ -129,11 +138,11 @@ export const SunsetContainer = styled(GlobalContainer)`
   grid-template-columns: repeat(4, 1fr);
   gap: 2.2rem;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: ${(props) => props.theme.contentWidth}) {
     padding-top: 2rem;
     gap: 1.5rem;
   }
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: ${(props) => props.theme.contentWidthSmall}) {
     padding-top: 1rem;
     grid-template-columns: repeat(3, 1fr);
     gap: 0.8rem;

@@ -175,6 +175,7 @@ const createNode = ({ node, actions, getNode }: { node: any; actions: any; getNo
   }
 }
 
+
 module.exports.createPages = createPages
 module.exports.onCreateNode = createNode
 module.exports.onCreateWebpackConfig = onCreateWebpackConfig

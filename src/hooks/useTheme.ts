@@ -1,5 +1,4 @@
 import { useInsertionEffect, useState } from 'react'
-import { dark, light } from '../styles/theme'
 import { isSSR } from '../utils/func'
 
 export type ThemeData = 'light' | 'dark'
@@ -13,19 +12,16 @@ const THEME = '(prefers-color-scheme: dark)'
  * @param {*} [key=KEY]
  * @return {*}  {[any, ThemeData, (value?: ThemeData) => void]}
  */
-const useTheme = (key = KEY): [any, ThemeData, (value?: ThemeData) => void] => {
+const useTheme = (key = KEY): [ThemeData, (value?: ThemeData) => void] => {
   const [theme, setTheme] = useState<ThemeData>(osTheme())
-  const [colors, setColors] = useState<any>(osTheme() === 'dark' ? dark : light)
 
   const toggleTheme = (Theme?: ThemeData) => {
     if (!isSSR) {
       const currentTheme = Theme || (theme === 'dark' ? 'light' : 'dark')
-      const currentColor = currentTheme === 'dark' ? dark : light
 
       setTheme(currentTheme)
-      toggleColor(currentColor)
 
-      localStorage.setItem(key, currentTheme)
+      localStorage?.setItem(key, currentTheme)
     }
   }
 
@@ -39,10 +35,6 @@ const useTheme = (key = KEY): [any, ThemeData, (value?: ThemeData) => void] => {
     }
   }
 
-  const toggleColor = (color: any) => {
-    setColors(color)
-  }
-
   useInsertionEffect(() => {
     toggleTheme(theme)
 
@@ -51,7 +43,7 @@ const useTheme = (key = KEY): [any, ThemeData, (value?: ThemeData) => void] => {
     })
   }, [])
 
-  return [colors, theme, toggleTheme]
+  return [theme, toggleTheme]
 }
 
 /**

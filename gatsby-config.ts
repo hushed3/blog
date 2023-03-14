@@ -36,7 +36,7 @@ module.exports = {
         description: 'gatsby-plugin-manifest',
         start_url: '/',
         background_color: 'white',
-        theme_color: '#6b76f3',
+        theme_color: '#646cff',
         display: 'minimal-ui',
         icon: `./src/assets/image/logo.png`,
       },

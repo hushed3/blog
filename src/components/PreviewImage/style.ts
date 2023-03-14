@@ -23,15 +23,15 @@ export const PreviewContent = styled(motion.div)`
   backdrop-filter: blur(10px);
   overflow: hidden;
   aspect-ratio: 16/10;
-  width: 55%;
+  width: 85%;
   margin: 0 auto;
   z-index: 100;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: ${(props) => props.theme.contentWidth}) {
     width: 70% !important;
   }
-  @media screen and (max-width: 480px) {
-    width: 85% !important;
+  @media screen and (max-width: ${(props) => props.theme.contentWidthSmall}) {
+    width: 55% !important;
   }
 `
 

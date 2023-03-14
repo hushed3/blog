@@ -2,6 +2,8 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 export default function HTML(props: any) {
+  // call the function when the DOM is ready
+
   return (
     <html {...props.htmlAttributes}>
       <head>

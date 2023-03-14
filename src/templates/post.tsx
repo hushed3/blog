@@ -4,10 +4,9 @@ import Helmet from 'react-helmet'
 import { PostBySlugQuery } from '../../gatsby-graphql'
 
 import { SEO } from '../components/SEO'
-import { PostSidebar } from '../components/Sidebar/PostSidebar'
+import { PostSidebar as TemplateSide } from '../components/Sidebar/PostSidebar'
 import { Layout } from '../layout/index'
-import { GlobalContainer } from '../styles/components/global'
-import { TemplateContent, TemplateGrid, TemplateHeader, TemplateSection } from '../styles/components/templates'
+import { TemplateContainer, TemplateContent, TemplateHeader, TemplateSection } from '../styles/templates'
 import config from '../utils/config'
 
 /**
@@ -27,18 +26,16 @@ export default function PostTemplate({ data }: PageProps<PostBySlugQuery>) {
     <>
       <Helmet title={`${title} | ${config.siteTitle}`} />
       <SEO postPath={slug} postNode={post} postSEO />
-      <GlobalContainer>
-        <TemplateGrid>
-          <TemplateContent>
-            <TemplateHeader>{title}</TemplateHeader>
-            <TemplateSection>
-              <div id={slug as string} dangerouslySetInnerHTML={{ __html: post?.html as string }} />
-            </TemplateSection>
-          </TemplateContent>
+      <TemplateContainer>
+        <TemplateContent>
+          <TemplateHeader>{title}</TemplateHeader>
+          <TemplateSection>
+            <div id={slug as string} dangerouslySetInnerHTML={{ __html: post?.html as string }} />
+          </TemplateSection>
+        </TemplateContent>
 
-          <PostSidebar date={date} tags={tags} categories={categories} thumbnail={thumbnail} headings={headings} />
-        </TemplateGrid>
-      </GlobalContainer>
+        <TemplateSide date={date} tags={tags} categories={categories} thumbnail={thumbnail} headings={headings} />
+      </TemplateContainer>
     </>
   )
 }
