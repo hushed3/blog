@@ -6,7 +6,7 @@ import CardImage from '../components/CardImage'
 import PreviewImage from '../components/PreviewImage'
 import { SEO } from '../components/SEO'
 import { Layout } from '../layout/index'
-import { SunsetContainer } from '../styles/components/pages'
+import { SunsetContainer } from '../styles/pages'
 import config from '../utils/config'
 
 import { getServerData } from '../data/index'

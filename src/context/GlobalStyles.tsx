@@ -2,27 +2,21 @@ import { css, Global } from '@emotion/react'
 import React, { memo } from 'react'
 
 interface Props {
-  themeColors: any
+  themeColor: any
 }
 
-export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
+export const GlobalStyle = memo(function GlobalStyle({ themeColor }: Props) {
   return (
     <>
       <Global
         styles={css`
-          @font-face {
-            font-family: 'SF Mono Regular';
-            src: "url('../../static/fonts/SFMono-Regular.otf') format('otf')";
-          }
-
           ::selection {
-            background: rgba(${themeColors.purple6}, 0.45);
-            color: ${themeColors.color4};
+            background: rgba(${themeColor.primary3}, 0.45);
           }
 
           ::-webkit-scrollbar {
             background-color: transparent;
-            width: 10px;
+            width: 12px;
             height: 10px;
             z-index: 1000;
             padding: 0px;
@@ -30,8 +24,8 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
 
           body[scroll],
           ::-webkit-scrollbar-thumb {
-            background-color: rgba(${themeColors.gray7}, 0.35);
-            border-radius: ${themeColors.borderRadiusLarge};
+            background-color: rgba(${themeColor.gray4}, 0.35);
+            border-radius: ${themeColor.borderRadiusLarge};
             background-clip: content-box;
             border: 2px solid transparent;
             z-index: 10000;
@@ -39,7 +33,7 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
 
           body[scroll],
           ::-webkit-scrollbar-thumb:hover {
-            background-color: rgba(${themeColors.gray1}, 1);
+            background-color: rgba(${themeColor.gray3}, 0.9);
             transition: 0s;
           }
 
@@ -50,7 +44,7 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
           }
 
           html {
-            font-family: ${themeColors.fontFamilyBase};
+            font-family: ${themeColor.fontFamilyBase};
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
 
@@ -66,12 +60,13 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
             padding: 0;
             overflow: overlay;
             position: relative;
-            background: ${themeColors.pageBackground};
+            background-color: rgb(${themeColor.pageBackground});
+            color: ${themeColor.colorText1};
             transition: background-color ease-out 0.1s;
           }
 
           a {
-            color: rgb(${themeColors.purple6});
+            color: rgb(${themeColor.primary5});
             text-decoration: none;
             transition: border ease-out 0.1s;
           }
@@ -82,7 +77,7 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
           ul,
           table,
           blockquote {
-            color: ${themeColors.color4};
+            color: ${themeColor.colorText1};
           }
 
           p,
@@ -114,19 +109,19 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
           li::marker {
             font-size: 1.1rem;
             line-height: 1;
-            color: rgb(${themeColors.magenta5});
+            color: rgb(${themeColor.magenta4});
           }
 
           /* Blockquote */
 
           blockquote {
             margin: 1.5rem 0;
-            border-left: 4px solid rgba(${themeColors.purple6}, 0.6);
+            border-left: 4px solid rgba(${themeColor.primary5}, 0.6);
             margin-left: 0;
             padding: 0.8rem 1rem;
-            background: rgba(${themeColors.purple5}, 0.15);
-            border-radius: ${themeColors.borderRadiusLarge};
-            box-shadow: 0 0 4px rgba(${themeColors.purple6}, 0.1);
+            background: rgba(${themeColor.primary5}, 0.15);
+            border-radius: ${themeColor.borderRadiusLarge};
+            box-shadow: 0 0 4px rgba(${themeColor.primary5}, 0.1);
 
             & code.language-text {
               background-color: transparent;
@@ -150,13 +145,13 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
           h3,
           h4,
           h5 {
-            color: ${themeColors.color1};
+            color: ${themeColor.colorText0};
             line-height: 1.1;
             margin-top: 0;
             margin-bottom: 1.5rem;
             font-weight: 600;
             scroll-margin-top: 100px;
-            font-family: ${themeColors.fontFamilyHeading};
+            font-family: ${themeColor.fontFamilyHeading};
           }
 
           h1:not(:first-of-type),
@@ -175,8 +170,6 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
             margin: 0 0 1rem;
             font-weight: 700;
             padding-bottom: 0.3rem;
-            border-bottom: 1px solid rgb(${themeColors.gray3});
-            color: ${themeColors.color1};
             letter-spacing: -0.03rem;
           }
 
@@ -188,8 +181,7 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
             font-size: 1.5rem;
             font-weight: 900;
             margin-bottom: 1rem;
-            color: ${themeColors.color2};
-            font-family: ${themeColors.fontFamilyHeading};
+            font-family: ${themeColor.fontFamilyHeading};
           }
 
           h3 code {
@@ -197,11 +189,10 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
           }
 
           h4 {
-            color: ${themeColors.color2};
             margin-bottom: 1.5rem;
             font-size: 1.2rem;
             font-weight: 800;
-            font-family: ${themeColors.fontFamilyHeading};
+            font-family: ${themeColor.fontFamilyHeading};
           }
 
           h4 code {
@@ -209,16 +200,15 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
           }
 
           h5 {
-            color: ${themeColors.color4};
             margin-bottom: 1rem;
             font-size: 1rem;
             font-weight: 700;
             letter-spacing: -0.02rem;
-            font-family: ${themeColors.fontFamilyHeading};
+            font-family: ${themeColor.fontFamilyHeading};
           }
 
           table {
-            border: 1px solid rgb(${themeColors.gray3});
+            border: 1px solid ${themeColor.colorBorder0};
             display: table;
             border-collapse: separate;
             border-spacing: 0;
@@ -236,12 +226,12 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
             padding: 0.5rem;
             text-align: left;
             word-break: break-word;
-            border-bottom: 1px solid rgb(${themeColors.gray3});
+            border-bottom: 1px solid ${themeColor.colorBorder0};
           }
 
           th {
-            background: rgb(${themeColors.gray3});
-            border-bottom: 2px solid rgb(${themeColors.gray3});
+            background: ${themeColor.colorFill1};
+            border-bottom: 2px solid ${themeColor.colorBorder0};
           }
 
           img {
@@ -254,20 +244,14 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
             display: inline-flex;
             align-items: center;
             padding: 0.6rem 1rem;
-            font-family: ${themeColors.fontFamilyBase};
+            font-family: ${themeColor.fontFamilyBase};
             line-height: 1;
-            border-radius: ${themeColors.borderRadiusLarge};
+            border-radius: ${themeColor.borderRadiusLarge};
             font-size: 0.9rem;
             cursor: pointer;
             font-weight: 500;
-            color: ${themeColors.color3};
-            border: 1px solid rgb(${themeColors.gray3});
+            border: 1px solid ${themeColor.colorBorder0};
             gap: 0.25rem;
-
-            &:hover {
-              color: ${themeColors.color4};
-              border-color: rgb(${themeColors.gray4});
-            }
           }
 
           .anchor {
@@ -278,45 +262,45 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
             display: inline-flex;
             position: relative;
             font-size: 0.9rem;
-            border-radius: ${themeColors.borderRadiusSmall};
+            border-radius: ${themeColor.borderRadiusSmall};
             padding: 0.2rem 0.6rem;
             margin-bottom: 0.8rem;
             margin-right: 0.3rem;
             align-items: center;
             line-height: calc(0.9rem + 8px);
-            background: rgba(${themeColors.blue5}, 0.15);
-            color: rgb(${themeColors.blue6});
-            box-shadow: 0 0 2px rgba(${themeColors.blue7}, 0.1);
+            background: rgba(${themeColor.blue4}, 0.15);
+            color: rgb(${themeColor.blue5});
+            box-shadow: 0 0 2px rgba(${themeColor.blue6}, 0.1);
 
             &.success {
-              background: rgba(${themeColors.green5}, 0.15);
-              color: rgb(${themeColors.green6});
-              box-shadow: 0 0 2px rgba(${themeColors.green7}, 0.1);
+              background: rgba(${themeColor.green4}, 0.15);
+              color: rgb(${themeColor.green5});
+              box-shadow: 0 0 2px rgba(${themeColor.green6}, 0.1);
             }
             &.warning {
-              background: rgba(${themeColors.gold5}, 0.15);
-              color: rgb(${themeColors.gold6});
-              box-shadow: 0 0 2px rgba(${themeColors.gold7}, 0.1);
+              background: rgba(${themeColor.gold4}, 0.15);
+              color: rgb(${themeColor.gold5});
+              box-shadow: 0 0 2px rgba(${themeColor.gold6}, 0.1);
             }
             &.error {
-              background: rgba(${themeColors.red5}, 0.15);
-              color: rgb(${themeColors.red6});
-              box-shadow: 0 0 2px rgba(${themeColors.red7}, 0.1);
+              background: rgba(${themeColor.red4}, 0.15);
+              color: rgb(${themeColor.red5});
+              box-shadow: 0 0 2px rgba(${themeColor.red6}, 0.1);
             }
           }
 
           .gatsby-highlight {
-            background: ${themeColors.cardBackground};
+            background: rgb(${themeColor.cardBackground});
             -webkit-text-size-adjust: none;
             text-size-adjust: none;
-            border-radius: ${themeColors.borderRadiusMedium};
+            border-radius: ${themeColor.borderRadiusLarge};
             overflow: overlay;
             margin: 0.6rem 0 2rem 0;
             padding: 1rem;
             max-width: 100%;
             position: relative;
             transform: matrix(1, 0, 0, 1, 0, 0);
-            box-shadow: ${themeColors.cardShadow};
+            box-shadow: ${themeColor.cardShadow};
             transition: background-color ease-out 0.1s;
 
             &::before {
@@ -324,7 +308,7 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
               position: absolute;
               right: 1rem;
               top: 0;
-              color: ${themeColors.color9};
+              color: ${themeColor.colorText3};
               font-weight: bold;
               text-transform: capitalize;
               font-size: 12px;
@@ -371,8 +355,8 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
           code[class*='language-'],
           pre[class*='language-'] {
             -webkit-font-smoothing: subpixel-antialiased;
-            color: ${themeColors.codeFontColor};
-            font-family: 'Menlo', ${themeColors.fontFamilyMonospace};
+            color: ${themeColor.codeFontColor};
+            font-family: 'Menlo', ${themeColor.fontFamilyMonospace};
             font-size: 0.9rem;
             text-align: left;
             white-space: pre;
@@ -396,7 +380,7 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
 
           code.language-shell::before {
             content: '$ ';
-            color: ${themeColors.comment};
+            color: ${themeColor.comment};
           }
 
           pre.language-text {
@@ -410,11 +394,11 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
           }
 
           code.language-text {
-            color: #646cff;
+            color: rgb(${themeColor.primary5});
             transition: background-color ease-out 0.1s;
-            background-color: rgba(${themeColors.gray3}, 0.95);
+            background-color: rgba(${themeColor.gray1}, 0.7);
             padding: 0.2rem 0.35rem;
-            border-radius: ${themeColors.borderRadiusSmall};
+            border-radius: ${themeColor.borderRadiusSmall};
           }
 
           .gatsby-highlight[data-language='text'] {
@@ -438,11 +422,11 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
           .token.doctype,
           .token.cdata,
           .token.important {
-            color: ${themeColors.comment};
+            color: ${themeColor.comment};
           }
 
           .token.punctuation {
-            color: ${themeColors.punctuation};
+            color: ${themeColor.punctuation};
           }
 
           .token.namespace {
@@ -450,63 +434,63 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
           }
 
           .token.property {
-            color: ${themeColors.property};
+            color: ${themeColor.property};
           }
 
           .token.tag,
           .token.constant,
           .token.symbol,
           .token.deleted {
-            color: ${themeColors.tag};
+            color: ${themeColor.tag};
           }
 
           .token.number {
-            color: ${themeColors.number};
+            color: ${themeColor.number};
           }
 
           .token.char,
           .token.builtin,
           .token.url,
           .token.inserted {
-            color: ${themeColors.codeFontColor};
+            color: ${themeColor.codeFontColor};
           }
 
           .token.attr-name,
           .token.selector {
-            color: ${themeColors.attribute};
+            color: ${themeColor.attribute};
           }
 
           .token.attr-value,
           .token.string {
-            color: ${themeColors.string};
+            color: ${themeColor.string};
           }
 
           .token.operator {
-            color: ${themeColors.operator};
+            color: ${themeColor.operator};
           }
 
           .token.atrule,
           .token.keyword {
             font-weight: 600;
-            color: ${themeColors.keyword};
+            color: ${themeColor.keyword};
           }
 
           .token.function {
-            color: ${themeColors.function};
+            color: ${themeColor.function};
           }
 
           .language-css,
           .token.boolean,
           .token.class-name {
-            color: ${themeColors.class};
+            color: ${themeColor.class};
           }
 
           .token.regex {
-            color: ${themeColors.keyword};
+            color: ${themeColor.keyword};
           }
 
           .token.variable {
-            color: ${themeColors.variable};
+            color: ${themeColor.variable};
           }
 
           .token.bold {
@@ -521,7 +505,7 @@ export const GlobalStyles = memo(function GlobalStyles({ themeColors }: Props) {
           }
 
           .language-jsx .token.class-name {
-            color: ${themeColors.tag};
+            color: ${themeColor.tag};
           }
 
           pre::-moz-selection,

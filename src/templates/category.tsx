@@ -8,8 +8,7 @@ import { CategoryPageQuery, CategoryPageQueryVariables } from '../../gatsby-grap
 import { Posts } from '../components/Posts'
 import { SEO } from '../components/SEO'
 import { Layout } from '../layout/index'
-import { GlobalContainer } from '../styles/components/global'
-import { TemplateContent, TemplateGrid } from '../styles/components/templates'
+import { TemplateContainer, TemplateContent } from '../styles/templates'
 import config from '../utils/config'
 import { getSimplifiedPosts } from '../utils/helpers'
 
@@ -38,15 +37,13 @@ export default function CategoryTemplate({
       <Helmet title={`${category} | ${config.siteTitle}`} />
       <SEO />
 
-      <GlobalContainer as="header">
-        <TemplateGrid>
-          <TemplateContent>
-            <BriefHeader highlight={totalCount} subTitle={message} title={category} />
-            <Posts data={simplifiedPosts} />
-          </TemplateContent>
-          <BlogSidebar />
-        </TemplateGrid>
-      </GlobalContainer>
+      <TemplateContainer>
+        <TemplateContent>
+          <BriefHeader highlight={totalCount} subTitle={message} title={category} />
+          <Posts data={simplifiedPosts} />
+        </TemplateContent>
+        <BlogSidebar />
+      </TemplateContainer>
     </>
   )
 }

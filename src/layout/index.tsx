@@ -1,5 +1,4 @@
 import React from 'react'
-import { ThemeProviderWrapper } from '../context/ThemeContext'
 
 import { BgParticles } from '../components/BgParticles'
 import { Footer } from './footer/index'
@@ -14,23 +13,21 @@ const LayoutContainer = styled.div`
 `
 
 const Main = styled.main`
-  margin-top: ${(props) => props.theme.navbarHeightSmall};
+  margin-top: ${(props) => props.theme.navbarHeightLarge};
   flex: 1;
 
-  @media screen and (min-width: 850px) {
-    margin-top: ${(props) => props.theme.navbarHeightLarge};
+  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
+    margin-top: ${(props) => props.theme.navbarHeightSmall};
   }
 `
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <ThemeProviderWrapper>
-      <LayoutContainer>
-        <Navigation />
-        <Main>{children}</Main>
-        <Footer />
-        <BgParticles />
-      </LayoutContainer>
-    </ThemeProviderWrapper>
+    <LayoutContainer>
+      <Navigation />
+      <Main>{children}</Main>
+      <Footer />
+      <BgParticles />
+    </LayoutContainer>
   )
 }

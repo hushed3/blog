@@ -5,8 +5,7 @@ import { MeBySlugQuery } from '../../gatsby-graphql'
 
 import { SEO } from '../components/SEO'
 import { MeSidebar } from '../components/Sidebar/MeSidebar'
-import { GlobalContainer } from '../styles/components/global'
-import { TemplateContent, TemplateGrid, TemplateHeader, TemplateSection } from '../styles/components/templates'
+import { TemplateContainer, TemplateContent, TemplateHeader, TemplateSection } from '../styles/templates'
 import config from '../utils/config'
 
 /**
@@ -24,18 +23,16 @@ export default function MeTemplate({ data }: PageProps<MeBySlugQuery>) {
     <>
       <Helmet title={`${title} | ${config.siteTitle}`} />
       <SEO />
-      <GlobalContainer>
-        <TemplateGrid>
-          <TemplateContent>
-            <TemplateHeader>{title}</TemplateHeader>
-            <TemplateSection>
-              <div dangerouslySetInnerHTML={{ __html: post.html as string }} />
-            </TemplateSection>
-          </TemplateContent>
+      <TemplateContainer>
+        <TemplateContent>
+          <TemplateHeader>{title}</TemplateHeader>
+          <TemplateSection>
+            <div dangerouslySetInnerHTML={{ __html: post.html as string }} />
+          </TemplateSection>
+        </TemplateContent>
 
-          <MeSidebar />
-        </TemplateGrid>
-      </GlobalContainer>
+        <MeSidebar />
+      </TemplateContainer>
     </>
   )
 }

@@ -8,8 +8,7 @@ import { Posts } from '../components/Posts'
 import { SEO } from '../components/SEO'
 import { BlogSidebar } from '../components/Sidebar/BlogSidebar'
 import { Layout } from '../layout/index'
-import { GlobalContainer } from '../styles/components/global'
-import { TemplateContent, TemplateGrid } from '../styles/components/templates'
+import { TemplateContainer, TemplateContent } from '../styles/templates'
 import config from '../utils/config'
 import { getSimplifiedPosts } from '../utils/helpers'
 
@@ -32,15 +31,13 @@ export default function TagTemplate({ data, pageContext }: PageProps<TagPageQuer
       <Helmet title={`Posts tagged: ${tag} | ${config.siteTitle}`} />
       <SEO />
 
-      <GlobalContainer as="header">
-        <TemplateGrid>
-          <TemplateContent>
-            <BriefHeader highlight={totalCount} subTitle={message} title={tag} />
-            <Posts data={simplifiedPosts} />
-          </TemplateContent>
-          <BlogSidebar />
-        </TemplateGrid>
-      </GlobalContainer>
+      <TemplateContainer>
+        <TemplateContent>
+          <BriefHeader highlight={totalCount} subTitle={message} title={tag} />
+          <Posts data={simplifiedPosts} />
+        </TemplateContent>
+        <BlogSidebar />
+      </TemplateContainer>
     </>
   )
 }

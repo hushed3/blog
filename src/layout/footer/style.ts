@@ -14,7 +14,7 @@ export const FooterSection = styled.section`
 
 export const FooterNav = styled.nav`
   display: flex;
-  color: ${(props) => props.theme.color8};
+  color: ${(props) => props.theme.colorText3};
   gap: 0.25rem;
   margin: 0 1rem;
 `
@@ -38,7 +38,7 @@ export const FooterA = styled.a`
 
   &:hover {
     text-decoration: underline;
-    color: ${(props) => props.theme.color3};
+    color: ${(props) => props.theme.colorText1};
   }
 `
 

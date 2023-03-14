@@ -13,9 +13,9 @@ interface Props {
  * @description 大标题
  */
 
-export const BriefHeader = ({ highlight, subTitle, title, children, index }: Props) => {
+export const BriefHeader = ({ highlight, subTitle, title, children }: Props) => {
   return (
-    <BriefContainer className={index ? 'index' : ''}>
+    <BriefContainer>
       {subTitle && (
         <BriefSubTitle>
           {highlight && <BriefPurpleTitle>{highlight}</BriefPurpleTitle>}
