@@ -1,5 +1,5 @@
 import React from 'react'
-import { BriefContainer, BriefPurpleTitle, BriefSubTitle, BriefTitle } from './style'
+import { BriefPurpleTitle, BriefSection, BriefSubTitle, BriefTitle } from './style'
 
 interface Props {
   title?: string | null
@@ -15,7 +15,7 @@ interface Props {
 
 export const BriefHeader = ({ highlight, subTitle, title, children }: Props) => {
   return (
-    <BriefContainer>
+    <BriefSection>
       {subTitle && (
         <BriefSubTitle>
           {highlight && <BriefPurpleTitle>{highlight}</BriefPurpleTitle>}
@@ -24,6 +24,6 @@ export const BriefHeader = ({ highlight, subTitle, title, children }: Props) => 
       )}
       {title && <BriefTitle>{title}</BriefTitle>}
       {children && children}
-    </BriefContainer>
+    </BriefSection>
   )
 }

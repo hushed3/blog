@@ -3,15 +3,13 @@ import { Link } from 'gatsby'
 
 import { GlobalContainer } from '../../components/global'
 
-export const NavSection = styled.section`
-  position: fixed;
+export const HeaderWrapper = styled.header`
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 3;
-  background-color: rgba(${(props) => props.theme.pageBackground}, 0.4);
   height: ${(props) => props.theme.navbarHeightLarge};
-  backdrop-filter: blur(8px);
 
   &::after {
     content: '';
@@ -19,7 +17,7 @@ export const NavSection = styled.section`
     left: 0px;
     right: 0px;
     bottom: 0px;
-    width: calc(100% - 48px);
+    width: calc(100vw - 48px);
     height: 10px;
     z-index: -1;
     margin: auto;
@@ -27,24 +25,21 @@ export const NavSection = styled.section`
     background-color: transparent;
     box-shadow: rgb(${(props) => props.theme.gray3}, 0.15) 0px 6px 8px 0px;
   }
-
-  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
-    height: ${(props) => props.theme.navbarHeightSmall};
-  }
 `
 
-export const NavContainer = styled(GlobalContainer)`
+export const HeaderContainer = styled(GlobalContainer)`
+  backdrop-filter: blur(8px);
   display: flex;
   justify-content: space-between;
-  height: ${(props) => props.theme.navbarHeightLarge};
   color: ${(props) => props.theme.colorText2};
+  height: 100%;
 
   @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
     height: ${(props) => props.theme.navbarHeightSmall};
   }
 `
 
-export const NavLeft = styled.nav`
+export const HeaderLeft = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -55,43 +50,10 @@ export const NavLeft = styled.nav`
   }
 `
 
-export const NavRouter = styled.div`
+export const HeaderLink = styled(Link)`
   display: flex;
   align-items: center;
-
-  .label {
-    display: block;
-  }
-  .icon {
-    display: none;
-  }
-
-  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
-    .label {
-      display: none;
-    }
-    .icon {
-      display: block;
-    }
-  }
-`
-
-export const NavImage = styled.img`
-  display: block;
-  height: 20px;
-  width: 20px;
-  min-height: 20px;
-  min-width: 20px;
-
-  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
-    display: none;
-  }
-`
-
-export const NavLink = styled(Link)`
-  display: flex;
   justify-content: space-between;
-  align-items: center;
   gap: 0.5rem;
   cursor: pointer;
   font-size: 1rem;
@@ -103,10 +65,6 @@ export const NavLink = styled(Link)`
   border-top: 2px solid transparent;
   border-bottom: 2px solid transparent;
   margin: 0 0.4rem;
-
-  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
-    margin: 0 0.6rem;
-  }
 
   &.J {
     line-height: 1.2;
@@ -120,9 +78,39 @@ export const NavLink = styled(Link)`
   &:hover {
     color: ${(props) => props.theme.colorText0};
   }
+
+  .label {
+    display: block;
+  }
+  .icon {
+    display: none;
+    font-size: 1rem;
+  }
+
+  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
+    margin: 0 0.6rem;
+    .label {
+      display: none;
+    }
+    .icon {
+      display: block;
+    }
+  }
 `
 
-export const NavA = NavLink.withComponent('a')
+export const HeaderImage = styled.img`
+  display: block;
+  height: 20px;
+  width: 20px;
+  min-height: 20px;
+  min-width: 20px;
+
+  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
+    display: none;
+  }
+`
+
+export const HeaderA = HeaderLink.withComponent('a')
 
 export const ThemeToggle = styled.div`
   align-self: center;

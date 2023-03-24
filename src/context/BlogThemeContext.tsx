@@ -18,13 +18,12 @@ export const BlogThemeProvider = ({ children }: { children: React.ReactNode }) =
   const contextValue = { theme, toggleTheme }
 
   return (
-    <BlogThemeContext.Provider value={contextValue}>
-      <EmotionThemeProvider theme={color}>
-        <GlobalStyle themeColor={color} />
-
-        {children}
-      </EmotionThemeProvider>
-    </BlogThemeContext.Provider>
+    <>
+      <BlogThemeContext.Provider value={contextValue}>
+        <GlobalStyle theme={color} />
+        <EmotionThemeProvider theme={color}>{children}</EmotionThemeProvider>
+      </BlogThemeContext.Provider>
+    </>
   )
 }
 

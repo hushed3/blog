@@ -8,7 +8,7 @@ import { Posts } from '../components/Posts'
 import { SEO } from '../components/SEO'
 import { BlogSidebar } from '../components/Sidebar/BlogSidebar'
 import { Layout } from '../layout/index'
-import { BlogContainer, BlogContent } from '../styles/pages'
+import { BlogArticle, BlogContainer } from '../styles/pages'
 import config from '../utils/config'
 import { getSimplifiedPosts } from '../utils/helpers'
 
@@ -29,11 +29,11 @@ export default function Blog({ data }: PageProps<BlogQueryQuery>) {
       <Helmet title={`${title} | ${config.siteTitle}`} />
       <SEO customDescription={description} />
 
-      <BlogContainer as="header">
-        <BlogContent>
+      <BlogContainer>
+        <BlogArticle>
           <BriefHeader title={title} />
           <Posts data={simplifiedPosts} />
-        </BlogContent>
+        </BlogArticle>
         <BlogSidebar />
       </BlogContainer>
     </>

@@ -15,7 +15,7 @@ export const ImageContainer = styled.div`
   z-index: 100;
 `
 
-export const PreviewContent = styled(motion.div)`
+export const PreviewWrapper = styled(motion.div)`
   pointer-events: auto;
   position: relative;
   border-radius: ${(props) => props.theme.borderRadiusLarge};

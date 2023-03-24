@@ -1,13 +1,13 @@
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
-import { GlobalCard, GlobalContainer, GlobalSection } from '../components/global'
-import { TemplateContainer, TemplateContent } from './templates'
+import { GlobalCard, GlobalContainer, GlobalWrapper } from '../components/global'
+import { TemplateArticle, TemplateContainer } from './templates'
 
 export const BlogContainer = styled(TemplateContainer)``
 
-export const BlogContent = styled(TemplateContent)``
+export const BlogArticle = styled(TemplateArticle)``
 
-export const IndexSection = styled(GlobalSection)`
+export const IndexWrapper = styled(GlobalWrapper)`
   margin-top: 2rem;
 `
 

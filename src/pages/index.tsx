@@ -11,7 +11,7 @@ import {
   CardTitleLink,
   HighlightCard,
   HighlightPreview,
-  IndexSection,
+  IndexWrapper,
   RecentCard,
   RecentPreview,
 } from '../styles/pages'
@@ -60,7 +60,7 @@ export default function Index({ data }: PageProps<IndexQueryQuery>) {
       </GlobalContainer>
 
       <GlobalContainer>
-        <IndexSection>
+        <IndexWrapper>
           <Heading title="最近内容" slug="/blog" />
           <RecentPreview>
             {simplifiedLatest.map((post) => {
@@ -84,10 +84,10 @@ export default function Index({ data }: PageProps<IndexQueryQuery>) {
               )
             })}
           </RecentPreview>
-        </IndexSection>
+        </IndexWrapper>
         {/* 查找posts目录下带有 Highlight 的markdown文件 */}
         {simplifiedHighlights.length > 0 && (
-          <IndexSection>
+          <IndexWrapper>
             <Heading title="热门内容" />
 
             <HighlightPreview>
@@ -103,7 +103,7 @@ export default function Index({ data }: PageProps<IndexQueryQuery>) {
                 )
               })}
             </HighlightPreview>
-          </IndexSection>
+          </IndexWrapper>
         )}
       </GlobalContainer>
     </>

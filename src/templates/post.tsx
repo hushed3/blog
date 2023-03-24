@@ -6,7 +6,7 @@ import { PostBySlugQuery } from '../../gatsby-graphql'
 import { SEO } from '../components/SEO'
 import { PostSidebar as TemplateSide } from '../components/Sidebar/PostSidebar'
 import { Layout } from '../layout/index'
-import { TemplateContainer, TemplateContent, TemplateHeader, TemplateSection } from '../styles/templates'
+import { TemplateArticle, TemplateContainer, TemplateTitle, TemplateWrapper } from '../styles/templates'
 import config from '../utils/config'
 
 /**
@@ -27,12 +27,10 @@ export default function PostTemplate({ data }: PageProps<PostBySlugQuery>) {
       <Helmet title={`${title} | ${config.siteTitle}`} />
       <SEO postPath={slug} postNode={post} postSEO />
       <TemplateContainer>
-        <TemplateContent>
-          <TemplateHeader>{title}</TemplateHeader>
-          <TemplateSection>
-            <div id={slug as string} dangerouslySetInnerHTML={{ __html: post?.html as string }} />
-          </TemplateSection>
-        </TemplateContent>
+        <TemplateArticle>
+          <TemplateTitle>{title}</TemplateTitle>
+          <TemplateWrapper id={slug as string} dangerouslySetInnerHTML={{ __html: post?.html as string }} />
+        </TemplateArticle>
 
         <TemplateSide date={date} tags={tags} categories={categories} thumbnail={thumbnail} headings={headings} />
       </TemplateContainer>

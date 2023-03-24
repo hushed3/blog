@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
-import { GlobalSection } from '../global'
+import { GlobalWrapper } from '../global'
 
-export const PostSection = styled(GlobalSection)``
+export const PostWrapper = styled(GlobalWrapper)``
 
 export const PostLink = styled(Link)`
   display: grid;
@@ -47,7 +47,7 @@ export const PostLink = styled(Link)`
 export const PostYear = styled.h2`
   color: rgb(${(props) => props.theme.primary4});
   padding-bottom: 0.8rem;
-  border-bottom: 3px solid ${(props) => props.theme.colorBorder0};
+  border-bottom: 2px solid ${(props) => props.theme.colorBorder0};
   font-size: 1.6rem;
   @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
     font-size: 1.4rem;

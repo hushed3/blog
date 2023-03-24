@@ -8,7 +8,7 @@ import { CategoryPageQuery, CategoryPageQueryVariables } from '../../gatsby-grap
 import { Posts } from '../components/Posts'
 import { SEO } from '../components/SEO'
 import { Layout } from '../layout/index'
-import { TemplateContainer, TemplateContent } from '../styles/templates'
+import { TemplateArticle, TemplateContainer } from '../styles/templates'
 import config from '../utils/config'
 import { getSimplifiedPosts } from '../utils/helpers'
 
@@ -38,10 +38,10 @@ export default function CategoryTemplate({
       <SEO />
 
       <TemplateContainer>
-        <TemplateContent>
+        <TemplateArticle>
           <BriefHeader highlight={totalCount} subTitle={message} title={category} />
           <Posts data={simplifiedPosts} />
-        </TemplateContent>
+        </TemplateArticle>
         <BlogSidebar />
       </TemplateContainer>
     </>

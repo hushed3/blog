@@ -10,7 +10,7 @@ export const AnimatedWrapper = styled(animated.div)`
   will-change: width, height;
 `
 
-export const ImageContent = styled(motion.div)`
+export const ImageWrapper = styled(motion.div)`
   width: 100%;
   height: 100%;
 
