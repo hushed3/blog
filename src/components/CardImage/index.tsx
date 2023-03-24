@@ -1,7 +1,7 @@
 import { useSpring } from '@react-spring/web'
 import React, { useRef, useState } from 'react'
 import { ImageItem } from '../../typings/pages'
-import { AnimatedWrapper, Image, ImageContent, LazyLoadWrapper } from './style'
+import { AnimatedWrapper, Image, ImageWrapper, LazyLoadWrapper } from './style'
 
 interface Props {
   move: boolean
@@ -46,7 +46,7 @@ const CardImage = ({ move, row, onClick }: Props) => {
         onMouseMove={mouseMove}
         onClick={() => onClick(row)}
       >
-        <ImageContent layoutId={`preview-${row.id}`}>
+        <ImageWrapper layoutId={`preview-${row.id}`}>
           <LazyLoadWrapper style={{ height: '100%', opacity: show ? 1 : 0 }}>
             <Image
               src={row.url}
@@ -57,7 +57,7 @@ const CardImage = ({ move, row, onClick }: Props) => {
               }}
             ></Image>
           </LazyLoadWrapper>
-        </ImageContent>
+        </ImageWrapper>
       </AnimatedWrapper>
     </>
   )

@@ -8,7 +8,7 @@ import { Posts } from '../components/Posts'
 import { SEO } from '../components/SEO'
 import { BlogSidebar } from '../components/Sidebar/BlogSidebar'
 import { Layout } from '../layout/index'
-import { TemplateContainer, TemplateContent } from '../styles/templates'
+import { TemplateArticle, TemplateContainer } from '../styles/templates'
 import config from '../utils/config'
 import { getSimplifiedPosts } from '../utils/helpers'
 
@@ -32,10 +32,10 @@ export default function TagTemplate({ data, pageContext }: PageProps<TagPageQuer
       <SEO />
 
       <TemplateContainer>
-        <TemplateContent>
+        <TemplateArticle>
           <BriefHeader highlight={totalCount} subTitle={message} title={tag} />
           <Posts data={simplifiedPosts} />
-        </TemplateContent>
+        </TemplateArticle>
         <BlogSidebar />
       </TemplateContainer>
     </>

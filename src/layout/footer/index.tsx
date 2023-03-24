@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { FooterA, FooterContainer, FooterImg, FooterNav, FooterSection, FooterSpan } from './style'
+import { FooterA, FooterContainer, FooterImg, FooterSpan, FooterWrapper } from './style'
 import gatsby from '/src/assets/image/gatsby.png'
 import github from '/src/assets/image/github.png'
 
@@ -21,30 +21,28 @@ export const Footer = () => {
 
   return (
     <FooterContainer>
-      <FooterSection>
-        <FooterNav>
-          <FooterSpan className="desktop-only">© 2022 {year} By Hush</FooterSpan>
-          {links.map((link) => (
-            <FooterA href={link.url} target="_blank" rel="noopener noreferrer" key={link.url}>
-              {link.label}
-            </FooterA>
-          ))}
-        </FooterNav>
-        <FooterNav>
-          {madeWithLinks.map((link) => (
-            <FooterA href={link.url} title={link.label} target="_blank" rel="noopener noreferrer" key={link.url}>
-              <FooterSpan>{link.label}</FooterSpan>
-              <FooterImg src={link.icon} alt={link.label} />
-            </FooterA>
-          ))}
-        </FooterNav>
-
-        <FooterNav>
-          <FooterA href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
-            蜀ICP备2022009836号
+      <FooterWrapper>
+        <FooterSpan className="desktop-only">© 2022 {year} By Hush</FooterSpan>
+        {links.map((link) => (
+          <FooterA href={link.url} target="_blank" rel="noopener noreferrer" key={link.url}>
+            {link.label}
           </FooterA>
-        </FooterNav>
-      </FooterSection>
+        ))}
+      </FooterWrapper>
+      <FooterWrapper>
+        {madeWithLinks.map((link) => (
+          <FooterA href={link.url} title={link.label} target="_blank" rel="noopener noreferrer" key={link.url}>
+            <FooterSpan>{link.label}</FooterSpan>
+            <FooterImg src={link.icon} alt={link.label} />
+          </FooterA>
+        ))}
+      </FooterWrapper>
+
+      <FooterWrapper>
+        <FooterA href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
+          蜀ICP备2022009836号
+        </FooterA>
+      </FooterWrapper>
     </FooterContainer>
   )
 }

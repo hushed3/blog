@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { ImageItem } from '../../typings/pages'
-import { ImageContainer, Mask, PreviewContent, PreviewImg } from './style'
+import { ImageContainer, Mask, PreviewImg, PreviewWrapper } from './style'
 
 interface Props {
   id: number
@@ -17,9 +17,9 @@ const PreviewImage = ({ id, name, url, onClick }: Props) => {
   return ReactDOM.createPortal(
     <>
       <ImageContainer>
-        <PreviewContent layoutId={`preview-${id}`}>
+        <PreviewWrapper layoutId={`preview-${id}`}>
           <PreviewImg src={url} alt="" onClick={() => onClick()} />
-        </PreviewContent>
+        </PreviewWrapper>
       </ImageContainer>
       <Mask
         initial={{ opacity: 0 }}

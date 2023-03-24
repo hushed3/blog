@@ -12,6 +12,21 @@ export const GlobalContainer = styled.div`
   }
 `
 
+export const GlobalWrapper = styled.div`
+  margin-top: 1.6rem;
+  margin-bottom: 3rem;
+
+  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+`
+
+export const GlobalArticle = styled.article`
+  max-width: 100%;
+  min-width: 0;
+`
+
 export const GlobalCard = styled.div`
   border-radius: ${(props) => props.theme.borderRadiusLarge};
   background-color: rgb(${(props) => props.theme.cardBackground});
@@ -22,31 +37,6 @@ export const GlobalCard = styled.div`
 
   @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
     padding: 1rem;
-  }
-`
-
-export const GlobalSection = styled.section`
-  margin-top: 1.6rem;
-  margin-bottom: 3rem;
-
-  &.small {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  &.large {
-    margin-top: 4rem;
-    margin-bottom: 4rem;
-  }
-
-  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-
-    &.small {
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-    }
   }
 `
 
@@ -72,7 +62,7 @@ export const TagLink = styled(Link)`
   }
 
   &:hover {
-    color: rgb(${(props) => props.theme.primary5});
+    color: rgba(${(props) => props.theme.primary5}, 1);
     border-color: rgba(${(props) => props.theme.primary5}, 0.3);
     background-color: rgba(${(props) => props.theme.primary4}, 0.1);
   }

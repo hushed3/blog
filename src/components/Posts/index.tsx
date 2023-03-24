@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { SimplifiedData, YearListData } from '../../typings/pages'
 
-import { PostLink, PostSection, PostYear } from './style'
+import { PostLink, PostWrapper, PostYear } from './style'
 
 /**
  * @description 文章列表
@@ -25,7 +25,7 @@ export const Posts = ({ data = [], prefix }: { data: SimplifiedData[]; prefix?: 
   return (
     <>
       {years.map((year) => (
-        <PostSection key={year}>
+        <PostWrapper key={year}>
           <PostYear>{year}</PostYear>
           <div>
             {postsByYear[year].map((node: SimplifiedData) => (
@@ -35,7 +35,7 @@ export const Posts = ({ data = [], prefix }: { data: SimplifiedData[]; prefix?: 
               </PostLink>
             ))}
           </div>
-        </PostSection>
+        </PostWrapper>
       ))}
     </>
   )

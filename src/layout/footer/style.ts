@@ -3,16 +3,13 @@ import styled from '@emotion/styled'
 export const FooterContainer = styled.footer`
   padding: 3rem 0;
   font-family: ${(props) => props.theme.fontFamilyBase};
-`
-
-export const FooterSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.25rem;
 `
 
-export const FooterNav = styled.nav`
+export const FooterWrapper = styled.div`
   display: flex;
   color: ${(props) => props.theme.colorText3};
   gap: 0.25rem;

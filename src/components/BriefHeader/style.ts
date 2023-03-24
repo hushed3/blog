@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-export const BriefContainer = styled.header`
+export const BriefSection = styled.section`
   position: relative;
   overflow: hidden;
   width: 100%;
