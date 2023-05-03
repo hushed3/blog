@@ -14,8 +14,8 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <BlogThemeProvider>
-      <StoreUpdater />
       <GlobalStyle />
+      <StoreUpdater />
       <div className={styles.layout}>
         <Header />
         <main className={styles.main}>{children}</main>
