@@ -1,16 +1,15 @@
 import { createGlobalStyle } from 'antd-style'
 
 export const GlobalStyle = createGlobalStyle`
-
   @font-face {
     font-family: 'SF Mono';
     src: url('/fonts/SFMono/SFMono-Regular.woff2') format('woff2'),
-        url('/fonts/SFMono/SFMono-Regular.woff') format('woff'),
-        url('/fonts/SFMono/SFMono-Regular.ttf') format('truetype');
+    url('/fonts/SFMono/SFMono-Regular.woff') format('woff'),
+    url('/fonts/SFMono/SFMono-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-}
+  }
 
   *,
   *::before,
