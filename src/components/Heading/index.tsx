@@ -1,5 +1,6 @@
 import React from 'react'
-import { HeadingContainer, ViewAllLink, HeadingTitle } from './style'
+import { Link } from 'gatsby'
+import { useStyles } from './style'
 
 interface Props {
   title: string
@@ -12,12 +13,18 @@ interface Props {
  */
 
 export const Heading = ({ title, slug }: Props) => {
+  const { styles } = useStyles()
+
   return (
-    <HeadingContainer>
+    <div className={styles.heading}>
       <div>
-        <HeadingTitle>{title}</HeadingTitle>
+        <h2 className={styles.title}>{title}</h2>
       </div>
-      {slug && <ViewAllLink to={slug}>View all</ViewAllLink>}
-    </HeadingContainer>
+      {slug && (
+        <Link className={styles.link} to={slug}>
+          View all
+        </Link>
+      )}
+    </div>
   )
 }

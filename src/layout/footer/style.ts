@@ -1,46 +1,49 @@
-import styled from '@emotion/styled'
+import { createStyles } from 'antd-style'
 
-export const FooterContainer = styled.footer`
-  padding: 3rem 0;
-  font-family: ${(props) => props.theme.fontFamilyBase};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.25rem;
-`
+export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token }, prefixCls: string) => ({
+  footer: cx(
+    css`
+      padding: 3rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    `
+  ),
 
-export const FooterWrapper = styled.div`
-  display: flex;
-  color: ${(props) => props.theme.colorText3};
-  gap: 0.25rem;
-  margin: 0 1rem;
-`
+  headerContainer: css`
+    display: flex;
+    color: ${token.colorTextTertiary};
+    gap: 0.25rem;
+    margin: 0 1rem;
+  `,
 
-export const FooterSpan = styled.span`
-  display: flex;
-  align-items: center;
-  color: inherit;
-  font-size: 0.85rem;
-  line-height: 1.2;
-  padding: 0 0.5rem;
-`
+  item: css`
+    display: flex;
+    align-items: center;
+    color: inherit;
+    font-size: 0.85rem;
+    line-height: 1.2;
+    padding: 0 0.5rem;
+  `,
 
-export const FooterA = styled.a`
-  display: flex;
-  align-items: center;
-  color: inherit;
-  font-size: 0.85rem;
-  line-height: 1.2;
-  padding: 0 0.5rem;
+  href: css`
+    display: flex;
+    align-items: center;
+    color: inherit;
+    font-size: 0.85rem;
+    line-height: 1.2;
+    padding: 0 0.5rem;
 
-  &:hover {
-    text-decoration: underline;
-    color: ${(props) => props.theme.colorText1};
-  }
-`
+    &:hover {
+      text-decoration: underline;
+      color: ${token.colorTextSecondary};
+    }
+  `,
 
-export const FooterImg = styled.img`
-  display: inline-block;
-  max-height: 20px;
-  width: auto;
-`
+  image: css`
+    display: inline-block;
+    max-height: 20px;
+    width: auto;
+  `,
+}))

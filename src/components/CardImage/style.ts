@@ -1,45 +1,47 @@
-import styled from '@emotion/styled'
-import { animated } from '@react-spring/web'
-import { motion } from 'framer-motion'
-import LazyLoad from 'react-lazyload'
+import { createStyles } from 'antd-style'
 
-export const AnimatedWrapper = styled(animated.div)`
-  aspect-ratio: 16/10;
-  transition: box-shadow 0.5s;
-  will-change: transform;
-  will-change: width, height;
-`
+export const useStyles = createStyles(({ css, token, responsive: r }) => ({
+  animated: css`
+    aspect-ratio: 16/10;
+    transition: box-shadow 0.5s;
+    will-change: transform;
+    will-change: width, height;
+  `,
 
-export const ImageWrapper = styled(motion.div)`
-  width: 100%;
-  height: 100%;
+  motion: css`
+    width: 100%;
+    height: 100%;
 
-  @media screen and (max-width: ${(props) => props.theme.contentWidth}) {
-    border-radius: ${(props) => props.theme.borderRadiusSmall} !important;
-  }
-  @media screen and (max-width: ${(props) => props.theme.contentWidthSmall}) {
-    border-radius: ${(props) => props.theme.borderRadiusMini} !important;
-  }
-`
+    ${r({
+      laptop: css`
+        border-radius: ${token.borderRadiusSM}px;
+      `,
+      mobile: css`
+        border-radius: ${token.borderRadiusXS}px;
+      `,
+    })}
+  `,
 
-export const LazyLoadWrapper = styled(LazyLoad)`
-  height: 100%;
-  transition: opacity 0.5s ease-in-out;
-`
+  LazyLoad: css`
+    height: 100%;
+    transition: opacity 0.5s ease-in-out;
+  `,
 
-export const Image = styled.img`
-  object-fit: cover;
-  z-index: 10;
-  width: 100%;
-  height: 100%;
-  border-radius: ${(props) => props.theme.borderRadiusMedium};
-  box-shadow: 0 0 10px 0 ${(props) => props.theme.cardShadow};
-  border-radius: ${(props) => props.theme.borderRadiusLarge};
+  image: css`
+    object-fit: cover;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    border-radius: ${token.borderRadius};
+    box-shadow: 0 0 10px 0 ${token.boxShadowSecondary};
 
-  @media screen and (max-width: ${(props) => props.theme.contentWidth}) {
-    border-radius: ${(props) => props.theme.borderRadiusSmall} !important;
-  }
-  @media screen and (max-width: ${(props) => props.theme.contentWidthSmall}) {
-    border-radius: ${(props) => props.theme.borderRadiusMini} !important;
-  }
-`
+    ${r({
+      laptop: css`
+        border-radius: ${token.borderRadiusSM}px;
+      `,
+      mobile: css`
+        border-radius: ${token.borderRadiusXS}px;
+      `,
+    })}
+  `,
+}))

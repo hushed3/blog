@@ -1,29 +1,31 @@
 import React from 'react'
-import { BriefPurpleTitle, BriefSection, BriefSubTitle, BriefTitle } from './style'
+import { useStyles } from './style'
 
 interface Props {
   title?: string | null
   highlight?: number
-  subTitle?: string
+  description?: string
   children?: React.ReactNode
   index?: boolean
 }
 
 /**
- * @description 大标题
+ * @description 简介
  */
 
-export const BriefHeader = ({ highlight, subTitle, title, children }: Props) => {
+export const BriefHeader = ({ highlight, description, title, children }: Props) => {
+  const { styles } = useStyles()
+
   return (
-    <BriefSection>
-      {subTitle && (
-        <BriefSubTitle>
-          {highlight && <BriefPurpleTitle>{highlight}</BriefPurpleTitle>}
-          {subTitle}
-        </BriefSubTitle>
+    <section className={styles.brief}>
+      {description && (
+        <div className={styles.Description}>
+          {highlight && <span>{highlight}</span>}
+          {description}
+        </div>
       )}
-      {title && <BriefTitle>{title}</BriefTitle>}
+      {title && <div className={styles.title}>{title}</div>}
       {children && children}
-    </BriefSection>
+    </section>
   )
 }

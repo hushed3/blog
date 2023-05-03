@@ -1,33 +1,22 @@
-import { SimplifiedData } from '../typings/pages'
-
 interface Options {
-  shortTitle: boolean
-  thumbnails: boolean
+  shortTitle: boolean // 是否返回标题的缩写
+  thumbnails: boolean // 是否返回缩略图
 }
 
-export const getSimplifiedPosts = <T extends any[]>(posts: T, options?: Options): SimplifiedData[] =>
-  posts.map((post) => {
-    const { id, frontmatter, fields } = post.node
+export const getSimplifiedPosts = (edges: NodeItem[], options?: Options): SimplifiedData[] => {
+  return edges.map((edge) => {
+    const { id, frontmatter, fields } = edge.node
 
     return {
       id: id,
-      title: frontmatter?.title,
-      date: frontmatter?.date,
-      slug: fields?.slug,
-      tags: frontmatter?.tags,
-      categories: frontmatter?.categories,
-      thumbnail: options?.thumbnails ? frontmatter?.thumbnail?.childImageSharp?.gatsbyImageData : {},
-    } as SimplifiedData
+      title: frontmatter.title,
+      date: frontmatter.date,
+      slug: fields.slug,
+      tags: frontmatter.tags,
+      categories: frontmatter.categories,
+      thumbnail: options?.thumbnails ? frontmatter.thumbnail?.childImageSharp.gatsbyImageData : {},
+    }
   })
-
-export const slugify = <T>(string: T) => {
-  return (
-    string &&
-    `${string}`
-      .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)!
-      .map((x) => x.toLowerCase())
-      .join('-')
-  )
 }
 
 export function capitalize(string: string): string {

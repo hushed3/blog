@@ -1,29 +1,23 @@
 import path from 'path'
 
 const onCreateWebpackConfig = ({ stage, loaders, actions }: { stage: any; loaders: any; actions: any }) => {
-  if (stage === 'build-html' || stage === 'develop-html') {
-    actions.setWebpackConfig({
-      module: {
-        rules: [
-          {
-            test: /jsencrypt/,
-            use: loaders.null(),
-          },
-        ],
+  // if (stage === 'build-html' || stage === 'develop-html') {
+  actions.setWebpackConfig({
+    resolve: {
+      fallback: {
+        stream: false,
       },
-    })
-  }
-}
-
-// Helpers
-function slugify<T extends string>(str: T) {
-  return (
-    str &&
-    str
-      .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)!
-      .map((x) => x.toLowerCase())
-      .join('-')
-  )
+    },
+    module: {
+      rules: [
+        {
+          test: /jsencrypt/,
+          use: loaders.null(),
+        },
+      ],
+    },
+  })
+  // }
 }
 
 const createPages = async ({ graphql, actions }: { graphql: any; actions: any }) => {
@@ -37,7 +31,7 @@ const createPages = async ({ graphql, actions }: { graphql: any; actions: any })
   const result = await graphql(
     `
       {
-        allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+        allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
           edges {
             node {
               id
@@ -125,7 +119,7 @@ const createPages = async ({ graphql, actions }: { graphql: any; actions: any })
   const tagList = Array.from(tagSet)
   tagList.forEach((tag) => {
     createPage({
-      path: `/tags/${slugify(tag as string)}/`,
+      path: `/tags/${tag}/`,
       component: tagPage,
       context: {
         tag,
@@ -140,7 +134,7 @@ const createPages = async ({ graphql, actions }: { graphql: any; actions: any })
   const categoryList = Array.from(categorySet)
   categoryList.forEach((category) => {
     createPage({
-      path: `/categories/${slugify(category as string)}/`,
+      path: `/categories/${category}/`,
       component: categoryPage,
       context: {
         category,
@@ -174,7 +168,6 @@ const createNode = ({ node, actions, getNode }: { node: any; actions: any; getNo
     })
   }
 }
-
 
 module.exports.createPages = createPages
 module.exports.onCreateNode = createNode
