@@ -1,30 +1,48 @@
-import { ThemeProvider as EmotionThemeProvider } from '@emotion/react'
-import React, { createContext, useContext } from 'react'
-import useColor from '../hooks/useColor'
-import useTheme, { ThemeData } from '../hooks/useTheme'
-import { GlobalStyle } from './GlobalStyles'
+import React, { useCallback } from 'react'
+import {
+  CustomTokenParams,
+  extractStaticStyle,
+  StyleProvider as AntdStyleProvider,
+  ThemeProvider as AntdThemeProvider,
+} from 'antd-style'
 
-export type Content = {
-  theme: ThemeData
-  toggleTheme: (value?: ThemeData) => void
-}
+import { getAntdTheme, getCustomStylish, createCustomToken } from '../styles'
 
-export const BlogThemeContext = createContext<Content>({} as Content)
+import { useThemeStore } from '../store/useThemeStore'
+import { ConfigProvider } from 'antd'
 
 export const BlogThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, toggleTheme] = useTheme()
-  const [color] = useColor(theme)
+  const themeMode = useThemeStore((s) => s.themeMode)
 
-  const contextValue = { theme, toggleTheme }
+  const getCustomToken = useCallback((params: CustomTokenParams) => {
+    const base = createCustomToken(params)
+
+    return base
+  }, [])
 
   return (
     <>
-      <BlogThemeContext.Provider value={contextValue}>
-        <GlobalStyle theme={color} />
-        <EmotionThemeProvider theme={color}>{children}</EmotionThemeProvider>
-      </BlogThemeContext.Provider>
+      <ConfigProvider
+        theme={{
+          components: {
+            Card: {
+              paddingLG: 16,
+            },
+          },
+        }}
+      >
+        <AntdStyleProvider prefix={'site'}>
+          <AntdThemeProvider
+            prefixCls={'site'}
+            themeMode={themeMode}
+            theme={getAntdTheme}
+            customToken={getCustomToken}
+            customStylish={getCustomStylish}
+          >
+            {children}
+          </AntdThemeProvider>
+        </AntdStyleProvider>
+      </ConfigProvider>
     </>
   )
 }
-
-export const useBlogTheme = () => useContext(BlogThemeContext)

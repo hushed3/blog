@@ -1,28 +1,27 @@
 import React from 'react'
+import { BlogThemeProvider } from '../context/BlogThemeContext'
+import { GlobalStyle } from '../styles/global'
+import { StoreUpdater } from '../components/StoreUpdater'
 
-import { BgParticles } from '../components/BgParticles'
+// import { BgParticles } from '../components/BgParticles'
 import { Footer } from './footer/index'
 import { Header } from './header/index'
 
-import styled from '@emotion/styled'
-
-const LayoutContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-`
-
-const Main = styled.main`
-  flex: 1;
-`
+import { useStyles } from './style'
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
+  const { styles } = useStyles()
+
   return (
-    <LayoutContainer>
-      <Header />
-      <Main>{children}</Main>
-      <Footer />
-      <BgParticles />
-    </LayoutContainer>
+    <BlogThemeProvider>
+      <StoreUpdater />
+      <GlobalStyle />
+      <div className={styles.layout}>
+        <Header />
+        <main className={styles.main}>{children}</main>
+        <Footer />
+        {/* <BgParticles /> */}
+      </div>
+    </BlogThemeProvider>
   )
 }

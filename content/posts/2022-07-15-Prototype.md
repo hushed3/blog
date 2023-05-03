@@ -7,7 +7,7 @@ slug: prototype
 categories:
   - JavaScript
 tags:
-  - javascript
+  - JavaScript
 ---
 
 #### 原型

@@ -7,7 +7,7 @@ slug: publisher
 categories:
   - JavaScript
 tags:
-  - javascript
+  - JavaScript
 ---
 
 #### 实现一个发布者 Publisher 类

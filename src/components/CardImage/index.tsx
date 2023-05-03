@@ -1,7 +1,8 @@
 import { useSpring } from '@react-spring/web'
 import React, { useRef, useState } from 'react'
-import { ImageItem } from '../../typings/pages'
-import { AnimatedWrapper, Image, ImageWrapper, LazyLoadWrapper } from './style'
+import { useStyles } from './style'
+import { animated } from '@react-spring/web'
+import { motion } from 'framer-motion'
 
 interface Props {
   move: boolean
@@ -20,6 +21,7 @@ const trans = (x: number, y: number, s: number) => `perspective(600px) rotateX($
  * @description 3D交互卡片
  */
 const CardImage = ({ move, row, onClick }: Props) => {
+  const { styles } = useStyles()
   const imgRef = useRef<HTMLDivElement>(null)
   const [xys, set] = useState([0, 0, 1])
   const props = useSpring({ xys, config: { tension: 180, friction: 12 } })
@@ -38,7 +40,8 @@ const CardImage = ({ move, row, onClick }: Props) => {
 
   return (
     <>
-      <AnimatedWrapper
+      <animated.div
+        className={styles.animated}
         ref={imgRef}
         // eslint-disable-next-line react/prop-types
         style={{ transform: props.xys.to(trans) }}
@@ -46,19 +49,20 @@ const CardImage = ({ move, row, onClick }: Props) => {
         onMouseMove={mouseMove}
         onClick={() => onClick(row)}
       >
-        <ImageWrapper layoutId={`preview-${row.id}`}>
-          <LazyLoadWrapper style={{ height: '100%', opacity: show ? 1 : 0 }}>
-            <Image
+        <motion.div className={styles.motion} layoutId={`preview-${row.id}`}>
+          <div className={styles.LazyLoad} style={{ height: '100%', opacity: show ? 1 : 0 }}>
+            <img
+              className={styles.image}
               src={row.url}
               onLoad={() => {
                 setTimeout(() => {
                   setShow(true)
                 }, Math.floor(Math.random() * (200 - 1 + 1)) + 1)
               }}
-            ></Image>
-          </LazyLoadWrapper>
-        </ImageWrapper>
-      </AnimatedWrapper>
+            ></img>
+          </div>
+        </motion.div>
+      </animated.div>
     </>
   )
 }

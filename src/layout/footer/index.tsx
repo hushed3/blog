@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { FooterA, FooterContainer, FooterImg, FooterSpan, FooterWrapper } from './style'
+import { useStyles } from './style'
 import gatsby from '/src/assets/image/gatsby.png'
 import github from '/src/assets/image/github.png'
 
@@ -19,30 +19,40 @@ const madeWithLinks: Links[] = [
 export const Footer = () => {
   const year = new Date().getFullYear() === 2022 ? '' : `- ${new Date().getFullYear()}`
 
-  return (
-    <FooterContainer>
-      <FooterWrapper>
-        <FooterSpan className="desktop-only">© 2022 {year} By Hush</FooterSpan>
-        {links.map((link) => (
-          <FooterA href={link.url} target="_blank" rel="noopener noreferrer" key={link.url}>
-            {link.label}
-          </FooterA>
-        ))}
-      </FooterWrapper>
-      <FooterWrapper>
-        {madeWithLinks.map((link) => (
-          <FooterA href={link.url} title={link.label} target="_blank" rel="noopener noreferrer" key={link.url}>
-            <FooterSpan>{link.label}</FooterSpan>
-            <FooterImg src={link.icon} alt={link.label} />
-          </FooterA>
-        ))}
-      </FooterWrapper>
+  const { styles } = useStyles()
 
-      <FooterWrapper>
-        <FooterA href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
+  return (
+    <div className={styles.footer}>
+      <div className={styles.headerContainer}>
+        <span className={`${styles.item} desktop-only`}>© 2022 {year} By Hush</span>
+        {links.map((link) => (
+          <a className={styles.href} href={link.url} target="_blank" rel="noopener noreferrer" key={link.url}>
+            {link.label}
+          </a>
+        ))}
+      </div>
+
+      <div className={styles.headerContainer}>
+        {madeWithLinks.map((link) => (
+          <a
+            className={styles.href}
+            href={link.url}
+            title={link.label}
+            target="_blank"
+            rel="noopener noreferrer"
+            key={link.url}
+          >
+            <span className={styles.item}>{link.label}</span>
+            <img className={styles.image} src={link.icon} alt={link.label} />
+          </a>
+        ))}
+      </div>
+
+      <div className={styles.headerContainer}>
+        <a className={styles.href} href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
           蜀ICP备2022009836号
-        </FooterA>
-      </FooterWrapper>
-    </FooterContainer>
+        </a>
+      </div>
+    </div>
   )
 }

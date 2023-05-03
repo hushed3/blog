@@ -1,49 +1,59 @@
 import React from 'react'
-import { SideCard, SideLink, SideSticky, SideTag, SideTags, SideTitle } from './style'
+import { Link, navigate } from 'gatsby'
+import { Card, Tag } from 'antd'
+import { useStyles } from './style'
 
-import { useGetTaxonomies } from '../../hooks/useGetTaxonomies'
-import { slugify } from '../../utils/helpers'
+import { useGetTaxonomies } from '../../hooks'
 
 /**
  * @description 归档页面 - 侧边类别、标签信息
  */
 
 export const BlogSidebar = () => {
-  const data = useGetTaxonomies()
-  const categories = data.categories.group
-  const tags = data.tags.group
+  const { styles } = useStyles()
+  const { tags, categories } = useGetTaxonomies()
 
   return (
     <>
       <aside>
-        <SideSticky>
-          <SideCard>
-            <SideTitle>类别</SideTitle>
+        <div className={styles.sticky}>
+          <Card bordered={false} className={styles.card}>
+            <div className={styles.title}>类别</div>
             {categories
               .filter((category) => category.name !== 'Highlight')
               .map((category) => {
                 return (
-                  <SideLink key={category.name} to={`/categories/${slugify(category.name)}`} activeClassName="active">
+                  <Link
+                    className={styles.link}
+                    key={category.name}
+                    to={`/categories/${category.name}`}
+                    activeClassName="active"
+                  >
                     <span>{category.name}</span>
                     <span>{category.totalCount}</span>
-                  </SideLink>
+                  </Link>
                 )
               })}
-          </SideCard>
+          </Card>
 
-          <SideCard>
-            <SideTitle>标签</SideTitle>
-            <SideTags>
-              {tags.map((tag) => {
-                return (
-                  <SideTag key={tag.name} to={`/tags/${slugify(tag.name)}`} activeClassName="active">
-                    {tag.name}
-                  </SideTag>
-                )
-              })}
-            </SideTags>
-          </SideCard>
-        </SideSticky>
+          <Card bordered={false} className={styles.card}>
+            <div className={styles.title}>标签</div>
+            {tags.map((tag) => {
+              return (
+                <Tag
+                  key={tag.name}
+                  className={styles.tag}
+                  bordered={false}
+                  onClick={() => {
+                    navigate(`/tags/${tag.name}`)
+                  }}
+                >
+                  {tag.name}
+                </Tag>
+              )
+            })}
+          </Card>
+        </div>
       </aside>
     </>
   )
