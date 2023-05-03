@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import { ConfigProvider } from 'antd'
 import {
   CustomTokenParams,
   extractStaticStyle,
@@ -6,10 +7,9 @@ import {
   ThemeProvider as AntdThemeProvider,
 } from 'antd-style'
 
-import { getAntdTheme, getCustomStylish, createCustomToken } from '../styles'
-
 import { useThemeStore } from '../store/useThemeStore'
-import { ConfigProvider } from 'antd'
+import { getAntdTheme, getCustomStylish, createCustomToken } from '../styles'
+;(global as any)['__ANTD_CACHE__'] = extractStaticStyle.cache
 
 export const BlogThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const themeMode = useThemeStore((s) => s.themeMode)
@@ -31,7 +31,7 @@ export const BlogThemeProvider = ({ children }: { children: React.ReactNode }) =
           },
         }}
       >
-        <AntdStyleProvider prefix={'site'}>
+        <AntdStyleProvider prefix={'site'} cache={extractStaticStyle.cache}>
           <AntdThemeProvider
             prefixCls={'site'}
             themeMode={themeMode}
