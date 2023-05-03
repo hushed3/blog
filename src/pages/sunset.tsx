@@ -1,20 +1,17 @@
 import { AnimatePresence, LayoutGroup } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
-import Helmet from 'react-helmet'
 
 import CardImage from '../components/CardImage'
 import PreviewImage from '../components/PreviewImage'
 import { SEO } from '../components/SEO'
 import { Layout } from '../layout/index'
-import { SunsetContainer } from '../styles/pages'
-import config from '../utils/config'
+
+import { useStyles } from '../styles/pages/sunset.style'
 
 import { getServerData } from '../data/index'
-import { ImageItem } from '../typings/pages'
 
 export default function Sunset() {
-  const title = '夕阳'
-  const description = 'Sunset & 夕阳 & 日落'
+  const { styles } = useStyles()
   const [imageList, setImageList] = useState<ImageItem[]>([])
   const [selected, setSelected] = useState<ImageItem | null>(null)
   const [move, setMove] = useState(true)
@@ -50,14 +47,13 @@ export default function Sunset() {
   return (
     <>
       <LayoutGroup>
-        <Helmet title={`${title} | ${config.siteTitle}`} />
-        <SEO customDescription={description} />
+        <SEO helmetTitle="夕阳" customDescription="Sunset & 夕阳 & 日落" />
 
-        <SunsetContainer>
+        <div className={styles.container}>
           {imageList?.map((item, idx: number) => {
             return <CardImage move={move} key={item.id} row={{ ...item, idx }} onClick={onClick}></CardImage>
           })}
-        </SunsetContainer>
+        </div>
 
         <AnimatePresence>{selected && <PreviewImage {...selected} onClick={onClick}></PreviewImage>}</AnimatePresence>
       </LayoutGroup>

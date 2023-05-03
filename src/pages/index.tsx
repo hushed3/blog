@@ -1,37 +1,24 @@
 import { graphql, Link, PageProps } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import React, { useMemo } from 'react'
-import Helmet from 'react-helmet'
-import { GlobalContainer } from '../components/global'
-import {
-  BriefDescription,
-  BriefWrapper,
-  CardTagLinks,
-  CardTime,
-  CardTitleLink,
-  HighlightCard,
-  HighlightPreview,
-  IndexWrapper,
-  RecentCard,
-  RecentPreview,
-} from '../styles/pages'
 
-import { IndexQueryQuery } from '../../gatsby-graphql'
 import { BriefHeader } from '../components/BriefHeader'
 import { Heading } from '../components/Heading'
 import { SEO } from '../components/SEO'
 import { Layout } from '../layout/index'
-import config from '../utils/config'
-import { getSimplifiedPosts, slugify } from '../utils/helpers'
+import { getSimplifiedPosts } from '../utils/helpers'
+
+import { useStyles } from '../styles/pages/index.style'
 
 /**
  * @description 首页
  * @date 23/10/2022
  * @export
- * @param {PageProps<IndexQueryQuery>} { data }
+ * @param {PageProps<IndexPageProps>} { data }
  * @return {*}
  */
-export default function Index({ data }: PageProps<IndexQueryQuery>) {
+export default function Index({ data }: PageProps<IndexPageProps>) {
+  const { styles } = useStyles()
   const latest = data.latest.edges
   const Highlights = data.Highlights.edges
   const simplifiedLatest = useMemo(() => getSimplifiedPosts(latest), [latest])
@@ -42,70 +29,71 @@ export default function Index({ data }: PageProps<IndexQueryQuery>) {
 
   return (
     <>
-      <Helmet title={config.siteTitle} />
       <SEO />
 
-      <GlobalContainer>
-        <BriefWrapper>
-          <BriefHeader title="Hey, I'm  &nbsp;&nbsp; 𝓱𝓾𝓼𝓱">
-            <BriefDescription>
+      <div className={styles.container}>
+        <div className={styles.brief}>
+          <BriefHeader title="Hey, I'm &nbsp; 𝓱𝓾𝓼𝓱">
+            <div className={styles.briefDescription}>
               𝑰 𝒉𝒐𝒑𝒆 𝒚𝒐𝒖 𝒍𝒊𝒗𝒆 𝒂 𝒍𝒊𝒇𝒆 𝒚𝒐𝒖‘𝒓𝒆 𝒑𝒓𝒐𝒖𝒅 𝒐𝒇. 𝑰𝒇 𝒚𝒐𝒖 𝒇𝒊𝒏𝒅 𝒕𝒉𝒂𝒕 𝒚𝒐𝒖’𝒓𝒆 𝒏𝒐𝒕, 𝑰 𝒉𝒐𝒑𝒆 𝒚𝒐𝒖 𝒉𝒂𝒗𝒆 𝒕𝒉𝒆 𝒔𝒕𝒓𝒆𝒏𝒈𝒕𝒉 𝒕𝒐 𝒔𝒕𝒂𝒓𝒕
               𝒂𝒍𝒍 𝒐𝒗𝒆𝒓 𝒂𝒈𝒂𝒊𝒏. <br />
               <br />
               我希望你过着自己引以为傲的生活。 如果你发现事实并非如此，我希望你有勇气重新开始。
-            </BriefDescription>
-            <BriefDescription>𝑯𝒂𝒗𝒆 𝒂 𝒈𝒐𝒐𝒅 𝒅𝒂𝒚... </BriefDescription>
+            </div>
+            <div className={styles.briefDescription}>𝑯𝒂𝒗𝒆 𝒂 𝒈𝒐𝒐𝒅 𝒅𝒂𝒚... </div>
           </BriefHeader>
-        </BriefWrapper>
-      </GlobalContainer>
+        </div>
 
-      <GlobalContainer>
-        <IndexWrapper>
+        <div className={styles.previewWrapper}>
           <Heading title="最近内容" slug="/blog" />
-          <RecentPreview>
+          <div className={styles.preview}>
             {simplifiedLatest.map((post) => {
               return (
-                <RecentCard key={post.slug}>
-                  <CardTime>{post.date}</CardTime>
-                  <CardTitleLink to={post.slug}>{post.title}</CardTitleLink>
-                  <CardTagLinks>
+                <div className={styles.recentCard} key={post.slug}>
+                  <time className={styles.time}>{post.date}</time>
+                  <Link className={styles.titleLink} to={post.slug}>
+                    {post.title}
+                  </Link>
+                  <div className={styles.tagLinks}>
                     {post.categories &&
                       post.categories
                         .filter((cat) => cat !== 'Highlight')
                         .map((cat) => {
                           return (
-                            <Link to={`/categories/${slugify(cat)}`} key={slugify(cat)}>
+                            <Link to={`/categories/${cat}`} key={cat}>
                               {cat}
                             </Link>
                           )
                         })}
-                  </CardTagLinks>
-                </RecentCard>
+                  </div>
+                </div>
               )
             })}
-          </RecentPreview>
-        </IndexWrapper>
+          </div>
+        </div>
         {/* 查找posts目录下带有 Highlight 的markdown文件 */}
         {simplifiedHighlights.length > 0 && (
-          <IndexWrapper>
+          <div className={styles.previewWrapper}>
             <Heading title="热门内容" />
 
-            <HighlightPreview>
+            <div className={styles.preview}>
               {simplifiedHighlights.map((post) => {
                 return (
-                  <HighlightCard key={`Highlight-${post.slug}`}>
+                  <div className={styles.highlightCard} key={`Highlight-${post.slug}`}>
                     {post.thumbnail && <GatsbyImage image={post.thumbnail} alt="" />}
                     <div className="content">
-                      <CardTime>{post.date}</CardTime>
-                      <CardTitleLink to={post.slug}>{post.title}</CardTitleLink>
+                      <time className={styles.time}>{post.date}</time>
+                      <Link className={styles.titleLink} to={post.slug}>
+                        {post.title}
+                      </Link>
                     </div>
-                  </HighlightCard>
+                  </div>
                 )
               })}
-            </HighlightPreview>
-          </IndexWrapper>
+            </div>
+          </div>
         )}
-      </GlobalContainer>
+      </div>
     </>
   )
 }
@@ -116,7 +104,7 @@ export const pageQuery = graphql`
   query IndexQuery {
     latest: allMarkdownRemark(
       limit: 6
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { frontmatter: { date: DESC } }
       filter: { frontmatter: { template: { eq: "post" } } }
     ) {
       edges {
@@ -136,7 +124,7 @@ export const pageQuery = graphql`
     }
     Highlights: allMarkdownRemark(
       limit: 12
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { frontmatter: { date: DESC } }
       filter: { frontmatter: { categories: { eq: "Highlight" } } }
     ) {
       edges {

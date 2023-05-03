@@ -1,19 +1,24 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
-import config from '../../utils/config'
+import { useSiteStore } from '../../store'
 
 interface Props {
   postNode?: any | null
   postPath?: string | null
   postSEO?: boolean
   customDescription?: string
+  helmetTitle?: string
 }
 
-export const SEO = ({ postNode, postPath, postSEO, customDescription }: Props) => {
+export const SEO = ({ postNode, postPath, postSEO, customDescription, helmetTitle }: Props) => {
+  const siteData = useSiteStore((state) => state.siteData)
+
+  const HelmetTitle = helmetTitle ? `${helmetTitle} | ${siteData.siteTitle}` : siteData.siteTitle
+
   let title
   let description
-  let image = config.siteLogo
+  let image = siteData.siteLogo
   let postURL
 
   if (postSEO) {
@@ -25,19 +30,19 @@ export const SEO = ({ postNode, postPath, postSEO, customDescription }: Props) =
       image = postMeta?.thumbnail?.childImageSharp?.gatsbyImageData.images.fallback.src
     }
 
-    postURL = `${config.siteUrl}${postPath}`
+    postURL = `${siteData.siteUrl}${postPath}`
   } else {
-    title = config.siteTitle
-    description = customDescription || config.description
+    title = siteData.siteTitle
+    description = customDescription || siteData.siteDescription
   }
 
-  image = `${config.siteUrl}${image}`
+  image = `${siteData.siteUrl}${image}`
 
   const schemaOrgJSONLD: any[] = [
     {
       '@context': 'http://schema.org',
       '@type': 'WebSite',
-      url: config.siteUrl,
+      url: siteData.siteUrl,
       name: title,
       alternateName: title!,
     },
@@ -63,7 +68,7 @@ export const SEO = ({ postNode, postPath, postSEO, customDescription }: Props) =
       {
         '@context': 'http://schema.org',
         '@type': 'BlogPosting',
-        url: config.siteUrl,
+        url: siteData.siteUrl,
         name: title,
         alternateName: title,
         headline: title,
@@ -77,22 +82,25 @@ export const SEO = ({ postNode, postPath, postSEO, customDescription }: Props) =
   }
 
   return (
-    <Helmet>
-      <meta name="description" content={description as string} />
-      <meta name="image" content={image} />
+    <>
+      <Helmet title={HelmetTitle}>
+        <link rel="shortcut iconnnnnnnnnnnn" type="image/png" />
+        <meta name="description" content={description as string} />
+        <meta name="image" content={image} />
 
-      <script type="application/ld+json">{JSON.stringify(schemaOrgJSONLD)}</script>
+        <script type="application/ld+json">{JSON.stringify(schemaOrgJSONLD)}</script>
 
-      <meta property="og:url" content={postSEO ? postURL : config.siteUrl} />
-      {postSEO && <meta property="og:type" content="article" />}
-      <meta property="og:title" content={title as string} />
-      <meta property="og:description" content={description as string} />
-      <meta property="og:image" content={image} />
+        <meta property="og:url" content={postSEO ? postURL : siteData.siteUrl} />
+        {postSEO && <meta property="og:type" content="article" />}
+        <meta property="og:title" content={title as string} />
+        <meta property="og:description" content={description as string} />
+        <meta property="og:image" content={image} />
 
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:title" content={title as string} />
-      <meta name="twitter:description" content={description as string} />
-      <meta name="twitter:image" content={image} />
-    </Helmet>
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={title as string} />
+        <meta name="twitter:description" content={description as string} />
+        <meta name="twitter:image" content={image} />
+      </Helmet>
+    </>
   )
 }

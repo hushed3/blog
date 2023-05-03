@@ -1,18 +1,25 @@
 import { graphql, useStaticQuery } from 'gatsby'
-import { TaxonomyQueryQuery } from '../../gatsby-graphql'
 
-export const useGetTaxonomies = (): TaxonomyQueryQuery => {
-  const data = useStaticQuery(graphql`
+interface GroupItem {
+  name: string
+  totalCount: number
+}
+
+type Group = Record<'group', GroupItem[]>
+
+type Taxonomies = Record<'tags' | 'categories', Group>
+
+export const useGetTaxonomies = () => {
+  const { tags, categories } = useStaticQuery<Taxonomies>(graphql`
     query TaxonomyQuery {
       tags: allMarkdownRemark {
-        group(field: frontmatter___tags) {
+        group(field: { frontmatter: { tags: SELECT } }) {
           name: fieldValue
           totalCount
         }
       }
-
       categories: allMarkdownRemark {
-        group(field: frontmatter___categories) {
+        group(field: { frontmatter: { categories: SELECT } }) {
           name: fieldValue
           totalCount
         }
@@ -20,5 +27,5 @@ export const useGetTaxonomies = (): TaxonomyQueryQuery => {
     }
   `)
 
-  return data
+  return { tags: tags.group, categories: categories.group }
 }

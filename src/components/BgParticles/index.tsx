@@ -1,29 +1,22 @@
-import styled from '@emotion/styled'
 import React, { useCallback } from 'react'
 import Particles from 'react-particles'
 import { loadFull } from 'tsparticles'
-
-const BgAnimation = styled(Particles)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-`
+import { useStyles } from './style'
 
 /**
  * @description 背景动画
  */
 
 export const BgParticles = () => {
+  const { styles } = useStyles()
   const particlesInit = useCallback(async (engine: any) => {
     await loadFull(engine)
   }, [])
 
   return (
     <>
-      <BgAnimation
+      <Particles
+        className={styles.animation}
         id="tsparticles"
         init={particlesInit}
         options={{

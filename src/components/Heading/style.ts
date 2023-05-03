@@ -1,26 +1,31 @@
-import styled from '@emotion/styled'
-import { TagLink } from '../global'
+import { createStyles } from 'antd-style'
 
-export const HeadingContainer = styled.h2`
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 0;
-  padding: 0;
-`
+export const useStyles = createStyles(({ css, stylish, responsive: r }) => ({
+  heading: css`
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 0;
+    padding: 0;
+  `,
 
-export const HeadingTitle = styled.div`
-  margin-bottom: 0.75rem;
-  font-family: ${(props) => props.theme.fontFamilyBase};
-  font-weight: 700;
-  letter-spacing: -0.03rem;
-  font-size: 1.4rem;
-  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
-    font-size: 1.15rem;
-  }
-`
+  title: css`
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    letter-spacing: -0.03rem;
+    font-size: 1.4rem;
 
-export const ViewAllLink = styled(TagLink)`
-  font-size: 0.8rem;
-`
+    ${r({
+      laptop: css`
+        font-size: 1.15rem;
+      `,
+    })}
+  `,
+
+  link: css`
+    ${stylish.tagLink}
+
+    font-size: 0.8rem;
+  `,
+}))

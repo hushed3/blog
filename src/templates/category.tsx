@@ -1,31 +1,26 @@
 import { graphql, PageProps } from 'gatsby'
 import React, { useMemo } from 'react'
-import Helmet from 'react-helmet'
 import { BriefHeader } from '../components/BriefHeader'
 import { BlogSidebar } from '../components/Sidebar/BlogSidebar'
 
-import { CategoryPageQuery, CategoryPageQueryVariables } from '../../gatsby-graphql'
 import { Posts } from '../components/Posts'
 import { SEO } from '../components/SEO'
 import { Layout } from '../layout/index'
-import { TemplateArticle, TemplateContainer } from '../styles/templates'
-import config from '../utils/config'
 import { getSimplifiedPosts } from '../utils/helpers'
+import { useStyles } from '../styles/templates/style'
 
 /**
  * @description 类别页面
  * @date 23/10/2022
  * @export
- * @param {PageProps<CategoryPageQuery, CategoryPageQueryVariables>} {
+ * @param {PageProps<CategoryPageProps, CategoryData>} {
  *   data,
  *   pageContext,
  * }
  * @return {*}
  */
-export default function CategoryTemplate({
-  data,
-  pageContext,
-}: PageProps<CategoryPageQuery, CategoryPageQueryVariables>) {
+export default function CategoryTemplate({ data, pageContext }: PageProps<CategoryPageProps, CategoryData>) {
+  const { styles } = useStyles()
   const { category } = pageContext
   const { totalCount } = data.allMarkdownRemark
   const posts = data.allMarkdownRemark.edges
@@ -34,43 +29,40 @@ export default function CategoryTemplate({
 
   return (
     <>
-      <Helmet title={`${category} | ${config.siteTitle}`} />
-      <SEO />
+      <SEO helmetTitle={category} />
 
-      <TemplateContainer>
-        <TemplateArticle>
-          <BriefHeader highlight={totalCount} subTitle={message} title={category} />
+      <div className={styles.container}>
+        <div>
+          <BriefHeader highlight={totalCount} description={message} title={category} />
           <Posts data={simplifiedPosts} />
-        </TemplateArticle>
+        </div>
         <BlogSidebar />
-      </TemplateContainer>
+      </div>
     </>
   )
 }
 
 CategoryTemplate.Layout = Layout
 
-export const pageQuery = graphql`
-  query CategoryPage($category: String) {
-    allMarkdownRemark(
-      sort: { order: DESC, fields: [frontmatter___date] }
-      filter: { frontmatter: { categories: { in: [$category] } } }
-    ) {
-      totalCount
-      edges {
-        node {
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            date(formatString: "MMMM DD, YYYY")
-            tags
-            categories
-          }
+export const pageQuery = graphql`query CategoryPage($category: String) {
+  allMarkdownRemark(
+    sort: {frontmatter: {date: DESC}}
+    filter: {frontmatter: {categories: {in: [$category]}}}
+  ) {
+    totalCount
+    edges {
+      node {
+        id
+        fields {
+          slug
+        }
+        frontmatter {
+          title
+          date(formatString: "MMMM DD, YYYY")
+          tags
+          categories
         }
       }
     }
   }
-`
+}`

@@ -1,13 +1,26 @@
 import { graphql, PageProps } from 'gatsby'
 import React from 'react'
-import Helmet from 'react-helmet'
-import { PostBySlugQuery } from '../../gatsby-graphql'
 
 import { SEO } from '../components/SEO'
 import { PostSidebar as TemplateSide } from '../components/Sidebar/PostSidebar'
 import { Layout } from '../layout/index'
-import { TemplateArticle, TemplateContainer, TemplateTitle, TemplateWrapper } from '../styles/templates'
-import config from '../utils/config'
+import { useStyles } from '../styles/templates/style'
+
+interface Props {
+  markdownRemark: {
+    html: string
+    excerpt?: string
+    headings: { id: string }[]
+    fields: { slug?: string }
+    frontmatter: {
+      title: string | null
+      date: any | null
+      tags: string[]
+      categories: string[]
+      thumbnail?: { childImageSharp?: { gatsbyImageData: any } }
+    }
+  }
+}
 
 /**
  * @description 文章页面
@@ -16,24 +29,23 @@ import config from '../utils/config'
  * @param {PageProps<PostBySlugQuery>} { data }
  * @return {*}
  */
-export default function PostTemplate({ data }: PageProps<PostBySlugQuery>) {
-  const post = data.markdownRemark!
-  const { headings } = post
-  const { tags, categories, title, date, thumbnail } = { ...post?.frontmatter }
-  const { slug } = { ...post?.fields }
+export default function PostTemplate({ data }: PageProps<Props>) {
+  const { styles } = useStyles()
+  const { markdownRemark } = data
+  const { headings, fields, html } = markdownRemark
+  const { tags, categories, title, date, thumbnail } = markdownRemark.frontmatter
 
   return (
     <>
-      <Helmet title={`${title} | ${config.siteTitle}`} />
-      <SEO postPath={slug} postNode={post} postSEO />
-      <TemplateContainer>
-        <TemplateArticle>
-          <TemplateTitle>{title}</TemplateTitle>
-          <TemplateWrapper id={slug as string} dangerouslySetInnerHTML={{ __html: post?.html as string }} />
-        </TemplateArticle>
+      <SEO helmetTitle={title as string} postPath={fields.slug} postNode={markdownRemark} postSEO />
+      <div className={styles.container}>
+        <div>
+          <h2 className={styles.title}>{title}</h2>
+          <div id={fields.slug} dangerouslySetInnerHTML={{ __html: html }} />
+        </div>
 
         <TemplateSide date={date} tags={tags} categories={categories} thumbnail={thumbnail} headings={headings} />
-      </TemplateContainer>
+      </div>
     </>
   )
 }
