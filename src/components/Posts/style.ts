@@ -1,55 +1,51 @@
-import styled from '@emotion/styled'
-import { Link } from 'gatsby'
-import { GlobalWrapper } from '../global'
+import { createStyles } from 'antd-style'
 
-export const PostWrapper = styled(GlobalWrapper)``
+export const useStyles = createStyles(({ css, responsive: r, token }) => ({
+  years: css`
+    color: ${token.colorPrimaryHover};
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid ${token.colorBorder};
+    font-size: 1.65rem;
+    font-weight: bold;
+  `,
 
-export const PostLink = styled(Link)`
-  display: grid;
-  grid-template-columns: 1fr 120px;
-  gap: 1rem;
-  padding: 0.3rem 0;
-  margin: 1.6rem 0;
-  color: ${(props) => props.theme.colorText1};
-  background-color: transparent;
+  link: css`
+    display: flex;
+    padding: 0.3rem 0;
+    margin: 1.6rem 0;
+    background-color: transparent;
 
-  &:hover {
-    color: ${(props) => props.theme.colorText0};
-    time {
-      color: ${(props) => props.theme.colorText0};
+    &:hover {
+      h5 {
+        color: ${token.colorText};
+      }
+      time {
+        color: ${token.colorText};
+      }
     }
-  }
 
-  h5 {
-    margin: 0;
-    font-size: 0.95rem;
-    font-weight: 600;
-    font-family: ${(props) => props.theme.fontFamilyBase};
-    line-height: 1.3;
-    color: inherit;
+    h5 {
+      flex: 1;
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: ${token.colorTextSecondary};
 
-    @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
-      font-size: 0.85rem;
+      ${r({
+        laptop: css`
+          font-size: 0.85rem;
+          font-weight: 500;
+        `,
+      })}
+    }
+
+    time {
+      display: block;
+      margin-left: auto;
+      color: ${token.colorTextTertiary};
+      font-size: 0.8rem;
       font-weight: 500;
     }
-  }
-
-  time {
-    display: block;
-    margin-left: auto;
-    font-family: ${(props) => props.theme.fontFamilyMonospace};
-    color: ${(props) => props.theme.colorText3};
-    font-size: 0.8rem;
-    font-weight: 500;
-  }
-`
-
-export const PostYear = styled.h2`
-  color: rgb(${(props) => props.theme.primary4});
-  padding-bottom: 0.8rem;
-  border-bottom: 2px solid ${(props) => props.theme.colorBorder0};
-  font-size: 1.6rem;
-  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
-    font-size: 1.4rem;
-  }
-`
+  `,
+}))

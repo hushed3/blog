@@ -1,12 +1,10 @@
 import { graphql, PageProps } from 'gatsby'
 import React from 'react'
-import Helmet from 'react-helmet'
 import { MeBySlugQuery } from '../../gatsby-graphql'
 
 import { SEO } from '../components/SEO'
 import { MeSidebar } from '../components/Sidebar/MeSidebar'
-import { TemplateArticle, TemplateContainer, TemplateTitle, TemplateWrapper } from '../styles/templates'
-import config from '../utils/config'
+import { useStyles } from '../styles/templates/style'
 
 /**
  * @description 个人介绍页面
@@ -16,23 +14,21 @@ import config from '../utils/config'
  * @return {*}
  */
 export default function MeTemplate({ data }: PageProps<MeBySlugQuery>) {
+  const { styles } = useStyles()
   const post = data.markdownRemark!
   const { title } = { ...post.frontmatter }
 
   return (
     <>
-      <Helmet title={`${title} | ${config.siteTitle}`} />
-      <SEO />
-      <TemplateContainer>
-        <TemplateArticle>
-          <TemplateTitle>{title}</TemplateTitle>
-          <TemplateWrapper>
-            <div dangerouslySetInnerHTML={{ __html: post.html as string }} />
-          </TemplateWrapper>
-        </TemplateArticle>
+      <SEO helmetTitle={title as string} />
+      <div className={styles.container}>
+        <div>
+          <h2 className={styles.title}>{title}</h2>
+          <div dangerouslySetInnerHTML={{ __html: post.html as string }} />
+        </div>
 
         <MeSidebar />
-      </TemplateContainer>
+      </div>
     </>
   )
 }

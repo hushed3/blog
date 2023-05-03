@@ -1,20 +1,19 @@
 import React from 'react'
-import Helmet from 'react-helmet'
+import { Result } from 'antd'
 
-import { BriefHeader } from '../components/BriefHeader'
 import { SEO } from '../components/SEO'
 import { Layout } from '../layout/index'
-import config from '../utils/config'
+import { useStyles } from '../styles/pages/404.style'
+import NotFoundSvg from '../assets/svg/notFound.svg'
 
 export default function FourOhFour() {
+  const { styles } = useStyles()
+
   return (
     <>
-      <Helmet title={`404 | ${config.siteTitle}`} />
-      <SEO />
-      <div className="container">
-        <BriefHeader title="404">
-          <p className="hero-description">Not found.</p>
-        </BriefHeader>
+      <SEO helmetTitle="404" />
+      <div className={styles.container}>
+        <Result icon={<NotFoundSvg />} subTitle="Not found.." />
       </div>
     </>
   )

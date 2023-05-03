@@ -1,6 +1,6 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { useBlogTheme } from '../../context/BlogThemeContext'
+import { Link } from 'gatsby'
 
 import favicon from '../../assets/image/logo.ico'
 
@@ -8,10 +8,9 @@ import BlogSvg from '../../assets/svg/blog.svg'
 import GithubSvg from '../../assets/svg/github.svg'
 import SunsetSvg from '../../assets/svg/sunset.svg'
 
-import DarkIcon from '../../assets/svg/dark.svg'
-import LightIcon from '../../assets/svg/light.svg'
+import { useStyles } from './style'
 
-import { HeaderA, HeaderContainer, HeaderLeft, HeaderLink, HeaderWrapper, ThemeToggle } from './style'
+import ThemeSwitch from '../../components/ThemeSwitch'
 
 const mainHeaderItems = [
   // { url: '/me', icon: null, label: 'About', name: ' me ', show: true },
@@ -22,47 +21,41 @@ const mainHeaderItems = [
 const socialHeaderItems = [{ url: 'https://github.com/hushed3', icon: GithubSvg, label: 'GitHub' }]
 
 export const Header = () => {
-  const { theme, toggleTheme } = useBlogTheme()
-  console.log(theme)
-
-  const handleTheme = () => {
-    toggleTheme()
-  }
+  const { styles } = useStyles()
 
   return (
-    <HeaderWrapper>
-      <HeaderContainer>
-        <Helmet>
-          <link rel="shortcut icon" type="image/png" href={favicon} />
-        </Helmet>
-        <HeaderLeft>
-          <HeaderLink to="/" className="J">
-            <span>𝓙</span>
-          </HeaderLink>
-          {mainHeaderItems.map(
-            (item) =>
-              item.show && (
-                <HeaderLink to={item.url} key={item.label}>
-                  <span className="icon">
-                    <item.icon />
-                  </span>
-                  <span className="label">{item.name}</span>
-                </HeaderLink>
-              )
-          )}
+    <>
+      <Helmet>
+        <link rel="shortcut icon" type="image/png" href={favicon} />
+      </Helmet>
+      <div className={styles.header}>
+        <div className={styles.headerContainer}>
+          <div className={styles.navigations}>
+            <Link to="/" className={styles.navigationLink}>
+              <span className="logo">𝓙</span>
+            </Link>
+            {mainHeaderItems.map(
+              (item) =>
+                item.show && (
+                  <Link className={styles.navigationLink} to={item.url} key={item.label}>
+                    <span className="icon">
+                      <item.icon />
+                    </span>
+                    <span className="label">{item.name}</span>
+                  </Link>
+                )
+            )}
 
-          {socialHeaderItems.map((item) => (
-            <HeaderA key={item.label} href={item.url} target="_blank" rel="noreferrer" to={''}>
-              <item.icon />
-            </HeaderA>
-          ))}
-        </HeaderLeft>
+            {socialHeaderItems.map((item) => (
+              <a className={styles.navigationLink} key={item.label} href={item.url} target="_blank" rel="noreferrer">
+                <item.icon />
+              </a>
+            ))}
+          </div>
 
-        <ThemeToggle>
-          <span style={{ display: 'none' }}>{theme}</span>
-          <button onClick={handleTheme}>{theme === 'light' ? <LightIcon /> : <DarkIcon />}</button>
-        </ThemeToggle>
-      </HeaderContainer>
-    </HeaderWrapper>
+          <ThemeSwitch />
+        </div>
+      </div>
+    </>
   )
 }

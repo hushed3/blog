@@ -3,13 +3,13 @@ module.exports = {
     DEV_SSR: false,
   },
   siteMetadata: {
-    title: 'Hush',
+    title: 'Hush blog',
     author: {
-      name: 'Hush',
+      name: 'J',
     },
     pathPrefix: '/',
     siteUrl: 'https://blog.hushes.cn/',
-    description: '',
+    description: 'Web front-end development engineer',
     feedUrl: 'https://blog.hushes.cn/rss.xml',
     logo: 'https://blog.hushes.cn/logo.png',
   },
@@ -18,7 +18,6 @@ module.exports = {
     // Meta
     // ===================================================================================
 
-    `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-graphql-codegen`,
       options: {
@@ -35,7 +34,7 @@ module.exports = {
         short_name: 'Hush',
         description: 'gatsby-plugin-manifest',
         start_url: '/',
-        background_color: 'white',
+        background_color: 'rgb(21, 21, 23)',
         theme_color: '#646cff',
         display: 'minimal-ui',
         icon: `./src/assets/image/logo.png`,
@@ -79,30 +78,28 @@ module.exports = {
                 }
               )
             },
-            query: `
-              {
-                allMarkdownRemark(
-                  limit: 30,
-                  sort: { order: DESC, fields: [frontmatter___date] },
-                  filter: { frontmatter: { template: { eq: "post" } } }
-                ) {
-                  edges {
-                    node {
-                      excerpt
-                      html
-                      fields { 
-                        slug 
+            query: `{
+                      allMarkdownRemark(
+                        limit: 30
+                        sort: {frontmatter: {date: DESC}}
+                        filter: {frontmatter: {template: {eq: "post"}}}
+                      ) {
+                        edges {
+                          node {
+                            excerpt
+                            html
+                            fields {
+                              slug
+                            }
+                            frontmatter {
+                              title
+                              date
+                              template
+                            }
+                          }
+                        }
                       }
-                      frontmatter {
-                        title
-                        date
-                        template
-                      }
-                    }
-                  }
-                }
-              }
-            `,
+                    }`,
             output: '/rss.xml',
             title: 'Hush | RSS Feed',
           },
@@ -150,6 +147,14 @@ module.exports = {
       options: {
         plugins: [
           'gatsby-remark-autolink-headers',
+          // {
+          //   resolve: `gatsby-remark-highlight-code`,
+          //   options: {
+          //     terminal: 'carbon',
+          //     // theme: 'dracula',
+          //     lineNumbers: true,
+          //   },
+          // },
           {
             resolve: 'gatsby-remark-images',
             options: {

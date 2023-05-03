@@ -1,41 +1,38 @@
 import { graphql, PageProps } from 'gatsby'
 import React, { useMemo } from 'react'
-import Helmet from 'react-helmet'
-import { BlogQueryQuery } from '../../gatsby-graphql'
 
+import { Layout } from '../layout/index'
 import { BriefHeader } from '../components/BriefHeader'
 import { Posts } from '../components/Posts'
 import { SEO } from '../components/SEO'
 import { BlogSidebar } from '../components/Sidebar/BlogSidebar'
-import { Layout } from '../layout/index'
-import { BlogArticle, BlogContainer } from '../styles/pages'
-import config from '../utils/config'
 import { getSimplifiedPosts } from '../utils/helpers'
+import { useStyles } from '../styles/pages/blog.style'
 
 /**
  * @description 归档页面
  * @date 23/10/2022
  * @export
- * @param {PageProps<BlogQueryQuery>} { data }
+ * @param {PageProps<BlogPageProps>} { data }
  * @return {*}
  */
-export default function Blog({ data }: PageProps<BlogQueryQuery>) {
-  const posts = data.posts.edges
-  const simplifiedPosts = useMemo(() => getSimplifiedPosts(posts), [posts])
+export default function Blog({ data }: PageProps<BlogPageProps>) {
+  const { styles } = useStyles()
+  const edges = data.posts.edges
+  const simplifiedPosts = useMemo(() => getSimplifiedPosts(edges), [edges])
   const title = '文章归档'
   const description = 'Notes & tutorials'
   return (
     <>
-      <Helmet title={`${title} | ${config.siteTitle}`} />
-      <SEO customDescription={description} />
+      <SEO helmetTitle={title} customDescription={description} />
 
-      <BlogContainer>
-        <BlogArticle>
+      <div className={styles.container}>
+        <div>
           <BriefHeader title={title} />
           <Posts data={simplifiedPosts} />
-        </BlogArticle>
+        </div>
         <BlogSidebar />
-      </BlogContainer>
+      </div>
     </>
   )
 }
@@ -45,7 +42,7 @@ Blog.Layout = Layout
 export const blogQuery = graphql`
   query BlogQuery {
     posts: allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { frontmatter: { date: DESC } }
       filter: { frontmatter: { template: { eq: "post" } } }
     ) {
       edges {

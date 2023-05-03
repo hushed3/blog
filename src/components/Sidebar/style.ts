@@ -1,108 +1,141 @@
-import styled from '@emotion/styled'
-import { Link } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
-import { GlobalCard, TagLink } from '../global'
+import { createStyles } from 'antd-style'
 
-export const SideSticky = styled.div`
-  position: sticky;
-  top: calc(${(props) => props.theme.navbarHeightLarge} + 30px);
+export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCls }) => ({
+  sticky: css`
+    position: sticky;
+    top: calc(${token.headerHeight}px + 20px);
 
-  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
-    top: ${(props) => props.theme.navbarHeightSmall};
-  }
-`
+    ${r({
+      laptop: css`
+        top: ${token.headerHeightLaptop};
+      `,
+    })}
+  `,
 
-export const SideCard = styled(GlobalCard)`
-  margin: 2rem 0;
+  card: css`
+    margin: 2rem 0;
+    background-color: ${token.colorBgElevated};
 
-  li {
-    font-size: 0.85rem;
-    color: ${(props) => props.theme.colorText2};
-  }
-`
-
-export const SideTitle = styled.h2`
-  color: ${(props) => props.theme.colorText1};
-  font-size: 0.9rem;
-  border: none;
-  margin: 0 0 1rem !important;
-  text-transform: uppercase;
-  font-weight: 700;
-
-  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
-    font-size: 0.8rem;
-  }
-`
-
-export const SideLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  text-decoration: none;
-  background-color: transparent;
-  border-radius: ${(props) => props.theme.borderRadiusLarge};
-  color: ${(props) => props.theme.colorText2};
-  font-size: 0.86rem;
-  margin-bottom: 0.6rem;
-  padding: 0.1rem 0.3rem;
-
-  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
-    font-size: 0.76rem;
-  }
-
-  &:last-child {
-    margin-bottom: 0rem;
-  }
-
-  &.active {
-    color: rgb(${(props) => props.theme.primary5});
-    font-weight: bold;
-    div {
-      color: inherit;
+    li {
+      font-size: 0.85rem;
+      color: ${token.colorTextSecondary};
     }
-  }
+  `,
 
-  &:hover {
-    color: rgb(${(props) => props.theme.primary5});
+  title: css`
+    color: ${token.colorText};
+    font-size: 0.9rem;
+    border: none;
+    margin: 0 0 1rem !important;
+    text-transform: uppercase;
+    font-weight: 700;
+  `,
+
+  anchor: cx(
+    `${prefixCls}-anchor`,
+
+    css`
+      .${prefixCls}-anchor {
+        font-size: 0.9rem;
+
+        &::before {
+          border-inline-start: none !important;
+        }
+
+        &-link {
+          padding-inline: 1.55rem 0 !important;
+
+          &-title:not(&-title-active) {
+            color: ${token.colorTextSecondary};
+          }
+        }
+
+        &-ink-visible {
+          width: 0.4rem !important;
+          height: 0.4rem !important;
+          border-radius: 50%;
+          margin-left: 0.5rem;
+          background-color: ${token.colorPrimaryBorderHover} !important;
+        }
+      }
+    `
+  ),
+
+  link: css`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     text-decoration: none;
-    div {
-      color: inherit;
+    background-color: transparent;
+    border-radius: ${token.borderRadius};
+    color: ${token.colorTextSecondary};
+    font-size: 0.86rem;
+    margin-bottom: 0.6rem;
+    padding: 0.1rem 0.3rem;
+
+    ${r({
+      laptop: css`
+        font-size: 0.76rem;
+      `,
+    })}
+
+    &:last-child {
+      margin-bottom: 0rem;
     }
-  }
-`
 
-export const SideTags = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.8rem 0.6rem;
+    &.active {
+      color: ${token.colorPrimary};
+      font-weight: bold;
+      span {
+        color: inherit;
+      }
+    }
 
-  @media screen and (max-width: ${(props) => props.theme.contentWidthMedium}) {
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0.6rem 0.4rem;
-  }
-  @media screen and (max-width: ${(props) => props.theme.contentWidthSmall}) {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.6rem 0.4rem;
-  }
-`
+    &:hover {
+      color: ${token.colorPrimaryHover};
+      text-decoration: none;
+    }
+  `,
 
-export const SideTag = styled(TagLink)``
+  tag: css`
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: ${token.colorTextSecondary};
+    text-transform: capitalize;
 
-export const PostSideTag = styled(SideTag)``
+    &.active {
+      color: ${token.colorPrimary};
+      background-color: ${token.colorPrimaryBg};
+    }
 
-export const PostSideImage = styled(GatsbyImage)`
-  margin: 0 auto;
-  margin-top: 2rem;
-  text-align: center;
-  display: block !important;
-  width: 100px;
-`
+    &:hover {
+      color: ${token.colorPrimary};
+      background-color: ${token.colorPrimaryBg};
+    }
+  `,
 
-export const Anchor = styled.li`
-  margin-bottom: 0.65rem;
-  color: rgb(${(props) => props.theme.primary5}) !important;
-  cursor: pointer;
-  &:last-child {
-    margin-bottom: 0;
-  }
-`
+  tags: css`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem 0.6rem;
+
+    ${r({
+      laptop: css`
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0.6rem 0.4rem;
+      `,
+      mobile: css`
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.6rem 0.4rem;
+      `,
+    })}
+  `,
+
+  image: css`
+    margin: 0 auto;
+    margin-top: 2rem;
+    text-align: center;
+    display: block !important;
+    width: 100px;
+  `,
+}))
