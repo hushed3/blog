@@ -2,51 +2,6 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 export default function HTML(props: any) {
-  // call the function when the DOM is ready
-
-  const darkmodeProcesser = () => {
-    if (!window) {
-      return
-    }
-    function cache(key: string, value: any) {
-      try {
-        localStorage.setItem(key, value)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    function getCache(key: string) {
-      try {
-        return localStorage.getItem(key)
-      } catch (error) {
-        console.log(error)
-        return undefined
-      }
-    }
-    const setMode = (mode: string) => {
-      if (!window) {
-        return
-      }
-      cache('theme', mode)
-    }
-    const getOSValue = () => {
-      const mql = window.matchMedia('(prefers-color-scheme: dark)')
-      const match = mql.matches
-      return match ? 'dark' : 'light'
-    }
-    const cacheMode = getCache('theme')
-    const mode = cacheMode ? cacheMode : getOSValue()
-
-    // if (!cacheMode) {
-    //   setMode(mode)
-    // }
-    document.addEventListener('readystatechange', () => {
-      if (document.readyState === 'interactive') {
-        setMode(mode)
-      }
-    })
-  }
-
   return (
     <html {...props.htmlAttributes}>
       <head>

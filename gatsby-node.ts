@@ -118,6 +118,7 @@ const createPages = async ({ graphql, actions }: { graphql: any; actions: any })
 
   const tagList = Array.from(tagSet)
   tagList.forEach((tag) => {
+    console.log(tag)
     createPage({
       path: `/tags/${tag}/`,
       component: tagPage,
