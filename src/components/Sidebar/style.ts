@@ -6,7 +6,7 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
     top: calc(${token.headerHeight}px + 20px);
 
     ${r({
-      laptop: css`
+      mobile: css`
         top: ${token.headerHeightLaptop};
       `,
     })}
