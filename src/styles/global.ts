@@ -4,8 +4,16 @@ export const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'SF Mono';
     src: url('/fonts/SFMono/SFMono-Regular.woff2') format('woff2'),
-    url('/fonts/SFMono/SFMono-Regular.woff') format('woff'),
-    url('/fonts/SFMono/SFMono-Regular.ttf') format('truetype');
+    url('/fonts/SFMono/SFMono-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Prisma';
+    src: url('/fonts/Prisma/Prisma.woff2') format('woff2'),
+    url('/fonts/Prisma/Prisma.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -339,7 +347,7 @@ export const GlobalStyle = createGlobalStyle`
   pre[class*='language-'] {
     -webkit-font-smoothing: subpixel-antialiased;
     font-family: ${(p) => p.theme.fontFamilyHighlighter};
-    letter-spacing: 0.04rem;
+    letter-spacing: 0.02rem;
     font-size: 0.9rem;
     text-align: left;
     white-space: pre;
