@@ -25,19 +25,22 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token 
     line-height: 1.1;
     font-weight: 700;
     font-size: 1.8rem;
-    letter-spacing: -0.08rem;
+    letter-spacing: 0.1rem;
     margin: 0 !important;
 
     ${r({
       laptop: css`
-        font-size: 1.55rem;
-        letter-spacing: -0.06rem;
+        font-size: 1.7rem;
       `,
       mobile: css`
-        font-size: 1.4rem;
-        letter-spacing: -0.06rem;
+        font-size: 1.6rem;
       `,
     })}
+  `,
+  greeting: css`
+    font-family: Prisma;
+    font-weight: normal;
+    letter-spacing: 0.15rem;
   `,
 
   highlightText: css`
