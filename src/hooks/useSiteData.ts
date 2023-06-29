@@ -1,5 +1,5 @@
-import { useStaticQuery, graphql } from 'gatsby'
-import { SiteData } from '../store'
+import { SiteData } from '@/store'
+import { graphql, useStaticQuery } from 'gatsby'
 
 export const useSitedata = (): SiteData => {
   const { site } = useStaticQuery(

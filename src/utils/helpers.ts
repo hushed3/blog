@@ -1,24 +1,27 @@
 interface Options {
-  shortTitle: boolean // 是否返回标题的缩写
   thumbnails: boolean // 是否返回缩略图
 }
 
-export const getSimplifiedPosts = (edges: NodeItem[], options?: Options): SimplifiedData[] => {
+/**
+ * @description 简化文章信息
+ * @date 23/06/2023
+ * @param {NodeItem[]} [edges]
+ * @param {Options} [options]
+ * @return {*}  {SimplifiedData[]}
+ */
+export const getSimplifiedArticles = (edges?: NodeItem[], options?: Options): SimplifiedData[] => {
+  if (!edges) return []
   return edges.map((edge) => {
-    const { id, frontmatter, fields } = edge.node
+    const { id, frontmatter } = edge.node
 
     return {
       id: id,
       title: frontmatter.title,
       date: frontmatter.date,
-      slug: fields.slug,
+      slug: frontmatter.slug,
       tags: frontmatter.tags,
       categories: frontmatter.categories,
       thumbnail: options?.thumbnails ? frontmatter.thumbnail?.childImageSharp.gatsbyImageData : {},
     }
   })
-}
-
-export function capitalize(string: string): string {
-  return string.charAt(0).toUpperCase() + string.slice(1)
 }

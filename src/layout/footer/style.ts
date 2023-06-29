@@ -11,7 +11,7 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token 
     `
   ),
 
-  headerContainer: css`
+  footerContainer: css`
     display: flex;
     color: ${token.colorTextTertiary};
     gap: 0.25rem;

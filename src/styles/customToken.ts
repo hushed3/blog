@@ -1,5 +1,4 @@
 import type { GetCustomToken } from 'antd-style'
-import { rgba } from 'polished'
 
 declare module 'antd-style' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -50,6 +49,11 @@ export interface SiteToken {
    * @title 代码块字体
    */
   fontFamilyHighlighter: string
+
+  /**
+   * @title 第四级阴影
+   */
+  boxShadowQuaternary: string
 
   codeFontColor: string
   terminalBar: string
@@ -124,6 +128,8 @@ export const createCustomToken: GetCustomToken<SiteToken> = ({ isDarkMode, token
     colorBgContainer: token.colorBgElevated,
 
     borderRadius: 8,
+
+    boxShadowQuaternary: isDarkMode ? 'none' : '0 0 25px #c8c8c840',
 
     ...highlighterColors,
 

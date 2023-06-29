@@ -1,8 +1,8 @@
 import { useDebounceEffect } from 'ahooks'
 import React, { memo, useEffect } from 'react'
 
-import { useSitedata } from '../../hooks'
-import { SiteStore, useSiteStore } from '../../store'
+import { useSitedata } from '@/hooks'
+import { SiteStore, useSiteStore } from '@/store'
 
 const isBrowser = typeof window !== 'undefined'
 

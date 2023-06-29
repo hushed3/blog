@@ -1,14 +1,14 @@
 import { AnimatePresence, LayoutGroup } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 
-import CardImage from '../components/CardImage'
-import PreviewImage from '../components/PreviewImage'
-import { SEO } from '../components/SEO'
-import { Layout } from '../layout/index'
+import CardImage from '@/components/CardImage'
+import PreviewImage from '@/components/PreviewImage'
+import { SEO } from '@/components/SEO'
+import { Layout } from '@/layout/index'
 
-import { useStyles } from '../styles/pages/sunset.style'
+import { useStyles } from '@/styles/pages/sunset.style'
 
-import { getServerData } from '../data/index'
+// import { getServerData } from '@/data/index'
 
 export default function Sunset() {
   const { styles } = useStyles()
@@ -18,8 +18,8 @@ export default function Sunset() {
 
   const init = async () => {
     try {
-      const { props } = await getServerData<ImageItem[]>()
-      setImageList(props!)
+      // const { props } = await getServerData<ImageItem[]>()
+      // setImageList(props!)
     } catch (error) {
       throw new Error(error as string)
     }

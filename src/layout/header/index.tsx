@@ -1,16 +1,15 @@
+import { Link } from 'gatsby'
 import React from 'react'
 import Helmet from 'react-helmet'
-import { Link } from 'gatsby'
 
-import favicon from '../../assets/image/logo.ico'
-
-import BlogSvg from '../../assets/svg/blog.svg'
-import GithubSvg from '../../assets/svg/github.svg'
-import SunsetSvg from '../../assets/svg/sunset.svg'
+import favicon from '@/assets/image/logo.ico'
+import BlogSvg from '@/assets/svg/blog.svg'
+import GithubSvg from '@/assets/svg/github.svg'
+import SunsetSvg from '@/assets/svg/sunset.svg'
 
 import { useStyles } from './style'
 
-import ThemeSwitch from '../../components/ThemeSwitch'
+import ThemeSwitch from '@/components/ThemeSwitch'
 
 const mainHeaderItems = [
   // { url: '/me', icon: null, label: 'About', name: ' me ', show: true },
@@ -28,7 +27,7 @@ export const Header = () => {
       <Helmet>
         <link rel="shortcut icon" type="image/png" href={favicon} />
       </Helmet>
-      <div className={styles.header}>
+      <header className={styles.header}>
         <div className={styles.headerContainer}>
           <div className={styles.navigations}>
             <Link to="/" className={styles.navigationLink}>
@@ -55,7 +54,7 @@ export const Header = () => {
 
           <ThemeSwitch />
         </div>
-      </div>
+      </header>
     </>
   )
 }
