@@ -1,17 +1,17 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
-import { useSiteStore } from '../../store'
+import { useSiteStore } from '@/store'
 
 interface Props {
-  postNode?: any | null
-  postPath?: string | null
-  postSEO?: boolean
+  articleNode?: any | null
+  articlePath?: string | null
+  articleSEO?: boolean
   customDescription?: string
   helmetTitle?: string
 }
 
-export const SEO = ({ postNode, postPath, postSEO, customDescription, helmetTitle }: Props) => {
+export const SEO = ({ articleNode, articlePath, articleSEO, customDescription, helmetTitle }: Props) => {
   const siteData = useSiteStore((state) => state.siteData)
 
   const HelmetTitle = helmetTitle ? `${helmetTitle} | ${siteData.siteTitle}` : siteData.siteTitle
@@ -19,18 +19,18 @@ export const SEO = ({ postNode, postPath, postSEO, customDescription, helmetTitl
   let title
   let description
   let image = siteData.siteLogo
-  let postURL
+  let articleURL
 
-  if (postSEO) {
-    const postMeta = postNode?.frontmatter
-    title = postMeta?.title
-    description = postNode?.excerpt
+  if (articleSEO) {
+    const articleMeta = articleNode?.frontmatter
+    title = articleMeta?.title
+    description = articleNode?.excerpt
 
-    if (postMeta?.thumbnail) {
-      image = postMeta?.thumbnail?.childImageSharp?.gatsbyImageData.images.fallback.src
+    if (articleMeta?.thumbnail) {
+      image = articleMeta?.thumbnail?.childImageSharp?.gatsbyImageData.images.fallback.src
     }
 
-    postURL = `${siteData.siteUrl}${postPath}`
+    articleURL = `${siteData.siteUrl}${articlePath}`
   } else {
     title = siteData.siteTitle
     description = customDescription || siteData.siteDescription
@@ -48,7 +48,7 @@ export const SEO = ({ postNode, postPath, postSEO, customDescription, helmetTitl
     },
   ]
 
-  if (postSEO) {
+  if (articleSEO) {
     schemaOrgJSONLD.push(
       {
         '@context': 'http://schema.org',
@@ -58,7 +58,7 @@ export const SEO = ({ postNode, postPath, postSEO, customDescription, helmetTitl
             '@type': 'ListItem',
             position: 1,
             item: {
-              '@id': postURL,
+              '@id': articleURL,
               name: title,
               image,
             },
@@ -90,8 +90,8 @@ export const SEO = ({ postNode, postPath, postSEO, customDescription, helmetTitl
 
         <script type="application/ld+json">{JSON.stringify(schemaOrgJSONLD)}</script>
 
-        <meta property="og:url" content={postSEO ? postURL : siteData.siteUrl} />
-        {postSEO && <meta property="og:type" content="article" />}
+        <meta property="og:url" content={articleSEO ? articleURL : siteData.siteUrl} />
+        {articleSEO && <meta property="og:type" content="article" />}
         <meta property="og:title" content={title as string} />
         <meta property="og:description" content={description as string} />
         <meta property="og:image" content={image} />

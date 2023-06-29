@@ -42,3 +42,10 @@ export const getID = (str: string): string => {
   const value = str.match(/(?<=<h4.*id=").*(?="\sstyle)/)
   return value?.length ? value[0].replace(/-/g, ' ') : ''
 }
+
+
+export const getPathname = () => {
+  if (isSSR) return ''
+
+  return location.pathname
+}

@@ -1,9 +1,10 @@
-import React from 'react'
-import { Link, navigate } from 'gatsby'
 import { Card, Tag } from 'antd'
+import { Link, navigate } from 'gatsby'
+import React from 'react'
 import { useStyles } from './style'
 
-import { useGetTaxonomies } from '../../hooks'
+import { useGetTaxonomies } from '@/hooks'
+import { getPathname } from '@/utils/func'
 
 /**
  * @description 归档页面 - 侧边类别、标签信息
@@ -11,6 +12,7 @@ import { useGetTaxonomies } from '../../hooks'
 
 export const BlogSidebar = () => {
   const { styles } = useStyles()
+
   const { tags, categories } = useGetTaxonomies()
 
   return (
@@ -40,16 +42,16 @@ export const BlogSidebar = () => {
             <div className={styles.title}>标签</div>
             {tags.map((tag) => {
               return (
-                <Tag
+                <Tag.CheckableTag
                   key={tag.name}
                   className={styles.tag}
-                  bordered={false}
+                  checked={`/tags/${tag.name}/` === getPathname()}
                   onClick={() => {
                     navigate(`/tags/${tag.name}`)
                   }}
                 >
                   {tag.name}
-                </Tag>
+                </Tag.CheckableTag>
               )
             })}
           </Card>

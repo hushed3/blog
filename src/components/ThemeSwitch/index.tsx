@@ -1,10 +1,9 @@
-import React from 'react'
 import type { ThemeMode } from 'antd-style'
-import { memo, type FC } from 'react'
+import React, { memo, type FC } from 'react'
 
 import NativeSelect, { Option } from '../NativeSelect'
 
-import { useThemeStore } from '../../store/useThemeStore'
+import { useThemeStore } from '@/store/useThemeStore'
 
 const IconAuto = () => (
   <span className="ant-dropdown-menu-item-icon" style={{ display: 'flex' }}>

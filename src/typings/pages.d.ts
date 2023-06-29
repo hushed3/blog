@@ -24,19 +24,21 @@ interface CategoryData {
   category: string
 }
 
-interface FieldsData {
-  slug: string
-}
-
 interface TagData {
   tag: string
 }
 
+interface FieldsData {
+  slug: string
+}
+
 interface FrontmatterData {
-  date: string
   title: string
+  date: string
   tags: string[]
   categories: string[]
+  template: string
+  slug: string
   thumbnail?: {
     childImageSharp: {
       gatsbyImageData: IGatsbyImageData
@@ -57,18 +59,38 @@ type EdgesData = Record<'edges', NodeItem[]>
 type AllMarkdownRemark<T> = Record<'allMarkdownRemark', T>
 
 /**
- * @description 归档页面props
+ * @description 所有文章
  * @date 1/5/2023
  * @export
  */
-type BlogPageProps = Record<'posts', EdgesData>
+type ArticlesData = Record<'articles', EdgesData>
 
 /**
- * @description 首页页面props
+ * @description 首页文章查询
  * @date 1/5/2023
  * @export
  */
-type IndexPageProps = Record<'latest' | 'Highlights', EdgesData>
+type HomeArticlesData = Record<'latest' | 'Highlights', EdgesData>
+
+/**
+ * @description 类别查询
+ * @date 1/5/2023
+ * @export
+ */
+interface CategorysData {
+  categories: EdgesData
+  totalCount: number
+}
+
+/**
+ * @description 标签查询
+ * @date 22/06/2023
+ * @interface TagsData
+ */
+interface TagsData {
+  tags: EdgesData
+  totalCount: number
+}
 
 /**
  * @description 类别页面props

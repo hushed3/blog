@@ -1,8 +1,8 @@
 import React from 'react'
 
+import gatsby from '@/assets/image/gatsby.png'
+import github from '@/assets/image/github.png'
 import { useStyles } from './style'
-import gatsby from '/src/assets/image/gatsby.png'
-import github from '/src/assets/image/github.png'
 
 type Links = {
   url: string
@@ -22,8 +22,8 @@ export const Footer = () => {
   const { styles } = useStyles()
 
   return (
-    <div className={styles.footer}>
-      <div className={styles.headerContainer}>
+    <footer className={styles.footer}>
+      <div className={styles.footerContainer}>
         <span className={`${styles.item} desktop-only`}>© 2022 {year} By Hush</span>
         {links.map((link) => (
           <a className={styles.href} href={link.url} target="_blank" rel="noopener noreferrer" key={link.url}>
@@ -32,7 +32,7 @@ export const Footer = () => {
         ))}
       </div>
 
-      <div className={styles.headerContainer}>
+      <div className={styles.footerContainer}>
         {madeWithLinks.map((link) => (
           <a
             className={styles.href}
@@ -48,11 +48,11 @@ export const Footer = () => {
         ))}
       </div>
 
-      <div className={styles.headerContainer}>
+      <div className={styles.footerContainer}>
         <a className={styles.href} href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
           蜀ICP备2022009836号
         </a>
       </div>
-    </div>
+    </footer>
   )
 }

@@ -22,8 +22,8 @@ export const replaceRenderer = ({ replaceBodyHTMLString, bodyComponent, setHeadC
   styles.forEach((item) => {
     setHeadComponents([
       <style
-        key="emotion"
-        data-emotion={`acss---`}
+        key="cache"
+        data-emotion={`css`}
         dangerouslySetInnerHTML={{
           __html: item.props.dangerouslySetInnerHTML.__html,
         }}

@@ -1,31 +1,30 @@
-import { graphql, Link, PageProps } from 'gatsby'
+import type { PageProps } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import React, { useMemo } from 'react'
+import { Card } from 'antd'
 
-import { BriefHeader } from '../components/BriefHeader'
-import { Heading } from '../components/Heading'
-import { SEO } from '../components/SEO'
-import { Layout } from '../layout/index'
-import { getSimplifiedPosts } from '../utils/helpers'
-
-import { useStyles } from '../styles/pages/index.style'
+import { BriefHeader } from '@/components/BriefHeader'
+import { Heading } from '@/components/Heading'
+import { SEO } from '@/components/SEO'
+import { Layout } from '@/layout/index'
+import { useStyles } from '@/styles/pages/index.style'
+import { getSimplifiedArticles } from '@/utils/helpers'
 
 /**
  * @description 首页
  * @date 23/10/2022
  * @export
- * @param {PageProps<IndexPageProps>} { data }
  * @return {*}
  */
-export default function Index({ data }: PageProps<IndexPageProps>) {
+export default function Index({ data }: PageProps<HomeArticlesData>) {
   const { styles } = useStyles()
-  const latest = data.latest.edges
-  const Highlights = data.Highlights.edges
-  const simplifiedLatest = useMemo(() => getSimplifiedPosts(latest), [latest])
-  const simplifiedHighlights = useMemo(
-    () => getSimplifiedPosts(Highlights, { shortTitle: false, thumbnails: true }),
-    [Highlights]
-  )
+
+  const latest = data?.latest.edges
+  const Highlights = data?.Highlights.edges
+
+  const simplifiedLatest = useMemo(() => getSimplifiedArticles(latest), [latest])
+  const simplifiedHighlights = useMemo(() => getSimplifiedArticles(Highlights, { thumbnails: true }), [Highlights])
 
   return (
     <>
@@ -43,20 +42,19 @@ export default function Index({ data }: PageProps<IndexPageProps>) {
             <div className={styles.briefDescription}>𝑯𝒂𝒗𝒆 𝒂 𝒈𝒐𝒐𝒅 𝒅𝒂𝒚... </div>
           </BriefHeader>
         </div>
-
         <div className={styles.previewWrapper}>
           <Heading title="最近内容" slug="/blog" />
           <div className={styles.preview}>
-            {simplifiedLatest.map((post) => {
+            {simplifiedLatest.map((item) => {
               return (
-                <div className={styles.recentCard} key={post.slug}>
-                  <time className={styles.time}>{post.date}</time>
-                  <Link className={styles.titleLink} to={post.slug}>
-                    {post.title}
+                <Card className={styles.recentCard} key={item.slug} bordered={false}>
+                  <time className={styles.time}>{item.date}</time>
+                  <Link className={styles.titleLink} to={item.slug}>
+                    {item.title}
                   </Link>
                   <div className={styles.tagLinks}>
-                    {post.categories &&
-                      post.categories
+                    {item.categories &&
+                      item.categories
                         .filter((cat) => cat !== 'Highlight')
                         .map((cat) => {
                           return (
@@ -66,28 +64,30 @@ export default function Index({ data }: PageProps<IndexPageProps>) {
                           )
                         })}
                   </div>
-                </div>
+                </Card>
               )
             })}
           </div>
         </div>
-        {/* 查找posts目录下带有 Highlight 的markdown文件 */}
+        {/* 查找目录下带有 Highlight 的markdown文件 */}
         {simplifiedHighlights.length > 0 && (
           <div className={styles.previewWrapper}>
             <Heading title="热门内容" />
 
             <div className={styles.preview}>
-              {simplifiedHighlights.map((post) => {
+              {simplifiedHighlights.map((item) => {
                 return (
-                  <div className={styles.highlightCard} key={`Highlight-${post.slug}`}>
-                    {post.thumbnail && <GatsbyImage image={post.thumbnail} alt="" />}
+                  <Card className={styles.highlightCard} key={`Highlight-${item.slug}`} bordered={false}>
+                    {item.thumbnail && (
+                      <GatsbyImage image={item.thumbnail} alt="" imgStyle={{ height: 'fit-content' }} />
+                    )}
                     <div className="content">
-                      <time className={styles.time}>{post.date}</time>
-                      <Link className={styles.titleLink} to={post.slug}>
-                        {post.title}
+                      <time className={styles.time}>{item.date}</time>
+                      <Link className={styles.titleLink} to={item.slug}>
+                        {item.title}
                       </Link>
                     </div>
-                  </div>
+                  </Card>
                 )
               })}
             </div>
@@ -101,11 +101,11 @@ export default function Index({ data }: PageProps<IndexPageProps>) {
 Index.Layout = Layout
 
 export const pageQuery = graphql`
-  query IndexQuery {
+  {
     latest: allMarkdownRemark(
       limit: 6
       sort: { frontmatter: { date: DESC } }
-      filter: { frontmatter: { template: { eq: "post" } } }
+      filter: { frontmatter: { template: { eq: "article" } } }
     ) {
       edges {
         node {
@@ -116,6 +116,8 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
+            slug
+            template
             tags
             categories
           }
@@ -123,7 +125,7 @@ export const pageQuery = graphql`
       }
     }
     Highlights: allMarkdownRemark(
-      limit: 12
+      limit: 6
       sort: { frontmatter: { date: DESC } }
       filter: { frontmatter: { categories: { eq: "Highlight" } } }
     ) {
@@ -136,7 +138,10 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
+            slug
+            template
             tags
+            categories
             thumbnail {
               childImageSharp {
                 gatsbyImageData(width: 100, height: 100)

@@ -1,5 +1,4 @@
 import { GetCustomStylish } from 'antd-style'
-import { rgba } from 'polished'
 
 declare module 'antd-style' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -9,7 +8,6 @@ declare module 'antd-style' {
 export interface SiteStylish {
   container: string
   wrapper: string
-  card: string
   tagLink: string
 }
 
@@ -33,19 +31,6 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
       @media screen and (max-width: ${token.screenMD}) {
         margin-top: 1.5rem;
         margin-bottom: 1.5rem;
-      }
-    `,
-
-    card: css`
-      border-radius: ${token.borderRadius}px;
-      background-color: ${token.colorBgElevated};
-      padding: 1.25rem;
-      position: relative;
-      box-shadow: ${token.boxShadowTertiary};
-      transition: all ease-out 0.1s;
-
-      @media screen and (max-width: ${token.screenMD}) {
-        padding: 1rem;
       }
     `,
 
