@@ -1,4 +1,5 @@
-import React, { useCallback } from 'react'
+import { StoreUpdater } from '@/components/StoreUpdater'
+import { GlobalStyle } from '@/styles/global'
 import { ConfigProvider } from 'antd'
 import {
   CustomTokenParams,
@@ -6,9 +7,10 @@ import {
   StyleProvider as AntdStyleProvider,
   ThemeProvider as AntdThemeProvider,
 } from 'antd-style'
+import React, { useCallback } from 'react'
 
-import { useThemeStore } from '../store/useThemeStore'
-import { getAntdTheme, getCustomStylish, createCustomToken } from '../styles'
+import { useThemeStore } from '@/store/useThemeStore'
+import { createCustomToken, getAntdTheme, getCustomStylish } from '@/styles'
 ;(global as any)['__ANTD_CACHE__'] = extractStaticStyle.cache
 
 export const BlogThemeProvider = ({ children }: { children: React.ReactNode }) => {
@@ -24,11 +26,7 @@ export const BlogThemeProvider = ({ children }: { children: React.ReactNode }) =
     <>
       <ConfigProvider
         theme={{
-          components: {
-            Card: {
-              paddingLG: 16,
-            },
-          },
+          components: { Card: { paddingLG: 18 } },
         }}
       >
         <AntdStyleProvider prefix={'site'} cache={extractStaticStyle.cache}>
@@ -39,6 +37,8 @@ export const BlogThemeProvider = ({ children }: { children: React.ReactNode }) =
             customToken={getCustomToken}
             customStylish={getCustomStylish}
           >
+            <GlobalStyle />
+            <StoreUpdater />
             {children}
           </AntdThemeProvider>
         </AntdStyleProvider>

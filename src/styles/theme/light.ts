@@ -1,4 +1,4 @@
-import { ThemeConfig, theme } from 'antd'
+import { ThemeConfig } from 'antd'
 
 import { ColorPalettes, genMapTokenAlgorithm } from '../algorithms'
 

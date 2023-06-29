@@ -272,8 +272,8 @@ export const GlobalStyle = createGlobalStyle`
     text-size-adjust: none;
     border-radius: ${(p) => p.theme.borderRadius}px;
     overflow: overlay;
-    margin: 0.6rem 0 2rem 0;
-    padding: 1rem;
+    margin: 0.4rem 0 2rem 0;
+    padding: 1.1rem 1.25rem;
     max-width: 100%;
     position: relative;
     transform: matrix(1, 0, 0, 1, 0, 0);
@@ -293,80 +293,40 @@ export const GlobalStyle = createGlobalStyle`
       transform: scale(0.85);
       transform-origin: 100% 10%;
     }
-
-    &::after {
-      content: '';
-      position: absolute;
-      left: 1.1rem;
-      top: 0.8rem;
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      background-color: #ec6a5e;
-    }
-
-    & > pre[class*='language-'] {
-      &::before {
-        content: '';
-        position: absolute;
-        left: 2.5rem;
-        top: 0.8rem;
-        width: 11px;
-        height: 11px;
-        border-radius: 50%;
-        background-color: #f4be4f;
-      }
-      &::after {
-        content: '';
-        position: absolute;
-        left: 3.9rem;
-        top: 0.8rem;
-        width: 11px;
-        height: 11px;
-        border-radius: 50%;
-        background-color: #62c454;
+    
+    &[data-language='text'] {
+      .language-text{
+        background-color: transparent;
+        margin: 0;
+        padding: 0;
       }
     }
-  }
 
-  .gatsby-highlight[data-language='text'] {
-    background: transparent;
-    padding: 0;
-  }
+    code[class*='language-'],
+    pre[class*='language-'] {
+      -webkit-font-smoothing: subpixel-antialiased;
+      font-family: ${(p) => p.theme.fontFamilyHighlighter};
+      letter-spacing: 0.02rem;
+      font-size: 0.9rem;
+      text-align: left;
+      white-space: pre;
+      word-spacing: normal;
+      word-break: normal;
+      word-wrap: normal;
+      line-height: 1.8;
+      -moz-tab-size: 2;
+      -o-tab-size: 2;
+      tab-size: 2;
+      padding: 0;
+      overflow: overlay;
+      width: 100%;
+      margin: 0;
 
-  .gatsby-highlight-code-line {
-    background-color: rgb(116, 207, 116, 0.15);
-    display: block;
-    margin-left: -1rem;
-    margin-right: -1rem;
-    padding-left: calc(1rem - 4px);
-    border-left: 4px solid #74cf74;
-  }
-
-  code[class*='language-'],
-  pre[class*='language-'] {
-    -webkit-font-smoothing: subpixel-antialiased;
-    font-family: ${(p) => p.theme.fontFamilyHighlighter};
-    letter-spacing: 0.02rem;
-    font-size: 0.9rem;
-    text-align: left;
-    white-space: pre;
-    word-spacing: normal;
-    word-break: normal;
-    word-wrap: normal;
-    line-height: 1.8;
-    -moz-tab-size: 2;
-    -o-tab-size: 2;
-    tab-size: 2;
-    margin: 1.5rem 0 0 0;
-    padding: 0;
-    overflow: overlay;
-    width: 100%;
-
-    -webkit-hyphens: none;
-    -moz-hyphens: none;
-    -ms-hyphens: none;
-    hyphens: none;
+      -webkit-hyphens: none;
+      -moz-hyphens: none;
+      -ms-hyphens: none;
+      hyphens: none;
+    }
   }
 
   pre.language-text {
@@ -379,11 +339,6 @@ export const GlobalStyle = createGlobalStyle`
     box-shadow: none;
   }
 
-  code.language-shell::before {
-    content: '$ ';
-    color: ${(p) => p.theme.comment};
-  }
-
   code.language-text {
     color: ${(p) => p.theme.colorPrimary};
     transition: background-color ease-out 0.1s;
@@ -392,6 +347,17 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: ${(p) => p.theme.borderRadiusOuter}px;
     margin: 0 0.2rem;
     font-family: ${(p) => p.theme.fontFamilyHighlighter};
+  }
+
+  code.language-shell::before {
+    content: '$ ';
+    color: ${(p) => p.theme.comment};
+  }
+
+  .gatsby-highlight-code-line {
+    display: block;
+    background: ${(p) => p.theme.colorPrimaryBg};
+    padding-left: calc(1rem - 4px);
   }
 
   .token{

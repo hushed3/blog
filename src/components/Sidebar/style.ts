@@ -97,39 +97,24 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
     }
   `,
 
-  tag: css`
-    cursor: pointer;
-    font-size: 0.8rem;
-    color: ${token.colorTextSecondary};
-    text-transform: capitalize;
+  tag: cx(
+    css`
+      cursor: pointer;
+      font-size: 0.8rem;
+      color: ${token.colorTextSecondary};
+      text-transform: capitalize;
 
-    &.active {
-      color: ${token.colorPrimary};
-      background-color: ${token.colorPrimaryBg};
-    }
+      &.${prefixCls}-tag-checkable-checked {
+        color: ${token.colorPrimary};
+        background-color: ${token.colorPrimaryBg};
+      }
 
-    &:hover {
-      color: ${token.colorPrimary};
-      background-color: ${token.colorPrimaryBg};
-    }
-  `,
-
-  tags: css`
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.8rem 0.6rem;
-
-    ${r({
-      laptop: css`
-        grid-template-columns: repeat(5, 1fr);
-        gap: 0.6rem 0.4rem;
-      `,
-      mobile: css`
-        grid-template-columns: repeat(4, 1fr);
-        gap: 0.6rem 0.4rem;
-      `,
-    })}
-  `,
+      &:hover {
+        color: ${token.colorPrimary};
+        background-color: ${token.colorPrimaryBg};
+      }
+    `
+  ),
 
   image: css`
     margin: 0 auto;

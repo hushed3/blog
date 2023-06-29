@@ -1,9 +1,13 @@
 import path from 'path'
 
-const onCreateWebpackConfig = ({ stage, loaders, actions }: { stage: any; loaders: any; actions: any }) => {
+const onCreateWebpackConfig = ({ loaders, actions }: { stage: any; loaders: any; actions: any }) => {
   // if (stage === 'build-html' || stage === 'develop-html') {
   actions.setWebpackConfig({
     resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+        '@/static': path.resolve(__dirname, 'static'),
+      },
       fallback: {
         stream: false,
       },
@@ -21,127 +25,120 @@ const onCreateWebpackConfig = ({ stage, loaders, actions }: { stage: any; loader
 }
 
 const createPages = async ({ graphql, actions }: { graphql: any; actions: any }) => {
-  const { createPage } = actions
+  try {
+    const { createPage } = actions
 
-  const blogPage = path.resolve('./src/templates/post.tsx')
-  const mePage = path.resolve('./src/templates/me.tsx')
-  const tagPage = path.resolve('./src/templates/tag.tsx')
-  const categoryPage = path.resolve('./src/templates/category.tsx')
+    const blogPage = path.resolve('./src/templates/article.tsx')
+    const mePage = path.resolve('./src/templates/me.tsx')
+    const tagPage = path.resolve('./src/templates/tag.tsx')
+    const categoryPage = path.resolve('./src/templates/category.tsx')
 
-  const result = await graphql(
-    `
-      {
-        allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
-          edges {
-            node {
-              id
-              frontmatter {
-                title
-                tags
-                categories
-                template
-              }
-              fields {
-                slug
+    const { data } = await graphql(
+      `
+        {
+          articles: allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
+            edges {
+              node {
+                id
+                frontmatter {
+                  title
+                  tags
+                  categories
+                  template
+                }
+                fields {
+                  slug
+                }
               }
             }
           }
         }
-      }
-    `
-  )
+      `
+    )
 
-  if (result.errors) {
-    throw result.errors
-  }
+    const all = data.articles.edges
+    const articles = all.filter((article: NodeItem) => article.node.frontmatter.template === 'article')
+    const pages = all.filter((article: NodeItem) => article.node.frontmatter.template === 'page')
+    const tagSet = new Set()
+    const categorySet = new Set()
 
-  const all = result.data.allMarkdownRemark.edges
-  const posts = all.filter(
-    (post: { node: { frontmatter: { template: string } } }) => post.node.frontmatter.template === 'post'
-  )
-  const pages = all.filter(
-    (post: { node: { frontmatter: { template: string } } }) => post.node.frontmatter.template === 'page'
-  )
-  const tagSet = new Set()
-  const categorySet = new Set()
+    // =====================================================================================
+    // articles
+    // =====================================================================================
 
-  // =====================================================================================
-  // Posts
-  // =====================================================================================
+    articles.forEach((article: NodeItem, i: number) => {
+      const previous = i === articles.length - 1 ? null : articles[i + 1].node
+      const next = i === 0 ? null : articles[i - 1].node
 
-  posts.forEach(
-    (post: { node: { frontmatter: { tags: any[]; categories: any[] }; fields: { slug: any } } }, i: number) => {
-      const previous = i === posts.length - 1 ? null : posts[i + 1].node
-      const next = i === 0 ? null : posts[i - 1].node
-
-      if (post.node.frontmatter.tags) {
-        post.node.frontmatter.tags.forEach((tag: unknown) => {
+      if (article.node.frontmatter.tags) {
+        article.node.frontmatter.tags.forEach((tag: unknown) => {
           tagSet.add(tag)
         })
       }
 
-      if (post.node.frontmatter.categories) {
-        post.node.frontmatter.categories.forEach((category: unknown) => {
+      if (article.node.frontmatter.categories) {
+        article.node.frontmatter.categories.forEach((category: unknown) => {
           categorySet.add(category)
         })
       }
 
       createPage({
-        path: post.node.fields.slug,
+        path: article.node.fields.slug,
         component: blogPage,
         context: {
-          slug: post.node.fields.slug,
+          slug: article.node.fields.slug,
           previous,
           next,
         },
       })
-    }
-  )
-
-  // =====================================================================================
-  // mePage
-  // =====================================================================================
-
-  pages.forEach((page: { node: { fields: { slug: any } } }) => {
-    createPage({
-      path: page.node.fields.slug,
-      component: mePage,
-      context: {
-        slug: page.node.fields.slug,
-      },
     })
-  })
 
-  // =====================================================================================
-  // Tags
-  // =====================================================================================
+    // =====================================================================================
+    // mePage
+    // =====================================================================================
 
-  const tagList = Array.from(tagSet)
-  tagList.forEach((tag) => {
-    console.log(tag)
-    createPage({
-      path: `/tags/${tag}/`,
-      component: tagPage,
-      context: {
-        tag,
-      },
+    pages.forEach((page: NodeItem) => {
+      createPage({
+        path: page.node.fields.slug,
+        component: mePage,
+        context: {
+          slug: page.node.fields.slug,
+        },
+      })
     })
-  })
 
-  // =====================================================================================
-  // Categories
-  // =====================================================================================
+    // =====================================================================================
+    // Tags
+    // =====================================================================================
 
-  const categoryList = Array.from(categorySet)
-  categoryList.forEach((category) => {
-    createPage({
-      path: `/categories/${category}/`,
-      component: categoryPage,
-      context: {
-        category,
-      },
+    const tagList = Array.from(tagSet)
+    tagList.forEach((tag) => {
+      createPage({
+        path: `/tags/${tag}/`,
+        component: tagPage,
+        context: {
+          tag,
+        },
+      })
     })
-  })
+
+    // =====================================================================================
+    // Categories
+    // =====================================================================================
+
+    const categoryList = Array.from(categorySet)
+    categoryList.forEach((category) => {
+      createPage({
+        path: `/categories/${category}/`,
+        component: categoryPage,
+        context: {
+          category,
+        },
+      })
+    })
+  } catch (error) {
+    throw new Error(error as string)
+  }
 }
 
 const createNode = ({ node, actions, getNode }: { node: any; actions: any; getNode: any }) => {
