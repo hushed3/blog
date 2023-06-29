@@ -18,13 +18,6 @@ module.exports = {
     // Meta
     // ===================================================================================
 
-    {
-      resolve: `gatsby-plugin-graphql-codegen`,
-      options: {
-        fileName: `./gatsby-graphql.d.ts`,
-      },
-    },
-
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-netlify',
     {
@@ -73,7 +66,7 @@ module.exports = {
                     date: edge.node.frontmatter.date,
                     url: site.siteMetadata.siteUrl + edge.node.fields.slug,
                     guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                    custom_elements: [{ 'content:encoded': edge.node.html }, { author: 'hello@taniarascia.com' }],
+                    custom_elements: [{ 'content:encoded': edge.node.html }, { author: '' }],
                   })
                 }
               )
@@ -82,7 +75,7 @@ module.exports = {
                       allMarkdownRemark(
                         limit: 30
                         sort: {frontmatter: {date: DESC}}
-                        filter: {frontmatter: {template: {eq: "post"}}}
+                        filter: {frontmatter: {template: {eq: "article"}}}
                       ) {
                         edges {
                           node {
@@ -126,7 +119,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'posts',
+        name: 'articles',
         path: `${__dirname}/content/`,
       },
     },
@@ -147,19 +140,10 @@ module.exports = {
       options: {
         plugins: [
           'gatsby-remark-autolink-headers',
-          // {
-          //   resolve: `gatsby-remark-highlight-code`,
-          //   options: {
-          //     terminal: 'carbon',
-          //     // theme: 'dracula',
-          //     lineNumbers: true,
-          //   },
-          // },
           {
             resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 800,
-              // linkImagesToOriginal: false,
               backgroundColor: 'transparent',
             },
           },
@@ -198,7 +182,7 @@ module.exports = {
         },
         query: `
           {
-            allMarkdownRemark(filter: { frontmatter: { template: { eq: "post" } } }) {
+            allMarkdownRemark(filter: { frontmatter: { template: { eq: "article" } } }) {
               nodes {
                 id
                 frontmatter {

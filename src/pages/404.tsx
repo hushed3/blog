@@ -1,10 +1,10 @@
-import React from 'react'
 import { Result } from 'antd'
+import React from 'react'
 
-import { SEO } from '../components/SEO'
-import { Layout } from '../layout/index'
-import { useStyles } from '../styles/pages/404.style'
-import NotFoundSvg from '../assets/svg/notFound.svg'
+import NotFoundSvg from '@/assets/svg/notFound.svg'
+import { SEO } from '@/components/SEO'
+import { Layout } from '@/layout/index'
+import { useStyles } from '@/styles/pages/404.style'
 
 export default function FourOhFour() {
   const { styles } = useStyles()

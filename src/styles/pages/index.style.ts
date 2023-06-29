@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style'
 
-export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token }) => ({
+export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token, prefixCls }) => ({
   container: css`
     ${stylish.container}
   `,
@@ -57,28 +57,32 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token 
   `,
 
   recentCard: css`
-    ${stylish.card}
-
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
     min-height: 9rem;
+    background-color: ${token.colorBgElevated};
+
+    .${prefixCls}-card-body {
+      display: flex;
+      flex-wrap: wrap;
+      height: 100%;
+    }
   `,
 
   highlightCard: css`
-    ${stylish.card}
-
-    padding: 1.5rem;
-    display: flex;
-    align-items: center;
     min-height: 9rem;
-    gap: 1rem;
+    background-color: ${token.colorBgElevated};
+
+    .${prefixCls}-card-body {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
 
     .content {
       display: flex;
       flex-wrap: wrap;
       align-content: space-around;
       height: 100%;
+      margin-left: 1rem;
     }
   `,
 
@@ -109,6 +113,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token 
 
     &:hover {
       text-decoration: underline;
+      color: ${token.colorText};
     }
 
     ${r({

@@ -1,14 +1,7 @@
 import { ColorMapToken } from 'antd/es/theme/interface/maps/colors'
 
 import { generateAssociatedColors } from './colorRelationship'
-import {
-  ColorPalettes,
-  generateColorPalette,
-  generateNeutralPalette,
-  NeutralPaletteOptions,
-  SeedColors,
-  TokenType,
-} from './paletteGenerator'
+import { ColorPalettes, generateColorPalette, NeutralPaletteOptions, SeedColors, TokenType } from './paletteGenerator'
 
 type Magenta =
   | 'colorMagentaBg'
@@ -89,7 +82,7 @@ export const genMapTokenAlgorithm = (params?: MapTokenAlgorithm) => {
     magenta: generateColorPalette(seedColors.magenta, params).map((c) => c.hex),
   }
 
-  let tokens = {} as Partial<Record<keyof ColorMapToken, string>>
+  const tokens = {} as Partial<Record<keyof ColorMapToken, string>>
 
   const types = ['primary', 'error', 'warning', 'success', 'info', 'magenta'] as TokenType[]
 

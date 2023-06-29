@@ -10,6 +10,9 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token 
       z-index: 3;
       height: ${token.headerHeight}px;
       box-shadow: ${token.boxShadowTertiary};
+      backdrop-filter: saturate(50%) blur(4px);
+      background-size: 3px 3px;
+      background-image: radial-gradient(transparent 1px, ${token.colorBgLayout} 1px);
 
       ${r({
         mobile: css`
@@ -26,9 +29,6 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token 
     justify-content: space-between;
     height: 100%;
     color: ${token.colorTextSecondary};
-    backdrop-filter: saturate(50%) blur(4px);
-    background-size: 3px 3px;
-    background-image: radial-gradient(transparent 1px, ${token.colorBgLayout} 1px);
   `,
 
   navigations: css`

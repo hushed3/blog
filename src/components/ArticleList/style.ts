@@ -4,7 +4,7 @@ export const useStyles = createStyles(({ css, responsive: r, token }) => ({
   years: css`
     color: ${token.colorPrimaryHover};
     padding-bottom: 0.8rem;
-    border-bottom: 2px solid ${token.colorBorder};
+    border-bottom: 2px solid ${token.colorBorderSecondary};
     font-size: 1.65rem;
     font-weight: bold;
   `,
