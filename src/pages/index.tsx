@@ -23,8 +23,8 @@ export default function Index({ data }: PageProps<HomeArticlesData>) {
   const latest = data?.latest.edges
   const Highlights = data?.Highlights.edges
 
-  const simplifiedLatest = useMemo(() => getSimplifiedArticles(latest), [latest])
-  const simplifiedHighlights = useMemo(() => getSimplifiedArticles(Highlights, { thumbnails: true }), [Highlights])
+  const simplifiedLatest = useMemo(() => getSimplifiedArticles(latest), [data])
+  const simplifiedHighlights = useMemo(() => getSimplifiedArticles(Highlights, { thumbnails: true }), [data])
 
   return (
     <>
@@ -32,14 +32,14 @@ export default function Index({ data }: PageProps<HomeArticlesData>) {
 
       <div className={styles.container}>
         <div className={styles.brief}>
-          <BriefHeader greeting="Hey, I'm &nbsp; hush">
-            <div className={styles.briefDescription}>
+          <BriefHeader greeting="Hey, I'm  hush">
+            <p className={styles.briefDescription}>
               𝑰 𝒉𝒐𝒑𝒆 𝒚𝒐𝒖 𝒍𝒊𝒗𝒆 𝒂 𝒍𝒊𝒇𝒆 𝒚𝒐𝒖‘𝒓𝒆 𝒑𝒓𝒐𝒖𝒅 𝒐𝒇. 𝑰𝒇 𝒚𝒐𝒖 𝒇𝒊𝒏𝒅 𝒕𝒉𝒂𝒕 𝒚𝒐𝒖’𝒓𝒆 𝒏𝒐𝒕, 𝑰 𝒉𝒐𝒑𝒆 𝒚𝒐𝒖 𝒉𝒂𝒗𝒆 𝒕𝒉𝒆 𝒔𝒕𝒓𝒆𝒏𝒈𝒕𝒉 𝒕𝒐 𝒔𝒕𝒂𝒓𝒕
               𝒂𝒍𝒍 𝒐𝒗𝒆𝒓 𝒂𝒈𝒂𝒊𝒏. <br />
               <br />
               我希望你过着自己引以为傲的生活。 如果你发现事实并非如此，我希望你有勇气重新开始。
-            </div>
-            <div className={styles.briefDescription}>𝑯𝒂𝒗𝒆 𝒂 𝒈𝒐𝒐𝒅 𝒅𝒂𝒚... </div>
+            </p>
+            <p className={styles.briefDescription}>𝑯𝒂𝒗𝒆 𝒂 𝒈𝒐𝒐𝒅 𝒅𝒂𝒚... </p>
           </BriefHeader>
         </div>
         <div className={styles.previewWrapper}>

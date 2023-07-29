@@ -1,3 +1,5 @@
+import { createHash } from 'crypto'
+
 /**
  * @description 判断是否为SSR
  * @date 30/09/2022
@@ -42,7 +44,6 @@ export const getID = (str: string): string => {
   const value = str.match(/(?<=<h4.*id=").*(?="\sstyle)/)
   return value?.length ? value[0].replace(/-/g, ' ') : ''
 }
-
 
 export const getPathname = () => {
   if (isSSR) return ''
