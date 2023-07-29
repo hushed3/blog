@@ -1,6 +1,7 @@
 import type { PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
-import React from 'react'
+import React, { useMemo } from 'react'
+import { defineCustomElements as deckDeckGoHighlightElement } from '@deckdeckgo/highlight-code/dist/loader'
 
 import { SEO } from '@/components/SEO'
 import { ArticleSidebar } from '@/components/Sidebar/ArticleSidebar'
@@ -14,16 +15,19 @@ import { useStyles } from '@/styles/templates/style'
  * @return {*}
  */
 export default function ArticleTemplate({ data }: PageProps<ArticleTemplateData>) {
+  deckDeckGoHighlightElement()
   const { styles } = useStyles()
 
-  const headings = data?.article.headings
-  const fields = data?.article.fields
-  const frontmatter = data?.article.frontmatter
-  const html = data?.article.html as string
+  const article = useMemo(() => data?.article, [data])
+
+  const headings = article.headings
+  const fields = article.fields
+  const frontmatter = article.frontmatter
+  const html = article.html as string
 
   return (
     <>
-      <SEO helmetTitle={frontmatter?.title} articlePath={fields?.slug} articleNode={data?.article} articleSEO />
+      <SEO helmetTitle={frontmatter?.title} articlePath={fields?.slug} articleNode={article} articleSEO />
       <div className={styles.container}>
         <div>
           <h2 className={styles.title}>{frontmatter?.title}</h2>

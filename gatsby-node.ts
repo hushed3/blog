@@ -10,6 +10,8 @@ const onCreateWebpackConfig = ({ loaders, actions }: { stage: any; loaders: any;
       },
       fallback: {
         stream: false,
+        // crypto: require.resolve('crypto-browserify'),
+        crypto: false,
       },
     },
     module: {

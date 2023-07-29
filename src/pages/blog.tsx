@@ -24,7 +24,7 @@ export default function Blog({ data }: PageProps<ArticlesData>) {
 
   const edges = data?.articles.edges
 
-  const simplifiedArticles = useMemo(() => getSimplifiedArticles(edges), [edges])
+  const simplifiedArticles = useMemo(() => getSimplifiedArticles(edges), [data])
 
   return (
     <>
