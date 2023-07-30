@@ -58,5 +58,5 @@ jobs:
           REMOTE_HOST: ${{ env.REMOTE_HOST }}
           REMOTE_USER: ${{ env.REMOTE_USER }}
           REMOTE_PORT: ${{ env.REMOTE_PORT }}
-          TARGET: ${{ env.TARGET }}
+          TARGET: '/var/www/test'
           SOURCE: 'public/'
