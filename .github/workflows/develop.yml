@@ -3,7 +3,7 @@ name: deploy blog to servers
 on:
   push:
     branches:
-      - master
+      - develop
       
 env:
     SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }} # 服务器私钥
@@ -58,5 +58,5 @@ jobs:
           REMOTE_HOST: ${{ env.REMOTE_HOST }}
           REMOTE_USER: ${{ env.REMOTE_USER }}
           REMOTE_PORT: ${{ env.REMOTE_PORT }}
-          TARGET: ${{ env.TARGET }}
+          TARGET: ${{ env.DEVELOP_TARGET }}
           SOURCE: 'public/'
