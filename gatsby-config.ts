@@ -1,6 +1,6 @@
 module.exports = {
   flags: {
-    DEV_SSR: false,
+    DEV_SSR: true,
   },
   siteMetadata: {
     title: 'Hush blog',
@@ -139,27 +139,18 @@ module.exports = {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
+          {
+            resolve: `gatsby-remark-highlight-code`,
+            options: {
+              theme: 'one-dark',
+            },
+          },
           'gatsby-remark-autolink-headers',
           {
             resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 800,
               backgroundColor: 'transparent',
-            },
-          },
-          {
-            resolve: 'gatsby-remark-prismjs',
-            options: {
-              classPrefix: 'language-',
-              inlineCodeMarker: null,
-              aliases: {},
-              showLineNumbers: true,
-              noInlineHighlight: false,
-              prompt: {
-                user: 'root',
-                host: 'localhost',
-                global: true,
-              },
             },
           },
         ],
