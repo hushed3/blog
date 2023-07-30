@@ -1,16 +1,16 @@
 # deploy.yml
-name: deploy blog to servers
+name: Deploy develop branch to servers
 on:
   push:
     branches:
-      - master
+      - develop
       
 env:
     SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }} # 服务器私钥
     REMOTE_HOST: ${{ secrets.HOST }} # 服务器IP地址
     REMOTE_USER: ${{ secrets.USER }} # 服务器用户名
     REMOTE_PORT: ${{ secrets.PORT }} # 服务器ssh端口
-    TARGET: ${{ secrets.TARGET }} # 项目路径
+    TARGET: '/var/www/test' # 项目路径
     cache-name: note
 
 jobs:

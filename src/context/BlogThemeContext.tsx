@@ -1,5 +1,3 @@
-import { StoreUpdater } from '@/components/StoreUpdater'
-import { GlobalStyle } from '@/styles/global'
 import { ConfigProvider } from 'antd'
 import {
   CustomTokenParams,
@@ -8,6 +6,7 @@ import {
   ThemeProvider as AntdThemeProvider,
 } from 'antd-style'
 import React, { useCallback } from 'react'
+// import { defineCustomElements as deckDeckGoHighlightElement } from '@deckdeckgo/highlight-code/dist/loader'
 
 import { useThemeStore } from '@/store/useThemeStore'
 import { createCustomToken, getAntdTheme, getCustomStylish } from '@/styles'
@@ -15,6 +14,9 @@ import { createCustomToken, getAntdTheme, getCustomStylish } from '@/styles'
 
 export const BlogThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const themeMode = useThemeStore((s) => s.themeMode)
+  // deckDeckGoHighlightElement()
+
+  console.log(extractStaticStyle, extractStaticStyle.cache)
 
   const getCustomToken = useCallback((params: CustomTokenParams) => {
     const base = createCustomToken(params)
@@ -29,19 +31,17 @@ export const BlogThemeProvider = ({ children }: { children: React.ReactNode }) =
           components: { Card: { paddingLG: 18 } },
         }}
       >
-        <AntdStyleProvider prefix={'site'} cache={extractStaticStyle.cache}>
-          <AntdThemeProvider
-            prefixCls={'site'}
-            themeMode={themeMode}
-            theme={getAntdTheme}
-            customToken={getCustomToken}
-            customStylish={getCustomStylish}
-          >
-            <GlobalStyle />
-            <StoreUpdater />
+        <AntdThemeProvider
+          prefixCls={'site'}
+          themeMode={themeMode}
+          theme={getAntdTheme}
+          customToken={getCustomToken}
+          customStylish={getCustomStylish}
+        >
+          <AntdStyleProvider prefix={'site'} cache={extractStaticStyle.cache}>
             {children}
-          </AntdThemeProvider>
-        </AntdStyleProvider>
+          </AntdStyleProvider>
+        </AntdThemeProvider>
       </ConfigProvider>
     </>
   )

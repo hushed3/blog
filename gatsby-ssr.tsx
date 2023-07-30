@@ -17,18 +17,13 @@ export const replaceRenderer = ({ replaceBodyHTMLString, bodyComponent, setHeadC
   const html = renderToString(<>{bodyComponent}</>)
 
   const antdCache = (global as any).__ANTD_CACHE__
-  const styles = extractStaticStyle(html, { antdCache }).map((item) => item.style)
 
+  // 提取 antd-style 样式
+  const styles = extractStaticStyle(html, { antdCache }).map((item) => item)
+
+  // 添加 css样式到 head
   styles.forEach((item) => {
-    setHeadComponents([
-      <style
-        key="cache"
-        data-emotion={`css`}
-        dangerouslySetInnerHTML={{
-          __html: item.props.dangerouslySetInnerHTML.__html,
-        }}
-      />,
-    ])
+    setHeadComponents([<style key={item.key} {...item.style.props} />])
   })
   replaceBodyHTMLString(html)
 }
