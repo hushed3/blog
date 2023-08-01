@@ -1,7 +1,48 @@
-# blog.hushes.cn
+### 快速上手
 
+#### 📦 Node >= 18
+>windows安装node
 
-### commit-message 格式
+[下载node](https://nodejs.org/zh-cn/download)
+
+>mac安装node
+```
+brew install node@18
+```
+
+#### 📦 Gatsby
+```
+npm install -g gatsby-cli
+```
+
+#### 安装依赖
+```
+npm i
+```
+`or`
+```
+yarn
+```
+
+#### 启动项目
+```
+npm run dev
+```
+`or`
+```
+yarn dev
+```
+
+#### 打包
+```
+npm run build
+```
+`or`
+```
+yarn build
+```
+
+#### commit-message 格式
 
 - feat: 新功能（feature）。
 
