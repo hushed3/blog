@@ -3,19 +3,27 @@ import { createStyles } from 'antd-style'
 export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token }, prefixCls: string) => ({
   footer: cx(
     css`
-      padding: 3rem 0;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.25rem;
+      flex-wrap: wrap;
+      align-content: space-evenly;
+      height: ${token.footerHeight}px;
+      padding: 0.8rem 0;
+
+      ${r({
+        mobile: css`
+          height: ${token.footerHeightLaptop}px;
+          padding: 0.4rem 0;
+        `,
+      })}
     `
   ),
 
   footerContainer: css`
+    width: 100%;
     display: flex;
+    justify-content: center;
     color: ${token.colorTextTertiary};
-    gap: 0.25rem;
-    margin: 0 1rem;
+    gap: 0.5rem;
   `,
 
   item: css`

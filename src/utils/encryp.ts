@@ -22,5 +22,5 @@ export const encryp = (data: string) => {
   encryptor.setPublicKey(publicKey)
   const encryptData = encryptor.encrypt(data)
 
-  return encryptData
+  return encryptData as string
 }

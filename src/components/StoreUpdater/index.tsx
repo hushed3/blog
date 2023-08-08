@@ -1,5 +1,5 @@
-import { useDebounceEffect } from 'ahooks'
 import React, { memo, useEffect } from 'react'
+import { useDebounceEffect } from 'ahooks'
 
 import { useSitedata } from '@/hooks'
 import { SiteStore, useSiteStore } from '@/store'
@@ -25,6 +25,7 @@ const useLegacyUpdater = (effect: React.EffectCallback, deps?: React.DependencyL
     { wait: 32, maxWait: 96 }
   )
 }
+
 const useUpdater = typeof (React as any).startTransition === 'function' ? useReact18xUpdater : useLegacyUpdater
 
 const useSyncState = <T extends keyof SiteStore>(

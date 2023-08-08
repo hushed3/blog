@@ -15,6 +15,7 @@ const mainHeaderItems = [
   // { url: '/me', icon: null, label: 'About', name: ' me ', show: true },
   { url: '/blog', icon: BlogSvg, label: 'Writing', name: ' Blog ', show: true },
   { url: '/sunset', icon: SunsetSvg, label: 'Sunset', name: 'Sunset', show: false },
+  { url: '/map', icon: SunsetSvg, label: 'Map', name: 'Map', show: true },
 ]
 
 const socialHeaderItems = [{ url: 'https://github.com/hushed3', icon: GithubSvg, label: 'GitHub' }]

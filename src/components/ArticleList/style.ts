@@ -2,6 +2,9 @@ import { createStyles } from 'antd-style'
 
 export const useStyles = createStyles(({ css, responsive: r, token }) => ({
   years: css`
+    margin-bottom: 3rem;
+  `,
+  year: css`
     color: ${token.colorPrimaryHover};
     padding-bottom: 0.8rem;
     border-bottom: 2px solid ${token.colorBorderSecondary};
