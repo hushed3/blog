@@ -15,10 +15,15 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
     })}
   `,
 
+  spacerLine: css`
+    width: 100%;
+    border-bottom: 1px dashed ${token.colorBorder};
+    margin: 0 0 3.2rem;
+  `,
+
   title: css`
-    padding: 2.5rem 0 1rem;
-    margin-top: 2rem;
-    margin-bottom: 1.5rem;
+    padding: 5.6rem 0 4rem;
+    margin: 0;
     font-size: 1.85rem;
     letter-spacing: -0.07rem;
     font-weight: 700;
@@ -26,9 +31,12 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
 
     ${r({
       laptop: css`
-        padding: 1.5rem 0 2rem;
-        font-size: 1.5rem;
+        padding: 3.5rem 0 3rem;
       `,
     })}
+  `,
+
+  main: css`
+    padding-bottom: 5rem;
   `,
 }))

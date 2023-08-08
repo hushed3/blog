@@ -17,9 +17,7 @@ export const Heading = ({ title, slug }: Props) => {
 
   return (
     <div className={styles.heading}>
-      <div>
-        <h2 className={styles.title}>{title}</h2>
-      </div>
+      <h2 className={styles.title}>{title}</h2>
       {slug && (
         <Link className={styles.link} to={slug}>
           View all

@@ -3,11 +3,8 @@ import { createStyles } from 'antd-style'
 export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token }, prefixCls: string) => ({
   briefHeader: css`
     position: relative;
-    overflow: hidden;
     width: 100%;
-    padding: 2rem 0;
-    position: relative;
-    margin-top: 0.5rem;
+    padding: 4rem 0 3rem;
   `,
 
   Description: css`
