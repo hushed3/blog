@@ -1,13 +1,13 @@
 ---
 date: 2023-08-06
-title: 'Javascript - 异步操作和异步传染性'
+title: 'JavaScript - 异步操作和异步传染性'
 template: article
 thumbnail: '../thumbnails/react.png'
 slug: AsyncInfectivity
 categories:
-  - Javascript
+  - JavaScript
 tags:
-  - Javascript
+  - JavaScript
 ---
 
 `JavaScript`作为一门`单线程语言`，同一时间只能执行一个操作。这就意味着，在处理一些耗时操作时，程序会出现`阻塞`，导致`UI`无响应。为了避免这种情况，`异步编程`变得至关重要。`异步操作`可以将耗时的任务交给浏览器或运行时环境来处理，同时保持`UI`的响应性。

@@ -80,7 +80,7 @@ export const ArticleSidebar = ({ tags = [], date, categories = [], thumbnail, he
           <div className={styles.title}>目录</div>
           <Anchor
             className={styles.anchor}
-            targetOffset={300}
+            targetOffset={90}
             affix={true}
             items={anchorList}
             onClick={handleClick}

@@ -41,7 +41,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token 
       letter-spacing: 0.15rem;
       font-size: 2.2rem;
       line-height: 1.1;
-      letter-spacing: 0.1rem;
+      letter-spacing: 0.3rem;
       margin: 0 !important;
 
       ${r({
@@ -54,12 +54,6 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token 
       })}
     `
   ),
-  // greeting: css`
-  //   font-family: Prisma;
-  //   font-weight: normal;
-  //   letter-spacing: 0.15rem;
-  //   font-size: 2.2rem;
-  // `,
 
   highlightText: css`
     color: ${token.colorPrimaryBorderHover};

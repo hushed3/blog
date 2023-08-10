@@ -23,7 +23,7 @@ export default function ArticleTemplate({ data }: PageProps<ArticleTemplateData>
   const fields = article.fields
   const frontmatter = article.frontmatter
   const html = article.html as string
-  console.log(headings)
+
   return (
     <>
       <SEO helmetTitle={frontmatter?.title} articlePath={fields?.slug} articleNode={article} articleSEO />
