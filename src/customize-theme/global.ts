@@ -33,7 +33,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    font-family: "'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif";
+    font-family: ${(p) => p.theme.fontFamily};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
@@ -72,14 +72,18 @@ export const GlobalStyle = createGlobalStyle`
   ul,
   ol {
     -webkit-font-smoothing: auto;
-    line-height: 1.7;
-    margin-top: 0;
-    margin-bottom: 1rem;
+    line-height: 2;
+    margin-top: 1.2rem;
+    margin-bottom: 1.4rem;
     letter-spacing: -0.01rem;
   }
 
   ul {
     padding-left: 1.5rem;
+  }
+
+  ol{
+    padding-left: 1.2rem;
   }
 
   ul li ul,
@@ -90,7 +94,7 @@ export const GlobalStyle = createGlobalStyle`
 
   li {
     line-height: 1.5;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
     padding-left: 0.25rem;
   }
 
@@ -101,7 +105,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   blockquote {
-    margin: 1.5rem 0;
+    width: 100%;
     margin-left: 0;
     padding: 0.8rem 1rem;
     background: ${(p) => p.theme.colorPrimaryBg};
@@ -113,6 +117,10 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
   
+  p strong{
+    font-size: 1.1rem;
+  }
+
   blockquote p {
     font-size: 0.9rem;
     line-height: 1.9;
@@ -130,41 +138,28 @@ export const GlobalStyle = createGlobalStyle`
   h4,
   h5 {
     line-height: 1.1;
-    margin-top: 0;
-    margin-bottom: 1.5rem;
     font-weight: 600;
     scroll-margin-top: 100px;
     color: ${(p) => p.theme.colorText};
     font-family: monospace
   }
 
-  h1:not(:first-of-type),
-  h2:not(:first-of-type),
-  h3:not(:first-of-type),
-  h4:not(:first-of-type) {
-    margin-top: 2.5rem;
-  }
-
-  h2 + h3 {
-    margin-top: 1.5rem !important;
-  }
-
   h2 {
     font-size: 1.9rem;
-    margin: 0 0 1rem;
+    margin: 4.2rem 0 3rem;
     font-weight: 700;
     padding-bottom: 0.3rem;
     letter-spacing: -0.03rem;
   }
 
   h2 code {
-            font-size: 1.9rem !important;
+    font-size: 1.9rem !important;
   }
 
   h3 {
     font-size: 1.5rem;
     font-weight: 900;
-    margin-bottom: 1rem;
+    margin: 3.2rem 0 2rem;
   }
 
   h3 code {
@@ -220,14 +215,23 @@ export const GlobalStyle = createGlobalStyle`
     max-width: 100%;
   }
 
+  code{
+    color: ${(p) => p.theme.colorPrimary};
+    font-size: 0.95rem;
+    background-color: ${(p) => p.theme.colorFillTertiary};
+    padding: 0.25rem 0.4rem;
+    border-radius: ${(p) => p.theme.borderRadiusOuter}px;
+    margin: 0 0.3rem;
+    font-family: ${(p) => p.theme.fontFamilyHighlighter};
+  }
+
   .tag {
     display: inline-flex;
     position: relative;
     font-size: 0.9rem;
-    border-radius: ${(p) => p.theme.borderRadius}px;
-    padding: 0.2rem 0.7rem;
-    margin-bottom: 0.8rem;
-    margin-right: 0.3rem;
+    border-radius: ${(p) => p.theme.borderRadiusOuter}px;
+    padding: 0.1rem 0.7rem;
+    margin: 0.4rem 0.3rem 0.4rem 0;
     align-items: center;
     line-height: calc(0.9rem + 8px);
     background: ${(p) => p.theme.colorInfoBg};
@@ -247,9 +251,17 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+  deckgo-highlight-code {
+    --deckgo-highlight-code-line-height: 1.7;
+    --deckgo-highlight-code-carbon-toolbar-display: none;
+    /* --deckgo-highlight-code-line-numbers-border-right: none; */
+    --deckgo-highlight-code-font-family: SF Mono
+  }
+
   .deckgo-highlight-code-carbon{
     background: ${(p) => p.theme.colorBgElevated};
     border-radius: ${(p) => p.theme.borderRadius}px;
     box-shadow: ${(p) => p.theme.boxShadowTertiary};
+    margin-bottom: 2rem;
   }
 `

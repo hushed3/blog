@@ -73,11 +73,9 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
     margin-bottom: 0.6rem;
     padding: 0.1rem 0.3rem;
 
-    ${r({
-      laptop: css`
-        font-size: 0.76rem;
-      `,
-    })}
+    span {
+      color: inherit;
+    }
 
     &:last-child {
       margin-bottom: 0rem;
@@ -86,15 +84,18 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
     &.active {
       color: ${token.colorPrimary};
       font-weight: bold;
-      span {
-        color: inherit;
-      }
     }
 
     &:hover {
       color: ${token.colorPrimaryHover};
       text-decoration: none;
     }
+
+    ${r({
+      laptop: css`
+        font-size: 0.76rem;
+      `,
+    })}
   `,
 
   tag: cx(

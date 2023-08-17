@@ -19,29 +19,25 @@ export interface SiteToken {
    */
   headerHeightLaptop: number
   /**
+   * @title 内容最大宽度
+   * @description 文本内容的最大宽度 1100
+   */
+  contentMaxWidth: number
+  /**
    * @title 底部高度
    */
   footerHeight: number
   /**
-   * @title 侧边栏宽度
+   * @title 底部高度移动端
    */
-  sidebarWidth: number
+  footerHeightLaptop: number
   /**
-   * @title 目录宽度
-   */
-  tocWidth: number
-  /**
-   * @title 内容最大宽度
-   * @description 文本内容的最大宽度 1152
-   */
-  contentMaxWidth: number | string
-  /**
-   * @title 渐变背景色
+   * @title Logo渐变
    */
   gradientLogo: string
 
   /**
-   * @title 代码块字体
+   * @title 标题字体
    */
   fontFamilyHeading: string
 
@@ -61,19 +57,19 @@ export const createCustomToken: GetCustomToken<SiteToken> = ({ isDarkMode, token
     headerHeight: 64,
     headerHeightLaptop: 50,
 
-    footerHeight: 300,
-    sidebarWidth: 240,
-    tocWidth: 176,
     contentMaxWidth: 1100,
+
+    footerHeight: 130,
+    footerHeightLaptop: 100,
+
+    gradientLogo: `linear-gradient(30deg,#90d5ff 40%,#646cff)`,
 
     fontFamilyHeading: 'monospace',
     fontFamilyHighlighter: 'SF Mono',
-    colorBgContainer: token.colorBgElevated,
-
-    borderRadius: 8,
 
     boxShadowQuaternary: isDarkMode ? 'none' : '0 0 25px #c8c8c840',
 
-    gradientLogo: `linear-gradient(30deg,#90d5ff 40%,#646cff)`,
+    colorBgContainer: token.colorBgElevated,
+    borderRadius: 8,
   }
 }

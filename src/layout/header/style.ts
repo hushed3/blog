@@ -58,7 +58,7 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token 
     border-radius: 0;
     border-top: 2px solid transparent;
     border-bottom: 2px solid transparent;
-    margin: 0 0.4rem;
+    margin-right: 1.2rem;
 
     &:hover {
       color: ${token.colorText};
@@ -83,12 +83,11 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token 
 
     ${r({
       laptop: css`
-        margin: 0 0.6rem;
         .label {
           display: none;
         }
         .icon {
-          display: block;
+          display: flex;
         }
       `,
     })}

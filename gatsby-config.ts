@@ -1,6 +1,6 @@
 module.exports = {
   flags: {
-    DEV_SSR: true,
+    DEV_SSR: false,
   },
   siteMetadata: {
     title: 'Hush blog',
@@ -142,6 +142,8 @@ module.exports = {
           {
             resolve: `gatsby-remark-highlight-code`,
             options: {
+              lineNumbers: true,
+              // theme: 'dracula',
               theme: 'one-dark',
             },
           },
