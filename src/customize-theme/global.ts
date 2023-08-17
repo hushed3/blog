@@ -107,7 +107,7 @@ export const GlobalStyle = createGlobalStyle`
   blockquote {
     width: 100%;
     margin-left: 0;
-    padding: 0.6rem 1rem;
+    padding: 0.8rem 1rem;
     background: ${(p) => p.theme.colorPrimaryBg};
     border-radius: ${(p) => p.theme.borderRadius}px;
     border-left: 4px solid  ${(p) => p.theme.colorPrimaryBorder};
