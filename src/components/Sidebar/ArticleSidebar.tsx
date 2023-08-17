@@ -26,6 +26,7 @@ export const ArticleSidebar = ({ tags = [], date, categories = [], thumbnail, he
   const categorys = categories?.filter((category) => category !== 'Highlight')
   const anchorList = headings?.map((e) => ({ title: e.id, href: `#${e.id}`, key: e.id }))
 
+
   const handleClick = (e: React.MouseEvent<HTMLElement>, link: { title: React.ReactNode; href: string }) => {
     e.preventDefault()
     document.getElementById(link.href)?.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
@@ -80,7 +81,7 @@ export const ArticleSidebar = ({ tags = [], date, categories = [], thumbnail, he
           <Anchor
             className={styles.anchor}
             targetOffset={90}
-            affix={false}
+            affix={true}
             items={anchorList}
             onClick={handleClick}
           ></Anchor>

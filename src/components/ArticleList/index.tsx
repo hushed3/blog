@@ -26,8 +26,8 @@ export const ArticleList = ({ data = [] }: { data: SimplifiedData[] }) => {
   return (
     <>
       {years.map((year) => (
-        <div key={year}>
-          <div className={styles.years}>{year}</div>
+        <div className={styles.years} key={year}>
+          <div className={styles.year}>{year}</div>
           {articleByYear[year].map((node: SimplifiedData) => (
             <Link className={styles.link} to={`/${node.slug}`} key={node.id}>
               <h5>{node.title}</h5>

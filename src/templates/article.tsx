@@ -2,7 +2,6 @@ import type { PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 import React, { useMemo } from 'react'
 import { defineCustomElements as deckDeckGoHighlightElement } from '@deckdeckgo/highlight-code/dist/loader'
-
 import { SEO } from '@/components/SEO'
 import { ArticleSidebar } from '@/components/Sidebar/ArticleSidebar'
 import { Layout } from '@/layout/index'
@@ -29,9 +28,10 @@ export default function ArticleTemplate({ data }: PageProps<ArticleTemplateData>
     <>
       <SEO helmetTitle={frontmatter?.title} articlePath={fields?.slug} articleNode={article} articleSEO />
       <div className={styles.container}>
-        <div>
+        <div className="content">
           <h2 className={styles.title}>{frontmatter?.title}</h2>
-          <div id={frontmatter?.slug} dangerouslySetInnerHTML={{ __html: html }} />
+          <div className={styles.spacerLine}></div>
+          <div className={styles.main} id={frontmatter?.slug} dangerouslySetInnerHTML={{ __html: html }} />
         </div>
 
         <ArticleSidebar
@@ -51,13 +51,13 @@ ArticleTemplate.Layout = Layout
 export const pageQuery = graphql`
   query ArticleBySlug($slug: String!) {
     article: markdownRemark(fields: { slug: { eq: $slug } }) {
-      headings(depth: h4) {
-        id
-      }
       html
       excerpt
       fields {
         slug
+      }
+      headings(depth: h3) {
+        id
       }
       frontmatter {
         title

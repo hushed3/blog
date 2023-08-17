@@ -1,7 +1,7 @@
 import React from 'react'
 import { BlogThemeProvider } from '@/context/BlogThemeContext'
 import { StoreUpdater } from '@/components/StoreUpdater'
-import { GlobalStyle } from '@/styles/global'
+import { GlobalStyle } from '@/customize-theme/global'
 
 // import { BgParticles } from '../components/BgParticles'
 import { Footer } from './footer/index'

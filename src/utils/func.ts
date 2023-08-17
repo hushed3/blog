@@ -45,8 +45,28 @@ export const getID = (str: string): string => {
   return value?.length ? value[0].replace(/-/g, ' ') : ''
 }
 
+/**
+ * @description 获取path
+ */
 export const getPathname = () => {
   if (isSSR) return ''
 
   return location.pathname
 }
+
+/**
+ * @description object转换为url参数
+ * @param obj 
+ * @returns 
+ */
+export const objectToUrlParams = (obj: Record<string, any>) => {
+  const params = new URLSearchParams()
+  for (const key in obj) {
+    if (Object.hasOwn(obj, key)) {
+      params.append(key, obj[key])
+    }
+  }
+  return params.toString()
+}
+
+
