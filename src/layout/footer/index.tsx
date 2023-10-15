@@ -10,7 +10,7 @@ export const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContainer}>
-        <span className={`${styles.item} desktop-only`}>© 2022 {year} By Hush</span>
+        <span className={`${styles.item} desktop-only`}>© 2022 {year} By J</span>
       </div>
 
       <div className={styles.footerContainer}>

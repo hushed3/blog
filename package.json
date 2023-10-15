@@ -19,7 +19,7 @@
     "url": "https://blog.hushes.cn/"
   },
   "dependencies": {
-    "gatsby": "^5.9.0",
+    "gatsby": "^5.12.5",
     "graphql": "^16.6.0",
     "lodash": "^4.17.21",
     "query-string": "^8.1.0",
@@ -34,7 +34,7 @@
     "@floating-ui/react": "^0.23.1",
     "@react-spring/web": "^9.7.2",
     "@react-three/drei": "^9.80.1",
-    "@react-three/fiber": "^8.13.6",
+    "@react-three/fiber": "^8.14.3",
     "@types/chroma-js": "^2.4.0",
     "@types/qs": "^6.9.7",
     "@types/react": "^18.0.38",
@@ -79,7 +79,6 @@
     "qs": "^6.11.2",
     "react-layout-kit": "^1.7.0",
     "react-particles": "^2.9.3",
-    "react-three-fiber": "^6.0.13",
     "three": "^0.155.0",
     "tsparticles": "^2.9.3",
     "tsparticles-engine": "^2.9.3",

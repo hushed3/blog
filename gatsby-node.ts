@@ -84,6 +84,8 @@ const createPages = async ({ graphql, actions }: { graphql: any; actions: any })
         })
       }
 
+      console.log(article.node.fields)
+
       createPage({
         path: article.node.fields.slug,
         component: blogPage,
