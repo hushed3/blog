@@ -2,7 +2,7 @@
 date: 2022-06-30
 title: 'JavaScript - 发布订阅模式'
 template: article
-thumbnail: '../thumbnails/js.png'
+thumbnail: '../../thumbnails/js.png'
 slug: publisher
 categories:
   - JavaScript

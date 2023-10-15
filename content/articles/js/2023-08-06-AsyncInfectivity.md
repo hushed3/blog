@@ -2,7 +2,7 @@
 date: 2023-08-06
 title: 'JavaScript - 异步操作和异步传染性'
 template: article
-thumbnail: '../thumbnails/js.png'
+thumbnail: '../../thumbnails/js.png'
 slug: AsyncInfectivity
 categories:
   - JavaScript
