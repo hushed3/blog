@@ -56,8 +56,8 @@ export const getPathname = () => {
 
 /**
  * @description object转换为url参数
- * @param obj 
- * @returns 
+ * @param obj
+ * @returns
  */
 export const objectToUrlParams = (obj: Record<string, any>) => {
   const params = new URLSearchParams()
@@ -68,5 +68,14 @@ export const objectToUrlParams = (obj: Record<string, any>) => {
   }
   return params.toString()
 }
+/**
+ * @description 从字符串提取数字
+ * @date 15/10/2023
+ * @param {string} tag
+ * @return {*}  {(number | null)}
+ */
+export const getNumber = (tag: string): number | null => {
+  const number = tag.match(/\d+(\.\d+)?/g)?.join()
 
-
+  return number ? Number(number) : null
+}

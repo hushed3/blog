@@ -7,10 +7,13 @@ import { GlobalStyle } from '@/customize-theme/global'
 import { Footer } from './footer/index'
 import { Header } from './header/index'
 
+import { useThemeMode } from '@/hooks'
 import { useStyles } from './style'
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { styles } = useStyles()
+
+  const { isDarkMode } = useThemeMode()
 
   return (
     <BlogThemeProvider>
@@ -18,6 +21,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       <StoreUpdater />
 
       <div className={styles.layout}>
+        {isDarkMode}
         <Header />
         <main className={styles.main}>{children}</main>
         <Footer />

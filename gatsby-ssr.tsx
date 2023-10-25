@@ -27,3 +27,17 @@ export const replaceRenderer = ({ replaceBodyHTMLString, bodyComponent, setHeadC
   })
   replaceBodyHTMLString(html)
 }
+
+export const onRenderBody = ({ setHeadComponents }) => {
+  setHeadComponents([
+    <link rel="preload" href="/svg/icons.svg" as="image" type="image/svg+xml" key="svgIcons" />,
+    // <link
+    //   rel="preload"
+    //   href={}
+    //   as="font"
+    //   type="font/woff2"
+    //   crossOrigin="anonymous"
+    //   key="interFont"
+    // />,
+  ])
+}

@@ -1,7 +1,7 @@
-import { SiteData } from '@/store'
 import { graphql, useStaticQuery } from 'gatsby'
+import { Site } from '@/config'
 
-export const useSitedata = (): SiteData => {
+export const useSitedata = (): Site => {
   const { site } = useStaticQuery(
     graphql`
       query sitedata {
@@ -10,9 +10,7 @@ export const useSitedata = (): SiteData => {
             title
             description
             siteUrl
-            author {
-              name
-            }
+            author
             logo
             feedUrl
           }
@@ -22,11 +20,11 @@ export const useSitedata = (): SiteData => {
   )
 
   return {
-    siteTitle: site.siteMetadata.title,
-    siteAuthor: site.siteMetadata.author.name,
+    title: site.siteMetadata.title,
+    author: site.siteMetadata.author,
     siteUrl: site.siteMetadata.siteUrl,
-    siteLogo: site.siteMetadata.logo,
-    siteDescription: site.siteMetadata.description,
-    siteFeedUrl: site.siteMetadata.feedUrl,
+    logo: site.siteMetadata.logo,
+    description: site.siteMetadata.description,
+    feedUrl: site.siteMetadata.feedUrl,
   }
 }

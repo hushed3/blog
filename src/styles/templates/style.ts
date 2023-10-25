@@ -9,7 +9,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
     gap: 4rem;
 
     ${r({
-      laptop: css`
+      tablet: css`
         display: block;
       `,
     })}
@@ -30,7 +30,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
     line-height: 1.05;
 
     ${r({
-      laptop: css`
+      tablet: css`
         padding: 3.5rem 0 3rem;
       `,
     })}
@@ -38,5 +38,9 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
 
   main: css`
     padding-bottom: 5rem;
+  `,
+
+  card: css`
+    ${stylish.sideCard}
   `,
 }))

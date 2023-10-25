@@ -1,6 +1,5 @@
 import { ColorMapToken } from 'antd/es/theme/interface/maps/colors'
 
-import { generateAssociatedColors } from './colorRelationship'
 import { ColorPalettes, generateColorPalette, NeutralPaletteOptions, SeedColors, TokenType } from './paletteGenerator'
 
 type Magenta =
@@ -22,7 +21,7 @@ declare module 'antd-style' {
 
 export type TokenRelationship = (type: TokenType) => Partial<Record<keyof ColorMapToken, number>>
 
-const defaultRelationship: TokenRelationship = (type) => {
+export const defaultRelationship: TokenRelationship = (type) => {
   const key = type.toUpperCase()[0] + type.slice(1)
 
   return {
@@ -47,44 +46,26 @@ interface MapTokenAlgorithm extends NeutralPaletteOptions {
   brandColor?: string
 }
 
-export const genMapTokenAlgorithm = (params?: MapTokenAlgorithm) => {
-  const {
-    relationship = defaultRelationship,
-    infoColorFollowPrimary = false,
-    adjustWarning,
-    brandColor = '#646cff',
-  } = params || {}
+const brandColor = '#6677ff'
+// const brandColor = '#646cff'
+// const brandColor = '#8157ff'
 
-  const funcColors = generateAssociatedColors(brandColor, adjustWarning)
+export const genMapTokenAlgorithm = (params?: MapTokenAlgorithm) => {
+  const { relationship = defaultRelationship } = params || {}
 
   const seedColors = {
-    primary: brandColor,
-
-    ...funcColors,
     ...params?.seedColors,
 
     magenta: '#d952b1',
-    info: '#3491fa',
-  }
-
-  if (infoColorFollowPrimary) {
-    seedColors.info = brandColor
   }
 
   const palettes: ColorPalettes = {
-    primary: generateColorPalette(seedColors.primary, params).map((color) => color.hex),
-    error: generateColorPalette(seedColors.error, params).map((c) => c.hex),
-    warning: generateColorPalette(seedColors.warning, params).map((c) => c.hex),
-    success: generateColorPalette(seedColors.success, params).map((c) => c.hex),
-    info: generateColorPalette(seedColors.info, params).map((color) => color.hex),
-    // neutral: generateNeutralPalette(seedColors.primary, { ...params, neutral: true }).map((c) => c.hex),
-    // grey: generateNeutralPalette(seedColors.grey, params).map((c) => c.hex),
     magenta: generateColorPalette(seedColors.magenta, params).map((c) => c.hex),
   }
 
   const tokens = {} as Partial<Record<keyof ColorMapToken, string>>
 
-  const types = ['primary', 'error', 'warning', 'success', 'info', 'magenta'] as TokenType[]
+  const types = ['magenta'] as TokenType[]
 
   types.forEach((type) => {
     Object.entries(relationship(type)).forEach(([key, value]) => {
@@ -92,7 +73,7 @@ export const genMapTokenAlgorithm = (params?: MapTokenAlgorithm) => {
     })
   })
 
-  return { palettes, tokens }
+  return { brandColor, palettes, tokens }
 }
 
 export type { ColorPalettes } from './paletteGenerator'

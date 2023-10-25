@@ -13,7 +13,7 @@ export const useStyles = createStyles(({ css, token, responsive: r }) => ({
     height: 100%;
 
     ${r({
-      laptop: css`
+      tablet: css`
         border-radius: ${token.borderRadiusSM}px;
       `,
       mobile: css`
@@ -36,7 +36,7 @@ export const useStyles = createStyles(({ css, token, responsive: r }) => ({
     box-shadow: 0 0 10px 0 ${token.boxShadowSecondary};
 
     ${r({
-      laptop: css`
+      tablet: css`
         border-radius: ${token.borderRadiusSM}px;
       `,
       mobile: css`

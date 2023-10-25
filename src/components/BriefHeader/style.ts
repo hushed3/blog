@@ -5,16 +5,23 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token 
     position: relative;
     width: 100%;
     padding: 4rem 0 3rem;
+
+    ${r({
+      mobile: css`
+        padding: 3rem 0 2.5rem;
+      `,
+    })}
   `,
 
   Description: css`
     color: ${token.colorTextDescription};
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin-bottom: 0.4rem;
 
     span {
-      color: ${token.colorPrimaryBorderHover};
+      color: ${token.colorPrimaryHover};
+      font-family: Prisma;
     }
   `,
 
@@ -26,7 +33,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token 
     margin: 0 !important;
 
     ${r({
-      laptop: css`
+      tablet: css`
         font-size: 1.9rem;
       `,
       mobile: css`
@@ -45,7 +52,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token 
       margin: 0 !important;
 
       ${r({
-        laptop: css`
+        tablet: css`
           font-size: 1.9rem;
         `,
         mobile: css`

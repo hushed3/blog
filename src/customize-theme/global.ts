@@ -23,8 +23,6 @@ export const GlobalStyle = createGlobalStyle`
   *::before,
   *::after {
     box-sizing: border-box;
-    font-family: ${(p) => p.theme.fontFamily};
-    color: ${(p) => p.theme.colorText};
   }
 
 
@@ -48,6 +46,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     overflow: overlay;
     position: relative;
+    font-family: ${(p) => p.theme.fontFamily};
     color: ${(p) => p.theme.colorText};
     background-color: ${(p) => p.theme.colorBgLayout};
     transition: background-color ease-out 0.1s;
@@ -75,7 +74,6 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 2;
     margin-top: 1.2rem;
     margin-bottom: 1.4rem;
-    letter-spacing: -0.01rem;
   }
 
   ul {
@@ -101,7 +99,7 @@ export const GlobalStyle = createGlobalStyle`
   li::marker {
     font-size: 1.1rem;
     line-height: 1;
-    color: ${(p) => p.theme.colorPrimaryBorderHover};
+    color: ${(p) => p.theme.colorPrimaryHover};
   }
 
   blockquote {
@@ -223,6 +221,10 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: ${(p) => p.theme.borderRadiusOuter}px;
     margin: 0 0.3rem;
     font-family: ${(p) => p.theme.fontFamilyHighlighter};
+
+    &:first-of-type{
+      margin-left: 0
+    }
   }
 
   .tag {

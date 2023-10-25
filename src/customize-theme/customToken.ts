@@ -17,7 +17,7 @@ export interface SiteToken {
   /**
    * @title 头部高度移动端
    */
-  headerHeightLaptop: number
+  headerHeightMobile: number
   /**
    * @title 内容最大宽度
    * @description 文本内容的最大宽度 1100
@@ -30,7 +30,7 @@ export interface SiteToken {
   /**
    * @title 底部高度移动端
    */
-  footerHeightLaptop: number
+  footerHeightMobile: number
   /**
    * @title Logo渐变
    */
@@ -45,31 +45,24 @@ export interface SiteToken {
    * @title 代码块字体
    */
   fontFamilyHighlighter: string
-
-  /**
-   * @title 第四级阴影
-   */
-  boxShadowQuaternary: string
 }
 
 export const createCustomToken: GetCustomToken<SiteToken> = ({ isDarkMode, token }) => {
   return {
     headerHeight: 64,
-    headerHeightLaptop: 50,
+    headerHeightMobile: 50,
 
     contentMaxWidth: 1100,
 
     footerHeight: 130,
-    footerHeightLaptop: 100,
+    footerHeightMobile: 100,
 
     gradientLogo: `linear-gradient(30deg,#90d5ff 40%,#646cff)`,
 
     fontFamilyHeading: 'monospace',
     fontFamilyHighlighter: 'SF Mono',
 
-    boxShadowQuaternary: isDarkMode ? 'none' : '0 0 25px #c8c8c840',
-
-    colorBgContainer: token.colorBgElevated,
+    colorHighlight: isDarkMode ? '#262835' : '#f4f6ff',
     borderRadius: 8,
   }
 }

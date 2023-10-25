@@ -1,15 +1,15 @@
 import type { PageProps } from 'gatsby'
 import { graphql, Link } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
 import React, { useMemo } from 'react'
 import { Card } from 'antd'
+import { SVGIcon } from '@/components/SvgIcon'
 
 import { BriefHeader } from '@/components/BriefHeader'
 import { Heading } from '@/components/Heading'
 import { SEO } from '@/components/SEO'
 import { Layout } from '@/layout/index'
 import { useStyles } from '@/styles/pages/index.style'
-import { getSimplifiedArticles } from '@/utils/helpers'
+import { simplifiedData } from '@/utils/helpers'
 
 /**
  * @description 首页
@@ -17,14 +17,14 @@ import { getSimplifiedArticles } from '@/utils/helpers'
  * @export
  * @return {*}
  */
-export default function Index({ data }: PageProps<HomeArticlesData>) {
+export default function Index({ data }: PageProps<allMdxNodesQuery<'latest' | 'Highlights'>>) {
   const { styles } = useStyles()
 
-  const latest = data?.latest.edges
-  const Highlights = data?.Highlights.edges
+  const latest = data?.latest.nodes
+  const Highlights = data?.Highlights.nodes
 
-  const simplifiedLatest = useMemo(() => getSimplifiedArticles(latest), [data])
-  const simplifiedHighlights = useMemo(() => getSimplifiedArticles(Highlights, { thumbnails: true }), [data])
+  const simplifiedLatest = useMemo(() => simplifiedData(latest), [data])
+  const simplifiedHighlights = useMemo(() => simplifiedData(Highlights), [data])
 
   return (
     <>
@@ -78,9 +78,7 @@ export default function Index({ data }: PageProps<HomeArticlesData>) {
               {simplifiedHighlights.map((item) => {
                 return (
                   <Card className={styles.highlightCard} key={`Highlight-${item.slug}`} bordered={false}>
-                    {item.thumbnail && (
-                      <GatsbyImage image={item.thumbnail} alt="" imgStyle={{ height: 'fit-content' }} />
-                    )}
+                    <SVGIcon id={item.icon} width="3.2rem" height="3.2rem"></SVGIcon>
                     <div className="content">
                       <time className={styles.time}>{item.date}</time>
                       <Link className={styles.titleLink} to={item.slug}>
@@ -102,52 +100,39 @@ Index.Layout = Layout
 
 export const pageQuery = graphql`
   {
-    latest: allMarkdownRemark(
+    latest: allMdx(
       limit: 6
       sort: { frontmatter: { date: DESC } }
       filter: { frontmatter: { template: { eq: "article" } } }
     ) {
-      edges {
-        node {
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            slug
-            template
-            tags
-            categories
-          }
+      nodes {
+        id
+        frontmatter {
+          date(formatString: "MMMM DD, YYYY")
+          title
+          slug
+          template
+          tags
+          categories
+          icon
         }
       }
     }
-    Highlights: allMarkdownRemark(
+    Highlights: allMdx(
       limit: 6
       sort: { frontmatter: { date: DESC } }
       filter: { frontmatter: { categories: { eq: "Highlight" } } }
     ) {
-      edges {
-        node {
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            slug
-            template
-            tags
-            categories
-            thumbnail {
-              childImageSharp {
-                gatsbyImageData(width: 100, height: 100)
-              }
-            }
-          }
+      nodes {
+        id
+        frontmatter {
+          date(formatString: "MMMM DD, YYYY")
+          title
+          slug
+          template
+          tags
+          icon
+          categories
         }
       }
     }

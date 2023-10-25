@@ -4,26 +4,29 @@ import {
   CustomTokenParams,
   extractStaticStyle,
   StyleProvider as AntdStyleProvider,
-  ThemeProvider as AntdThemeProvider,
+  ThemeProvider as AntdStyleThemeProvider,
 } from 'antd-style'
+import { useThemeMode } from '@/hooks'
 
-import { useThemeStore } from '@/store/useThemeStore'
 import { createCustomToken, getAntdTheme, getCustomStylish } from '@/customize-theme'
 ;(global as any)['__ANTD_CACHE__'] = extractStaticStyle.cache
 
 export const BlogThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const themeMode = useThemeStore((s) => s.themeMode)
+  const { themeMode } = useThemeMode()
 
   const getCustomToken = useCallback((params: CustomTokenParams) => {
     const base = createCustomToken(params)
 
     return base
   }, [])
-
   return (
     <>
-      <ConfigProvider theme={{ components: { Card: { paddingLG: 18 } } }}>
-        <AntdThemeProvider
+      <ConfigProvider
+        theme={{
+          components: { Card: { paddingLG: 18 }, Button: { borderRadiusSM: 6 }, Alert: { fontSize: 13, lineWidth: 2 } },
+        }}
+      >
+        <AntdStyleThemeProvider
           prefixCls={'site'}
           themeMode={themeMode}
           theme={getAntdTheme}
@@ -33,7 +36,7 @@ export const BlogThemeProvider = ({ children }: { children: React.ReactNode }) =
           <AntdStyleProvider prefix={'site'} cache={extractStaticStyle.cache}>
             {children}
           </AntdStyleProvider>
-        </AntdThemeProvider>
+        </AntdStyleThemeProvider>
       </ConfigProvider>
     </>
   )

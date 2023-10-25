@@ -1,11 +1,9 @@
-import type { PageProps } from 'gatsby'
-import { graphql } from 'gatsby'
-import React, { useMemo } from 'react'
-import { defineCustomElements as deckDeckGoHighlightElement } from '@deckdeckgo/highlight-code/dist/loader'
 import { SEO } from '@/components/SEO'
 import { ArticleSidebar } from '@/components/Sidebar/ArticleSidebar'
 import { Layout } from '@/layout/index'
 import { useStyles } from '@/styles/templates/style'
+
+import PrismSyntaxHighlight from '@/components/PrismSyntaxHighlight'
 
 /**
  * @description 文章页面
@@ -13,32 +11,27 @@ import { useStyles } from '@/styles/templates/style'
  * @export
  * @return {*}
  */
-export default function ArticleTemplate({ data }: PageProps<ArticleTemplateData>) {
-  deckDeckGoHighlightElement()
+export default function ArticleTemplate<PageProps>({ pageContext: article, children }) {
   const { styles } = useStyles()
 
-  const article = useMemo(() => data?.article, [data])
-
-  const headings = article.headings
-  const fields = article.fields
   const frontmatter = article.frontmatter
-  const html = article.html as string
+  const headings = article.tableOfContents.items.map((e, i) => ({ ...e, key: i, href: `#${e.title}` }))
 
   return (
     <>
-      <SEO helmetTitle={frontmatter?.title} articlePath={fields?.slug} articleNode={article} articleSEO />
+      <SEO helmetTitle={frontmatter?.title} articlePath={frontmatter?.slug} articleNode={article} articleSEO />
       <div className={styles.container}>
         <div className="content">
           <h2 className={styles.title}>{frontmatter?.title}</h2>
           <div className={styles.spacerLine}></div>
-          <div className={styles.main} id={frontmatter?.slug} dangerouslySetInnerHTML={{ __html: html }} />
+          <PrismSyntaxHighlight mdxContent={children}></PrismSyntaxHighlight>
         </div>
 
         <ArticleSidebar
-          date={frontmatter?.date}
+          date={frontmatter?.date.slice(0, 10)}
           tags={frontmatter?.tags}
           categories={frontmatter?.categories}
-          thumbnail={frontmatter?.thumbnail}
+          icon={frontmatter?.icon}
           headings={headings}
         />
       </div>
@@ -47,29 +40,3 @@ export default function ArticleTemplate({ data }: PageProps<ArticleTemplateData>
 }
 
 ArticleTemplate.Layout = Layout
-
-export const pageQuery = graphql`
-  query ArticleBySlug($slug: String!) {
-    article: markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
-      excerpt
-      fields {
-        slug
-      }
-      headings(depth: h3) {
-        id
-      }
-      frontmatter {
-        title
-        date(formatString: "YYYY-MM-DD")
-        tags
-        categories
-        thumbnail {
-          childImageSharp {
-            gatsbyImageData(width: 100, height: 100)
-          }
-        }
-      }
-    }
-  }
-`

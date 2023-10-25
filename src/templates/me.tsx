@@ -38,8 +38,8 @@ MeTemplate.Layout = Layout
 
 export const pageQuery = graphql`
   query MeBySlug($slug: String!) {
-    me: markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
+    me: mdx(frontmatter: { slug: { eq: $slug } }) {
+      body
       frontmatter {
         title
         slug
