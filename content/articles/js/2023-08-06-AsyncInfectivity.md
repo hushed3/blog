@@ -1,13 +1,16 @@
 ---
-date: 2023-08-06
 title: 'JavaScript - 异步操作和异步传染性'
+description: ''
+date: 2023-08-06
+lastUpdated: 2022-08-06
 template: article
-thumbnail: '../../thumbnails/js.png'
+icon: javascript
 slug: AsyncInfectivity
 categories:
   - JavaScript
 tags:
   - JavaScript
+published: true
 ---
 
 `JavaScript`作为一门`单线程语言`，同一时间只能执行一个操作。这就意味着，在处理一些耗时操作时，程序会出现`阻塞`，导致`UI`无响应。为了避免这种情况，`异步编程`变得至关重要。`异步操作`可以将耗时的任务交给浏览器或运行时环境来处理，同时保持`UI`的响应性。
@@ -91,6 +94,7 @@ fetchData('https://api.github.com/users/hushed3')
 ```
 
 ### 异步传染性
+
 - 假设我们有一个函数`getUser`，传入用户标识后，查找该用户信息,并且返回用户名。
 
 ```javascript
@@ -127,7 +131,7 @@ main()
 
 ### 消除异步传染性
 
-消除`异步`的`传染性`是指在`JavaScript`中处理异步代码时，防止异步操作在代码中传播，影响到其他部分的执行。
+消除异步的`传染性`是指在 JavaScript 中处理异步代码时，防止异步操作在代码中传播，影响到其他部分的执行。
 
 利用`try...catch`并通过缓存的方式来处理异步请求结果，从而在后续的调用中直接使用缓存的数据。
 

@@ -14,11 +14,11 @@ interface Props {
 export const SEO = ({ articleNode, articlePath, articleSEO, customDescription, helmetTitle }: Props) => {
   const siteData = useSiteStore((state) => state.siteData)
 
-  const HelmetTitle = helmetTitle ? `${helmetTitle} | ${siteData.siteTitle}` : siteData.siteTitle
+  const HelmetTitle = helmetTitle ? `${helmetTitle} | ${siteData.title}` : siteData.title
 
   let title
   let description
-  let image = siteData.siteLogo
+  let image = siteData.logo
   let articleURL
 
   if (articleSEO) {
@@ -32,8 +32,8 @@ export const SEO = ({ articleNode, articlePath, articleSEO, customDescription, h
 
     articleURL = `${siteData.siteUrl}${articlePath}`
   } else {
-    title = siteData.siteTitle
-    description = customDescription || siteData.siteDescription
+    title = siteData.title
+    description = customDescription || siteData.description
   }
 
   image = `${siteData.siteUrl}${image}`

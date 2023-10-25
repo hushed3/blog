@@ -8,7 +8,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
     gap: 2.2rem;
 
     ${r({
-      laptop: css`
+      tablet: css`
         padding-top: 2rem;
         gap: 1.5rem;
       `,

@@ -8,7 +8,7 @@ import { SEO } from '@/components/SEO'
 import { BlogSidebar } from '@/components/Sidebar/BlogSidebar'
 import { Layout } from '@/layout'
 import { useStyles } from '@/styles/templates/style'
-import { getSimplifiedArticles } from '@/utils/helpers'
+import { simplifiedData } from '@/utils/helpers'
 
 /**
  * @description 标签页面
@@ -16,15 +16,15 @@ import { getSimplifiedArticles } from '@/utils/helpers'
  * @export
  * @return {*}
  */
-export default function TagTemplate({ data, pageContext }: PageProps<TagsData, TagData>) {
+export default function TagTemplate({ data, pageContext }: PageProps<allMdxNodesQuery<'tags'>, TagData>) {
   const { styles } = useStyles()
   const { tag } = pageContext
 
-  const totalCount = data?.totalCount
-  const edges = data?.tags.edges
+  const totalCount = data?.tags.totalCount
+  const nodes = data?.tags.nodes
   const message = totalCount === 1 ? ' Article tagged:' : ' Articles tagged:'
 
-  const simplifiedArticles = useMemo(() => getSimplifiedArticles(edges), [edges])
+  const simplifiedArticles = useMemo(() => simplifiedData(nodes), [nodes])
 
   return (
     <>
@@ -45,20 +45,17 @@ TagTemplate.Layout = Layout
 
 export const pageQuery = graphql`
   query TagPage($tag: String) {
-    tags: allMarkdownRemark(sort: { frontmatter: { date: DESC } }, filter: { frontmatter: { tags: { in: [$tag] } } }) {
+    tags: allMdx(sort: { frontmatter: { date: DESC } }, filter: { frontmatter: { tags: { in: [$tag] } } }) {
       totalCount
-      edges {
-        node {
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            tags
-            categories
-          }
+      nodes {
+        id
+        frontmatter {
+          date(formatString: "MMMM DD, YYYY")
+          title
+          tags
+          categories
+          slug
+          icon
         }
       }
     }

@@ -1,13 +1,16 @@
 ---
-date: 2022-07-15
 title: 'JavaScript - 原型及原型链'
+description: ''
+date: 2022-07-15
+lastUpdated: 2022-07-15
 template: article
-thumbnail: '../../thumbnails/js.png'
+icon: javascript
 slug: prototype
 categories:
   - JavaScript
 tags:
   - JavaScript
+published: true
 ---
 
 ### 原型

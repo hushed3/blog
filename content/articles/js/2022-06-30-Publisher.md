@@ -1,13 +1,16 @@
 ---
-date: 2022-06-30
 title: 'JavaScript - 发布订阅模式'
+description: ''
+date: 2022-06-30
+lastUpdated: 2022-06-30
 template: article
-thumbnail: '../../thumbnails/js.png'
+icon: javascript
 slug: publisher
 categories:
   - JavaScript
 tags:
   - JavaScript
+published: true
 ---
 
 ### 实现一个发布者 Publisher 类
@@ -67,9 +70,7 @@ let pub = new Pub() // 实例化一个发布者
 ### 实例化一个调度中心，传入一个用于处理数据的函数；
 
 ```javascript
-const dep = new Dep((data) =>
-  console.log('我是调度中心，我先把消息处理一下，然后发给订阅者', data)
-)
+const dep = new Dep((data) => console.log('我是调度中心，我先把消息处理一下，然后发给订阅者', data))
 ```
 
 ### 实例化一个订阅者

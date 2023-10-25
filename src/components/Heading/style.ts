@@ -13,12 +13,15 @@ export const useStyles = createStyles(({ css, stylish, responsive: r }) => ({
   title: css`
     font-weight: 700;
     letter-spacing: -0.03rem;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     margin: 0;
 
     ${r({
-      laptop: css`
+      tablet: css`
         font-size: 1.15rem;
+      `,
+      mobile: css`
+        font-size: 1.05rem;
       `,
     })}
   `,

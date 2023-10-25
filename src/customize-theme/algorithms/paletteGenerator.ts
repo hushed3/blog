@@ -43,7 +43,7 @@ export interface ColorPaletteOptions {
   reverse?: boolean
 }
 
-export type TokenType = 'primary' | 'success' | 'warning' | 'error' | 'info' | 'magenta'
+export type TokenType = 'magenta'
 
 export type ColorPalettes = Record<TokenType, string[]>
 export type SeedColors = Record<TokenType, string>

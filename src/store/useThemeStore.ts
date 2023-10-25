@@ -2,7 +2,7 @@ import type { ThemeMode } from 'antd-style'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-interface Store {
+type Store = {
   themeMode: ThemeMode
 }
 
@@ -14,4 +14,3 @@ export const useThemeStore = create<Store>()(
     { name: 'SITE_THEME' }
   )
 )
-

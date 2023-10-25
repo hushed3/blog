@@ -16,7 +16,7 @@ interface MeTemplatesData {
 
 interface ArticleTemplateData {
   article: {
-    html: string
+    body: string
     excerpt?: string
     headings: { id: string }[]
     fields: FieldsData

@@ -1,10 +1,11 @@
-import { Anchor, Card, Tag } from 'antd'
-import { Link, navigate } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import { Anchor, Card } from 'antd'
 import React from 'react'
 import { useStyles } from './style'
 
-import { IGatsbyImageData } from 'gatsby-plugin-image'
+import { AnchorLinkItemProps } from 'antd/es/anchor/Anchor'
+import { SVGIcon, SVGIconTypes } from '../SvgIcon'
+import MenuBar from '../MenuBar'
+import Sticky from '../Sticky'
 
 /**
  * @description 文章详细信息侧边
@@ -14,79 +15,54 @@ interface Props {
   date?: string
   tags?: string[]
   categories?: string[]
-  thumbnail?: { childImageSharp?: { gatsbyImageData: any } }
-  headings?: { id: string }[]
+  icon?: SVGIconTypes
+  headings: AnchorLinkItemProps[]
 }
 
-export const ArticleSidebar = ({ tags = [], date, categories = [], thumbnail, headings }: Props) => {
+export const ArticleSidebar = ({ tags = [], date, categories = [], icon, headings }: Props) => {
   const { styles } = useStyles()
 
-  const { gatsbyImageData } = { ...thumbnail?.childImageSharp }
-
   const categorys = categories?.filter((category) => category !== 'Highlight')
-  const anchorList = headings?.map((e) => ({ title: e.id, href: `#${e.id}`, key: e.id }))
-
 
   const handleClick = (e: React.MouseEvent<HTMLElement>, link: { title: React.ReactNode; href: string }) => {
     e.preventDefault()
-    document.getElementById(link.href)?.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+    document.getElementById(link.href)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   return (
-    <aside>
-      <div className={styles.sticky}>
-        {thumbnail && <GatsbyImage className={styles.image} image={gatsbyImageData as IGatsbyImageData} alt="" />}
-        {/* <Card bordered={false} className={styles.card}>
+    <Sticky>
+      <SVGIcon id={icon!} width="8rem" height="8rem" style={{ margin: '0 auto', display: 'block' }}></SVGIcon>
+      {/* <Card bordered={false} className={styles.card}>
           <h2>About me</h2>
         </Card> */}
 
-        <Card bordered={false} className={styles.card}>
-          {/* <div className={styles.card}> */}
-          <div className={styles.title}>日期</div>
-          <ul>
-            <li>发布于 {date}</li>
-          </ul>
-          <div className={styles.title}>类别</div>
-          {categorys && (
-            <ul>
-              {categorys.map((category) => {
-                return (
-                  <li key={category}>
-                    <Link to={`/categories/${category}`}>{category}</Link>
-                  </li>
-                )
-              })}
-            </ul>
-          )}
-          <div className={styles.title}>标签</div>
-          {tags &&
-            tags.map((tag) => {
-              return (
-                <Tag
-                  key={tag}
-                  className={styles.tag}
-                  bordered={false}
-                  onClick={() => {
-                    navigate(`/tags/${tag}`)
-                  }}
-                >
-                  {tag}
-                </Tag>
-              )
-            })}
-        </Card>
+      <Card bordered={false} className={styles.card}>
+        <MenuBar>
+          <MenuBar.Title>日期</MenuBar.Title>
+          <MenuBar.Text>发布于 {date}</MenuBar.Text>
 
-        <Card bordered={false} className={styles.card}>
-          <div className={styles.title}>目录</div>
-          <Anchor
-            className={styles.anchor}
-            targetOffset={90}
-            affix={true}
-            items={anchorList}
-            onClick={handleClick}
-          ></Anchor>
-        </Card>
-      </div>
-    </aside>
+          <MenuBar.Title>类别</MenuBar.Title>
+          {categorys.map((c) => (
+            <MenuBar.Link key={c} to={`/categories/${c}/`}>
+              {c}
+            </MenuBar.Link>
+          ))}
+
+          <MenuBar.Title>标签</MenuBar.Title>
+          {tags.map((t) => (
+            <MenuBar.Tag key={t} to={`/tags/${t}/`}>
+              {t}
+            </MenuBar.Tag>
+          ))}
+        </MenuBar>
+      </Card>
+
+      <Card bordered={false} className={styles.card}>
+        <MenuBar>
+          <MenuBar.Title>目录</MenuBar.Title>
+          <Anchor className={styles.anchor} targetOffset={90} affix={true} items={headings} onClick={handleClick} />
+        </MenuBar>
+      </Card>
+    </Sticky>
   )
 }
