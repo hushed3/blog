@@ -9,7 +9,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
     ${r({
       mobile: css`
         display: block;
-        height: calc(100vh - ${token.headerHeightLaptop}px - ${token.footerHeightLaptop}px);
+        height: calc(100vh - ${token.headerHeightMobile}px - ${token.footerHeightMobile}px);
         padding: 0;
       `,
     })}

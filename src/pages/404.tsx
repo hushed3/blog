@@ -1,22 +1,36 @@
-import { Result } from 'antd'
 import React from 'react'
+import { HeadFC, navigate } from 'gatsby'
+import { Button } from 'antd'
 
-import NotFoundSvg from '@/assets/svg/notFound.svg'
-import { SEO } from '@/components/SEO'
-import { Layout } from '@/layout/index'
+import SEO from '@/components/SEO'
 import { useStyles } from '@/styles/pages/404.style'
 
-export default function FourOhFour() {
+const FourOhFour = () => {
   const { styles } = useStyles()
+
+  const ToHome = () => {
+    navigate('/')
+  }
 
   return (
     <>
-      <SEO helmetTitle="404" />
       <div className={styles.container}>
-        <Result icon={<NotFoundSvg />} subTitle="Not found.." />
+        <div className={styles[404]}>404</div>
+        <Button type="text" onClick={ToHome}>
+          Back to home page
+        </Button>
       </div>
     </>
   )
 }
+export default FourOhFour
 
-FourOhFour.Layout = Layout
+export const Head: HeadFC = (props) => {
+  const { location } = props
+
+  return (
+    <>
+      <SEO title="404" description="Page not found" pathName={location.pathname} />
+    </>
+  )
+}

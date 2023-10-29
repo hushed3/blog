@@ -16,7 +16,7 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token 
 
       ${r({
         mobile: css`
-          height: ${token.headerHeightLaptop}px;
+          height: ${token.headerHeightMobile}px;
         `,
       })}
     `
@@ -38,7 +38,7 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token 
     gap: 0.75rem;
 
     ${r({
-      laptop: css`
+      tablet: css`
         gap: 0.25rem;
       `,
     })}
@@ -62,6 +62,9 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token 
 
     &:hover {
       color: ${token.colorText};
+      .logo {
+        transform: scale(1.3);
+      }
     }
 
     .label {
@@ -79,10 +82,11 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token 
       color: transparent;
       background: ${token.gradientLogo};
       background-clip: text;
+      transition: all 0.3s;
     }
 
     ${r({
-      laptop: css`
+      tablet: css`
         .label {
           display: none;
         }

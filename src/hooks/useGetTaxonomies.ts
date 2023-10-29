@@ -10,22 +10,24 @@ type Group = Record<'group', GroupItem[]>
 type Taxonomies = Record<'tags' | 'categories', Group>
 
 export const useGetTaxonomies = () => {
-  const { tags, categories } = useStaticQuery<Taxonomies>(graphql`
-    query TaxonomyQuery {
-      tags: allMarkdownRemark {
-        group(field: { frontmatter: { tags: SELECT } }) {
-          name: fieldValue
-          totalCount
+  const { tags, categories } = useStaticQuery<Taxonomies>(
+    graphql`
+      query TaxonomyQuery {
+        tags: allMdx {
+          group(field: { frontmatter: { tags: SELECT } }) {
+            name: fieldValue
+            totalCount
+          }
+        }
+        categories: allMdx {
+          group(field: { frontmatter: { categories: SELECT } }) {
+            name: fieldValue
+            totalCount
+          }
         }
       }
-      categories: allMarkdownRemark {
-        group(field: { frontmatter: { categories: SELECT } }) {
-          name: fieldValue
-          totalCount
-        }
-      }
-    }
-  `)
+    `
+  )
 
   return { tags: tags.group, categories: categories.group }
 }

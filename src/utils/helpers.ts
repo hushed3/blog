@@ -1,27 +1,32 @@
-interface Options {
-  thumbnails: boolean // 是否返回缩略图
-}
-
 /**
- * @description 简化文章信息
- * @date 23/06/2023
- * @param {NodeItem[]} [edges]
- * @param {Options} [options]
- * @return {*}  {SimplifiedData[]}
+ * @description 简化数据
+ * @date 24/10/2023
+ * @param {GraphqlNode[]} [nodes]
+ * @param {(e: GraphqlNode) => SimplifiedQueryData} [callback]
+ * @return {*}  {SimplifiedQueryData[]}
  */
-export const getSimplifiedArticles = (edges?: NodeItem[], options?: Options): SimplifiedData[] => {
-  if (!edges) return []
-  return edges.map((edge) => {
-    const { id, frontmatter } = edge.node
+export const simplifiedQueryData = (
+  nodes?: GraphqlNode[],
+  callback?: (e: GraphqlNode) => SimplifiedQueryData | null
+): SimplifiedQueryData[] => {
+  if (!nodes) return []
 
-    return {
-      id: id,
-      title: frontmatter.title,
-      date: frontmatter.date,
-      slug: frontmatter.slug,
-      tags: frontmatter.tags,
-      categories: frontmatter.categories,
-      thumbnail: options?.thumbnails ? frontmatter.thumbnail?.childImageSharp.gatsbyImageData : {},
-    }
-  })
+  const result = nodes
+    .map((node) => {
+      const { frontmatter } = node
+
+      const newNode = {
+        ...node,
+        ...frontmatter,
+      }
+
+      if (callback) {
+        return callback(newNode)
+      }
+
+      return newNode
+    })
+    .filter((e) => e !== null) as SimplifiedQueryData[]
+
+  return result
 }

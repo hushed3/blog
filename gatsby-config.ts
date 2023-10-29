@@ -1,25 +1,27 @@
 module.exports = {
+  graphqlTypegen: false,
+  jsxRuntime: 'automatic',
   flags: {
     DEV_SSR: false,
   },
   siteMetadata: {
-    title: 'Hush blog',
-    author: {
-      name: 'J',
-    },
-    pathPrefix: '/',
-    siteUrl: 'https://blog.hushes.cn/',
-    description: 'Web front-end development engineer',
+    title: `Hush blog`,
+    description: `Web front-end development engineer.`,
+    author: 'J',
+    siteUrl: `https://blog.hushes.cn`,
     feedUrl: 'https://blog.hushes.cn/rss.xml',
-    logo: 'https://blog.hushes.cn/logo.png',
+    logo: '/logo.png',
+    pathPrefix: '/',
   },
   plugins: [
     // ===================================================================================
     // Meta
     // ===================================================================================
 
-    'gatsby-plugin-react-helmet',
+    // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-netlify/
     'gatsby-plugin-netlify',
+
+    // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-manifest/
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -30,9 +32,11 @@ module.exports = {
         background_color: 'rgb(21, 21, 23)',
         theme_color: '#646cff',
         display: 'minimal-ui',
-        icon: `./src/assets/image/logo.png`,
+        icon: `static/logo.png`,
       },
     },
+
+    // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-react-svg/
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
@@ -41,6 +45,8 @@ module.exports = {
         },
       },
     },
+
+    // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-feed/
     {
       resolve: `gatsby-plugin-feed`,
       options: {
@@ -58,41 +64,48 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }: any) => {
-              return allMarkdownRemark.edges.map(
-                (edge: { node: { frontmatter: { date: any }; excerpt: any; fields: { slug: any }; html: any } }) => {
-                  return Object.assign({}, edge.node.frontmatter, {
-                    description: edge.node.excerpt,
-                    date: edge.node.frontmatter.date,
-                    url: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                    guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                    custom_elements: [{ 'content:encoded': edge.node.html }, { author: '' }],
-                  })
-                }
-              )
-            },
             query: `{
-                      allMarkdownRemark(
+                      allMdx(
                         limit: 30
                         sort: {frontmatter: {date: DESC}}
-                        filter: {frontmatter: {template: {eq: "article"}}}
+                        filter: {frontmatter: {published: {eq: true}}}
                       ) {
-                        edges {
-                          node {
-                            excerpt
-                            html
-                            fields {
-                              slug
-                            }
-                            frontmatter {
-                              title
-                              date
-                              template
-                            }
+                        nodes {
+                          frontmatter {
+                            title
+                            description
+                            date(formatString: "MMMM DD, YYYY")
+                            lastUpdated(formatString: "MMMM DD, YYYY")
+                            icon
+                            slug
+                            template
+                            tags
+                            categories
+                            published
                           }
                         }
                       }
                     }`,
+
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.nodes.map((node) => {
+                const { frontmatter } = node
+                const { siteMetadata } = site
+
+                return Object.assign({}, frontmatter, {
+                  description: frontmatter.description,
+                  date: frontmatter.date,
+                  url: siteMetadata.siteUrl + frontmatter.slug,
+                  guid: siteMetadata.siteUrl + frontmatter.slug,
+                  custom_elements: [
+                    {
+                      'content:encoded': `<p>${frontmatter.description}</p><div style="margin-top: 50px; font-style: italic;"><strong><a href="${siteMetadata.siteUrl}${frontmatter.slug}">Keep reading</a>.</strong></div><br /> <br />`,
+                    },
+                  ],
+                })
+              })
+            },
+
             output: '/rss.xml',
             title: 'Hush | RSS Feed',
           },
@@ -104,6 +117,7 @@ module.exports = {
     // Images and static
     // ===================================================================================
 
+    // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-sharp/
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
@@ -114,20 +128,26 @@ module.exports = {
         },
       },
     },
+
+    // @see: https://www.gatsbyjs.com/plugins/gatsby-transformer-sharp/
     'gatsby-transformer-sharp',
+
+    // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-image/
     'gatsby-plugin-image',
+
+    // @see: https://www.gatsbyjs.com/plugins/gatsby-source-filesystem/
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'articles',
-        path: `${__dirname}/content/`,
+        path: `${__dirname}/content`,
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'assets',
-        path: `${__dirname}/static/`,
+        path: `${__dirname}/content`,
       },
     },
 
@@ -135,19 +155,14 @@ module.exports = {
     // Markdown
     // ===================================================================================
 
+    // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-highlight-code`,
-            options: {
-              lineNumbers: true,
-              // theme: 'dracula',
-              theme: 'one-dark',
-            },
-          },
-          'gatsby-remark-autolink-headers',
+        extensions: [`.mdx`, `.md`],
+        plugins: [],
+        gatsbyRemarkPlugins: [
+          // @see: https://www.gatsbyjs.com/plugins/gatsby-remark-images/
           {
             resolve: 'gatsby-remark-images',
             options: {
@@ -163,6 +178,7 @@ module.exports = {
     // Search
     // ===================================================================================
 
+    // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-local-search/
     {
       resolve: 'gatsby-plugin-local-search',
       options: {
@@ -175,16 +191,22 @@ module.exports = {
         },
         query: `
           {
-            allMarkdownRemark(filter: { frontmatter: { template: { eq: "article" } } }) {
+            allMdx(filter: { frontmatter: { template: { eq: "article" } } }) {
               nodes {
                 id
                 frontmatter {
                   title
-                  tags
-                  slug
+                  description
                   date(formatString: "MMMM DD, YYYY")
+                  lastUpdated(formatString: "MMMM DD, YYYY")
+                  icon
+                  slug
+                  template
+                  tags
+                  categories
+                  published
                 }
-                rawMarkdownBody
+                body
               }
             }
           }
@@ -192,22 +214,16 @@ module.exports = {
         ref: 'id',
         index: ['title', 'tags'],
         store: ['id', 'slug', 'title', 'tags', 'date'],
-        normalizer: ({ data }: any) =>
-          data.allMarkdownRemark.nodes.map(
-            (node: {
-              id: any
-              frontmatter: { slug: any; title: any; tags: any; categories: any; date: any }
-              rawMarkdownBody: any
-            }) => ({
-              id: node.id,
-              slug: `/${node.frontmatter.slug}`,
-              title: node.frontmatter.title,
-              body: node.rawMarkdownBody,
-              tags: node.frontmatter.tags,
-              categories: node.frontmatter.categories,
-              date: node.frontmatter.date,
-            })
-          ),
+        normalizer: ({ data }) =>
+          data.allMdx.nodes.map((node) => ({
+            id: node.id,
+            slug: `/${node.frontmatter.slug}`,
+            title: node.frontmatter.title,
+            body: node.body,
+            tags: node.frontmatter.tags,
+            categories: node.frontmatter.categories,
+            date: node.frontmatter.date,
+          })),
       },
     },
   ],

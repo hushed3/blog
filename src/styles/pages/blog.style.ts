@@ -8,9 +8,13 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
     gap: 4rem;
 
     ${r({
-      laptop: css`
+      tablet: css`
         display: block;
       `,
     })}
+  `,
+
+  card: css`
+    ${stylish.sideCard}
   `,
 }))

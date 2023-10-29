@@ -1,9 +1,7 @@
-import type { ThemeMode } from 'antd-style'
-import React, { memo, type FC } from 'react'
-
+import { useThemeMode } from '@/hooks'
+import { type ThemeMode } from 'antd-style'
+import { type FC } from 'react'
 import NativeSelect, { Option } from '../NativeSelect'
-
-import { useThemeStore } from '@/store/useThemeStore'
 
 const IconAuto = () => (
   <span className="ant-dropdown-menu-item-icon" style={{ display: 'flex' }}>
@@ -36,7 +34,7 @@ const options = [
 ]
 
 const ThemeSwitch: FC = () => {
-  const themeMode = useThemeStore((s) => s.themeMode)
+  const { themeMode, setThemeMode } = useThemeMode()
 
   return (
     <>
@@ -45,7 +43,7 @@ const ThemeSwitch: FC = () => {
         value={options.findIndex((o) => o.value === themeMode)}
         onChange={(index) => {
           const mode = options[index].value as unknown as ThemeMode
-          useThemeStore.setState({ themeMode: mode })
+          setThemeMode(mode)
         }}
         renderValue={(index) => options[index].icon}
         renderItem={(item) => <Option label={item.label} icon={item.icon} />}
@@ -54,4 +52,4 @@ const ThemeSwitch: FC = () => {
   )
 }
 
-export default memo(ThemeSwitch)
+export default ThemeSwitch

@@ -1,10 +1,8 @@
-import type { PageProps } from 'gatsby'
-import { graphql } from 'gatsby'
-import React, { useMemo } from 'react'
-import { defineCustomElements as deckDeckGoHighlightElement } from '@deckdeckgo/highlight-code/dist/loader'
-import { SEO } from '@/components/SEO'
-import { ArticleSidebar } from '@/components/Sidebar/ArticleSidebar'
-import { Layout } from '@/layout/index'
+import { HeadFC, PageProps } from 'gatsby'
+
+import SEO from '@/components/SEO'
+import ArticleSidebar from '@/components/Sidebar/ArticleSidebar'
+import PrismSyntaxHighlight from '@/components/PrismSyntaxHighlight'
 import { useStyles } from '@/styles/templates/style'
 
 /**
@@ -13,63 +11,41 @@ import { useStyles } from '@/styles/templates/style'
  * @export
  * @return {*}
  */
-export default function ArticleTemplate({ data }: PageProps<ArticleTemplateData>) {
-  deckDeckGoHighlightElement()
+const ArticleTemplate: React.FC<PageProps<null, MdxQuery>> = ({ pageContext, children }) => {
   const { styles } = useStyles()
 
-  const article = useMemo(() => data?.article, [data])
-
-  const headings = article.headings
-  const fields = article.fields
-  const frontmatter = article.frontmatter
-  const html = article.html as string
+  const frontmatter = pageContext.frontmatter
+  const headings = pageContext.tableOfContents.items.map((e, i) => ({ ...e, key: i, href: `#${e.title}` }))
 
   return (
-    <>
-      <SEO helmetTitle={frontmatter?.title} articlePath={fields?.slug} articleNode={article} articleSEO />
-      <div className={styles.container}>
-        <div className="content">
-          <h2 className={styles.title}>{frontmatter?.title}</h2>
-          <div className={styles.spacerLine}></div>
-          <div className={styles.main} id={frontmatter?.slug} dangerouslySetInnerHTML={{ __html: html }} />
-        </div>
-
-        <ArticleSidebar
-          date={frontmatter?.date}
-          tags={frontmatter?.tags}
-          categories={frontmatter?.categories}
-          thumbnail={frontmatter?.thumbnail}
-          headings={headings}
-        />
+    <div className={styles.container}>
+      <div className="content">
+        <h2 className={styles.title}>{frontmatter?.title}</h2>
+        <div className={styles.spacerLine}></div>
+        <PrismSyntaxHighlight mdxContent={children as unknown as string}></PrismSyntaxHighlight>
       </div>
-    </>
+
+      <ArticleSidebar
+        date={frontmatter?.date.slice(0, 10)}
+        tags={frontmatter?.tags}
+        categories={frontmatter?.categories}
+        icon={frontmatter?.icon}
+        headings={headings}
+      />
+    </div>
   )
 }
 
-ArticleTemplate.Layout = Layout
+export default ArticleTemplate
 
-export const pageQuery = graphql`
-  query ArticleBySlug($slug: String!) {
-    article: markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
-      excerpt
-      fields {
-        slug
-      }
-      headings(depth: h3) {
-        id
-      }
-      frontmatter {
-        title
-        date(formatString: "YYYY-MM-DD")
-        tags
-        categories
-        thumbnail {
-          childImageSharp {
-            gatsbyImageData(width: 100, height: 100)
-          }
-        }
-      }
-    }
-  }
-`
+// ArticleTemplate.Layout = Layout
+export const Head: HeadFC<null, MdxQuery> = (props) => {
+  const { location, pageContext } = props
+  const frontmatter = pageContext.frontmatter
+
+  return (
+    <>
+      <SEO title={frontmatter?.title} description={frontmatter.description} pathName={location.pathname} />
+    </>
+  )
+}

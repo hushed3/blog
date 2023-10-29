@@ -11,7 +11,7 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token 
 
       ${r({
         mobile: css`
-          height: ${token.footerHeightLaptop}px;
+          height: ${token.footerHeightMobile}px;
           padding: 0.8rem 0;
         `,
       })}

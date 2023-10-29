@@ -1,6 +1,6 @@
-import { ThemeConfig } from 'antd'
+import { ThemeConfig, theme } from 'antd'
 
-import { ColorPalettes, genMapTokenAlgorithm } from '../algorithms'
+import { genMapTokenAlgorithm } from '../algorithms'
 
 const lightMode = genMapTokenAlgorithm({
   lighter: {
@@ -19,20 +19,22 @@ const lightMode = genMapTokenAlgorithm({
   },
 })
 
-export const lightColorPalettes: ColorPalettes = lightMode.palettes
-
 export const lightTheme: ThemeConfig = {
   token: {
-    colorBgLayout: '#f9fafb', // Layout 颜色
-    colorTextBase: '#2a2e36',
+    colorPrimary: lightMode.brandColor,
 
-    colorLinkHover: lightColorPalettes.primary[5],
-    colorLink: lightColorPalettes.primary[6],
-    colorLinkActive: lightColorPalettes.primary[7],
+    colorBgLayout: '#fafafb', // Layout 颜色
+    colorTextBase: '#2a2e36',
+    colorBgElevated: '#ffffff', // Card 背景色
+
+    boxShadowTertiary:
+      '0 1px 3px 0 rgba(0, 0, 0, 0.03), 0 1px 7px -1px rgba(0, 0, 0, 0.02), 0 2px 5px 0 rgba(0, 0, 0, 0.02)',
   },
 
   algorithm: (seedToken, mapToken) => ({
     ...mapToken!,
+    ...theme.defaultAlgorithm(seedToken),
+
     ...lightMode.tokens,
   }),
 }

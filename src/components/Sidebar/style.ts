@@ -1,25 +1,22 @@
 import { createStyles } from 'antd-style'
 
-export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCls }) => ({
+export const useStyles = createStyles(({ css, cx, token, responsive: r, stylish, prefixCls }) => ({
   sticky: css`
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     position: sticky;
     top: calc(${token.headerHeight}px + 20px);
 
     ${r({
       mobile: css`
-        top: ${token.headerHeightLaptop};
+        top: ${token.headerHeightMobile};
       `,
     })}
   `,
 
   card: css`
-    margin: 2rem 0;
-    background-color: ${token.colorBgElevated};
-
-    li {
-      font-size: 0.85rem;
-      color: ${token.colorTextSecondary};
-    }
+    ${stylish.sideCard}
   `,
 
   title: css`
@@ -55,7 +52,8 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
           height: 0.4rem !important;
           border-radius: 50%;
           margin-left: 0.5rem;
-          background-color: ${token.colorPrimaryBorderHover} !important;
+          background-color: ${token.colorPrimaryHover} !important;
+          opacity: 0.7;
         }
       }
     `
@@ -90,38 +88,22 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
       color: ${token.colorPrimaryHover};
       text-decoration: none;
     }
-
-    ${r({
-      laptop: css`
-        font-size: 0.76rem;
-      `,
-    })}
   `,
 
-  tag: cx(
-    css`
-      cursor: pointer;
-      font-size: 0.8rem;
-      color: ${token.colorTextSecondary};
-      text-transform: capitalize;
+  tag: css`
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: ${token.colorTextSecondary};
+    text-transform: capitalize;
 
-      &.${prefixCls}-tag-checkable-checked {
-        color: ${token.colorPrimary};
-        background-color: ${token.colorPrimaryBg};
-      }
+    &.${prefixCls}-tag-checkable-checked {
+      color: ${token.colorPrimary};
+      background-color: ${token.colorPrimaryBg};
+    }
 
-      &:hover {
-        color: ${token.colorPrimary};
-        background-color: ${token.colorPrimaryBg};
-      }
-    `
-  ),
-
-  image: css`
-    margin: 0 auto;
-    margin-top: 2rem;
-    text-align: center;
-    display: block !important;
-    width: 100px;
+    &:hover {
+      color: ${token.colorPrimary};
+      background-color: ${token.colorPrimaryBg};
+    }
   `,
 }))

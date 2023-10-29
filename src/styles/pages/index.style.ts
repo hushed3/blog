@@ -7,12 +7,6 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
 
   brief: css`
     display: flex;
-
-    ${r({
-      laptop: css`
-        display: block;
-      `,
-    })}
   `,
 
   briefDescription: css`
@@ -24,7 +18,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
     color: ${token.colorTextSecondary};
 
     ${r({
-      laptop: css`
+      tablet: css`
         font-size: 0.9rem;
         margin-top: 2rem;
       `,
@@ -42,7 +36,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
     gap: 2.4rem;
 
     ${r({
-      laptop: css`
+      tablet: css`
         grid-template-columns: repeat(2, 1fr);
         gap: 1.9rem;
       `,
@@ -93,7 +87,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
     font-size: 0.75rem;
 
     ${r({
-      laptop: css`
+      tablet: css`
         font-size: 0.7rem;
       `,
     })}
@@ -117,7 +111,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
     }
 
     ${r({
-      laptop: css`
+      tablet: css`
         font-size: 0.85rem;
       `,
     })}
@@ -136,7 +130,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
       }
 
       ${r({
-        laptop: css`
+        tablet: css`
           font-size: 0.7rem;
         `,
       })}

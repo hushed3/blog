@@ -9,6 +9,7 @@ export interface SiteStylish {
   container: string
   wrapper: string
   tagLink: string
+  sideCard: string
 }
 
 export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, isDarkMode }) => {
@@ -40,7 +41,7 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
       font-size: 0.75rem;
       font-weight: 400;
       padding: 0.1rem 0.6rem;
-      border: 1px solid ${token.colorBorderSecondary};
+      border: 1px solid ${token.colorFillSecondary};
       border-radius: ${token.borderRadiusSM}px;
       color: ${token.colorText};
 
@@ -60,6 +61,12 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
         border-color: ${token.colorPrimaryBgHover};
         background-color: ${token.colorPrimaryBg};
       }
+    `,
+
+    sideCard: css`
+      width: 100%;
+      margin: 2rem 0 0;
+      background-color: ${token.colorBgElevated};
     `,
   }
 }

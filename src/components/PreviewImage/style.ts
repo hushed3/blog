@@ -28,7 +28,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
     z-index: 100;
 
     ${r({
-      laptop: css`
+      tablet: css`
         width: 70% !important;
       `,
       mobile: css`

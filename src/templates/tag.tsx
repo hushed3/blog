@@ -1,14 +1,13 @@
-import type { PageProps } from 'gatsby'
+import type { HeadFC, PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 import React, { useMemo } from 'react'
 
-import { ArticleList } from '@/components/ArticleList'
-import { BriefHeader } from '@/components/BriefHeader'
-import { SEO } from '@/components/SEO'
-import { BlogSidebar } from '@/components/Sidebar/BlogSidebar'
-import { Layout } from '@/layout'
+import ArticleList from '@/components/ArticleList'
+import BriefHeader from '@/components/BriefHeader'
+import SEO from '@/components/SEO'
+import BlogSidebar from '@/components/Sidebar/BlogSidebar'
 import { useStyles } from '@/styles/templates/style'
-import { getSimplifiedArticles } from '@/utils/helpers'
+import { simplifiedQueryData } from '@/utils/helpers'
 
 /**
  * @description 标签页面
@@ -16,50 +15,52 @@ import { getSimplifiedArticles } from '@/utils/helpers'
  * @export
  * @return {*}
  */
-export default function TagTemplate({ data, pageContext }: PageProps<TagsData, TagData>) {
+const TagTemplate: React.FC<PageProps<allMdxNodesQuery<'tags'> & MdxNodesQuery, TagData>> = ({ data, pageContext }) => {
   const { styles } = useStyles()
   const { tag } = pageContext
 
-  const totalCount = data?.totalCount
-  const edges = data?.tags.edges
+  const totalCount = data?.tags.totalCount
+  const nodes = data?.tags.nodes
   const message = totalCount === 1 ? ' Article tagged:' : ' Articles tagged:'
 
-  const simplifiedArticles = useMemo(() => getSimplifiedArticles(edges), [edges])
+  const simplifiedArticles = useMemo(() => simplifiedQueryData(nodes), [nodes])
+
+  return (
+    <div className={styles.container}>
+      <div>
+        <BriefHeader highlight={totalCount} description={message} title={tag} />
+        <ArticleList data={simplifiedArticles} />
+      </div>
+      <BlogSidebar />
+    </div>
+  )
+}
+
+export default TagTemplate
+
+export const Head: HeadFC<allMdxNodesQuery<'tags'> & MdxNodesQuery, TagData> = (props) => {
+  const { location, pageContext } = props
+  const { tag } = pageContext
 
   return (
     <>
-      <SEO helmetTitle={`articles tagged: ${tag}`} />
-
-      <div className={styles.container}>
-        <div>
-          <BriefHeader highlight={totalCount} description={message} title={tag} />
-          <ArticleList data={simplifiedArticles} />
-        </div>
-        <BlogSidebar />
-      </div>
+      <SEO title={`articles tagged: ${tag}`} description="Article tagged" pathName={location.pathname} />
     </>
   )
 }
 
-TagTemplate.Layout = Layout
-
 export const pageQuery = graphql`
   query TagPage($tag: String) {
-    tags: allMarkdownRemark(sort: { frontmatter: { date: DESC } }, filter: { frontmatter: { tags: { in: [$tag] } } }) {
+    tags: allMdx(sort: { frontmatter: { date: DESC } }, filter: { frontmatter: { tags: { in: [$tag] } } }) {
       totalCount
-      edges {
-        node {
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            tags
-            categories
-          }
-        }
+      nodes {
+        ...SEO
+      }
+    }
+    mdx {
+      frontmatter {
+        title
+        slug
       }
     }
   }

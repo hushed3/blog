@@ -1,23 +1,36 @@
-// import { IGatsbyImageData } from 'gatsby-plugin-image'
-
-type SimplifiedData = {
-  id: string
-  date: string
+type TableOfContentsItem = {
+  url: string
   title: string
-  slug: string
-  tags: string[]
-  categories: string[]
-  thumbnail?: IGatsbyImageData
 }
 
-type YearListData = Record<string, SimplifiedData[]>
+type Frontmatter = {
+  title: string
+  description: string
+  date: string
+  lastUpdated: string
+  icon: SVGIconTypes
+  slug: string
+  template: string
+  tags: string[]
+  categories: string[]
+  published: boolean
+}
 
-interface ImageItem {
-  id: number
-  idx: number
-  name: string
-  url: string
-  thumbnail: string
+type Internal = {
+  contentFilePath: string
+}
+
+type GraphqlNode = {
+  id: string
+  excerpt: string
+  frontmatter: Frontmatter
+  fields: {
+    slug
+  }
+  tableOfContents: {
+    items: TableOfContentsItem[]
+  }
+  internal: Internal
 }
 
 interface CategoryData {
@@ -28,81 +41,40 @@ interface TagData {
   tag: string
 }
 
-interface FieldsData {
-  slug: string
+interface SimplifiedQueryData extends Frontmatter {
+  id: string
 }
 
-interface FrontmatterData {
-  title: string
-  date: string
-  tags: string[]
-  categories: string[]
-  template: string
-  slug: string
-  thumbnail?: {
-    childImageSharp: {
-      gatsbyImageData: IGatsbyImageData
-    }
+type YearListData = Record<string, Frontmatter[]>
+
+type MdxQuery = GraphqlNode
+
+type AllMdxQuery = {
+  nodes: GraphqlNode[]
+  totalCount: number
+  fields: {
+    slug
   }
 }
 
-interface NodeData {
-  id: string
-  fields: FieldsData
-  frontmatter: FrontmatterData
+type MdxNodesQuery<T = 'mdx'> = Record<T, MdxQuery>
+
+type allMdxNodesQuery<T = 'allMdx'> = Record<T, AllMdxQuery>
+
+interface ImageItem {
+  id: number
+  idx: number
+  name: string
+  url: string
+  thumbnail: string
 }
 
-type NodeItem = Record<'node', NodeData>
-
-type EdgesData = Record<'edges', NodeItem[]>
-
-type AllMarkdownRemark<T> = Record<'allMarkdownRemark', T>
-
-/**
- * @description 所有文章
- * @date 1/5/2023
- * @export
- */
-type ArticlesData = Record<'articles', EdgesData>
-
-/**
- * @description 首页文章查询
- * @date 1/5/2023
- * @export
- */
-type HomeArticlesData = Record<'latest' | 'Highlights', EdgesData>
-
-/**
- * @description 类别查询
- * @date 1/5/2023
- * @export
- */
-interface CategorysData {
-  categories: EdgesData
-  totalCount: number
+interface HeadNodeProps<DT = unknown, PT = unknown, CT = unknown, ST = unknown> {
+  data: DT
+  pathname: {
+    location: string
+  }
+  pageContext: PT
+  params: CT
+  serverData: ST
 }
-
-/**
- * @description 标签查询
- * @date 22/06/2023
- * @interface TagsData
- */
-interface TagsData {
-  tags: EdgesData
-  totalCount: number
-}
-
-/**
- * @description 类别页面props
- * @date 1/5/2023
- * @export
- */
-
-type CategoryPageProps = AllMarkdownRemark<{ totalCount: number } & EdgesData>
-
-/**
- * @description 标签页面props
- * @date 1/5/2023
- * @export
- */
-type TagPageProps = AllMarkdownRemark<{ totalCount: number } & EdgesData>

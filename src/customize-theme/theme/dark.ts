@@ -1,23 +1,6 @@
 import { theme, ThemeConfig } from 'antd'
-import { MappingAlgorithm } from 'antd-style'
 
-import { ColorPalettes, genMapTokenAlgorithm, TokenRelationship } from '../algorithms'
-
-const darkModeRelationship: TokenRelationship = (type) => {
-  const key = type.toUpperCase()[0] + type.slice(1)
-  return {
-    [`color${key}Bg`]: 1,
-    [`color${key}BgHover`]: 2,
-    [`color${key}Border`]: 3,
-    [`color${key}BorderHover`]: 4,
-    [`color${key}Hover`]: 7,
-    [`color${key}`]: 6,
-    [`color${key}Active`]: 5,
-    [`color${key}TextHover`]: 8,
-    [`color${key}Text`]: 9,
-    [`color${key}TextActive`]: 10,
-  }
-}
+import { genMapTokenAlgorithm, defaultRelationship } from '../algorithms'
 
 const darkMode = genMapTokenAlgorithm({
   lighter: {
@@ -35,26 +18,23 @@ const darkMode = genMapTokenAlgorithm({
     saturationScale: 1, // 保持暗色调的饱和度调整因子
   },
   reverse: true,
-  relationship: darkModeRelationship,
-})
-
-export const darkColorPalettes: ColorPalettes = darkMode.palettes
-
-const darkAlgorithm: MappingAlgorithm = (seedToken, mapToken) => ({
-  ...theme.darkAlgorithm(seedToken, mapToken),
-
-  ...darkMode.tokens,
+  relationship: defaultRelationship,
 })
 
 export const darkTheme: ThemeConfig = {
   token: {
-    colorBgLayout: '#141416', // Layout 颜色
-    colorTextBase: '#dcdcf2',
-    colorBgElevated: '#212223',
+    colorPrimary: darkMode.brandColor,
 
-    colorLinkHover: darkColorPalettes.primary[7],
-    colorLink: darkColorPalettes.primary[6],
-    colorLinkActive: darkColorPalettes.primary[5],
+    colorBgLayout: '#111112', // Layout 颜色
+    colorTextBase: '#dcdcf2',
+    colorBgElevated: '#212223', // Card 背景色
+
+    boxShadowTertiary:
+      '0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 7px -1px rgba(0, 0, 0, 0.03), 0 2px 5px 0 rgba(0, 0, 0, 0.03)',
   },
-  algorithm: darkAlgorithm,
+  algorithm: (seedToken, mapToken) => ({
+    ...theme.darkAlgorithm(seedToken, mapToken),
+
+    ...darkMode.tokens,
+  }),
 }

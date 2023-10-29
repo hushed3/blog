@@ -1,7 +1,35 @@
-import { SiteData } from '@/store'
 import { graphql, useStaticQuery } from 'gatsby'
 
-export const useSitedata = (): SiteData => {
+export type Site = {
+  /**
+   * @title 站点作者
+   */
+  author: string
+  /**
+   * @title 站点名称
+   */
+  title: string
+  /**
+   * @title 站点地址
+   */
+  siteUrl: string
+  /**
+   * @title 站点logo
+   */
+  logo: string
+  /**
+   * @title 站点描述
+   */
+  description: string
+  /**
+   * @title 站点feed地址
+   */
+  feedUrl: string
+}
+
+
+
+export const useSitedata = (): Site => {
   const { site } = useStaticQuery(
     graphql`
       query sitedata {
@@ -10,9 +38,7 @@ export const useSitedata = (): SiteData => {
             title
             description
             siteUrl
-            author {
-              name
-            }
+            author
             logo
             feedUrl
           }
@@ -22,11 +48,11 @@ export const useSitedata = (): SiteData => {
   )
 
   return {
-    siteTitle: site.siteMetadata.title,
-    siteAuthor: site.siteMetadata.author.name,
+    title: site.siteMetadata.title,
+    author: site.siteMetadata.author,
     siteUrl: site.siteMetadata.siteUrl,
-    siteLogo: site.siteMetadata.logo,
-    siteDescription: site.siteMetadata.description,
-    siteFeedUrl: site.siteMetadata.feedUrl,
+    logo: site.siteMetadata.logo,
+    description: site.siteMetadata.description,
+    feedUrl: site.siteMetadata.feedUrl,
   }
 }
