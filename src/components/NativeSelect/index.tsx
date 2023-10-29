@@ -18,9 +18,8 @@ import {
   useRole,
   useTypeahead,
 } from '@floating-ui/react'
-import { CSSProperties, FC, ReactNode, useEffect, useRef, useState } from 'react'
+import { CSSProperties, ReactNode, useEffect, useRef, useState } from 'react'
 import useControlledState from 'use-merge-value'
-import { Flexbox } from 'react-layout-kit'
 
 import SelectItem from './SelectItem'
 import { useStyles } from './style'
@@ -255,11 +254,15 @@ const NativeSelect: React.FC<NativeSelectProps> = ({
   )
 }
 
-export const Option = ({ icon, label }: { icon: ReactNode; label: ReactNode }) => (
-  <Flexbox horizontal gap={12} align={'center'}>
-    <span style={{ width: '12px' }}>{icon} </span>
-    {label}
-  </Flexbox>
-)
+export const Option = ({ icon, label }: { icon: ReactNode; label: ReactNode }) => {
+  const { styles } = useStyles()
+
+  return (
+    <div className={styles.option}>
+      <span style={{ width: '12px' }}>{icon} </span>
+      {label}
+    </div>
+  )
+}
 
 export default NativeSelect

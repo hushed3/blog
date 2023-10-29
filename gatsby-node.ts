@@ -23,7 +23,6 @@ export const onCreateWebpackConfig = ({ loaders, actions }) => {
       },
       fallback: {
         stream: false,
-        // crypto: require.resolve('crypto-browserify'),
         crypto: false,
       },
     },

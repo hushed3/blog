@@ -37,7 +37,11 @@ export const Head: HeadFC<MdxQuery> = ({ location, data }) => {
 
   return (
     <>
-      <SEO title={frontmatter.title} description={frontmatter.description} pathName={location.pathname} />
+      <SEO
+        title={frontmatter?.title || 'About me'}
+        description={frontmatter?.description}
+        pathName={location.pathname}
+      />
     </>
   )
 }
