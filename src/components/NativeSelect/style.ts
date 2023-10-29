@@ -45,4 +45,10 @@ export const useStyles = createStyles(({ css, stylish, cx, token }, prefixCls: s
   active: css`
     opacity: 0.6;
   `,
+
+  option: css`
+    display: flex;
+    align-items: center;
+    gap: 12;
+  `,
 }))
