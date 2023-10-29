@@ -2,17 +2,17 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { useStyles } from './style'
 
-interface Props {
+/**
+ * @description 标题
+ */
+
+interface HeadingProps {
   title: string
   description?: string
   slug?: string
 }
 
-/**
- * @description 标题
- */
-
-export const Heading = ({ title, slug }: Props) => {
+const Heading: React.FC<HeadingProps> = ({ title, slug }) => {
   const { styles } = useStyles()
 
   return (
@@ -26,3 +26,5 @@ export const Heading = ({ title, slug }: Props) => {
     </div>
   )
 }
+
+export default Heading

@@ -1,16 +1,15 @@
 import { Card } from 'antd'
-import React from 'react'
 import { useStyles } from './style'
 
-import { useGetTaxonomies } from '@/hooks'
 import Sticky from '../Sticky'
 import MenuBar from '../MenuBar'
+import { useGetTaxonomies } from '@/hooks'
 
 /**
  * @description 归档页面 - 侧边类别、标签信息
  */
 
-export const BlogSidebar = () => {
+const BlogSidebar = () => {
   const { styles } = useStyles()
 
   const { tags, categories } = useGetTaxonomies()
@@ -40,3 +39,5 @@ export const BlogSidebar = () => {
     </Sticky>
   )
 }
+
+export default BlogSidebar

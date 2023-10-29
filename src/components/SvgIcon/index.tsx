@@ -43,8 +43,9 @@ type SVGIconProps = {
 /**
  * Using a SVG sprite for performance reasons
  */
-export const SVGIcon = ({ id, ...props }: SVGIconProps) => (
+const SVGIcon = ({ id, ...props }: SVGIconProps) => (
   <svg aria-hidden focusable="false" {...props}>
     <use href={`/svg/icons.svg#${id}`} />
   </svg>
 )
+export default SVGIcon

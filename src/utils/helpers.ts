@@ -1,14 +1,14 @@
 /**
  * @description 简化数据
  * @date 24/10/2023
- * @param {GraphqlNodeList} [nodes]
- * @param {(e: GraphqlNode) => FrontmatterData} [callback]
- * @return {*}  {FrontmatterData[]}
+ * @param {GraphqlNode[]} [nodes]
+ * @param {(e: GraphqlNode) => SimplifiedQueryData} [callback]
+ * @return {*}  {SimplifiedQueryData[]}
  */
-export const simplifiedData = (
-  nodes?: GraphqlNodeList,
-  callback?: (e: GraphqlNode) => FrontmatterData | null
-): FrontmatterData[] => {
+export const simplifiedQueryData = (
+  nodes?: GraphqlNode[],
+  callback?: (e: GraphqlNode) => SimplifiedQueryData | null
+): SimplifiedQueryData[] => {
   if (!nodes) return []
 
   const result = nodes
@@ -26,7 +26,7 @@ export const simplifiedData = (
 
       return newNode
     })
-    .filter((e) => e !== null) as FrontmatterData[]
+    .filter((e) => e !== null) as SimplifiedQueryData[]
 
   return result
 }

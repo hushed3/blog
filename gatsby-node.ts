@@ -1,4 +1,17 @@
+import { GatsbyNode } from 'gatsby'
 import path from 'path'
+
+export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({ actions }) => {
+  actions.createTypes(`
+    type Site {
+      siteMetadata: SiteMetadata!
+    }
+
+    type SiteMetadata {
+      title: String!
+    }
+  `)
+}
 
 export const onCreateWebpackConfig = ({ loaders, actions }) => {
   // if (stage === 'build-html' || stage === 'develop-html') {
@@ -38,19 +51,19 @@ export const createPages = async ({ graphql, actions }) => {
     const { data } = await graphql(
       `
         {
-          articles: allMdx(
-            sort: { frontmatter: { date: DESC } }
-            filter: { frontmatter: { published: { eq: true } } }
-          ) {
+          articles: allMdx(sort: { frontmatter: { date: DESC } }) {
             nodes {
-              id
               frontmatter {
                 title
-                tags
-                date(formatString: "YYYY-MM-DD")
-                categories
-                template
+                description
+                date(formatString: "MMMM DD, YYYY")
+                lastUpdated(formatString: "MMMM DD, YYYY")
+                icon
                 slug
+                template
+                tags
+                categories
+                published
               }
               tableOfContents(maxDepth: 3)
               internal {

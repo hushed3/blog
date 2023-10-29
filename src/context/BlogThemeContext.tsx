@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { ConfigProvider } from 'antd'
+import { ConfigProvider, App } from 'antd'
 import {
   CustomTokenParams,
   extractStaticStyle,
@@ -34,7 +34,7 @@ export const BlogThemeProvider = ({ children }: { children: React.ReactNode }) =
           customStylish={getCustomStylish}
         >
           <AntdStyleProvider prefix={'site'} cache={extractStaticStyle.cache}>
-            {children}
+            <App>{children}</App>
           </AntdStyleProvider>
         </AntdStyleThemeProvider>
       </ConfigProvider>

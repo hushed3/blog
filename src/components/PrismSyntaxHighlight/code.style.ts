@@ -30,19 +30,23 @@ export const useStyles = createStyles(({ css, cx, token, isDarkMode }, prefixCls
     `,
 
     languageStyle: css`
-      padding: 0.1rem 0.6rem;
+      display: inline-flex;
+      align-items: center;
+      text-align: center;
+      padding: 0rem 0.6rem;
       border-radius: 6px;
       letter-spacing: 1px;
       text-transform: uppercase;
       color: ${token.colorText};
       font-weight: 500;
+      font-size: 0.9rem;
+      line-height: ${token.lineHeight};
       box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0px 0px rgba(0, 0, 0, 0.1),
         inset 0 -1px 0px 0px rgba(255, 255, 255, 0.1);
 
       &[data-language='js'] {
         background: rgba(247, 223, 30, ${languageOpacity});
       }
-
       &[data-language='jsx'] {
         background: rgba(97, 218, 251, ${languageOpacity});
       }

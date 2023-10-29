@@ -21,7 +21,6 @@ export const useStyles = createStyles(({ css, cx, token }, prefixCls: string) =>
       position: relative;
       height: 1.5rem;
       text-decoration: none;
-      background-color: transparent;
       border-radius: ${token.borderRadius};
       color: ${token.colorTextSecondary};
       font-size: 0.85rem;

@@ -1,14 +1,13 @@
-import type { PageProps } from 'gatsby'
+import type { HeadFC, PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 import React, { useMemo } from 'react'
-import { useStyles } from '@/styles/pages/blog.style'
 
-import { Layout } from '@/layout/index'
-import { ArticleList } from '@/components/ArticleList'
-import { BriefHeader } from '@/components/BriefHeader'
-import { SEO } from '@/components/SEO'
-import { simplifiedData } from '@/utils/helpers'
-import { BlogSidebar } from '@/components/Sidebar/BlogSidebar'
+import ArticleList from '@/components/ArticleList'
+import BriefHeader from '@/components/BriefHeader'
+import SEO from '@/components/SEO'
+import BlogSidebar from '@/components/Sidebar/BlogSidebar'
+import { useStyles } from '@/styles/pages/blog.style'
+import { simplifiedQueryData } from '@/utils/helpers'
 
 /**
  * @description 归档页面
@@ -16,48 +15,51 @@ import { BlogSidebar } from '@/components/Sidebar/BlogSidebar'
  * @export
  * @return {*}
  */
-export default function Blog({ data }: PageProps<allMdxNodesQuery>) {
+const Blog: React.FC<PageProps<allMdxNodesQuery & MdxNodesQuery>> = ({ data }) => {
   const title = '文章归档'
   const description = 'Notes & tutorials'
 
-  const nodes = data?.allMdx.nodes
+  const nodes = data.allMdx.nodes
 
   const { styles } = useStyles()
 
-  const articles = useMemo(() => simplifiedData(nodes), [data])
+  const articles = useMemo(() => simplifiedQueryData(nodes), [data])
+
+  return (
+    <div className={styles.container}>
+      <div>
+        <BriefHeader title={title} />
+        <ArticleList data={articles} />
+      </div>
+
+      <BlogSidebar />
+    </div>
+  )
+}
+
+export default Blog
+
+export const Head: HeadFC = (props) => {
+  const { location } = props
 
   return (
     <>
-      <SEO helmetTitle={title} customDescription={description} />
-
-      <div className={styles.container}>
-        <div>
-          <BriefHeader title={title} />
-          <ArticleList data={articles} />
-        </div>
-
-        <BlogSidebar />
-      </div>
+      <SEO title="文章归档" description="Notes & tutorials" pathName={location.pathname} />
     </>
   )
 }
 
-Blog.Layout = Layout
-
 export const blogQuery = graphql`
-  {
+  query {
     allMdx(sort: { frontmatter: { date: DESC } }, filter: { frontmatter: { template: { eq: "article" } } }) {
       nodes {
-        id
-        frontmatter {
-          date(formatString: "MMMM DD, YYYY")
-          title
-          slug
-          template
-          tags
-          categories
-          icon
-        }
+        ...SEO
+      }
+    }
+    mdx {
+      frontmatter {
+        title
+        slug
       }
     }
   }

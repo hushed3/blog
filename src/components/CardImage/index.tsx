@@ -4,12 +4,6 @@ import { useStyles } from './style'
 import { animated } from '@react-spring/web'
 import { motion } from 'framer-motion'
 
-interface Props {
-  move: boolean
-  row: ImageItem
-  onClick: (row?: ImageItem) => void
-}
-
 const calc = (x: number, y: number, rect: DOMRect) => [
   -(y - rect.top - rect.height / 2) / 5,
   (x - rect.left - rect.width / 2) / 5,
@@ -17,10 +11,17 @@ const calc = (x: number, y: number, rect: DOMRect) => [
 ]
 const trans = (x: number, y: number, s: number) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
 
+interface CardImageProps {
+  move: boolean
+  row: ImageItem
+  onClick: (row?: ImageItem) => void
+}
+
 /**
  * @description 3D交互卡片
  */
-const CardImage = ({ move, row, onClick }: Props) => {
+
+const CardImage: React.FC<CardImageProps> = ({ move, row, onClick }) => {
   const { styles } = useStyles()
   const imgRef = useRef<HTMLDivElement>(null)
   const [xys, set] = useState([0, 0, 1])

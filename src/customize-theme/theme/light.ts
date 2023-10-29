@@ -23,7 +23,7 @@ export const lightTheme: ThemeConfig = {
   token: {
     colorPrimary: lightMode.brandColor,
 
-    colorBgLayout: '#fbfcfd', // Layout 颜色
+    colorBgLayout: '#fafafb', // Layout 颜色
     colorTextBase: '#2a2e36',
     colorBgElevated: '#ffffff', // Card 背景色
 

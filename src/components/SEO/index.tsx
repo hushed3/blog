@@ -1,106 +1,112 @@
-import React from 'react'
-import Helmet from 'react-helmet'
-
+import { graphql } from 'gatsby'
 import { useSiteStore } from '@/store'
+import favicon from '../../../static/logo.ico'
+import { ReactNode } from 'react'
 
-interface Props {
-  articleNode?: any | null
-  articlePath?: string | null
-  articleSEO?: boolean
-  customDescription?: string
-  helmetTitle?: string
+interface SEOProps {
+  title?: string
+  description?: string
+  pathName?: string
+  children?: ReactNode
 }
 
-export const SEO = ({ articleNode, articlePath, articleSEO, customDescription, helmetTitle }: Props) => {
-  const siteData = useSiteStore((state) => state.siteData)
+const SEO: React.FC<SEOProps> = ({ title, description, pathName, children }) => {
+   const siteData = useSiteStore((state) => state.siteData)
 
-  const HelmetTitle = helmetTitle ? `${helmetTitle} | ${siteData.title}` : siteData.title
+   const seo = {
+     title: title ? `${title} | ${siteData.title}` : siteData.title,
+     description: description ? description : siteData.description,
+     image: `${siteData.siteUrl}${siteData.logo}`,
+     url: `${siteData.siteUrl}/${pathName}`,
+   }
 
-  let title
-  let description
-  let image = siteData.logo
-  let articleURL
+   const schemaOrgJSONLD: any[] = [
+     {
+       '@context': 'http://schema.org',
+       '@type': 'WebSite',
+       url: siteData.siteUrl,
+       name: seo.title,
+       alternateName: seo.title,
+     },
+   ]
 
-  if (articleSEO) {
-    const articleMeta = articleNode?.frontmatter
-    title = articleMeta?.title
-    description = articleNode?.excerpt
+   if (pathName) {
+     schemaOrgJSONLD.push(
+       {
+         '@context': 'http://schema.org',
+         '@type': 'BreadcrumbList',
+         itemListElement: [
+           {
+             '@type': 'ListItem',
+             position: 1,
+             item: {
+               '@id': seo.url,
+               name: seo.title,
+               image: seo.image,
+             },
+           },
+         ],
+       },
+       {
+         '@context': 'http://schema.org',
+         '@type': 'BlogPosting',
+         url: siteData.siteUrl,
+         name: seo.title,
+         alternateName: seo.title,
+         headline: seo.title,
+         image: {
+           '@type': 'ImageObject',
+           url: seo.image,
+         },
+         description: seo.description,
+       }
+     )
+   }
 
-    if (articleMeta?.thumbnail) {
-      image = articleMeta?.thumbnail?.childImageSharp?.gatsbyImageData.images.fallback.src
+   return (
+     <>
+       <title>{seo.title}</title>
+       <meta name="creator" content={siteData.author} />
+       <meta name="description" content={seo.description} />
+       <meta name="image" content={seo.image} />
+
+       <meta property="og:url" content={seo.url} />
+       <meta property="og:title" content={seo.title} />
+       <meta property="og:description" content={seo.description} />
+       <meta property="og:image" content={seo.image} />
+       <meta property="og:type" content="webSite" />
+       <meta property="og:see_also" content="https://github.com/hushed3" />
+
+       <meta name="twitter:card" content="summary" />
+       <meta name="twitter:url" content={seo.url} />
+       <meta name="twitter:title" content={seo.title} />
+       <meta name="twitter:description" content={seo.description} />
+       <meta name="twitter:image" content={seo.image} />
+
+       <link rel="shortcut icon" type="image/png" href={favicon} />
+       <script type="application/ld+json">{JSON.stringify(schemaOrgJSONLD)}</script>
+       {children}
+     </>
+   )
+ }
+
+export default SEO
+
+export const query = graphql`
+  fragment SEO on Mdx {
+    id
+    excerpt
+    frontmatter {
+      title
+      description
+      date(formatString: "MMMM DD, YYYY")
+      lastUpdated(formatString: "MMMM DD, YYYY")
+      icon
+      slug
+      template
+      tags
+      categories
+      published
     }
-
-    articleURL = `${siteData.siteUrl}${articlePath}`
-  } else {
-    title = siteData.title
-    description = customDescription || siteData.description
   }
-
-  image = `${siteData.siteUrl}${image}`
-
-  const schemaOrgJSONLD: any[] = [
-    {
-      '@context': 'http://schema.org',
-      '@type': 'WebSite',
-      url: siteData.siteUrl,
-      name: title,
-      alternateName: title!,
-    },
-  ]
-
-  if (articleSEO) {
-    schemaOrgJSONLD.push(
-      {
-        '@context': 'http://schema.org',
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            item: {
-              '@id': articleURL,
-              name: title,
-              image,
-            },
-          },
-        ],
-      },
-      {
-        '@context': 'http://schema.org',
-        '@type': 'BlogPosting',
-        url: siteData.siteUrl,
-        name: title,
-        alternateName: title,
-        headline: title,
-        image: {
-          '@type': 'ImageObject',
-          url: image,
-        },
-        description,
-      }
-    )
-  }
-
-  return (
-    <>
-      <Helmet title={HelmetTitle}>
-        <link rel="shortcut iconnnnnnnnnnnn" type="image/png" />
-        <meta name="description" content={description as string} />
-        <meta name="image" content={image} />
-
-        <script type="application/ld+json">{JSON.stringify(schemaOrgJSONLD)}</script>
-
-        <meta property="og:url" content={articleSEO ? articleURL : siteData.siteUrl} />
-        {articleSEO && <meta property="og:type" content="article" />}
-        <meta property="og:title" content={title as string} />
-        <meta property="og:description" content={description as string} />
-        <meta property="og:image" content={image} />
-
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content={title as string} />
-        <meta name="twitter:description" content={description as string} />
-        <meta name="twitter:image" content={image} />
-      </Helmet>
-    </>
-  )
-}
+`
