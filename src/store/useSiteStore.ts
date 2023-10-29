@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
-import { Site } from '@/config'
+import { Site } from '@/hooks'
 
 export interface SiteStore {
   siteData: Site
@@ -10,7 +10,7 @@ const initialState: SiteStore = {
   siteData: {
     author: '',
     title: '',
-    url: '',
+    siteUrl: '',
     logo: '',
     description: '',
     feedUrl: '',

@@ -1,7 +1,7 @@
-import { type ThemeMode } from 'antd-style'
-import React, { memo, type FC } from 'react'
-import NativeSelect, { Option } from '../NativeSelect'
 import { useThemeMode } from '@/hooks'
+import { type ThemeMode } from 'antd-style'
+import { type FC } from 'react'
+import NativeSelect, { Option } from '../NativeSelect'
 
 const IconAuto = () => (
   <span className="ant-dropdown-menu-item-icon" style={{ display: 'flex' }}>
@@ -52,4 +52,4 @@ const ThemeSwitch: FC = () => {
   )
 }
 
-export default memo(ThemeSwitch)
+export default ThemeSwitch

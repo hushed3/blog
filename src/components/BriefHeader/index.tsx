@@ -1,7 +1,11 @@
 import React from 'react'
 import { useStyles } from './style'
 
-interface Props {
+/**
+ * @description 简介
+ */
+
+interface BriefHeaderProps {
   title?: string
   greeting?: string
   highlight?: number
@@ -9,11 +13,7 @@ interface Props {
   children?: React.ReactNode
 }
 
-/**
- * @description 简介
- */
-
-export const BriefHeader = ({ title, greeting, highlight, description, children }: Props) => {
+const BriefHeader: React.FC<BriefHeaderProps> = ({ title, greeting, highlight, description, children }) => {
   const { styles } = useStyles()
 
   return (
@@ -30,3 +30,5 @@ export const BriefHeader = ({ title, greeting, highlight, description, children 
     </div>
   )
 }
+
+export default BriefHeader

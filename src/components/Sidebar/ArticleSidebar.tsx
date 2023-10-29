@@ -1,17 +1,13 @@
-import { Anchor, Card } from 'antd'
 import React from 'react'
+import { Anchor, Card } from 'antd'
 import { useStyles } from './style'
 
 import { AnchorLinkItemProps } from 'antd/es/anchor/Anchor'
-import { SVGIcon, SVGIconTypes } from '../SvgIcon'
+import SVGIcon, { SVGIconTypes } from '../SvgIcon'
 import MenuBar from '../MenuBar'
 import Sticky from '../Sticky'
 
-/**
- * @description 文章详细信息侧边
- */
-
-interface Props {
+interface ArticleSidebarProps {
   date?: string
   tags?: string[]
   categories?: string[]
@@ -19,7 +15,11 @@ interface Props {
   headings: AnchorLinkItemProps[]
 }
 
-export const ArticleSidebar = ({ tags = [], date, categories = [], icon, headings }: Props) => {
+/**
+ * @description 文章详细信息侧边
+ */
+
+const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ tags = [], date, categories = [], icon, headings }) => {
   const { styles } = useStyles()
 
   const categorys = categories?.filter((category) => category !== 'Highlight')
@@ -66,3 +66,5 @@ export const ArticleSidebar = ({ tags = [], date, categories = [], icon, heading
     </Sticky>
   )
 }
+
+export default ArticleSidebar

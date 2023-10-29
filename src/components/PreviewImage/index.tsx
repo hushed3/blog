@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { motion } from 'framer-motion'
 import { useStyles } from './style'
 
-interface Props {
+interface PreviewImageProps {
   id: number
   name: string
   url: string
@@ -13,7 +13,8 @@ interface Props {
 /**
  * @description 图片预览
  */
-const PreviewImage = ({ id, name, url, onClick }: Props) => {
+
+const PreviewImage: React.FC<PreviewImageProps> = ({ id, name, url, onClick }) => {
   const { styles } = useStyles()
 
   return ReactDOM.createPortal(

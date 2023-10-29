@@ -1,19 +1,14 @@
 import { Link } from 'gatsby'
 import React from 'react'
-import Helmet from 'react-helmet'
 import ThemeSwitch from '@/components/ThemeSwitch'
 import { useStyles } from './style'
 import { headerMenuList, headerSocialList } from '@/config'
-import favicon from '@/assets/image/logo.ico'
 
 export const Header = () => {
   const { styles } = useStyles()
 
   return (
     <>
-      <Helmet>
-        <link rel="shortcut icon" type="image/png" href={favicon} />
-      </Helmet>
       <header className={styles.header}>
         <div className={styles.headerContainer}>
           <div className={styles.navigations}>

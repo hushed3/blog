@@ -1,19 +1,17 @@
 import { FunctionComponent } from 'react'
-import { useResponsive, useTheme } from 'antd-style'
-import { Affix } from 'antd'
+import { useStyles } from './style'
 
 interface StickyProps {
   children
 }
 
 const Sticky: FunctionComponent<StickyProps> = ({ children }) => {
-  const { mobile } = useResponsive()
-  const token = useTheme()
+  const { styles } = useStyles()
 
   return (
-    <Affix offsetTop={(mobile ? token.headerHeightMobile : token.headerHeight) + 30}>
-      <aside>{children}</aside>
-    </Affix>
+    <aside>
+      <div className={styles.sticky}>{children}</div>
+    </aside>
   )
 }
 

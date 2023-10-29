@@ -1,9 +1,8 @@
 /* eslint react/destructuring-assignment: 0 */
-import React from 'react'
-import { Highlight, themes } from 'prism-react-renderer'
-import { GetLanguageInput, Language, calculateLinesToHighlight, languageOverride } from '@/utils/code'
-import { Copy } from './copy'
 import { useThemeMode } from '@/hooks'
+import { GetLanguageInput, Language, calculateLinesToHighlight, languageOverride } from '@/utils/code'
+import { Highlight, themes } from 'prism-react-renderer'
+import { Copy } from './copy'
 
 import { useStyles } from './code.style'
 

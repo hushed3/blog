@@ -18,7 +18,6 @@ import {
   useRole,
   useTypeahead,
 } from '@floating-ui/react'
-import React from 'react'
 import { CSSProperties, FC, ReactNode, useEffect, useRef, useState } from 'react'
 import useControlledState from 'use-merge-value'
 import { Flexbox } from 'react-layout-kit'
@@ -41,7 +40,7 @@ export interface NativeSelectProps {
   style?: CSSProperties
 }
 
-const NativeSelect: FC<NativeSelectProps> = ({
+const NativeSelect: React.FC<NativeSelectProps> = ({
   options = [],
   value,
   prefixCls,

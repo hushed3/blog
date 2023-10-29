@@ -8,12 +8,12 @@ export const useStyles = createStyles(({ css, responsive: r, token }) => ({
     color: ${token.colorPrimary};
     padding-bottom: 0.8rem;
     border-bottom: 2px solid ${token.colorBorderSecondary};
-    font-size: 2rem;
+    font-size: 1.9rem;
     opacity: 0.8;
-    font-family: Prisma;
+    font-weight: bold;
     ${r({
       mobile: css`
-        font-size: 1.7rem;
+        font-size: 1.5rem;
       `,
     })}
   `,

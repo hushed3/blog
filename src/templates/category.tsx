@@ -1,14 +1,13 @@
-import type { PageProps } from 'gatsby'
+import type { HeadFC, PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 import React, { useMemo } from 'react'
 
-import { ArticleList } from '@/components/ArticleList'
-import { BriefHeader } from '@/components/BriefHeader'
-import { SEO } from '@/components/SEO'
-import { BlogSidebar } from '@/components/Sidebar/BlogSidebar'
-import { Layout } from '@/layout'
+import ArticleList from '@/components/ArticleList'
+import BriefHeader from '@/components/BriefHeader'
+import SEO from '@/components/SEO'
+import BlogSidebar from '@/components/Sidebar/BlogSidebar'
 import { useStyles } from '@/styles/templates/style'
-import { simplifiedData } from '@/utils/helpers'
+import { simplifiedQueryData } from '@/utils/helpers'
 
 /**
  * @description 类别页面
@@ -16,36 +15,43 @@ import { simplifiedData } from '@/utils/helpers'
  * @export
  * @return {*}
  */
-export default function CategoryTemplate({
+const CategoryTemplate: React.FC<PageProps<allMdxNodesQuery<'categories'> & MdxNodesQuery, CategoryData>> = ({
   data,
   pageContext,
-}: PageProps<allMdxNodesQuery<'categories'>, CategoryData>) {
+}) => {
   const { styles } = useStyles()
   const { category } = pageContext
 
-  const totalCount = data?.categories.totalCount
   const articles = data?.categories.nodes
+  const totalCount = data?.categories.totalCount
 
   const message = totalCount === 1 ? ' Article categorized as:' : ' Articles categorized as:'
 
-  const simplifiedArticles = useMemo(() => simplifiedData(articles), [articles])
+  const simplifiedArticles = useMemo(() => simplifiedQueryData(articles), [articles])
 
   return (
-    <>
-      <SEO helmetTitle={category} />
-
-      <div className={styles.container}>
-        <div>
-          <BriefHeader highlight={totalCount} description={message} title={category} />
-          <ArticleList data={simplifiedArticles} />
-        </div>
-        <BlogSidebar />
+    <div className={styles.container}>
+      <div>
+        <BriefHeader highlight={totalCount} description={message} title={category} />
+        <ArticleList data={simplifiedArticles} />
       </div>
-    </>
+      <BlogSidebar />
+    </div>
   )
 }
 
-CategoryTemplate.Layout = Layout
+export default CategoryTemplate
+
+export const Head: HeadFC<allMdxNodesQuery<'categories'> & MdxNodesQuery, CategoryData> = (props) => {
+  const { location, pageContext } = props
+  const { category } = pageContext
+
+  return (
+    <>
+      <SEO title={`articles tagged: ${category}`} description="Article categorized" pathName={location.pathname} />
+    </>
+  )
+}
 
 export const pageQuery = graphql`
   query CategoryPage($category: String) {
@@ -55,15 +61,13 @@ export const pageQuery = graphql`
     ) {
       totalCount
       nodes {
-        id
-        frontmatter {
-          title
-          date(formatString: "MMMM DD, YYYY")
-          tags
-          categories
-          slug
-          icon
-        }
+        ...SEO
+      }
+    }
+    mdx {
+      frontmatter {
+        title
+        slug
       }
     }
   }

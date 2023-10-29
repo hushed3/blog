@@ -1,10 +1,7 @@
-import React from 'react'
-
+import type { GatsbyBrowser } from 'gatsby'
 import { Layout } from './src/layout'
 
-import type { GatsbyBrowser } from 'gatsby'
-
-export const wrapRootElement: GatsbyBrowser['wrapRootElement'] = ({ element }: { element: React.ReactElement }) => {
+export const wrapRootElement: GatsbyBrowser['wrapRootElement'] = ({ element }) => {
   return (
     <>
       <Layout>{element}</Layout>

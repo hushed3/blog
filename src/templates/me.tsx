@@ -1,10 +1,10 @@
-import type { PageProps } from 'gatsby'
+import type { HeadFC, PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 import React from 'react'
 
-import { SEO } from '@/components/SEO'
-import { MeSidebar } from '@/components/Sidebar/MeSidebar'
-import { Layout } from '@/layout'
+import SEO from '@/components/SEO'
+import MeSidebar from '@/components/Sidebar/MeSidebar'
+import PrismSyntaxHighlight from '@/components/PrismSyntaxHighlight'
 import { useStyles } from '@/styles/templates/style'
 
 /**
@@ -13,37 +13,39 @@ import { useStyles } from '@/styles/templates/style'
  * @export
  * @return {*}
  */
-export default function MeTemplate({ data }: PageProps<MeTemplatesData>) {
+const MeTemplate: React.FC<PageProps<null, MdxQuery>> = ({ pageContext, children }) => {
   const { styles } = useStyles()
 
-  const me = data?.me
+  const me = pageContext.frontmatter
+
+  return (
+    <div className={styles.container}>
+      <div>
+        <h2 className={styles.title}>{me?.title}</h2>
+        <PrismSyntaxHighlight mdxContent={children as unknown as string}></PrismSyntaxHighlight>
+      </div>
+
+      <MeSidebar />
+    </div>
+  )
+}
+
+export default MeTemplate
+
+export const Head: HeadFC<MdxQuery> = ({ location, data }) => {
+  const frontmatter = data.frontmatter
 
   return (
     <>
-      <SEO helmetTitle={me?.frontmatter.title} />
-      <div className={styles.container}>
-        <div>
-          <h2 className={styles.title}>{me?.frontmatter.title}</h2>
-          <div dangerouslySetInnerHTML={{ __html: me?.html as string }} />
-        </div>
-
-        <MeSidebar />
-      </div>
+      <SEO title={frontmatter.title} description={frontmatter.description} pathName={location.pathname} />
     </>
   )
 }
 
-MeTemplate.Layout = Layout
-
-
 export const pageQuery = graphql`
   query MeBySlug($slug: String!) {
     me: mdx(frontmatter: { slug: { eq: $slug } }) {
-      body
-      frontmatter {
-        title
-        slug
-      }
+      ...SEO
     }
   }
 `

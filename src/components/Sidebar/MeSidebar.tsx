@@ -8,7 +8,7 @@ import MenuBar from '../MenuBar'
  * @description Me页面 - 侧边个人介绍
  */
 
-export const MeSidebar = () => {
+const MeSidebar = () => {
   const { styles } = useStyles()
   return (
     <Sticky>
@@ -20,3 +20,5 @@ export const MeSidebar = () => {
     </Sticky>
   )
 }
+
+export default MeSidebar

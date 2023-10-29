@@ -11,3 +11,4 @@ const MenuBar: FunctionComponent<MenuBarProps> = ({ children }) => {
 }
 
 export default MenuBar
+

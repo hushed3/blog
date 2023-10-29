@@ -5,12 +5,15 @@ type TableOfContentsItem = {
 
 type Frontmatter = {
   title: string
-  tags: string[]
+  description: string
   date: string
-  categories: string[]
-  template: string
-  slug: string
+  lastUpdated: string
   icon: SVGIconTypes
+  slug: string
+  template: string
+  tags: string[]
+  categories: string[]
+  published: boolean
 }
 
 type Internal = {
@@ -19,14 +22,16 @@ type Internal = {
 
 type GraphqlNode = {
   id: string
+  excerpt: string
   frontmatter: Frontmatter
+  fields: {
+    slug
+  }
   tableOfContents: {
     items: TableOfContentsItem[]
   }
   internal: Internal
 }
-
-type GraphqlNodeList = GraphqlNode[]
 
 interface CategoryData {
   category: string
@@ -36,31 +41,40 @@ interface TagData {
   tag: string
 }
 
-interface FrontmatterData {
+interface SimplifiedQueryData extends Frontmatter {
   id: string
-
-  title: string
-  tags: string[]
-  date: string
-  categories: string[]
-  template: string
-  slug: string
-  icon: SVGIconTypes
-
-  thumbnail?: {
-    childImageSharp: {
-      gatsbyImageData: IGatsbyImageData
-    }
-  }
 }
 
-type YearListData = Record<string, FrontmatterData[]>
+type YearListData = Record<string, Frontmatter[]>
 
-type MdxQuery = {
-  nodes: GraphqlNodeList
+type MdxQuery = GraphqlNode
+
+type AllMdxQuery = {
+  nodes: GraphqlNode[]
   totalCount: number
+  fields: {
+    slug
+  }
 }
 
 type MdxNodesQuery<T = 'mdx'> = Record<T, MdxQuery>
 
-type allMdxNodesQuery<T = 'allMdx'> = Record<T, MdxQuery>
+type allMdxNodesQuery<T = 'allMdx'> = Record<T, AllMdxQuery>
+
+interface ImageItem {
+  id: number
+  idx: number
+  name: string
+  url: string
+  thumbnail: string
+}
+
+interface HeadNodeProps<DT = unknown, PT = unknown, CT = unknown, ST = unknown> {
+  data: DT
+  pathname: {
+    location: string
+  }
+  pageContext: PT
+  params: CT
+  serverData: ST
+}

@@ -1,5 +1,5 @@
 module.exports = {
-  graphqlTypegen: true,
+  graphqlTypegen: false,
   jsxRuntime: 'automatic',
   flags: {
     DEV_SSR: false,
@@ -10,16 +10,13 @@ module.exports = {
     author: 'J',
     siteUrl: `https://blog.hushes.cn`,
     feedUrl: 'https://blog.hushes.cn/rss.xml',
-    logo: 'https://blog.hushes.cn/logo.png',
+    logo: '/logo.png',
     pathPrefix: '/',
   },
   plugins: [
     // ===================================================================================
     // Meta
     // ===================================================================================
-
-    // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-react-helmet/
-    'gatsby-plugin-react-helmet',
 
     // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-netlify/
     'gatsby-plugin-netlify',
@@ -35,7 +32,7 @@ module.exports = {
         background_color: 'rgb(21, 21, 23)',
         theme_color: '#646cff',
         display: 'minimal-ui',
-        icon: `./src/assets/image/logo.png`,
+        icon: `static/logo.png`,
       },
     },
 
@@ -76,10 +73,15 @@ module.exports = {
                         nodes {
                           frontmatter {
                             title
-                            date
-                            template
-                            slug
                             description
+                            date(formatString: "MMMM DD, YYYY")
+                            lastUpdated(formatString: "MMMM DD, YYYY")
+                            icon
+                            slug
+                            template
+                            tags
+                            categories
+                            published
                           }
                         }
                       }
@@ -194,9 +196,15 @@ module.exports = {
                 id
                 frontmatter {
                   title
-                  tags
-                  slug
+                  description
                   date(formatString: "MMMM DD, YYYY")
+                  lastUpdated(formatString: "MMMM DD, YYYY")
+                  icon
+                  slug
+                  template
+                  tags
+                  categories
+                  published
                 }
                 body
               }

@@ -22,6 +22,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token 
     span {
       color: ${token.colorPrimaryHover};
       font-family: Prisma;
+      margin-right: 0.2rem;
     }
   `,
 
