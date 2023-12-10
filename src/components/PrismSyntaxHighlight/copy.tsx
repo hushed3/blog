@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { Button, App } from 'antd'
 import { useDebounceFn } from 'ahooks'
-import { copyToClipboard } from '@/utils/copy-to-clipboard'
+import copyToClipboard from 'copy-to-clipboard';
 
-export const Copy = ({ content }: { content: string }) => {
+function Copy({ content }: { content: string }) {
   const { message } = App.useApp()
   const [copied, setCopied] = useState<boolean>(false)
 
@@ -26,10 +26,10 @@ export const Copy = ({ content }: { content: string }) => {
     run()
   }
   return (
-    <>
-      <Button size="small" type="dashed" onClick={copyClick}>
+    <Button size="small" type="dashed" onClick={copyClick}>
         {copied ? 'Copied!' : 'Copy'}
       </Button>
-    </>
   )
 }
+
+export default Copy

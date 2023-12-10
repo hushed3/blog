@@ -8,6 +8,7 @@ icon: javascript
 slug: AsyncInfectivity
 categories:
   - JavaScript
+  - Highlight
 tags:
   - JavaScript
 published: true
@@ -15,11 +16,12 @@ published: true
 
 `JavaScript`作为一门`单线程语言`，同一时间只能执行一个操作。这就意味着，在处理一些耗时操作时，程序会出现`阻塞`，导致`UI`无响应。为了避免这种情况，`异步编程`变得至关重要。`异步操作`可以将耗时的任务交给浏览器或运行时环境来处理，同时保持`UI`的响应性。
 
-### 回调函数
 
-`回调函数`是处理异步操作的最早方法之一。它在处理事件、定时器、网络请求等方面得到了广泛应用。然而，随着异步操作嵌套层次的增加，`回调地狱（Callback Hell）`成为了一个普遍存在的问题，降低了代码的`可读性`和`可维护性`。
+#### 回调函数
 
-```javascript
+`回调函数`是处理异步操作的最早方法之一。**它在**处理事件、定时器、网络请求等方面得到了广泛应用。然而，随着异步操作嵌套层次的增加，`回调地狱（Callback Hell）`成为了一个普遍存在的问题，降低了代码的`可读性`和`可维护性`。
+
+```javascript 
 // 使用回调函数处理异步操作
 function fetchData(url, callback) {
   fetch(url)
@@ -33,7 +35,7 @@ fetchData('https://api.github.com/users/hushed3', function (data) {
 })
 ```
 
-### Promise 和异步操作链
+#### Promise 和异步操作链
 
 为了解决回调地狱问题，`ES6`引入了`Promise`，它提供了一种更优雅的处理异步操作的方式。`Promise`允许我们将异步操作组合成`链式调用`，通过`.then()`来处理成功和失败的情况，使得代码更具结构性。同时，通过`.catch()`可以捕获链中任何位置发生的错误，使错误处理变得更方便。
 
@@ -50,7 +52,7 @@ fetchData('https://api.github.com/users/hushed3')
   .catch((error) => console.error(error))
 ```
 
-### async/await
+#### async/await
 
 `ES2017`引入了`async/await`语法。使用`async`关键字可以标记一个函数为`异步函数`，而使用`await`关键字可以等待一个异步操作完成。
 
@@ -72,7 +74,7 @@ async function fetchData(url) {
 })()
 ```
 
-### 错误处理和异常
+#### 错误处理和异常
 
 在异步操作中。`Promise`提供了错误传播机制，可以通过`.catch()`来捕获和处理错误。同时，`async/await`也可以使用`try/catch`来捕获异步操作中的异常。良好
 
@@ -93,7 +95,7 @@ fetchData('https://api.github.com/users/hushed3')
 })()
 ```
 
-### 异步传染性
+#### 异步传染性
 
 - 假设我们有一个函数`getUser`，传入用户标识后，查找该用户信息,并且返回用户名。
 
@@ -129,7 +131,7 @@ main()
 
 > 但是，`async await`是有`传染性`的，当一个函数变为`async`后，这意味着调用他的函数也需要是`async`，这破坏了`getName`的同步特性。
 
-### 消除异步传染性
+#### 消除异步传染性
 
 消除异步的`传染性`是指在 JavaScript 中处理异步代码时，防止异步操作在代码中传播，影响到其他部分的执行。
 

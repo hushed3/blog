@@ -8,7 +8,7 @@ export const useStyles = createStyles(({ css, responsive: r, token }) => ({
     color: ${token.colorPrimary};
     padding-bottom: 0.8rem;
     border-bottom: 2px solid ${token.colorBorderSecondary};
-    font-size: 1.9rem;
+    font-size: 1.8rem;
     opacity: 0.8;
     font-weight: bold;
     ${r({

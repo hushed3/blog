@@ -13,7 +13,7 @@ tags:
 published: true
 ---
 
-### 实现一个发布者 Publisher 类
+#### 实现一个发布者 Publisher 类
 
 ```javascript
 class Publisher {
@@ -29,7 +29,7 @@ class Publisher {
 }
 ```
 
-### 实现一个订阅者 Subscriber 类
+#### 实现一个订阅者 Subscriber 类
 
 ```javascript
 class Subscriber {
@@ -43,7 +43,7 @@ class Subscriber {
 }
 ```
 
-### 实现一个调度中心 Dep 类,处理消息
+#### 实现一个调度中心 Dep 类,处理消息
 
 ```javascript
 class Dep {
@@ -61,26 +61,26 @@ class Dep {
 }
 ```
 
-### 实例化一个发布者
+#### 实例化一个发布者
 
 ```javascript
 let pub = new Pub() // 实例化一个发布者
 ```
 
-### 实例化一个调度中心，传入一个用于处理数据的函数；
+#### 实例化一个调度中心，传入一个用于处理数据的函数；
 
 ```javascript
 const dep = new Dep((data) => console.log('我是调度中心，我先把消息处理一下，然后发给订阅者', data))
 ```
 
-### 实例化一个订阅者
+#### 实例化一个订阅者
 
 ```javascript
 let sub1 = new Sub('订阅者1') // 实例化订阅者
 let sub2 = new Sub('订阅者2') // 实例化订阅者
 ```
 
-### 添加订阅者到调度中心,推送消息
+#### 添加订阅者到调度中心,推送消息
 
 ```javascript
 dep.addSub(sub1) // 调度中心添加订阅者1

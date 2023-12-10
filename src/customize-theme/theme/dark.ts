@@ -1,6 +1,7 @@
 import { theme, ThemeConfig } from 'antd'
 
 import { genMapTokenAlgorithm, defaultRelationship } from '../algorithms'
+import { components } from './components'
 
 const darkMode = genMapTokenAlgorithm({
   lighter: {
@@ -22,6 +23,7 @@ const darkMode = genMapTokenAlgorithm({
 })
 
 export const darkTheme: ThemeConfig = {
+  components,
   token: {
     colorPrimary: darkMode.brandColor,
 

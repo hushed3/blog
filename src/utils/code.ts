@@ -32,9 +32,9 @@ export type Language =
 export type GetLanguageInput = `language-${Language}` | ''
 
 /**
- * Get the language and optional parameters back
+ * 获取语言和可选参数
  * @param {string} className
- * @returns {string} The language
+ * @returns {string} 语言
  * @example
  * getLanguage('language-js')
  */
@@ -50,35 +50,40 @@ type OverridesInput = keyof typeof OVERRIDES
 type OverridesOutput = (typeof OVERRIDES)[OverridesInput]
 
 /**
- * Overrides a language to another one to e.g. have correct syntax highlighting support
+ * 覆盖一种语言到另一种语言，例如具有正确的语法突出显示支持
  * @param {string} input
- * @returns {string} Either incoming input or override
+ * @returns {string} 传入输入或覆盖
  * @example
  * languageOverride('svelte')
  */
 export const languageOverride = (input: OverridesInput | Language): OverridesOutput | Language =>
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   OVERRIDES?.[input] ?? input
 
-interface IPreProps {
-  children: {
-    props: {
-      // Default props
-      children: string
-      className?: string
-      // My custom props
-      title?: string
-      highlight?: string
-      withLineNumbers?: boolean
-      Language: Language
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      [key: string]: any
-    }
-    type: string
-  }
+export interface ChildrenPropsNode {
+  // Default props
+  children: string
+  className?: string
+  // My custom props
+  title?: string
+  highlight?: string
+  withLineNumbers?: boolean
+  Language: Language
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any
+}
+
+export interface ChildrenNode {
+  props: ChildrenPropsNode
+  type: string
+}
+
+export interface IPreProps {
+  children: ChildrenNode
 }
 
 /**
- * Converts the props coming from a `<pre>` MDX tag into a shape for the `<Code />` component
+ * 将来自 “<pre>” MDX标记的道具转换为 “<Code />” 组件的形状
  * @example
  * preToCodeBlock(props)
  */
@@ -99,9 +104,9 @@ export const preToCodeBlock = (preProps: IPreProps) => {
 }
 
 /**
- * Get the lines to highlight in a code block
+ * 获取要在代码块中突出显示的行
  * @param meta
- * @returns A function that returns a boolean depending on if the index should be highlighted or not (zero-indexed)
+ * @returns 一个函数，返回一个布尔值，具体取决于索引是否应该突出显示 (零索引)
  * @example
  * calculateLinesToHighlight('3')
  * calculateLinesToHighlight('3-6')

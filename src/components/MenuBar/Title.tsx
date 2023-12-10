@@ -6,7 +6,7 @@ interface HeadProps {
 }
 
 const Head: FunctionComponent<HeadProps> = ({ children }) => {
-  const { styles } = useStyles('menuBar')
+  const { styles } = useStyles()
 
   return <div className={styles.title}>{children}</div>
 }

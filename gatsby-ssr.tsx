@@ -1,13 +1,14 @@
+import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { extractStaticStyle } from 'antd-style'
 import type { GatsbySSR } from 'gatsby'
 
-import { Layout } from './src/layout'
+import ThemeProviderContext from './src/context/ThemeProviderContext'
 
 export const wrapRootElement: GatsbySSR['wrapRootElement'] = ({ element }) => {
   return (
     <>
-      <Layout>{element}</Layout>
+      <ThemeProviderContext>{element}</ThemeProviderContext>
     </>
   )
 }

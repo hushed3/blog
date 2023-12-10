@@ -13,7 +13,7 @@ tags:
 published: true
 ---
 
-### 原型
+#### 原型
 
 我们创建的每一个函数都有一个 prototype 属性，这个属性指向一个对象。这个对象的用途是包含可以由特定类型的所有实例共享的属性和方法，简单来说，该函数实例化的所有对象的**proto**的属性指向这个对象，它是该函数所有实例化对象的原型
 
@@ -27,7 +27,7 @@ let person2 = new Person()
 person1.sayName === person2.sayName // true
 ```
 
-### 原型链
+#### 原型链
 
 在 javascript 中,每当创建一个对象，都会给这个对象提供一个内置对象 `[[Prototype]]` 。这个对象就是原型对象，`[[Prototype]]` 的层层嵌套就形成了原型链
 

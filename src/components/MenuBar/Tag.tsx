@@ -12,15 +12,17 @@ interface TagProps {
 const Tag: FunctionComponent<TagProps> = ({ to, children }) => {
   const { styles } = useStyles()
   return (
-    <AntdTag.CheckableTag
-      className={styles.tag}
-      checked={to === getPathname()}
-      onClick={() => {
-        navigate(to)
-      }}
-    >
-      {children}
-    </AntdTag.CheckableTag>
+    <div className={styles.tags}>
+      <AntdTag.CheckableTag
+        className={styles.tag}
+        checked={to === getPathname()}
+        onClick={() => {
+          navigate(to)
+        }}
+      >
+        {children}
+      </AntdTag.CheckableTag>
+    </div>
   )
 }
 

@@ -25,13 +25,16 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ tags = [], date, catego
   const categorys = categories?.filter((category) => category !== 'Highlight')
 
   const handleClick = (e: React.MouseEvent<HTMLElement>, link: { title: React.ReactNode; href: string }) => {
-    e.preventDefault()
-    document.getElementById(link.href)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    // e.preventDefault()
+    // document.getElementById(link.href)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    // console.log(link, window.location.hash)
   }
+
+  const handleChange = (link: string) => {}
 
   return (
     <Sticky>
-      <SVGIcon id={icon!} width="8rem" height="8rem" style={{ margin: '0 auto', display: 'block' }}></SVGIcon>
+      <SVGIcon id={icon!} width="8em" height="8em" style={{ margin: '0 auto', display: 'block' }}></SVGIcon>
       {/* <Card bordered={false} className={styles.card}>
           <h2>About me</h2>
         </Card> */}
@@ -60,7 +63,14 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ tags = [], date, catego
       <Card bordered={false} className={styles.card}>
         <MenuBar>
           <MenuBar.Title>目录</MenuBar.Title>
-          <Anchor className={styles.anchor} targetOffset={90} affix={true} items={headings} onClick={handleClick} />
+          <Anchor
+            className={styles.anchor}
+            offsetTop={90}
+            affix={false}
+            items={headings}
+            onClick={handleClick}
+            onChange={handleChange}
+          />
         </MenuBar>
       </Card>
     </Sticky>

@@ -109,7 +109,7 @@ export const useStyles = createStyles(({ css, cx, token, isDarkMode }, prefixCls
         width: 100%;
         font-weight: 700;
         letter-spacing: -0.03rem;
-        font-size: 1.4rem;
+        font-size: 0.95rem;
         margin: 0;
 
         word-spacing: normal;
@@ -163,6 +163,7 @@ export const useStyles = createStyles(({ css, cx, token, isDarkMode }, prefixCls
     `,
 
     codeLines: css`
+      flex: 1;
       font-family: inherit !important;
 
       .line {
@@ -178,7 +179,7 @@ export const useStyles = createStyles(({ css, cx, token, isDarkMode }, prefixCls
 
     highlightCodeLine: css`
       &.number {
-        background: linear-gradient(90deg, ${token.colorPrimaryBgHover} 0% 7%, ${token.colorHighlight} 7% 100%);
+        background: linear-gradient(90deg, ${token.colorPrimaryHover} 0% 10%, ${token.colorHighlight} 7% 100%);
       }
       &.line {
         background-color: ${token.colorHighlight};

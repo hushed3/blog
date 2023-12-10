@@ -1,10 +1,11 @@
+import React from 'react'
 import type { GatsbyBrowser } from 'gatsby'
-import { Layout } from './src/layout'
+import ThemeProviderContext from './src/context/ThemeProviderContext'
 
-export const wrapRootElement: GatsbyBrowser['wrapRootElement'] = ({ element }) => {
+export const wrapPageElement: GatsbyBrowser['wrapPageElement'] = ({ element }) => {
   return (
     <>
-      <Layout>{element}</Layout>
+      <ThemeProviderContext>{element}</ThemeProviderContext>
     </>
   )
 }

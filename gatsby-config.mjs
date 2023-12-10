@@ -1,4 +1,12 @@
-module.exports = {
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
+import remarkSlug from 'remark-slug'
+import remarkGfm from 'remark-gfm'
+import rehypeMetaAsAttributes from '@lekoarts/rehype-meta-as-attributes'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+const config = {
   graphqlTypegen: false,
   jsxRuntime: 'automatic',
   flags: {
@@ -150,6 +158,25 @@ module.exports = {
         path: `${__dirname}/content`,
       },
     },
+    // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-page-creator/
+    {
+      resolve: `gatsby-plugin-page-creator`,
+      options: {
+        path: `${__dirname}/src/pages`,
+        ignore: [`styles`],
+        // See pattern syntax recognized by micromatch
+        // https://www.npmjs.com/package/micromatch#matching-features
+      },
+    },
+    {
+      resolve: `gatsby-plugin-page-creator`,
+      options: {
+        path: `${__dirname}/src/templates`,
+        ignore: [`styles`],
+        // See pattern syntax recognized by micromatch
+        // https://www.npmjs.com/package/micromatch#matching-features
+      },
+    },
 
     // ===================================================================================
     // Markdown
@@ -160,7 +187,10 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
-        plugins: [],
+        mdxOptions: {
+          remarkPlugins: [remarkGfm, remarkSlug],
+          rehypePlugins: [rehypeMetaAsAttributes],
+        },
         gatsbyRemarkPlugins: [
           // @see: https://www.gatsbyjs.com/plugins/gatsby-remark-images/
           {
@@ -173,58 +203,7 @@ module.exports = {
         ],
       },
     },
-
-    // ===================================================================================
-    // Search
-    // ===================================================================================
-
-    // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-local-search/
-    {
-      resolve: 'gatsby-plugin-local-search',
-      options: {
-        name: 'pages',
-        engine: 'flexsearch',
-        engineOptions: {
-          encode: 'icase',
-          tokenize: 'forward',
-          async: false,
-        },
-        query: `
-          {
-            allMdx(filter: { frontmatter: { template: { eq: "article" } } }) {
-              nodes {
-                id
-                frontmatter {
-                  title
-                  description
-                  date(formatString: "MMMM DD, YYYY")
-                  lastUpdated(formatString: "MMMM DD, YYYY")
-                  icon
-                  slug
-                  template
-                  tags
-                  categories
-                  published
-                }
-                body
-              }
-            }
-          }
-        `,
-        ref: 'id',
-        index: ['title', 'tags'],
-        store: ['id', 'slug', 'title', 'tags', 'date'],
-        normalizer: ({ data }) =>
-          data.allMdx.nodes.map((node) => ({
-            id: node.id,
-            slug: `/${node.frontmatter.slug}`,
-            title: node.frontmatter.title,
-            body: node.body,
-            tags: node.frontmatter.tags,
-            categories: node.frontmatter.categories,
-            date: node.frontmatter.date,
-          })),
-      },
-    },
   ],
 }
+
+export default config

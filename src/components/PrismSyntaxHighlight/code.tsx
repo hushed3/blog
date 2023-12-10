@@ -1,10 +1,9 @@
-/* eslint react/destructuring-assignment: 0 */
+import { Highlight, themes } from 'prism-react-renderer'
 import { useThemeMode } from '@/hooks'
 import { GetLanguageInput, Language, calculateLinesToHighlight, languageOverride } from '@/utils/code'
-import { Highlight, themes } from 'prism-react-renderer'
-import { Copy } from './copy'
+import Copy from './copy'
 
-import { useStyles } from './code.style'
+import { useStyles } from './style/code'
 
 type CodeProps = {
   codeString: string
@@ -13,12 +12,7 @@ type CodeProps = {
   highlight?: string
 }
 
-export const Code = ({
-  codeString,
-  language: originalLanguage = 'javascript',
-  className,
-  highlight = '',
-}: CodeProps) => {
+export const Code = ({ codeString, language: originalLanguage = 'javascript', highlight = '' }: CodeProps) => {
   const { styles, cx } = useStyles('syntax-highlight')
   const { isDarkMode } = useThemeMode()
 
@@ -28,28 +22,26 @@ export const Code = ({
 
   return (
     <Highlight code={codeString} language={language} theme={isDarkMode ? themes.oneDark : themes.oneLight}>
-      {({ className, tokens, getLineProps, getTokenProps }) => (
+      {({ tokens, getLineProps, getTokenProps }) => (
         <div className={styles.syntaxHighlight}>
           <div className={styles.syntaxHighlightHeader}>
-            <div className={styles.titleStyle}></div>
+            <div className={styles.titleStyle} />
             <span className={styles.languageStyle} data-language={language}>
               {language}
             </span>
             <Copy content={codeString} />
           </div>
           <pre className={styles.syntaxHighlightPre}>
-            <code className={styles.syntaxHighlightPreCode}>
+            <div className={styles.syntaxHighlightPreCode}>
               <div className={styles.codeLineNumbers}>
-                {tokens.map((line, i) => {
-                  return (
-                    <span
-                      key={`number-${i}`}
-                      className={cx('number', shouldHighlightLine(i) && styles.highlightCodeLine)}
-                    >
-                      {i + 1}
-                    </span>
-                  )
-                })}
+                {tokens.map((line, i) => (
+                  <span
+                    key={`number-${i}`}
+                    className={cx('number', shouldHighlightLine(i) && styles.highlightCodeLine)}
+                  >
+                    {i + 1}
+                  </span>
+                ))}
               </div>
               <div className={styles.codeLines}>
                 {tokens.map((line, i) => (
@@ -64,7 +56,7 @@ export const Code = ({
                   </div>
                 ))}
               </div>
-            </code>
+            </div>
           </pre>
         </div>
       )}
