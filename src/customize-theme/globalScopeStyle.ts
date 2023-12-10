@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'antd-style'
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalScopeStyle = createGlobalStyle`
   @font-face {
     font-family: 'SF Mono';
     src: url('/fonts/SFMono/SFMono-Regular.woff2') format('woff2'),
@@ -27,7 +27,7 @@ export const GlobalStyle = createGlobalStyle`
 
 
   ::selection {
-    background: ${(p) => p.theme.colorPrimaryBg};
+    background: ${(p) => p.theme.colorPrimaryBorder};
   }
 
   html {
@@ -58,22 +58,14 @@ export const GlobalStyle = createGlobalStyle`
     transition: border ease-out 0.1s;
   }
 
-  p,
-  ul,
-  ol,
-  ul,
-  table,
-  blockquote {
-    color: ${(p) => p.theme.colorText};
-  }
 
   p,
   ul,
   ol {
     -webkit-font-smoothing: auto;
-    line-height: 2;
+    /* line-height: 2;
     margin-top: 1.2rem;
-    margin-bottom: 1.4rem;
+    margin-bottom: 1.4rem; */
   }
 
   ul {
@@ -84,14 +76,14 @@ export const GlobalStyle = createGlobalStyle`
     padding-left: 1.2rem;
   }
 
-  ul li ul,
+  /* ul li ul,
   ol li ol {
     margin-top: 0.5rem;
     margin-bottom: 0;
-  }
+  } */
 
   li {
-    line-height: 1.5;
+    line-height: 1.7;
     margin-bottom: 0.8rem;
     padding-left: 0.25rem;
   }
@@ -116,11 +108,11 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   p strong{
-    font-size: 1.1rem;
+    font-size: 1.02rem;
   }
 
   blockquote p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.9;
     font-weight: 400;
     overflow: overlay;
@@ -129,7 +121,7 @@ export const GlobalStyle = createGlobalStyle`
   blockquote p:last-of-type {
     margin: 0;
   }
-
+/* 
   h1,
   h2,
   h3,
@@ -179,7 +171,7 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: -0.02rem;
-  }
+  } */
 
   table {
     border: 1px solid ${(P) => P.theme.colorBorderSecondary};
@@ -208,62 +200,15 @@ export const GlobalStyle = createGlobalStyle`
     border-bottom: 2px solid ${(P) => P.theme.colorBorderSecondary};
   }
 
-  img {
-    display: block;
-    max-width: 100%;
-  }
 
   code{
     color: ${(p) => p.theme.colorPrimary};
     font-size: 0.95rem;
     background-color: ${(p) => p.theme.colorFillTertiary};
-    padding: 0.25rem 0.4rem;
+    padding: 0.2rem 0.35rem;
     border-radius: ${(p) => p.theme.borderRadiusOuter}px;
     margin: 0 0.3rem;
     font-family: ${(p) => p.theme.fontFamilyHighlighter};
-
-    &:first-of-type{
-      margin-left: 0
-    }
-  }
-
-  .tag {
-    display: inline-flex;
-    position: relative;
-    font-size: 0.9rem;
-    border-radius: ${(p) => p.theme.borderRadiusOuter}px;
-    padding: 0.1rem 0.7rem;
-    margin: 0.4rem 0.3rem 0.4rem 0;
-    align-items: center;
-    line-height: calc(0.9rem + 8px);
-    background: ${(p) => p.theme.colorInfoBg};
-    color: ${(p) => p.theme.colorInfoText};
-
-    &.success {
-      background: ${(p) => p.theme.colorSuccessBg};
-      color: ${(p) => p.theme.colorSuccessText};
-    }
-    &.warning {
-      background:${(p) => p.theme.colorWarningBg};
-      color: ${(p) => p.theme.colorWarningText};
-    }
-    &.error {
-      background: ${(p) => p.theme.colorErrorBg};
-      color: ${(p) => p.theme.colorErrorText};
-    }
-  }
-
-  deckgo-highlight-code {
-    --deckgo-highlight-code-line-height: 1.7;
-    --deckgo-highlight-code-carbon-toolbar-display: none;
-    /* --deckgo-highlight-code-line-numbers-border-right: none; */
-    --deckgo-highlight-code-font-family: SF Mono
-  }
-
-  .deckgo-highlight-code-carbon{
-    background: ${(p) => p.theme.colorBgElevated};
-    border-radius: ${(p) => p.theme.borderRadius}px;
-    box-shadow: ${(p) => p.theme.boxShadowTertiary};
-    margin-bottom: 2rem;
+    opacity: .95;
   }
 `

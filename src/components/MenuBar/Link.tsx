@@ -17,7 +17,7 @@ interface LinkProps {
 }
 
 const Link: FunctionComponent<LinkProps> = ({ children, marker = true, extra, to, ...otherProps }) => {
-  const { styles, cx } = useStyles()
+  const { styles, cx, prefixCls } = useStyles()
 
   const ExtraChildren = () => {
     if (typeof extra !== 'object') {
@@ -31,7 +31,7 @@ const Link: FunctionComponent<LinkProps> = ({ children, marker = true, extra, to
     <GatsbyLink
       {...otherProps}
       to={to}
-      className={cx('menuBar-link', styles.item, styles.hover)}
+      className={cx(`${prefixCls}-menuBar-link`, styles.item, styles.hover)}
       activeClassName="active"
     >
       <div className="title">

@@ -1,26 +1,26 @@
-import React from 'react'
-import { BlogThemeProvider } from '@/context/BlogThemeContext'
 import { StoreUpdater } from '@/components/StoreUpdater'
-import { GlobalStyle } from '@/customize-theme/global'
+import { GlobalScopeStyle } from '@/customize-theme/globalScopeStyle'
 
 import { Footer } from './footer/index'
 import { Header } from './header/index'
 
 import { useStyles } from './style'
 
-export const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   const { styles } = useStyles()
 
   return (
-    <BlogThemeProvider>
-      <GlobalStyle />
+    <>
+      <GlobalScopeStyle />
       <StoreUpdater />
 
       <div className={styles.layout}>
         <Header />
-        <main className={styles.main}>{children}</main>
+        <main className={styles.content}>{children}</main>
         <Footer />
       </div>
-    </BlogThemeProvider>
+    </>
   )
 }
+
+export default Layout

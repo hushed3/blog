@@ -9,7 +9,7 @@
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     },
 
     "esModuleInterop": true,
@@ -19,14 +19,17 @@
     "strict": true,
     "skipLibCheck": true,
     "noImplicitAny": false,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    // "isolatedModules": true,
+
+    "incremental": true
   },
-  // "include": [
-  //   "src/**/*",
-  //   "gatsby-node.ts",
-  //   "gatsby-config.mjs",
-  //   "./plugins/**/*",
-  //   "./src/typings/*.d.ts"
-  // ],
-  "exclude": ["public"]
+  "include": [
+    "src/**/*",
+    // "gatsby-node.ts",
+    // "gatsby-config.mjs",
+    // "./plugins/**/*",
+    // "./src/typings/*.d.ts"
+  ],
+  "exclude": ["public","node_modules"]
 }

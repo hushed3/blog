@@ -6,8 +6,8 @@ import ArticleList from '@/components/ArticleList'
 import BriefHeader from '@/components/BriefHeader'
 import SEO from '@/components/SEO'
 import BlogSidebar from '@/components/Sidebar/BlogSidebar'
-import { useStyles } from '@/styles/pages/blog.style'
 import { simplifiedQueryData } from '@/utils/helpers'
+import { useStyles } from './styles/blog.style'
 
 /**
  * @description 归档页面
@@ -53,14 +53,11 @@ export const blogQuery = graphql`
   query {
     allMdx(sort: { frontmatter: { date: DESC } }, filter: { frontmatter: { template: { eq: "article" } } }) {
       nodes {
-        ...SEO
+        ...NodeFragment
       }
     }
     mdx {
-      frontmatter {
-        title
-        slug
-      }
+      ...FrontmatterFragment
     }
   }
 `

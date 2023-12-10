@@ -1,7 +1,8 @@
 import { createStyles } from 'antd-style'
 
-export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token }, prefixCls: string) => ({
+export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token, prefixCls }) => ({
   footer: cx(
+    `${prefixCls}-layout-footer`,
     css`
       display: flex;
       flex-wrap: wrap;
@@ -19,14 +20,12 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token 
   ),
 
   footerContainer: css`
-    width: 100%;
-    display: flex;
     justify-content: center;
     color: ${token.colorTextTertiary};
-    gap: 0.5rem;
+    width: 100%;
   `,
 
-  item: css`
+  text: css`
     display: flex;
     align-items: center;
     color: inherit;
@@ -38,20 +37,21 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token 
   href: css`
     display: flex;
     align-items: center;
-    color: inherit;
+    color: inherit !important;
     font-size: 0.85rem;
     line-height: 1.2;
     padding: 0 0.5rem;
+
+    .image {
+      display: inline-block;
+      max-height: 20px;
+      width: auto;
+      margin: 0.5rem;
+    }
 
     &:hover {
       text-decoration: underline;
       color: ${token.colorTextSecondary};
     }
-  `,
-
-  image: css`
-    display: inline-block;
-    max-height: 20px;
-    width: auto;
   `,
 }))

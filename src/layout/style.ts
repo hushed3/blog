@@ -1,13 +1,19 @@
 import { createStyles } from 'antd-style'
 
-export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token }, prefixCls: string) => ({
-  layout: css`
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  `,
+export const useStyles = createStyles(({ css, prefixCls, responsive: r, cx, stylish }) => ({
+  layout: cx(
+    `${prefixCls}-layout`,
+    css`
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    `
+  ),
 
-  main: css`
-    flex: 1;
-  `,
+  content: cx(
+    `${prefixCls}-layout-content`,
+    css`
+      flex: 1;
+    `
+  ),
 }))

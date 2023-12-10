@@ -1,34 +1,41 @@
 import { createStyles } from 'antd-style'
 
-export const useStyles = createStyles(({ css, stylish, responsive: r }) => ({
-  heading: css`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 0;
-    padding: 0;
-    margin-bottom: 2rem;
-  `,
+export const useStyles = createStyles(({ css, stylish, responsive: r, cx, prefixCls }) => ({
+  heading: cx(
+    `${prefixCls}-heading`,
+    css`
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 0;
+      padding: 0;
+    `
+  ),
 
-  title: css`
-    font-weight: 700;
-    letter-spacing: -0.03rem;
-    font-size: 1.3rem;
-    margin: 0;
+  title: cx(
+    `${prefixCls}-heading-title`,
+    css`
+      &.${prefixCls}-typography {
+        margin: 0 !important;
 
-    ${r({
-      tablet: css`
-        font-size: 1.15rem;
-      `,
-      mobile: css`
-        font-size: 1.05rem;
-      `,
-    })}
-  `,
+        ${r({
+          tablet: css`
+            font-size: 18px;
+          `,
+          mobile: css`
+            font-size: 16px;
+          `,
+        })}
+      }
+    `
+  ),
 
-  link: css`
-    ${stylish.tagLink}
+  link: cx(
+    `${prefixCls}-heading-link`,
+    css`
+      ${stylish.tagLink}
 
-    font-size: 0.8rem;
-  `,
+      font-size: 0.8rem;
+    `
+  ),
 }))

@@ -6,7 +6,7 @@ interface MenuBarProps {
 }
 
 const MenuBar: FunctionComponent<MenuBarProps> = ({ children }) => {
-  const { styles } = useStyles('menuBar')
+  const { styles } = useStyles()
   return <div className={styles.menuBar}>{children}</div>
 }
 
