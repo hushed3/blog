@@ -15,12 +15,11 @@ export interface SiteStylish {
 export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, isDarkMode }) => {
   return {
     container: css`
+      display: flex;
+      margin: 0 auto;
       max-width: ${token.contentMaxWidth}px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0 1rem;
 
-      @media screen and (max-width: ${token.screenMD}px) {
+      @media screen and (max-width: ${token.screenXL}px) {
         padding: 0 1.3rem;
       }
     `,
@@ -29,7 +28,7 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
       margin-top: 1.6rem;
       margin-bottom: 3rem;
 
-      @media screen and (max-width: ${token.screenMD}) {
+      @media screen and (max-width: ${token.screenXL}) {
         margin-top: 1.5rem;
         margin-bottom: 1.5rem;
       }
@@ -66,7 +65,8 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
     sideCard: css`
       width: 100%;
       margin: 2rem 0 0;
-      background-color: ${token.colorBgElevated};
+      background-color: ${isDarkMode ? token.colorBgElevated : token.colorBgContainer};
+      box-shadow: ${token.boxShadowTertiary} !important;
     `,
   }
 }

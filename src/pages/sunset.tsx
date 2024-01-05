@@ -5,7 +5,7 @@ import CardImage from '@/components/CardImage'
 import PreviewImage from '@/components/PreviewImage'
 import SEO from '@/components/SEO'
 
-import { useStyles } from '@/styles/pages/sunset.style'
+import { useStyles } from './styles/_sunset.style'
 import { HeadFC } from 'gatsby'
 
 // import { getServerData } from '@/data/index'

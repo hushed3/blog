@@ -1,6 +1,6 @@
-### 快速上手
+#### 快速上手
 
-### 📦 Node >= 18
+#### 📦 Node >= 18
 >windows安装node
 
 [下载node](https://nodejs.org/zh-cn/download)
@@ -10,12 +10,12 @@
 brew install node@18
 ```
 
-### 📦 Gatsby
+#### 📦 Gatsby
 ```
 npm install -g gatsby-cli
 ```
 
-### 安装依赖
+#### 安装依赖
 ```
 npm i
 ```
@@ -24,7 +24,7 @@ npm i
 yarn
 ```
 
-### 启动项目
+#### 启动项目
 ```
 npm run dev
 ```
@@ -33,7 +33,7 @@ npm run dev
 yarn dev
 ```
 
-### 打包
+#### 打包
 ```
 npm run build
 ```
@@ -42,7 +42,7 @@ npm run build
 yarn build
 ```
 
-### commit-message 格式
+#### commit-message 格式
 
 - feat: 新功能（feature）。
 

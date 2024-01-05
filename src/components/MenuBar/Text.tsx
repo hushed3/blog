@@ -9,7 +9,7 @@ interface TextProps {
 }
 
 const Text: FunctionComponent<TextProps> = ({ children, marker = true, extra }) => {
-  const { styles, cx } = useStyles()
+  const { styles, cx, prefixCls } = useStyles()
 
   const ExtraChildren = () => {
     if (typeof extra !== 'object') {
@@ -20,7 +20,7 @@ const Text: FunctionComponent<TextProps> = ({ children, marker = true, extra }) 
   }
 
   return (
-    <div className={cx('menuBar-text', styles.item)}>
+    <div className={cx(`${prefixCls}-menuBar-text`, styles.item)}>
       <div className="title">
         {marker && <span className={styles.inkVisible}></span>}
         {children}

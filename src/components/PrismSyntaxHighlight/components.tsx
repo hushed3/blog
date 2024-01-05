@@ -1,34 +1,43 @@
-import * as React from 'react'
 import { Alert, Tag } from 'antd'
+import _ from 'lodash'
 import type { Components } from '@mdx-js/react/lib/index'
-import { preToCodeBlock } from '@/utils/code'
-import { headings } from './heading'
-import { Code } from './code'
+
+import { preToCodeParams, toCodeParams } from '@/utils/code'
+import Headings from './Heading'
+import PreHighlight from './Code/PreHighlight'
+import CodeHighlight from './Code/CodeHighlight'
+import Blockquote from './Blockquote'
+import Lists from './Lists'
+import Table from './Table'
 
 // @ts-ignore
 const components: Components = {
-  pre: (preProps) => {
-    // @ts-ignore
-    const props = preToCodeBlock(preProps)
-    // if there's a codeString and some props, we passed the test
-    if (props) {
-      return <Code {...props} />
-    }
-    // it's possible to have a pre without a code in it
-    return <pre {...preProps} />
-  },
-  ...headings,
-  Alert: (preProps) => {
-    const { children } = preProps
+  code: (props) => {
+    const { className, children } = props
 
-    return <Alert {...preProps} message={children} />
+    if (_.isEmpty(className)) {
+      return <CodeHighlight children={children}></CodeHighlight>
+    }
+
+    if (className && /language\-/.test(className)) {
+      const preProps = toCodeParams(props)
+
+      return <PreHighlight {...preProps}></PreHighlight>
+    }
   },
-  Tag: (preProps) => {
-    return (
-      <Tag {...preProps} bordered={false}>
-        {preProps.children}
-      </Tag>
-    )
+  ...Headings,
+  Alert: (props) => {
+    const { children } = props
+
+    return <Alert {...props} message={children} />
   },
+  Tag: (props) => (
+    <Tag {...props} bordered={false}>
+      {props.children}
+    </Tag>
+  ),
+  blockquote: Blockquote,
+  ...Lists,
+  table: Table,
 }
 export default components

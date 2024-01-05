@@ -6,8 +6,8 @@ import ArticleList from '@/components/ArticleList'
 import BriefHeader from '@/components/BriefHeader'
 import SEO from '@/components/SEO'
 import BlogSidebar from '@/components/Sidebar/BlogSidebar'
-import { useStyles } from '@/styles/templates/style'
 import { simplifiedQueryData } from '@/utils/helpers'
+import { useStyles } from './styles/style'
 
 /**
  * @description 类别页面
@@ -61,14 +61,11 @@ export const pageQuery = graphql`
     ) {
       totalCount
       nodes {
-        ...SEO
+        ...NodeFragment
       }
     }
     mdx {
-      frontmatter {
-        title
-        slug
-      }
+      ...FrontmatterFragment
     }
   }
 `

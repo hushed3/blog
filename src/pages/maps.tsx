@@ -5,8 +5,7 @@ import * as THREE from 'three'
 import { Canvas, extend, useLoader } from '@react-three/fiber'
 import { OrbitControls, Environment, Effects, useTexture } from '@react-three/drei'
 import { Sphere } from '@react-three/drei'
-import { Layout } from '@/layout/index'
-import { useStyles } from '@/styles/pages/map.style'
+import { useStyles } from './styles/_map.style'
 
 function Model() {
   const texture = useLoader(
@@ -42,5 +41,3 @@ export default function Maps() {
     </>
   )
 }
-
-Maps.Layout = Layout

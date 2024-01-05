@@ -1,5 +1,5 @@
 import { Link } from 'gatsby'
-import React from 'react'
+import { Space } from 'antd'
 import ThemeSwitch from '@/components/ThemeSwitch'
 import { useStyles } from './style'
 import { headerMenuList, headerSocialList } from '@/config'
@@ -11,10 +11,11 @@ export const Header = () => {
     <>
       <header className={styles.header}>
         <div className={styles.headerContainer}>
-          <div className={styles.navigations}>
+          <Space size="middle">
             <Link to="/" className={styles.navigationLink}>
               <span className="logo">𝓙</span>
             </Link>
+
             {headerMenuList.map(
               (item) =>
                 item.show && (
@@ -32,7 +33,7 @@ export const Header = () => {
                 <item.icon />
               </a>
             ))}
-          </div>
+          </Space>
 
           <ThemeSwitch />
         </div>

@@ -1,7 +1,13 @@
-import { GatsbyNode } from 'gatsby'
-import path from 'path'
+// import { GatsbyNode } from 'gatsby'
+import path,{ dirname } from "path"
+import { fileURLToPath } from "url"
 
-export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({ actions }) => {
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+/**
+ * @type {import('gatsby').GatsbyNode['createSchemaCustomization']}
+ */
+export const createSchemaCustomization = ({ actions }) => {
   actions.createTypes(`
     type Site {
       siteMetadata: SiteMetadata!
@@ -13,6 +19,9 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   `)
 }
 
+/**
+ * @type {import('gatsby').GatsbyNode['onCreateWebpackConfig']}
+ */
 export const onCreateWebpackConfig = ({ loaders, actions }) => {
   // if (stage === 'build-html' || stage === 'develop-html') {
   actions.setWebpackConfig({
@@ -43,36 +52,37 @@ const mePage = path.resolve('./src/templates/me.tsx')
 const tagPage = path.resolve('./src/templates/tag.tsx')
 const categoryPage = path.resolve('./src/templates/category.tsx')
 
+/**
+ * @type {import('gatsby').GatsbyNode['createPages']}
+ */
 export const createPages = async ({ graphql, actions }) => {
   try {
     const { createPage } = actions
 
-    const { data } = await graphql(
-      `
-        {
-          articles: allMdx(sort: { frontmatter: { date: DESC } }) {
-            nodes {
-              frontmatter {
-                title
-                description
-                date(formatString: "MMMM DD, YYYY")
-                lastUpdated(formatString: "MMMM DD, YYYY")
-                icon
-                slug
-                template
-                tags
-                categories
-                published
-              }
-              tableOfContents(maxDepth: 3)
-              internal {
-                contentFilePath
-              }
+    const { data } = await graphql(`
+      {
+        articles: allMdx(sort: { frontmatter: { date: DESC } }) {
+          nodes {
+            frontmatter {
+              title
+              description
+              date(formatString: "MMMM DD, YYYY")
+              lastUpdated(formatString: "MMMM DD, YYYY")
+              icon
+              slug
+              template
+              tags
+              categories
+              published
+            }
+            tableOfContents(maxDepth: 4)
+            internal {
+              contentFilePath
             }
           }
         }
-      `
-    )
+      }
+    `)
 
     const nodes = data.articles.nodes
     const articles = nodes.filter((article) => article.frontmatter.template === 'article')
@@ -155,10 +165,14 @@ export const createPages = async ({ graphql, actions }) => {
       })
     })
   } catch (error) {
-    throw new Error(error as string)
+    throw new Error(error )
   }
 }
 
+
+/**
+ * @type {import('gatsby').GatsbyNode['onCreateNode']}
+ */
 export const onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 

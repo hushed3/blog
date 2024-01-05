@@ -16,11 +16,13 @@ export const useStyles = createStyles(({ css, cx, token }, prefixCls) => ({
       scroll-margin: 50px;
       cursor: pointer;
 
+      rap: 1rem;
+
       font-weight: normal;
       font-family: ${token.fontFamily};
       color: ${token.colorText};
       background: transparent;
-      transition: all 0.2s;
+      transition: all ${token.motionDurationMid};
 
       &:hover {
         background: ${token.colorFillTertiary};

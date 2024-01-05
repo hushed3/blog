@@ -6,8 +6,9 @@ import ArticleList from '@/components/ArticleList'
 import BriefHeader from '@/components/BriefHeader'
 import SEO from '@/components/SEO'
 import BlogSidebar from '@/components/Sidebar/BlogSidebar'
-import { useStyles } from '@/styles/templates/style'
 import { simplifiedQueryData } from '@/utils/helpers'
+import { useStyles } from './styles/style'
+
 
 /**
  * @description 标签页面
@@ -54,14 +55,11 @@ export const pageQuery = graphql`
     tags: allMdx(sort: { frontmatter: { date: DESC } }, filter: { frontmatter: { tags: { in: [$tag] } } }) {
       totalCount
       nodes {
-        ...SEO
+        ...NodeFragment
       }
     }
     mdx {
-      frontmatter {
-        title
-        slug
-      }
+      ...FrontmatterFragment
     }
   }
 `

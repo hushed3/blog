@@ -1,4 +1,11 @@
-module.exports = {
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
+import remarkGfm from 'remark-gfm'
+import rehypeMetaAsAttributes from './src/plugins/rehypeMetaAsAttributes.mjs'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+const config = {
   graphqlTypegen: false,
   jsxRuntime: 'automatic',
   flags: {
@@ -30,7 +37,7 @@ module.exports = {
         description: 'gatsby-plugin-manifest',
         start_url: '/',
         background_color: 'rgb(21, 21, 23)',
-        theme_color: '#646cff',
+        theme_color: '#6680ff',
         display: 'minimal-ui',
         icon: `static/logo.png`,
       },
@@ -160,7 +167,10 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
-        plugins: [],
+        mdxOptions: {
+          remarkPlugins: [remarkGfm],
+          rehypePlugins: [rehypeMetaAsAttributes],
+        },
         gatsbyRemarkPlugins: [
           // @see: https://www.gatsbyjs.com/plugins/gatsby-remark-images/
           {
@@ -173,58 +183,7 @@ module.exports = {
         ],
       },
     },
-
-    // ===================================================================================
-    // Search
-    // ===================================================================================
-
-    // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-local-search/
-    {
-      resolve: 'gatsby-plugin-local-search',
-      options: {
-        name: 'pages',
-        engine: 'flexsearch',
-        engineOptions: {
-          encode: 'icase',
-          tokenize: 'forward',
-          async: false,
-        },
-        query: `
-          {
-            allMdx(filter: { frontmatter: { template: { eq: "article" } } }) {
-              nodes {
-                id
-                frontmatter {
-                  title
-                  description
-                  date(formatString: "MMMM DD, YYYY")
-                  lastUpdated(formatString: "MMMM DD, YYYY")
-                  icon
-                  slug
-                  template
-                  tags
-                  categories
-                  published
-                }
-                body
-              }
-            }
-          }
-        `,
-        ref: 'id',
-        index: ['title', 'tags'],
-        store: ['id', 'slug', 'title', 'tags', 'date'],
-        normalizer: ({ data }) =>
-          data.allMdx.nodes.map((node) => ({
-            id: node.id,
-            slug: `/${node.frontmatter.slug}`,
-            title: node.frontmatter.title,
-            body: node.body,
-            tags: node.frontmatter.tags,
-            categories: node.frontmatter.categories,
-            date: node.frontmatter.date,
-          })),
-      },
-    },
   ],
 }
+
+export default config

@@ -21,20 +21,24 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
     margin: 0 0 3.2rem;
   `,
 
-  title: css`
-    padding: 5.6rem 0 4rem;
-    margin: 0;
-    font-size: 1.85rem;
-    letter-spacing: -0.07rem;
-    font-weight: 700;
-    line-height: 1.05;
+  title: cx(css`
+    &.${prefixCls}-typography {
+      padding: 5.6rem 0 4rem;
+      margin: 0;
+      font-weight: bold;
+      font-family: ${token.fontFamilyCode};
 
-    ${r({
-      tablet: css`
-        padding: 3.5rem 0 3rem;
-      `,
-    })}
-  `,
+      ${r({
+        tablet: css`
+          padding: 3.5rem 0 3rem;
+          font-size: 22px;
+        `,
+        mobile: css`
+          font-size: 20px;
+        `,
+      })}
+    }
+  `),
 
   main: css`
     padding-bottom: 5rem;

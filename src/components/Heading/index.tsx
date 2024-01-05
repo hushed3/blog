@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { Typography } from 'antd'
 import { useStyles } from './style'
 
 /**
@@ -17,7 +18,9 @@ const Heading: React.FC<HeadingProps> = ({ title, slug }) => {
 
   return (
     <div className={styles.heading}>
-      <h2 className={styles.title}>{title}</h2>
+      <Typography.Title level={4} className={styles.title}>
+        {title}
+      </Typography.Title>
       {slug && (
         <Link className={styles.link} to={slug}>
           View all

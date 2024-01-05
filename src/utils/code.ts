@@ -1,4 +1,6 @@
-export type Language =
+import { PreHighlightProps } from '@/components/PrismSyntaxHighlight/Code/PreHighlight'
+
+export type Languages =
   | 'bash'
   | 'sh'
   | 'shell'
@@ -28,80 +30,130 @@ export type Language =
   | 'svelte'
   | 'html'
   | 'text'
+  | 'swift'
+  | 'kotlin'
+  | 'objectivec'
+  | 'js-extras'
+  | 'reason'
+  | 'cpp'
 
-export type GetLanguageInput = `language-${Language}` | ''
+export type GetLanguageInput = `language-${Languages}` | ''
 
 /**
- * Get the language and optional parameters back
- * @param {string} className
- * @returns {string} The language
- * @example
- * getLanguage('language-js')
+ * @description 语言映射
  */
-export const getLanguage = (className: GetLanguageInput = ``) => className.split(`language-`).pop() as Language
-
-const OVERRIDES = {
+export const OVERRIDES = {
   svelte: `html`,
-  javascript: 'js',
-  typescript: 'ts',
+  // javascript: 'js',
+  // typescript: 'ts',
 } as const
 
-type OverridesInput = keyof typeof OVERRIDES
-type OverridesOutput = (typeof OVERRIDES)[OverridesInput]
+/**
+ * @description 语言映射 Key
+ */
+export type OverridesKeys = keyof typeof OVERRIDES
 
 /**
- * Overrides a language to another one to e.g. have correct syntax highlighting support
- * @param {string} input
- * @returns {string} Either incoming input or override
- * @example
- * languageOverride('svelte')
+ * @description 语言映射 Value
  */
-export const languageOverride = (input: OverridesInput | Language): OverridesOutput | Language =>
-  OVERRIDES?.[input] ?? input
+type OverridesValues = (typeof OVERRIDES)[OverridesKeys]
 
-interface IPreProps {
+export interface GetLanguageData {
+  language: Languages
+}
+
+/**
+ * 覆盖一种语言到另一种语言，使其具有正确的语法解析
+ * @param {string} input
+ * @returns {string} 传入输入或覆盖
+ * @example
+ * getOverrideLanguage('svelte')  => html
+ */
+export const getOverrideLanguage = (input: Languages): Languages => OVERRIDES?.[input] ?? input
+
+/**
+ * 获取语言
+ * @param {string} className
+ * @returns {string} 语言
+ * @example
+ * getLanguage('language-js')  => js
+ * getLanguage('language-typescript')  => ts
+ */
+export const getLanguage = (className): GetLanguageData => {
+  const language = className.split(`language-`).pop() as Languages
+
+  return { language }
+}
+
+export interface CodeNode {
+  children: string
+  className?: GetLanguageInput
+  highlight?: string
+  title?: string
+
+  // [key: string]: any
+}
+
+/**
+ * @description
+ * @date 04/01/2024
+ * @export
+ * @interface PreNode
+ */
+export interface PreNode {
   children: {
-    props: {
-      // Default props
-      children: string
-      className?: string
-      // My custom props
-      title?: string
-      highlight?: string
-      withLineNumbers?: boolean
-      Language: Language
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      [key: string]: any
-    }
+    props: CodeNode
     type: string
   }
 }
 
 /**
- * Converts the props coming from a `<pre>` MDX tag into a shape for the `<Code />` component
+ * @description 将来自 "<pre>" MDX标记的道具转换为 “<Code />” 组件的形状
  * @example
- * preToCodeBlock(props)
+ * preToCodeParams(props)
  */
-export const preToCodeBlock = (preProps: IPreProps) => {
+export const preToCodeParams = (preProps: PreNode): PreHighlightProps | undefined => {
   if (preProps?.children?.type === `code`) {
-    const { children: codeString, className = ``, ...props } = preProps.children.props
+    const { children, className = ``, ...props } = preProps.children.props
 
-    const match = className.match(/language-([\0-\uFFFF]*)/)
+    const { language } = getLanguage(className)
+
     return {
-      codeString: codeString.trim(),
-      className: className as GetLanguageInput,
-      language: (match !== null ? match[1] : ``) as Language,
+      children,
+      codeString: children.trim(),
+      language,
+      className,
       ...props,
     }
   }
 
   return undefined
 }
+/**
+ * @description 将来自 “<code>” MDX标记的道具转换为 “<Code />” 组件的形状
+ * @date 02/01/2024
+ * @param {*} props
+ * @example
+ * toCodeParams(props)
+ */
+export const toCodeParams = (codeProps): PreHighlightProps => {
+  const { children, className = ``, ...props } = codeProps
+
+  const { language } = getLanguage(className)
+
+  return {
+    children,
+    codeString: children,
+    language,
+    className,
+    ...props,
+  }
+}
 
 /**
- * Get the lines to highlight in a code block
+ * @description 获取要在代码块中突出显示的行
  * @param meta
- * @returns A function that returns a boolean depending on if the index should be highlighted or not (zero-indexed)
+ * @returns 一个函数，返回一个布尔值，具体取决于索引是否应该突出显示 (零索引)
  * @example
  * calculateLinesToHighlight('3')
  * calculateLinesToHighlight('3-6')
@@ -111,7 +163,11 @@ export const calculateLinesToHighlight = (meta: string) => {
   if (!meta) {
     return () => false
   }
-  const lineNumbers = meta.split(`,`).map((v) => v.split(`-`).map((x) => parseInt(x, 10)))
+
+  // const lineNumbers = meta.split(`,`).map((v) => v.split(`-`).map(Number))
+  const lineNumbers = meta.split(`,`).map((v) => {
+    return v.split(`-`).map(Number)
+  })
   return (index: number) => {
     const lineNumber = index + 1
     return lineNumbers.some(([start, end]) => (end ? lineNumber >= start && lineNumber <= end : lineNumber === start))

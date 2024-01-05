@@ -5,7 +5,7 @@ import React from 'react'
 import SEO from '@/components/SEO'
 import MeSidebar from '@/components/Sidebar/MeSidebar'
 import PrismSyntaxHighlight from '@/components/PrismSyntaxHighlight'
-import { useStyles } from '@/styles/templates/style'
+import { useStyles } from './styles/style'
 
 /**
  * @description 个人介绍页面
@@ -49,7 +49,7 @@ export const Head: HeadFC<MdxQuery> = ({ location, data }) => {
 export const pageQuery = graphql`
   query MeBySlug($slug: String!) {
     me: mdx(frontmatter: { slug: { eq: $slug } }) {
-      ...SEO
+      ...NodeFragment
     }
   }
 `
