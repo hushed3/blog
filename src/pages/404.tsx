@@ -3,7 +3,7 @@ import { HeadFC, navigate } from 'gatsby'
 import { Button } from 'antd'
 
 import SEO from '@/components/SEO'
-import { useStyles } from './styles/404.style'
+import { useStyles } from './styles/_404.style'
 
 const FourOhFour = () => {
   const { styles } = useStyles()

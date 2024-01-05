@@ -8,7 +8,7 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token,
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 3;
+      z-index: 20;
       height: ${token.headerHeight}px;
       box-shadow: ${token.boxShadowTertiary};
       backdrop-filter: saturate(50%) blur(4px);
@@ -75,7 +75,7 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token,
         color: transparent;
         background: ${token.gradientLogo};
         background-clip: text;
-        transition: all 0.3s;
+        transition: all ${token.motionDurationSlow};
       }
 
       ${r({

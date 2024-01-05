@@ -1,8 +1,7 @@
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
-import remarkSlug from 'remark-slug'
 import remarkGfm from 'remark-gfm'
-import rehypeMetaAsAttributes from '@lekoarts/rehype-meta-as-attributes'
+import rehypeMetaAsAttributes from './src/plugins/rehypeMetaAsAttributes.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -38,7 +37,7 @@ const config = {
         description: 'gatsby-plugin-manifest',
         start_url: '/',
         background_color: 'rgb(21, 21, 23)',
-        theme_color: '#646cff',
+        theme_color: '#6680ff',
         display: 'minimal-ui',
         icon: `static/logo.png`,
       },
@@ -158,25 +157,6 @@ const config = {
         path: `${__dirname}/content`,
       },
     },
-    // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-page-creator/
-    {
-      resolve: `gatsby-plugin-page-creator`,
-      options: {
-        path: `${__dirname}/src/pages`,
-        ignore: [`styles`],
-        // See pattern syntax recognized by micromatch
-        // https://www.npmjs.com/package/micromatch#matching-features
-      },
-    },
-    {
-      resolve: `gatsby-plugin-page-creator`,
-      options: {
-        path: `${__dirname}/src/templates`,
-        ignore: [`styles`],
-        // See pattern syntax recognized by micromatch
-        // https://www.npmjs.com/package/micromatch#matching-features
-      },
-    },
 
     // ===================================================================================
     // Markdown
@@ -188,7 +168,7 @@ const config = {
       options: {
         extensions: [`.mdx`, `.md`],
         mdxOptions: {
-          remarkPlugins: [remarkGfm, remarkSlug],
+          remarkPlugins: [remarkGfm],
           rehypePlugins: [rehypeMetaAsAttributes],
         },
         gatsbyRemarkPlugins: [

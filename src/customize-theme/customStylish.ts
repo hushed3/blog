@@ -65,7 +65,8 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
     sideCard: css`
       width: 100%;
       margin: 2rem 0 0;
-      background-color: ${token.colorBgElevated};
+      background-color: ${isDarkMode ? token.colorBgElevated : token.colorBgContainer};
+      box-shadow: ${token.boxShadowTertiary} !important;
     `,
   }
 }

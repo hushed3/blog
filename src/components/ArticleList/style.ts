@@ -24,7 +24,7 @@ export const useStyles = createStyles(({ css, responsive: r, token }) => ({
     padding: 0.3rem 0;
     margin: 1.6rem 0;
     background-color: transparent;
-    transition: all 0.3s;
+    transition: all ${token.motionDurationSlow};
     color: inherit;
 
     &:hover {
@@ -39,6 +39,7 @@ export const useStyles = createStyles(({ css, responsive: r, token }) => ({
       padding: 0 1.3rem;
       color: ${token.colorText};
       opacity: 0.7;
+      transition: opacity ${token.motionDurationMid};
     }
     h5 {
       flex: 1;

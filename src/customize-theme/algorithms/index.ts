@@ -46,9 +46,8 @@ interface MapTokenAlgorithm extends NeutralPaletteOptions {
   brandColor?: string
 }
 
-const brandColor = '#6677ff'
-// const brandColor = '#646cff'
-// const brandColor = '#8157ff'
+const brandColor = '#5865FF'
+// const brandColor = '#566EFF'
 
 export const genMapTokenAlgorithm = (params?: MapTokenAlgorithm) => {
   const { relationship = defaultRelationship } = params || {}

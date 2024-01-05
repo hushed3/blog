@@ -52,6 +52,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
     css`
       min-height: 9rem;
       background-color: ${token.colorBgElevated};
+      box-shadow: none !important;
 
       .${prefixCls}-card-body {
         display: flex;
@@ -66,6 +67,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
     css`
       min-height: 9rem;
       background-color: ${token.colorBgElevated};
+      box-shadow: none !important;
 
       .${prefixCls}-card-body {
         display: flex;
@@ -76,7 +78,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
       .content {
         display: flex;
         flex-wrap: wrap;
-        align-content: space-around;
+        align-content: space-evenly;
         height: 100%;
         margin-left: 1.2rem;
       }
@@ -87,8 +89,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
     `${prefixCls}-card-time`,
     css`
       display: block;
-      font-family: monospace;
-      color: ${token.colorMagentaBorderHover};
+      color: ${token['magenta-4']};
       font-size: 0.75rem;
 
       ${r({
@@ -126,23 +127,26 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
     `
   ),
 
-  tagLinks: css`
-    display: flex;
-    align-items: flex-end;
+  tagLinks: cx(
+    `${prefixCls}-card-tagLinks`,
+    css`
+      display: flex;
+      align-items: flex-end;
 
-    a {
-      font-size: 0.75rem;
-      color: ${token.colorTextDescription};
-      &:hover {
-        text-decoration: underline;
-        color: ${token.colorText};
+      a {
+        font-size: 0.75rem;
+        color: ${token.colorTextDescription};
+        &:hover {
+          text-decoration: underline;
+          color: ${token.colorText};
+        }
+
+        ${r({
+          tablet: css`
+            font-size: 0.7rem;
+          `,
+        })}
       }
-
-      ${r({
-        tablet: css`
-          font-size: 0.7rem;
-        `,
-      })}
-    }
-  `,
+    `
+  ),
 }))

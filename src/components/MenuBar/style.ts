@@ -43,15 +43,14 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls }) => {
         }
 
         &.active {
-          color: ${token.colorPrimary};
-          font-weight: bold;
+          color: ${token.colorPrimary} !important;
         }
       `
     ),
 
     hover: css`
       &:hover {
-        color: ${token.colorPrimary};
+        color: ${token.colorPrimaryTextHover};
         text-decoration: none;
       }
     `,
@@ -83,14 +82,14 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls }) => {
         text-transform: capitalize;
         margin-inline-end: 0;
 
-        &.site-tag-checkable-checked {
-          color: ${token.colorPrimary};
-          background-color: ${token.colorPrimaryBg};
+        &:hover {
+          color: ${token.colorPrimaryTextHover}!important;
+          background-color: ${token.colorPrimaryBg}!important;
         }
 
-        &:hover {
-          color: ${token.colorPrimary};
-          background-color: ${token.colorPrimaryBg}!important;
+        &.site-tag-checkable-checked {
+          color: ${token.colorPrimary} !important;
+          background-color: ${token.colorPrimaryBg};
         }
       `
     ),

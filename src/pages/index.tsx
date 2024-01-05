@@ -8,7 +8,7 @@ import Heading from '@/components/Heading'
 import SEO from '@/components/SEO'
 import SVGIcon from '@/components/SvgIcon'
 import { simplifiedQueryData } from '@/utils/helpers'
-import { useStyles } from './styles/index.style'
+import { useStyles } from './styles/_index.style'
 
 /**
  * @description 首页

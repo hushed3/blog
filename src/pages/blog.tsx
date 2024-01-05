@@ -7,7 +7,7 @@ import BriefHeader from '@/components/BriefHeader'
 import SEO from '@/components/SEO'
 import BlogSidebar from '@/components/Sidebar/BlogSidebar'
 import { simplifiedQueryData } from '@/utils/helpers'
-import { useStyles } from './styles/blog.style'
+import { useStyles } from './styles/_blog.style'
 
 /**
  * @description 归档页面

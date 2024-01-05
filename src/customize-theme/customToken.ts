@@ -37,14 +37,13 @@ export interface SiteToken {
   gradientLogo: string
 
   /**
-   * @title 标题字体
-   */
-  fontFamilyHeading: string
-
-  /**
    * @title 代码块字体
    */
   fontFamilyHighlighter: string
+  /**
+   * @title 代码块字体
+   */
+  tableHeaderBg: string
 }
 
 export const createCustomToken: GetCustomToken<SiteToken> = ({ isDarkMode, token }) => {
@@ -57,12 +56,13 @@ export const createCustomToken: GetCustomToken<SiteToken> = ({ isDarkMode, token
     footerHeight: 130,
     footerHeightMobile: 100,
 
-    gradientLogo: `linear-gradient(30deg,#90d5ff 40%,#646cff)`,
+    gradientLogo: `linear-gradient(30deg,#90d5ff 35%,${token.colorPrimary})`,
 
-    fontFamilyHeading: 'monospace',
     fontFamilyHighlighter: 'SF Mono',
 
-    colorHighlight: isDarkMode ? '#262835' : '#f4f6ff',
+    colorHighlight: isDarkMode ? '#16182c' : '#ebf1ff',
     borderRadius: 8,
+
+    tableHeaderBg: isDarkMode ? '#1d1d1d' : '#fafafa',
   }
 }

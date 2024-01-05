@@ -25,7 +25,8 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
     &.${prefixCls}-typography {
       padding: 5.6rem 0 4rem;
       margin: 0;
-      font-weight: 700;
+      font-weight: bold;
+      font-family: ${token.fontFamilyCode};
 
       ${r({
         tablet: css`

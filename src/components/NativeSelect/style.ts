@@ -16,10 +16,6 @@ export const useStyles = createStyles(({ css, stylish, cx, token }, prefixCls: s
       outline: 0;
       user-select: none;
       width: 110px;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
     `
   ),
   button: cx(
@@ -34,7 +30,7 @@ export const useStyles = createStyles(({ css, stylish, cx, token }, prefixCls: s
       cursor: pointer;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
-      transition: opacity 0.2s ease-in-out;
+      transition: opacity ${token.motionDurationMid} ease-in-out;
 
       &:hover {
         opacity: 0.6;
@@ -49,6 +45,6 @@ export const useStyles = createStyles(({ css, stylish, cx, token }, prefixCls: s
   option: css`
     display: flex;
     align-items: center;
-    gap: 12;
+    justify-content: space-around;
   `,
 }))
