@@ -35,10 +35,15 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
           `,
         })}
       }
-
-      &:hover {
-        a {
-          opacity: 1;
+      a {
+        color: ${token.colorPrimary};
+      }
+      span {
+        &:hover {
+          a {
+            opacity: 1;
+            color: ${token.colorPrimaryHover};
+          }
         }
       }
     `,

@@ -26,7 +26,7 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ tags = [], date, catego
   const handleChange = (link: string) => {
     if (!link || link === location.hash) return
 
-    history.pushState(null, '', link)
+    // history.pushState(null, '', link)
   }
 
   return (

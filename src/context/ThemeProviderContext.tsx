@@ -8,7 +8,7 @@ import { createCustomToken, getAntdTheme, getCustomStylish } from '@/customize-t
 import { graphql } from 'gatsby'
 ;(global as any)['__ANTD_CACHE__'] = extractStaticStyle.cache
 
-const ThemeProviderContext = ({ children }: { children: React.ReactNode }) => {
+const ThemeProviderContext = ({ children, ...props }: { children: React.ReactNode }) => {
   const { themeMode } = useThemeMode()
 
   const getCustomToken = useCallback((params: CustomTokenParams) => {
@@ -27,7 +27,7 @@ const ThemeProviderContext = ({ children }: { children: React.ReactNode }) => {
       >
         <StyleProvider prefix={'site'} cache={extractStaticStyle.cache} speedy={true}>
           <App>
-            <Layout>{children}</Layout>
+            <Layout {...props}>{children}</Layout>
           </App>
         </StyleProvider>
       </ThemeProvider>

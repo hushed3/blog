@@ -71,3 +71,5 @@ yarn.lock
 .yarn-integrity
 
 taniarascia-content
+
+content/.obsidian/

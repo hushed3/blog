@@ -15,6 +15,13 @@ export const useStyles = createStyles(({ css, cx, token, isDarkMode, prefixCls: 
       `
     ),
 
+    syntaxHighlightCodeScorll: cx(
+      `${prefixCls}-code-scorll`,
+      css`
+        overflow: overlay;
+      `
+    ),
+
     syntaxHighlightCode: cx(
       `${prefixCls}-code`,
       css`

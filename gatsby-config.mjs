@@ -21,6 +21,20 @@ const config = {
     pathPrefix: '/',
   },
   plugins: [
+    // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-page-creator
+    // {
+    //   resolve: `gatsby-plugin-page-creator`,
+    //   options: {
+    //     path: `${__dirname}/src/pages`,
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-plugin-page-creator`,
+    //   options: {
+    //     path: `${__dirname}/src/templates`,
+    //   },
+    // },
+
     // ===================================================================================
     // Meta
     // ===================================================================================

@@ -25,29 +25,31 @@ const PreHighlight: React.FC<PreHighlightProps> = ({ codeString, language = 'jav
 
           <Language code={codeString} language={language} highlightRef={highlightRef} />
 
-          <code className={styles.syntaxHighlightCode}>
-            <div className={styles.lineNumbers}>
-              {tokens.map((line, i) => (
-                <span key={`number-${i}`} className={cx('number', shouldHighlightLine(i) && styles.LineHighlight)}>
-                  {i + 1}
-                  {shouldHighlightLine(i)}
-                </span>
-              ))}
-            </div>
-            <div className={styles.lines}>
-              {tokens.map((line, i) => (
-                <div
-                  key={`line-${i}`}
-                  {...getLineProps({ line })}
-                  className={cx('line', shouldHighlightLine(i) && styles.LineHighlight)}
-                >
-                  {line.map((token, key) => (
-                    <span key={key} {...getTokenProps({ token })} />
-                  ))}
-                </div>
-              ))}
-            </div>
-          </code>
+          <div className={styles.syntaxHighlightCodeScorll}>
+            <code className={styles.syntaxHighlightCode}>
+              <div className={styles.lineNumbers}>
+                {tokens.map((line, i) => (
+                  <span key={`number-${i}`} className={cx('number', shouldHighlightLine(i) && styles.LineHighlight)}>
+                    {i + 1}
+                    {shouldHighlightLine(i)}
+                  </span>
+                ))}
+              </div>
+              <div className={styles.lines}>
+                {tokens.map((line, i) => (
+                  <div
+                    key={`line-${i}`}
+                    {...getLineProps({ line })}
+                    className={cx('line', shouldHighlightLine(i) && styles.LineHighlight)}
+                  >
+                    {line.map((token, key) => (
+                      <span key={key} {...getTokenProps({ token })} />
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </code>
+          </div>
           {/* </pre> */}
         </div>
       )}

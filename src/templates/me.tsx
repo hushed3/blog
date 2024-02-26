@@ -13,7 +13,8 @@ import { useStyles } from './styles/style'
  * @export
  * @return {*}
  */
-const MeTemplate: React.FC<PageProps<null, MdxQuery>> = ({ pageContext, children }) => {
+const MeTemplate: React.FC<PageProps<null, MdxQuery>> = (props) => {
+  const { pageContext, children } = props
   const { styles } = useStyles()
 
   const me = pageContext.frontmatter

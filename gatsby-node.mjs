@@ -128,7 +128,7 @@ export const createPages = async ({ graphql, actions }) => {
     pages.forEach((page) => {
       createPage({
         path: page.frontmatter.slug,
-        component: mePage,
+        component: `${mePage}?__contentFilePath=${page.internal.contentFilePath}`,
         context: {
           slug: page.frontmatter.slug,
         },

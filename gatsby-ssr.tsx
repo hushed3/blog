@@ -5,13 +5,23 @@ import type { GatsbySSR } from 'gatsby'
 
 import ThemeProviderContext from './src/context/ThemeProviderContext'
 
-export const wrapRootElement: GatsbySSR['wrapRootElement'] = ({ element }) => {
+export const wrapPageElement: GatsbySSR['wrapPageElement'] = ({ element, props }) => {
   return (
     <>
-      <ThemeProviderContext>{element}</ThemeProviderContext>
+      <ThemeProviderContext {...props}>{element}</ThemeProviderContext>
     </>
   )
 }
+
+
+
+// export const wrapRootElement: GatsbySSR['wrapRootElement'] = ({ element }) => {
+//   return (
+//     <>
+//       <ThemeProviderContext>{element}</ThemeProviderContext>
+//     </>
+//   )
+// }
 
 export const replaceRenderer = ({ replaceBodyHTMLString, bodyComponent, setHeadComponents }) => {
   const html = renderToString(<>{bodyComponent}</>)

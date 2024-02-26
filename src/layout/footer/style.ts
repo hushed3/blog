@@ -51,7 +51,7 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token,
 
     &:hover {
       text-decoration: underline;
-      color: ${token.colorTextSecondary};
+      color: ${token.colorText} !important;
     }
   `,
 }))
