@@ -16,20 +16,22 @@ type Frontmatter = {
   published: boolean
 }
 
+type fields = {
+  slug: string
+}
+
+type tableOfContents = {
+  items: TableOfContentsItem[]
+}
+
 type Internal = {
   contentFilePath: string
 }
 
 type GraphqlNode = {
-  id: string
-  excerpt: string
   frontmatter: Frontmatter
-  fields: {
-    slug
-  }
-  tableOfContents: {
-    items: TableOfContentsItem[]
-  }
+  fields: fields
+  tableOfContents: tableOfContents
   internal: Internal
 }
 
@@ -57,9 +59,9 @@ type AllMdxQuery = {
   }
 }
 
-type MdxNodesQuery<T = 'mdx'> = Record<T, MdxQuery>
+type MdxNodesQuery<T = 'mdx', V = MdxQuery> = Record<T extends null ? 'mdx' : T, V>
 
-type allMdxNodesQuery<T = 'allMdx'> = Record<T, AllMdxQuery>
+type allMdxNodesQuery<T = 'allMdx', V = AllMdxQuery> = Record<T extends null ? 'allMdx' : T, V>
 
 interface ImageItem {
   id: number

@@ -17,7 +17,7 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
     li: cx(
       `${prefixCls}-li`,
       css`
-        line-height: 1.7;
+        line-height: 2;
         margin-bottom: 0.8rem;
         padding-inline-start: 0.25rem;
         &::marker {

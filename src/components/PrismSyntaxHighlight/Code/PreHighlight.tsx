@@ -10,7 +10,8 @@ export interface PreHighlightProps extends GetLanguageData, CodeNode {
   codeString: string
 }
 
-const PreHighlight: React.FC<PreHighlightProps> = ({ codeString, language = 'javascript', highlight = '', title }) => {
+const PreHighlight: React.FC<PreHighlightProps> = (props) => {
+  const { codeString, language = 'javascript', highlight = '', title } = props
   const highlightRef = useRef<HTMLDivElement>(null)
   const { styles, cx } = useStyles('syntax-preHighlight')
   const { isDarkMode } = useThemeMode()
@@ -19,40 +20,41 @@ const PreHighlight: React.FC<PreHighlightProps> = ({ codeString, language = 'jav
 
   return (
     <Highlight code={codeString} language={language} theme={isDarkMode ? themes.oneDark : themes.oneLight}>
-      {({ tokens, getLineProps, getTokenProps }) => (
-        <div ref={highlightRef} className={styles.syntaxHighlight}>
-          <Title title={title} />
+      {({ tokens, getLineProps, getTokenProps }) => {
+        return (
+          <div ref={highlightRef} className={styles.syntaxHighlight}>
+            <Title title={title} />
 
-          <Language code={codeString} language={language} highlightRef={highlightRef} />
+            <Language code={codeString} language={language} highlightRef={highlightRef} />
 
-          <div className={styles.syntaxHighlightCodeScorll}>
-            <code className={styles.syntaxHighlightCode}>
-              <div className={styles.lineNumbers}>
-                {tokens.map((line, i) => (
-                  <span key={`number-${i}`} className={cx('number', shouldHighlightLine(i) && styles.LineHighlight)}>
-                    {i + 1}
-                    {shouldHighlightLine(i)}
-                  </span>
-                ))}
-              </div>
-              <div className={styles.lines}>
-                {tokens.map((line, i) => (
-                  <div
-                    key={`line-${i}`}
-                    {...getLineProps({ line })}
-                    className={cx('line', shouldHighlightLine(i) && styles.LineHighlight)}
-                  >
-                    {line.map((token, key) => (
-                      <span key={key} {...getTokenProps({ token })} />
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </code>
+            <div className={styles.syntaxHighlightCodeScorll}>
+              <code className={styles.syntaxHighlightCode}>
+                <div className={styles.lineNumbers}>
+                  {tokens.map((line, i) => (
+                    <span key={`number-${i}`} className={cx('number', shouldHighlightLine(i) && styles.LineHighlight)}>
+                      {i + 1}
+                      {shouldHighlightLine(i)}
+                    </span>
+                  ))}
+                </div>
+                <div className={styles.lines}>
+                  {tokens.map((line, i) => (
+                    <div
+                      key={`line-${i}`}
+                      {...getLineProps({ line })}
+                      className={cx('line', shouldHighlightLine(i) && styles.LineHighlight)}
+                    >
+                      {line.map((token, key) => (
+                        <span key={key} {...getTokenProps({ token })} />
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </code>
+            </div>
           </div>
-          {/* </pre> */}
-        </div>
-      )}
+        )
+      }}
     </Highlight>
   )
 }

@@ -53,8 +53,8 @@ export const createCustomToken: GetCustomToken<SiteToken> = ({ isDarkMode, token
 
     contentMaxWidth: 1100,
 
-    footerHeight: 130,
-    footerHeightMobile: 100,
+    footerHeight: 160,
+    footerHeightMobile: 130,
 
     gradientLogo: `linear-gradient(30deg,#90d5ff 35%,${token.colorPrimary})`,
 

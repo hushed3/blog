@@ -39,8 +39,6 @@ export default ThemeProviderContext
 
 export const NodeFragmentQuery = graphql`
   fragment NodeFragment on Mdx {
-    id
-    excerpt
     ...FrontmatterFragment
   }
 `

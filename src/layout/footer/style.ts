@@ -8,7 +8,8 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token,
       flex-wrap: wrap;
       align-content: space-evenly;
       height: ${token.footerHeight}px;
-      padding: 1.5rem 0;
+      padding: 2.5rem 0;
+      margin-top: 2rem;
 
       ${r({
         mobile: css`

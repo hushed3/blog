@@ -16,8 +16,8 @@ const heading =
     const { styles, cx } = useStyles()
     const ID = children
 
-    if (typeof children === 'string') {
-    }
+    // if (typeof children === 'string') {
+    // }
 
     if (level === 4) {
       const handleClick = (e: React.MouseEvent<HTMLElement>, href) => {

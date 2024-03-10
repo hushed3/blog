@@ -8,9 +8,22 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
     grid-template-columns: auto 260px;
     gap: 4rem;
 
+    .content {
+      & > pre:last-child {
+        margin-bottom: 0px;
+        > div {
+          margin-bottom: 0px;
+        }
+      }
+    }
+
     ${r({
       tablet: css`
         display: block;
+
+        .content {
+          margin-bottom: 2rem;
+        }
       `,
     })}
   `,
@@ -31,10 +44,10 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
       ${r({
         tablet: css`
           padding: 3.5rem 0 3rem;
-          font-size: 22px;
+          font-size: 23px;
         `,
         mobile: css`
-          font-size: 20px;
+          font-size: 22px;
         `,
       })}
     }

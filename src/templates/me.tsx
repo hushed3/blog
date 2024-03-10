@@ -13,16 +13,14 @@ import { useStyles } from './styles/style'
  * @export
  * @return {*}
  */
-const MeTemplate: React.FC<PageProps<null, MdxQuery>> = (props) => {
-  const { pageContext, children } = props
+const MeTemplate: React.FC<PageProps<MdxNodesQuery<'me'>, MdxQuery>> = (props) => {
+  const { data, children } = props
   const { styles } = useStyles()
-
-  const me = pageContext.frontmatter
 
   return (
     <div className={styles.container}>
       <div>
-        <h2 className={styles.title}>{me?.title}</h2>
+        <h2 className={styles.title}>{data.me.frontmatter.title}</h2>
         <PrismSyntaxHighlight mdxContent={children as unknown as string}></PrismSyntaxHighlight>
       </div>
 

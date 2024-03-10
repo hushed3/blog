@@ -2,24 +2,38 @@ import { visit } from 'unist-util-visit'
 
 const transformer = (ast) => {
   const re = /\b([-\w]+)(?:=(?:"([^"]*)"|'([^']*)'|([^"'\s]+)))?/g
-  const highlightRegex = /\{([^}]*)\}/
 
-  visit(ast, 'element', (node) => {
+  visit(ast, `element`, (node) => {
     let match
+    if (node.tagName === `code` && node.children[0].value) {
+      let inputString = node.children[0].value
+      // 找到最后一个换行符的索引
+      var lastIndex = inputString.lastIndexOf('\n')
 
-    if (node.tagName === 'code' && node.data && node.data.meta) {
-      re.lastIndex = 0 // Reset regex.
-      const matches = node.data.meta.match(highlightRegex)
-
-      if (matches) {
-        const highlightValue = matches[1]
-        node.properties.highlight = highlightValue
+      // 如果找到了换行符
+      if (lastIndex !== -1) {
+        // 删除最后一个换行符
+        var modifiedString = inputString.substring(0, lastIndex) + inputString.substring(lastIndex + 1)
+        node.children[0].value = modifiedString
       }
+    }
 
-      const filterMeta = node.data.meta.replace(/\{[^}]*\}/, '')
+    if (node.tagName === `code` && node.data && node.data.meta) {
+      re.lastIndex = 0 // Reset regex.
 
-      while ((match = re.exec(filterMeta))) {
-        node.properties[match[1]] = match[2] || match[3] || match[4] || true
+      while ((match = re.exec(node.data.meta))) {
+        if (match[0].includes('=')) {
+          const value = match[2] || match[3] || match[4]
+          node.properties[match[1]] = match[1] == 'highlight' ? value.replace(/{|}/g, '') : value
+          continue
+        }
+
+        if (match[0].includes('-')) {
+          node.properties.highlight = match[1]
+          continue
+        }
+
+        node.properties[match[1]] = true
       }
     }
   })

@@ -5,6 +5,7 @@ import { AnchorLinkItemProps } from 'antd/es/anchor/Anchor'
 import SVGIcon, { SVGIconTypes } from '../SvgIcon'
 import MenuBar from '../MenuBar'
 import Sticky from '../Sticky'
+import { Link } from 'gatsby'
 
 interface ArticleSidebarProps {
   date?: string
@@ -12,13 +13,21 @@ interface ArticleSidebarProps {
   categories?: string[]
   icon?: SVGIconTypes
   headings: AnchorLinkItemProps[]
+  recentArticles: GraphqlNode[]
 }
 
 /**
  * @description 文章详细信息侧边
  */
 
-const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ tags = [], date, categories = [], icon, headings }) => {
+const ArticleSidebar: React.FC<ArticleSidebarProps> = ({
+  tags = [],
+  date,
+  categories = [],
+  icon,
+  headings,
+  recentArticles,
+}) => {
   const { styles } = useStyles()
 
   const categorys = categories?.filter((category) => category !== 'Highlight')
@@ -61,6 +70,18 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ tags = [], date, catego
         <MenuBar>
           <MenuBar.Title>目录</MenuBar.Title>
           <Anchor className={styles.anchor} offsetTop={90} affix={false} items={headings} onChange={handleChange} />
+        </MenuBar>
+      </Card>
+
+      <Card bordered={false} className={styles.card}>
+        <MenuBar>
+          <MenuBar.Title>近期发布</MenuBar.Title>
+          {recentArticles.map((article) => (
+            <Link className={styles.articles} to={`/${article.frontmatter.slug}`} key={article.frontmatter.slug}>
+              <SVGIcon id={article.frontmatter.icon} width="2.2em" height="2.2em"></SVGIcon>
+              <div className="title">{article.frontmatter.title.split('-')[1]}</div>
+            </Link>
+          ))}
         </MenuBar>
       </Card>
     </Sticky>

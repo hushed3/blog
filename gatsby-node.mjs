@@ -1,6 +1,6 @@
 // import { GatsbyNode } from 'gatsby'
-import path,{ dirname } from "path"
-import { fileURLToPath } from "url"
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -66,8 +66,8 @@ export const createPages = async ({ graphql, actions }) => {
             frontmatter {
               title
               description
-              date(formatString: "MMMM DD, YYYY")
-              lastUpdated(formatString: "MMMM DD, YYYY")
+              date(formatString: "YYYY-MM-DD")
+              lastUpdated(formatString: "YYYY-MM-DD")
               icon
               slug
               template
@@ -116,6 +116,7 @@ export const createPages = async ({ graphql, actions }) => {
           slug: article.frontmatter.slug,
           previous,
           next,
+          frontmatter: article.frontmatter,
           tableOfContents: article.tableOfContents,
         },
       })
@@ -165,10 +166,9 @@ export const createPages = async ({ graphql, actions }) => {
       })
     })
   } catch (error) {
-    throw new Error(error )
+    throw new Error(error)
   }
 }
-
 
 /**
  * @type {import('gatsby').GatsbyNode['onCreateNode']}

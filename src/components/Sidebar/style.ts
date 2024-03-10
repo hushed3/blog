@@ -106,4 +106,34 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, stylish,
       background-color: ${token.colorPrimaryBg};
     }
   `,
+
+  articles: css`
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 1rem;
+    color: ${token.colorTextSecondary};
+    margin-bottom: 0.6rem;
+    margin-left: 0.5rem;
+
+    .title {
+      font-size: 0.9rem;
+    }
+
+    & {
+      .active {
+        color: ${token.colorPrimary};
+        font-weight: bold;
+      }
+
+      &:hover {
+        color: ${token.colorPrimary};
+        text-decoration: none;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  `,
 }))

@@ -1,4 +1,4 @@
-import { HeadFC, PageProps } from 'gatsby'
+import { HeadFC, PageProps, graphql } from 'gatsby'
 import { Typography } from 'antd'
 
 import SEO from '@/components/SEO'
@@ -12,16 +12,22 @@ import { useStyles } from './styles/style'
  * @export
  * @return {*}
  */
-const ArticleTemplate: React.FC<PageProps<null, MdxQuery>> = (props) => {
-  const { pageContext, children } = props
+const ArticleTemplate: React.FC<PageProps<allMdxNodesQuery<'allArticle'> & MdxNodesQuery<'currentArticle'>>> = ({
+  children,
+  data,
+}) => {
+  const { allArticle, currentArticle } = data
   const { styles } = useStyles()
 
-  const frontmatter = pageContext.frontmatter
-  const headings = pageContext.tableOfContents.items.map((e, i) => ({
+  const frontmatter = currentArticle.frontmatter
+  const headings = currentArticle.tableOfContents.items.map((e, i) => ({
     key: e.title,
     href: `#${e.title}`,
     title: e.title,
   }))
+  const recentArticles = allArticle.nodes.filter(
+    (article) => article.frontmatter.slug !== currentArticle.frontmatter.slug
+  )
 
   return (
     <div className={styles.container}>
@@ -34,11 +40,12 @@ const ArticleTemplate: React.FC<PageProps<null, MdxQuery>> = (props) => {
       </div>
 
       <ArticleSidebar
-        date={frontmatter?.date.slice(0, 10)}
+        date={frontmatter?.date}
         tags={frontmatter?.tags}
         categories={frontmatter?.categories}
         icon={frontmatter?.icon}
         headings={headings}
+        recentArticles={recentArticles}
       />
     </div>
   )
@@ -46,9 +53,9 @@ const ArticleTemplate: React.FC<PageProps<null, MdxQuery>> = (props) => {
 
 export default ArticleTemplate
 
-export const Head: HeadFC<null, MdxQuery> = (props) => {
-  const { location, pageContext } = props
-  const frontmatter = pageContext.frontmatter
+export const Head: HeadFC<allMdxNodesQuery<'allArticle'> & MdxNodesQuery<'currentArticle'>> = (props) => {
+  const { location, data } = props
+  const frontmatter = data.currentArticle.frontmatter
 
   return (
     <>
@@ -56,3 +63,23 @@ export const Head: HeadFC<null, MdxQuery> = (props) => {
     </>
   )
 }
+
+export const recentQuery = graphql`
+  query ArticlePage($slug: String!) {
+    allArticle: allMdx(
+      sort: { frontmatter: { date: DESC } }
+      filter: { frontmatter: { template: { eq: "article" } } }
+    ) {
+      nodes {
+        ...NodeFragment
+      }
+    }
+    currentArticle: mdx(frontmatter: { slug: { eq: $slug } }) {
+      ...FrontmatterFragment
+      newFrontmatter: frontmatter {
+        date(formatString: "YYYY-MM-DD")
+      }
+      tableOfContents(maxDepth: 4)
+    }
+  }
+`
