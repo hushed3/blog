@@ -8,6 +8,7 @@ import SEO from '@/components/SEO'
 import BlogSidebar from '@/components/Sidebar/BlogSidebar'
 import { simplifiedQueryData } from '@/utils/helpers'
 import { useStyles } from './styles/style'
+import { getPathname } from '@/utils/func'
 
 /**
  * @description 类别页面
@@ -20,10 +21,10 @@ const CategoryTemplate: React.FC<PageProps<allMdxNodesQuery<'categories'> & MdxN
   pageContext,
 }) => {
   const { styles } = useStyles()
-  const { category } = pageContext
 
   const articles = data?.categories.nodes
   const totalCount = data?.categories.totalCount
+  const { category } = pageContext
 
   const message = totalCount === 1 ? ' Article categorized as:' : ' Articles categorized as:'
 
@@ -61,7 +62,7 @@ export const pageQuery = graphql`
     ) {
       totalCount
       nodes {
-        ...NodeFragment
+        ...FrontmatterFragment
       }
     }
     mdx {

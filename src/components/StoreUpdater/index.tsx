@@ -1,7 +1,7 @@
 import { useDebounceEffect } from 'ahooks'
 import React, { memo, useEffect } from 'react'
 
-import { useSitedata } from '@/hooks'
+import { useSiteMetadata } from '@/hooks'
 import { SiteStore, useSiteStore } from '@/store'
 
 const isBrowser = typeof window !== 'undefined'
@@ -48,7 +48,7 @@ const useSyncState = <T extends keyof SiteStore>(
 }
 
 export const StoreUpdater = memo(() => {
-  const siteData = useSitedata()
+  const siteData = useSiteMetadata()
 
   useSyncState('siteData', siteData)
 

@@ -9,7 +9,7 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token,
       align-content: space-evenly;
       height: ${token.footerHeight}px;
       padding: 2.5rem 0;
-      margin-top: 2rem;
+      margin-block-start: 2rem;
 
       ${r({
         mobile: css`

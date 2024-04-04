@@ -1,6 +1,5 @@
 import { graphql } from 'gatsby'
 import { useSiteStore } from '@/store'
-import favicon from '../../../static/logo.ico'
 import { ReactNode } from 'react'
 
 interface SEOProps {
@@ -10,9 +9,10 @@ interface SEOProps {
   children?: ReactNode
 }
 
-const SEO: React.FC<SEOProps> = ({ title, description, pathName, children }) => {
-  const siteData = useSiteStore((state) => state.siteData)
+const SEO: React.FC<SEOProps> = (props) => {
+  const { title, description, pathName, children } = props
 
+  const siteData = useSiteStore((state) => state.siteData)
   const seo = {
     title: title ? `${title} | ${siteData.title}` : siteData.title,
     description: description ? description : siteData.description,
@@ -83,7 +83,7 @@ const SEO: React.FC<SEOProps> = ({ title, description, pathName, children }) => 
       <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:image" content={seo.image} />
 
-      <link rel="shortcut icon" type="image/png" href={favicon} />
+      <link rel="shortcut icon" type="image/png" href="/logo.ico" />
       <script type="application/ld+json">{JSON.stringify(schemaOrgJSONLD)}</script>
       {children}
     </>

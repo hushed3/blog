@@ -16,7 +16,7 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, stylish,
   `,
 
   card: css`
-    ${stylish.sideCard}
+    ${stylish.card}
   `,
 
   title: css`
@@ -51,7 +51,7 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, stylish,
           width: 0.4rem !important;
           height: 0.4rem !important;
           border-radius: 50%;
-          margin-left: 0.5rem;
+          margin-inline-start: 0.5rem;
           background-color: ${token.colorPrimaryHover} !important;
           opacity: 0.7;
         }
@@ -68,7 +68,7 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, stylish,
     border-radius: ${token.borderRadius};
     color: ${token.colorTextSecondary};
     font-size: 0.86rem;
-    margin-bottom: 0.6rem;
+    margin-block-end: 0.6rem;
     padding: 0.1rem 0.3rem;
 
     span {
@@ -76,7 +76,7 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, stylish,
     }
 
     &:last-child {
-      margin-bottom: 0rem;
+      margin-block-end: 0rem;
     }
 
     &.active {
@@ -113,8 +113,8 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, stylish,
     align-items: center;
     gap: 1rem;
     color: ${token.colorTextSecondary};
-    margin-bottom: 0.6rem;
-    margin-left: 0.5rem;
+    margin-block-end: 0.6rem;
+    margin-inline-start: 0.5rem;
 
     .title {
       font-size: 0.9rem;
@@ -132,7 +132,7 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, stylish,
       }
 
       &:last-child {
-        margin-bottom: 0;
+        margin-block-end: 0;
       }
     }
   `,

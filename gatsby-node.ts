@@ -1,13 +1,13 @@
-// import { GatsbyNode } from 'gatsby'
+import { createFilePath } from 'gatsby-source-filesystem'
+import readingTime from 'reading-time'
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url'
 
+import type { GatsbyNode } from 'gatsby'
+
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-/**
- * @type {import('gatsby').GatsbyNode['createSchemaCustomization']}
- */
-export const createSchemaCustomization = ({ actions }) => {
+export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({ actions }) => {
   actions.createTypes(`
     type Site {
       siteMetadata: SiteMetadata!
@@ -15,20 +15,45 @@ export const createSchemaCustomization = ({ actions }) => {
 
     type SiteMetadata {
       title: String!
+      author: String!
+      description: String!
+      siteUrl: String!
+      feedUrl: String!
+      logo: String!
+      version: String!
+    }
+
+    type Mdx implements Node {
+				frontmatter: Frontmatter!
+		}
+
+    type Frontmatter {
+      title: String!
+      date: Date! @dateformat
+      lastUpdated: Date! @dateformat
+      icon: String!
+      slug: String!
+      template: String!
+      tags: [String!]!
+      categories: [String!]!
+      published: Boolean!
+      description: String
+    }
+
+    type Fields {
+      slug: String!
     }
   `)
 }
 
-/**
- * @type {import('gatsby').GatsbyNode['onCreateWebpackConfig']}
- */
-export const onCreateWebpackConfig = ({ loaders, actions }) => {
+export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ loaders, actions }) => {
   // if (stage === 'build-html' || stage === 'develop-html') {
   actions.setWebpackConfig({
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),
-        '@/static': path.resolve(__dirname, 'static'),
+        '@@': path.resolve(__dirname, 'src/assets'),
+        '@static': path.resolve(__dirname, 'static'),
       },
       fallback: {
         stream: false,
@@ -52,15 +77,14 @@ const mePage = path.resolve('./src/templates/me.tsx')
 const tagPage = path.resolve('./src/templates/tag.tsx')
 const categoryPage = path.resolve('./src/templates/category.tsx')
 
-/**
- * @type {import('gatsby').GatsbyNode['createPages']}
- */
-export const createPages = async ({ graphql, actions }) => {
+export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions, reporter }) => {
   try {
-    const { createPage } = actions
+    const { createPage, createRedirect } = actions
 
-    const { data } = await graphql(`
-      {
+    createRedirect({ fromPath: '/rss', toPath: '/rss.xml', statusCode: 200 })
+
+    const result = await graphql<Queries.PagesDataQuery>(`
+      query PagesData {
         articles: allMdx(sort: { frontmatter: { date: DESC } }) {
           nodes {
             frontmatter {
@@ -84,9 +108,14 @@ export const createPages = async ({ graphql, actions }) => {
       }
     `)
 
-    const nodes = data.articles.nodes
-    const articles = nodes.filter((article) => article.frontmatter.template === 'article')
-    const pages = nodes.filter((article) => article.frontmatter.template === 'page')
+    if (result.errors || !result.data) {
+      reporter.panicOnBuild('Error while running GraphQL query.', result.errors)
+      return
+    }
+
+    const nodes = result?.data?.articles.nodes
+    const articles = nodes.filter((node) => node.frontmatter?.template === 'article')
+    const pages = nodes.filter((node) => node.frontmatter?.template === 'page')
     const tagSet = new Set()
     const categorySet = new Set()
 
@@ -97,23 +126,23 @@ export const createPages = async ({ graphql, actions }) => {
       const previous = i === articles.length - 1 ? null : articles[i + 1]
       const next = i === 0 ? null : articles[i - 1]
 
-      if (article.frontmatter.tags) {
+      if (article.frontmatter?.tags) {
         article.frontmatter.tags.forEach((tag) => {
           tagSet.add(tag)
         })
       }
 
-      if (article.frontmatter.categories) {
+      if (article.frontmatter?.categories) {
         article.frontmatter.categories.forEach((category) => {
           categorySet.add(category)
         })
       }
 
       createPage({
-        path: article.frontmatter.slug,
+        path: article.frontmatter?.slug!,
         component: `${articlePage}?__contentFilePath=${article.internal.contentFilePath}`,
         context: {
-          slug: article.frontmatter.slug,
+          slug: article.frontmatter?.slug,
           previous,
           next,
           frontmatter: article.frontmatter,
@@ -128,10 +157,10 @@ export const createPages = async ({ graphql, actions }) => {
 
     pages.forEach((page) => {
       createPage({
-        path: page.frontmatter.slug,
+        path: page.frontmatter?.slug!,
         component: `${mePage}?__contentFilePath=${page.internal.contentFilePath}`,
         context: {
-          slug: page.frontmatter.slug,
+          slug: page.frontmatter?.slug,
         },
       })
     })
@@ -166,35 +195,29 @@ export const createPages = async ({ graphql, actions }) => {
       })
     })
   } catch (error) {
-    throw new Error(error)
+    console.error(error)
   }
 }
 
-/**
- * @type {import('gatsby').GatsbyNode['onCreateNode']}
- */
-export const onCreateNode = ({ node, actions, getNode }) => {
+export const onCreateNode: GatsbyNode['onCreateNode'] = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   // =====================================================================================
   // Slugs
   // =====================================================================================
-
-  let slug
   if (node.internal.type === 'Mdx') {
-    const fileNode = getNode(node.parent)
-    const parsedFilePath = path.parse(fileNode.relativePath)
-
-    if (Object.prototype.hasOwnProperty.call(node.frontmatter, 'slug')) {
-      slug = `/${node.frontmatter.slug}/`
-    } else {
-      slug = `/${parsedFilePath.dir}/`
-    }
+    const slug = createFilePath({ node, getNode })
 
     createNodeField({
       name: 'slug',
       node,
       value: slug,
+    })
+
+    createNodeField({
+      node,
+      name: 'timeToRead',
+      value: readingTime(node.body as string),
     })
   }
 }

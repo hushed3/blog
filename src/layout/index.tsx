@@ -1,3 +1,4 @@
+import { App } from 'antd'
 import { StoreUpdater } from '@/components/StoreUpdater'
 import { GlobalScopeStyle } from '@/customize-theme/globalScopeStyle'
 
@@ -10,7 +11,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const { styles } = useStyles()
 
   return (
-    <>
+    <App>
       <GlobalScopeStyle />
       <StoreUpdater />
 
@@ -19,7 +20,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <main className={styles.content}>{children}</main>
         <Footer />
       </div>
-    </>
+    </App>
   )
 }
 

@@ -20,7 +20,12 @@ const BlogSidebar = () => {
         <MenuBar>
           <MenuBar.Title>类别</MenuBar.Title>
           {categories.map((c) => (
-            <MenuBar.Link marker={false} key={c.name} to={`/categories/${c.name}/`} extra={c.totalCount}>
+            <MenuBar.Link
+              marker={false}
+              key={`/categories/${c.name}/`}
+              to={`/categories/${c.name}/`}
+              extra={c.totalCount}
+            >
               {c.name}
             </MenuBar.Link>
           ))}
@@ -30,7 +35,7 @@ const BlogSidebar = () => {
         <MenuBar>
           <MenuBar.Title>标签</MenuBar.Title>
           {tags.map((t) => (
-            <MenuBar.Tag key={t.name} to={`/tags/${t.name}/`}>
+            <MenuBar.Tag key={`/tags/${t.name}/`} to={`/tags/${t.name}/`}>
               {t.name}
             </MenuBar.Tag>
           ))}

@@ -1,6 +1,6 @@
 import { useThemeMode } from '@/hooks'
 import { type ThemeMode } from 'antd-style'
-import { type FC } from 'react'
+import { useMemo, type FC, memo } from 'react'
 import NativeSelect, { Option } from '../NativeSelect'
 
 const IconAuto = () => (
@@ -33,14 +33,18 @@ const options = [
   { label: '暗色模式', icon: <IconDark />, value: 'dark' },
 ]
 
-const ThemeSwitch: FC = () => {
+const ThemeSwitch: FC = memo(() => {
   const { themeMode, setThemeMode } = useThemeMode()
+
+  const value = useMemo(() => {
+    return options.findIndex((o) => o.value === themeMode)
+  }, [themeMode])
 
   return (
     <>
       <NativeSelect
         options={options}
-        value={options.findIndex((o) => o.value === themeMode)}
+        value={value}
         onChange={(index) => {
           const mode = options[index].value as unknown as ThemeMode
           setThemeMode(mode)
@@ -50,6 +54,6 @@ const ThemeSwitch: FC = () => {
       />
     </>
   )
-}
+})
 
 export default ThemeSwitch

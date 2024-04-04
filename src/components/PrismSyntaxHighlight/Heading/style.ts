@@ -16,7 +16,7 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
           })}
         }
         &.h2 {
-          margin-block: 4rem 3rem;
+          margin-block: 7rem 3rem;
           ${r({
             tablet: css`
               font-size: 29.5px;
@@ -27,7 +27,7 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
           })}
         }
         &.h3 {
-          margin-block: 3rem 2rem;
+          margin-block: 5rem 2rem;
           ${r({
             tablet: css`
               font-size: 23.5px;
@@ -38,7 +38,7 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
           })}
         }
         &.h4 {
-          margin-block: 1.7rem 1.4rem;
+          margin-block: 3rem 1.4rem;
           ${r({
             tablet: css`
               font-size: 19.5px;
@@ -87,7 +87,7 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
       scroll-margin-top: 90px;
 
       transform: translateX(-100%) translateY(3%);
-      padding-right: 4px;
+      padding-inline-end: 4px;
       opacity: 0;
       height: 100%;
     `,

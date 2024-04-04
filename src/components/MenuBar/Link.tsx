@@ -1,7 +1,9 @@
-import { FunctionComponent, ReactNode } from 'react'
+import { FunctionComponent, ReactNode, useContext, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { Link as GatsbyLink } from 'gatsby'
 import { useStyles } from './style'
-import React from 'react'
+import { MenuBarContext } from './MenuBar'
+import { useSSREffect } from '@/hooks'
 
 interface LinkProps {
   children: ReactNode
@@ -17,7 +19,15 @@ interface LinkProps {
 }
 
 const Link: FunctionComponent<LinkProps> = ({ children, marker = true, extra, to, ...otherProps }) => {
-  const { styles, cx, prefixCls } = useStyles()
+  const { styles, cx } = useStyles()
+  const { linkRef, setLinkRef } = useContext(MenuBarContext)
+  const scopedLinkRef = useRef<HTMLDivElement>(null)
+
+  useSSREffect(() => {
+    if (!linkRef) {
+      setLinkRef && setLinkRef(scopedLinkRef.current)
+    }
+  }, [])
 
   const ExtraChildren = () => {
     if (typeof extra !== 'object') {
@@ -28,18 +38,21 @@ const Link: FunctionComponent<LinkProps> = ({ children, marker = true, extra, to
   }
 
   return (
-    <GatsbyLink
-      {...otherProps}
-      to={to}
-      className={cx(`${prefixCls}-menuBar-link`, styles.item, styles.hover)}
-      activeClassName="active"
-    >
-      <div className="title">
-        {marker && <span className={styles.inkVisible}></span>}
-        {children}
+    <>
+      <div ref={scopedLinkRef} className={styles.linkGroup} style={{ padding: marker ? '0' : '0 0.6em' }}>
+        {linkRef &&
+          createPortal(
+            <GatsbyLink {...otherProps} to={to} className={cx(styles.link, styles.hover)} activeClassName="active">
+              <div>
+                {marker && <span className="inkVisible"></span>}
+                {children}
+              </div>
+              <ExtraChildren />
+            </GatsbyLink>,
+            linkRef
+          )}
       </div>
-      <ExtraChildren />
-    </GatsbyLink>
+    </>
   )
 }
 

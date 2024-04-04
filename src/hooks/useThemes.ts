@@ -1,24 +1,7 @@
-import React from 'react'
-import { ThemeMode, useThemeMode as useAntdThemeMode } from 'antd-style'
+import { useMemo } from 'react'
+import { ThemeMode, ThemeContextState, useThemeMode as useAntdThemeMode } from 'antd-style'
 import { useThemeStore } from '@/store/useThemeStore'
-
-/**
- * @title 主题上下文状态
- */
-export type ThemeState = {
-  /**
-   * @title 主题模式
-   * @enum ["light", "dark"]
-   * @enumNames ["亮色模式", "暗色模式"]
-   * @default "light"
-   */
-  themeMode: ThemeMode
-  setThemeMode: (themeMode: ThemeMode) => void
-  /**
-   * @title 是否为暗色模式
-   */
-  isDarkMode: boolean
-}
+import { safeStartTransition } from '@/utils/safeStartTransition'
 
 /**
  * @description 主题外观模式。
@@ -26,13 +9,24 @@ export type ThemeState = {
  * @export
  * @return {*}
  */
-export const useThemeMode = (): ThemeState => {
-  const themeMode = useThemeStore((s) => s.themeMode)
-  const { isDarkMode } = useAntdThemeMode()
+export const useThemeMode = (): ThemeContextState => {
+  // const storageTheme = useThemeStore((s) => s.storageTheme)
+  const { storeTheme, setStoreTheme } = useThemeStore()
+  const theme = useAntdThemeMode()
 
   const setThemeMode = (mode: ThemeMode) => {
-    useThemeStore.setState({ themeMode: mode })
+    safeStartTransition(() => {
+      setStoreTheme(mode)
+      theme.setThemeMode(mode)
+    })
   }
 
-  return { themeMode, isDarkMode, setThemeMode }
+  const isDarkMode = useMemo(() => {
+    if (storeTheme === 'auto') {
+      return theme.browserPrefers === 'dark'
+    }
+    return storeTheme === 'dark'
+  }, [storeTheme])
+
+  return { ...theme, themeMode: storeTheme, isDarkMode, setThemeMode }
 }

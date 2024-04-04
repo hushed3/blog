@@ -9,7 +9,7 @@ export interface SiteStylish {
   container: string
   wrapper: string
   tagLink: string
-  sideCard: string
+  card: string
 }
 
 export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, isDarkMode }) => {
@@ -25,12 +25,12 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
     `,
 
     wrapper: css`
-      margin-top: 1.6rem;
-      margin-bottom: 3rem;
+      margin-block-start: 1.6rem;
+      margin-block-end: 3rem;
 
       @media screen and (max-width: ${token.screenXL}) {
-        margin-top: 1.5rem;
-        margin-bottom: 1.5rem;
+        margin-block-start: 1.5rem;
+        margin-block-end: 1.5rem;
       }
     `,
 
@@ -62,10 +62,10 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
       }
     `,
 
-    sideCard: css`
+    card: css`
       width: 100%;
       margin: 2rem 0 0;
-      background-color: ${isDarkMode ? token.colorBgElevated : token.colorBgContainer};
+      background-color: ${token.colorBgElevated};
       box-shadow: ${token.boxShadowTertiary} !important;
     `,
   }

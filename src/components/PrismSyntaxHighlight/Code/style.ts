@@ -1,16 +1,16 @@
 import { createStyles } from 'antd-style'
 
-export const useStyles = createStyles(({ css, cx, token, isDarkMode, prefixCls: prefix }, prefixCls: string) => {
+export const useStyles = createStyles(({ css, cx, token, isDarkMode, stylish, prefixCls: prefix }, prefixCls: string) => {
   return {
     syntaxHighlight: cx(
       prefixCls,
       css`
+        /* ${stylish.card} */
         position: relative;
         border-radius: ${token.borderRadius}px;
-        /* box-shadow: ${token.boxShadowTertiary}; */
         background-color: ${token.colorBgElevated};
         margin: 0.8rem 0 1.2rem 0;
-        padding-bottom: 0.8rem;
+        padding-block-end: 0.8rem;
         overflow: overlay;
       `
     ),
@@ -55,8 +55,8 @@ export const useStyles = createStyles(({ css, cx, token, isDarkMode, prefixCls: 
         .number {
           display: inline-block;
           user-select: none;
-          padding-left: 1rem;
-          padding-right: 0.4rem;
+          padding-inline-start: 1rem;
+          padding-inline-end: 0.4rem;
           text-align: right;
           background-color: ${token.colorBgElevated};
           color: ${token.colorTextQuaternary};
@@ -72,8 +72,8 @@ export const useStyles = createStyles(({ css, cx, token, isDarkMode, prefixCls: 
 
         .line {
           position: relative;
-          padding-left: 0.8rem;
-          padding-right: 1.3rem;
+          padding-inline-start: 0.8rem;
+          padding-inline-end: 1.3rem;
 
           span {
             font-family: inherit;

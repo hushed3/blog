@@ -12,10 +12,10 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
         overflow-x: auto;
         width: 100%;
         line-height: 1.5;
-        margin-top: 0;
-        margin-bottom: 1.5rem;
+        margin-block-start: 0;
+        margin-block-end: 1.5rem;
         border: 1px solid ${token.colorBorderSecondary};
-        border-bottom: none;
+        border-block-end: none;
         border-radius: ${token.borderRadiusLG}px;
         overflow: hidden;
 
@@ -33,7 +33,7 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
           padding: 0.5rem;
           text-align: left;
           word-break: break-word;
-          border-bottom: 1px solid ${token.colorBgElevated};
+          border-block-end: 1px solid ${token.colorBgElevated};
 
           &::before {
             content: '';

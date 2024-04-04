@@ -1,8 +1,11 @@
-import { FunctionComponent, ReactNode } from 'react'
-import { Tag as AntdTag } from 'antd'
+import { FunctionComponent, ReactNode, useContext, useMemo, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { navigate } from 'gatsby'
-import { getPathname } from '@/utils/func'
+import { Tag as AntdTag } from 'antd'
+import { isSSR } from '@/utils/func'
 import { useStyles } from './style'
+import { MenuBarContext } from './MenuBar'
+import { useSSREffect } from '@/hooks'
 
 interface TagProps {
   to: string
@@ -10,19 +13,39 @@ interface TagProps {
 }
 
 const Tag: FunctionComponent<TagProps> = ({ to, children }) => {
-  const { styles } = useStyles()
+  const { styles, cx } = useStyles()
+  const scopedTagRef = useRef<HTMLDivElement>(null)
+  const { tagRef, setTagRef } = useContext(MenuBarContext)
+
+  useSSREffect(() => {
+    if (!tagRef) {
+      setTagRef && setTagRef(scopedTagRef.current)
+    }
+  }, [])
+
+  const pathname = useMemo(() => {
+    if (isSSR) return ''
+    return location.pathname
+  }, [])
+
   return (
-    <div className={styles.tags}>
-      <AntdTag.CheckableTag
-        className={styles.tag}
-        checked={to === getPathname()}
-        onClick={() => {
-          navigate(to)
-        }}
-      >
-        {children}
-      </AntdTag.CheckableTag>
-    </div>
+    <>
+      <div ref={scopedTagRef} className={cx(styles.tagGroup)}>
+        {tagRef &&
+          createPortal(
+            <AntdTag.CheckableTag
+              className={cx(styles.tag)}
+              checked={to === pathname}
+              onClick={() => {
+                navigate(to)
+              }}
+            >
+              {children}
+            </AntdTag.CheckableTag>,
+            tagRef
+          )}
+      </div>
+    </>
   )
 }
 

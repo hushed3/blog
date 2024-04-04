@@ -13,7 +13,7 @@ interface ArticleSidebarProps {
   categories?: string[]
   icon?: SVGIconTypes
   headings: AnchorLinkItemProps[]
-  recentArticles: GraphqlNode[]
+  articles: GraphqlNode[]
 }
 
 /**
@@ -26,11 +26,12 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({
   categories = [],
   icon,
   headings,
-  recentArticles,
+  articles,
 }) => {
   const { styles } = useStyles()
 
   const categorys = categories?.filter((category) => category !== 'Highlight')
+  const recentArticles = articles.slice(0, 6)
 
   const handleChange = (link: string) => {
     if (!link || link === location.hash) return
@@ -52,14 +53,14 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({
 
           <MenuBar.Title>类别</MenuBar.Title>
           {categorys.map((c) => (
-            <MenuBar.Link key={c} to={`/categories/${c}/`}>
+            <MenuBar.Link key={`/categories/${c}/`} to={`/categories/${c}/`}>
               {c}
             </MenuBar.Link>
           ))}
 
           <MenuBar.Title>标签</MenuBar.Title>
           {tags.map((t) => (
-            <MenuBar.Tag key={t} to={`/tags/${t}/`}>
+            <MenuBar.Tag key={`/tags/${t}/`} to={`/tags/${t}/`}>
               {t}
             </MenuBar.Tag>
           ))}

@@ -1,25 +1,36 @@
+import type { GatsbyConfig } from 'gatsby'
+import packageJson from './package.json'
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 import remarkGfm from 'remark-gfm'
-import rehypeMetaAsAttributes from './src/plugins/rehypeMetaAsAttributes.mjs'
+import rehypeSlug from 'rehype-slug'
+import rehypeMetaAsAttributes from './plugins/rehype-meta-as-attributes'
+import { SiteMetadataType } from './src/hooks/useSiteMetadata'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-const config = {
-  graphqlTypegen: false,
+type GatsbyConfigType = GatsbyConfig & {
+  siteMetadata: SiteMetadataType['site']['siteMetadata']
+}
+
+const siteMetadata: SiteMetadataType['site']['siteMetadata'] = {
+  title: packageJson.name,
+  author: packageJson.author,
+  description: packageJson.description,
+  siteUrl: packageJson.homepage,
+  feedUrl: `${packageJson.homepage}/rss.xml`,
+  logo: `${packageJson.homepage}/logo.png`,
+  version: packageJson.version,
+}
+
+const config: GatsbyConfigType = {
   jsxRuntime: 'automatic',
   flags: {
-    DEV_SSR: false,
+    DEV_SSR: true,
   },
-  siteMetadata: {
-    title: `Hush blog`,
-    description: `Web front-end development engineer.`,
-    author: 'J',
-    siteUrl: `https://blog.hushes.cn`,
-    feedUrl: 'https://blog.hushes.cn/rss.xml',
-    logo: '/logo.png',
-    pathPrefix: '/',
-  },
+  graphqlTypegen: false,
+  pathPrefix: '/',
+  siteMetadata,
   plugins: [
     // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-page-creator
     // {
@@ -38,25 +49,6 @@ const config = {
     // ===================================================================================
     // Meta
     // ===================================================================================
-
-    // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-netlify/
-    'gatsby-plugin-netlify',
-
-    // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-manifest/
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: 'Hush',
-        short_name: 'Hush',
-        description: 'gatsby-plugin-manifest',
-        start_url: '/',
-        background_color: 'rgb(21, 21, 23)',
-        theme_color: '#6680ff',
-        display: 'minimal-ui',
-        icon: `static/logo.png`,
-      },
-    },
-
     // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-react-svg/
     {
       resolve: 'gatsby-plugin-react-svg',
@@ -77,7 +69,6 @@ const config = {
               siteMetadata {
                 title
                 description
-                siteUrl
                 site_url: siteUrl
               }
             }
@@ -157,18 +148,19 @@ const config = {
     'gatsby-plugin-image',
 
     // @see: https://www.gatsbyjs.com/plugins/gatsby-source-filesystem/
+
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'articles',
-        path: `${__dirname}/content`,
+        name: 'pages',
+        path: `.${__dirname}/content/`,
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'assets',
-        path: `${__dirname}/content`,
+        path: `.${__dirname}/src/assets/`,
       },
     },
 

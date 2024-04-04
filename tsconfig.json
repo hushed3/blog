@@ -24,6 +24,6 @@
 
     "incremental": true
   },
-  "include": ["src/**/*", "gatsby-node.ts", "gatsby-config.mjs", "./plugins/**/*", "./src/typings/*.d.ts"],
-  "exclude": ["public","node_modules"]
+  "include": ["src/**/*", "gatsby-node.ts", "gatsby-config.ts", "./plugins/**/*", "./src/typings/*.d.ts", "plugins"],
+  "exclude": ["public", "node_modules"]
 }

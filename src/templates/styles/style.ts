@@ -10,9 +10,9 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
 
     .content {
       & > pre:last-child {
-        margin-bottom: 0px;
+        margin-block-end: 0px;
         > div {
-          margin-bottom: 0px;
+          margin-block-end: 0px;
         }
       }
     }
@@ -22,7 +22,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
         display: block;
 
         .content {
-          margin-bottom: 2rem;
+          margin-block-end: 2rem;
         }
       `,
     })}
@@ -30,7 +30,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
 
   spacerLine: css`
     width: 100%;
-    border-bottom: 1px dashed ${token.colorBorder};
+    border-block-end: 1px dashed ${token.colorBorder};
     margin: 0 0 3.2rem;
   `,
 
@@ -54,10 +54,10 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
   `),
 
   main: css`
-    padding-bottom: 5rem;
+    padding-block-end: 5rem;
   `,
 
   card: css`
-    ${stylish.sideCard}
+    ${stylish.card}
   `,
 }))

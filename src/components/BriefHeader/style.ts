@@ -22,13 +22,13 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
       color: ${token.colorTextDescription};
       font-weight: 500;
       font-size: 1.2rem;
-      margin-bottom: 0.4rem;
+      margin-block-end: 0.4rem;
 
       span {
         color: ${token.colorPrimary};
         font-family: Prisma;
         font-size: 1.4rem;
-        margin-right: 0.2rem;
+        margin-inline-end: 0.2rem;
       }
     `
   ),
@@ -36,7 +36,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
   title: cx(
     `${prefixCls}-briefHeader-title`,
     css`
-      line-height: 1.1;
+      line-height: 1.2;
       font-weight: 700;
       font-size: 2rem;
       letter-spacing: 0.1rem;
@@ -59,7 +59,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
       font-weight: normal;
       letter-spacing: 0.15rem;
       font-size: 2.2rem;
-      line-height: 1.1;
+      line-height: 1.2;
       letter-spacing: 0.3rem;
       margin: 0 !important;
 

@@ -2,12 +2,12 @@ import { createStyles } from 'antd-style'
 
 export const useStyles = createStyles(({ css, responsive: r, token }) => ({
   years: css`
-    margin-bottom: 3rem;
+    margin-block-end: 3rem;
   `,
   year: css`
     color: ${token.colorPrimary};
-    padding-bottom: 0.8rem;
-    border-bottom: 2px solid ${token.colorBorderSecondary};
+    padding-block-end: 0.8rem;
+    border-block-end: 2px solid ${token.colorBorderSecondary};
     font-size: 1.8rem;
     opacity: 0.8;
     font-weight: bold;
@@ -46,7 +46,7 @@ export const useStyles = createStyles(({ css, responsive: r, token }) => ({
       margin: 0;
       font-size: 0.95rem;
       font-weight: 600;
-      line-height: 1.3;
+      line-height: 1.5;
       color: inherit;
 
       ${r({
@@ -58,7 +58,7 @@ export const useStyles = createStyles(({ css, responsive: r, token }) => ({
 
     time {
       display: block;
-      margin-left: auto;
+      margin-inline-start: auto;
       color: inherit;
       font-size: 0.8rem;
       font-weight: 500;

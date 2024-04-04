@@ -48,7 +48,7 @@ export const Head: HeadFC<MdxQuery> = ({ location, data }) => {
 export const pageQuery = graphql`
   query MeBySlug($slug: String!) {
     me: mdx(frontmatter: { slug: { eq: $slug } }) {
-      ...NodeFragment
+      ...FrontmatterFragment
     }
   }
 `

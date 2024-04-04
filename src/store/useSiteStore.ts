@@ -1,9 +1,9 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
-import { Site } from '@/hooks'
+import { SiteMetadata } from '@/hooks'
 
 export interface SiteStore {
-  siteData: Site
+  siteData: SiteMetadata
 }
 
 const initialState: SiteStore = {
@@ -14,6 +14,7 @@ const initialState: SiteStore = {
     logo: '',
     description: '',
     feedUrl: '',
+    version: '',
   },
 }
 

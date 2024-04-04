@@ -10,7 +10,6 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token,
       width: 100%;
       z-index: 20;
       height: ${token.headerHeight}px;
-      box-shadow: ${token.boxShadowTertiary};
       backdrop-filter: saturate(50%) blur(4px);
       background-size: 3px 3px;
       background-image: radial-gradient(transparent 1px, ${token.colorBgLayout} 1px);
@@ -49,9 +48,9 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token,
       padding: 0;
       border: none;
       border-radius: 0;
-      border-top: 2px solid transparent;
-      border-bottom: 2px solid transparent;
-      margin-right: 1.2rem;
+      border-block-start: 2px solid transparent;
+      border-block-end: 2px solid transparent;
+      margin-inline-end: 1.2rem;
 
       &:hover {
         color: ${token.colorText};

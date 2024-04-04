@@ -1,4 +1,4 @@
-import { createHash } from 'crypto'
+import { safeStartTransition } from './safeStartTransition'
 
 /**
  * @description 判断是否为SSR
@@ -48,10 +48,8 @@ export const getID = (str: string): string => {
 /**
  * @description 获取path
  */
-export const getPathname = () => {
-  if (isSSR) return ''
-
-  return location.pathname
+export const getPathname = (path: string): string => {
+  return path.split('/')[2]
 }
 
 /**
@@ -78,4 +76,24 @@ export const getNumber = (tag: string): number | null => {
   const number = tag.match(/\d+(\.\d+)?/g)?.join()
 
   return number ? Number(number) : null
+}
+
+/**
+ * @description 删除所有空的兄弟节点
+ * @date 04/04/2024
+ * @param {(HTMLDivElement | null)} currentNode
+ */
+export const removeSiblingNodesWithoutChildren = (currentNode: HTMLDivElement | null) => {
+  if (!currentNode) return
+  const childNodes = currentNode.parentNode?.childNodes
+  if (!childNodes) return
+  for (let i = 0; i < childNodes.length; i++) {
+    const node = childNodes[i]
+    if (!node.hasChildNodes()) {
+      safeStartTransition(() => {
+        node.remove()
+        // setTimeout(() => node.remove(), 0)
+      })
+    }
+  }
 }

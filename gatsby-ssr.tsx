@@ -3,12 +3,12 @@ import { renderToString } from 'react-dom/server'
 import { extractStaticStyle } from 'antd-style'
 import type { GatsbySSR } from 'gatsby'
 
-import ThemeProviderContext from './src/context/ThemeProviderContext'
+import SiteThemeProvider from './src/container/SiteThemeProvider'
 
 export const wrapPageElement: GatsbySSR['wrapPageElement'] = ({ element, props }) => {
   return (
     <>
-      <ThemeProviderContext {...props}>{element}</ThemeProviderContext>
+      <SiteThemeProvider {...props}>{element}</SiteThemeProvider>
     </>
   )
 }

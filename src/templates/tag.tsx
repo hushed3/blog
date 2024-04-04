@@ -8,7 +8,7 @@ import SEO from '@/components/SEO'
 import BlogSidebar from '@/components/Sidebar/BlogSidebar'
 import { simplifiedQueryData } from '@/utils/helpers'
 import { useStyles } from './styles/style'
-
+import { getPathname } from '@/utils/func'
 
 /**
  * @description 标签页面
@@ -18,11 +18,11 @@ import { useStyles } from './styles/style'
  */
 const TagTemplate: React.FC<PageProps<allMdxNodesQuery<'tags'> & MdxNodesQuery, TagData>> = ({ data, pageContext }) => {
   const { styles } = useStyles()
-  const { tag } = pageContext
 
   const totalCount = data?.tags.totalCount
   const nodes = data?.tags.nodes
   const message = totalCount === 1 ? ' Article tagged:' : ' Articles tagged:'
+  const { tag } = pageContext
 
   const simplifiedArticles = useMemo(() => simplifiedQueryData(nodes), [nodes])
 
@@ -55,7 +55,7 @@ export const pageQuery = graphql`
     tags: allMdx(sort: { frontmatter: { date: DESC } }, filter: { frontmatter: { tags: { in: [$tag] } } }) {
       totalCount
       nodes {
-        ...NodeFragment
+        ...FrontmatterFragment
       }
     }
     mdx {

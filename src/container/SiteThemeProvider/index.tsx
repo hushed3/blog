@@ -1,14 +1,12 @@
-import React, { useCallback } from 'react'
-import { App } from 'antd'
+import React, { memo, useCallback } from 'react'
+import { graphql } from 'gatsby'
 import { CustomTokenParams, extractStaticStyle, StyleProvider, ThemeProvider } from 'antd-style'
 import { useThemeMode } from '@/hooks'
 import Layout from '@/layout'
-
 import { createCustomToken, getAntdTheme, getCustomStylish } from '@/customize-theme'
-import { graphql } from 'gatsby'
 ;(global as any)['__ANTD_CACHE__'] = extractStaticStyle.cache
 
-const ThemeProviderContext = ({ children, ...props }: { children: React.ReactNode }) => {
+const SiteThemeProvider = memo(({ children, ...props }: { children: React.ReactNode }) => {
   const { themeMode } = useThemeMode()
 
   const getCustomToken = useCallback((params: CustomTokenParams) => {
@@ -16,6 +14,7 @@ const ThemeProviderContext = ({ children, ...props }: { children: React.ReactNod
 
     return base
   }, [])
+
   return (
     <>
       <ThemeProvider
@@ -24,24 +23,17 @@ const ThemeProviderContext = ({ children, ...props }: { children: React.ReactNod
         theme={getAntdTheme}
         customToken={getCustomToken}
         customStylish={getCustomStylish}
+        onAppearanceChange={(state) => {}}
       >
         <StyleProvider prefix={'site'} cache={extractStaticStyle.cache} speedy={true}>
-          <App>
-            <Layout {...props}>{children}</Layout>
-          </App>
+          <Layout {...props}>{children}</Layout>
         </StyleProvider>
       </ThemeProvider>
     </>
   )
-}
+})
 
-export default ThemeProviderContext
-
-export const NodeFragmentQuery = graphql`
-  fragment NodeFragment on Mdx {
-    ...FrontmatterFragment
-  }
-`
+export default SiteThemeProvider
 
 export const FrontmatterFragmentQuery = graphql`
   fragment FrontmatterFragment on Mdx {

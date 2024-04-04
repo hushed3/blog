@@ -1,10 +1,11 @@
 import { HeadFC, PageProps, graphql } from 'gatsby'
-import { Typography } from 'antd'
+import { App, Typography } from 'antd'
 
 import SEO from '@/components/SEO'
 import ArticleSidebar from '@/components/Sidebar/ArticleSidebar'
 import PrismSyntaxHighlight from '@/components/PrismSyntaxHighlight'
 import { useStyles } from './styles/style'
+import { useEventListener } from 'ahooks'
 
 /**
  * @description 文章页面
@@ -18,6 +19,7 @@ const ArticleTemplate: React.FC<PageProps<allMdxNodesQuery<'allArticle'> & MdxNo
 }) => {
   const { allArticle, currentArticle } = data
   const { styles } = useStyles()
+  const { message } = App.useApp()
 
   const frontmatter = currentArticle.frontmatter
   const headings = currentArticle.tableOfContents.items.map((e, i) => ({
@@ -25,9 +27,15 @@ const ArticleTemplate: React.FC<PageProps<allMdxNodesQuery<'allArticle'> & MdxNo
     href: `#${e.title}`,
     title: e.title,
   }))
-  const recentArticles = allArticle.nodes.filter(
-    (article) => article.frontmatter.slug !== currentArticle.frontmatter.slug
-  )
+  const articles = allArticle.nodes.filter((article) => article.frontmatter.slug !== currentArticle.frontmatter.slug)
+
+  useEventListener('copy', (ev) => {
+    message.open({
+      type: 'success',
+      content: 'Copied 🎉',
+      duration: 2,
+    })
+  })
 
   return (
     <div className={styles.container}>
@@ -45,7 +53,7 @@ const ArticleTemplate: React.FC<PageProps<allMdxNodesQuery<'allArticle'> & MdxNo
         categories={frontmatter?.categories}
         icon={frontmatter?.icon}
         headings={headings}
-        recentArticles={recentArticles}
+        articles={articles}
       />
     </div>
   )
@@ -71,7 +79,7 @@ export const recentQuery = graphql`
       filter: { frontmatter: { template: { eq: "article" } } }
     ) {
       nodes {
-        ...NodeFragment
+        ...FrontmatterFragment
       }
     }
     currentArticle: mdx(frontmatter: { slug: { eq: $slug } }) {

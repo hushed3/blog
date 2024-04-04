@@ -15,7 +15,8 @@ import { useStyles } from './styles/_blog.style'
  * @export
  * @return {*}
  */
-const Blog: React.FC<PageProps<allMdxNodesQuery & MdxNodesQuery>> = ({ data }) => {
+const Blog: React.FC<PageProps<allMdxNodesQuery & MdxNodesQuery>> = (props) => {
+  const { data } = props
   const title = '文章归档'
   const description = 'Notes & tutorials'
 
@@ -53,7 +54,7 @@ export const blogQuery = graphql`
   query {
     allMdx(sort: { frontmatter: { date: DESC } }, filter: { frontmatter: { template: { eq: "article" } } }) {
       nodes {
-        ...NodeFragment
+        ...FrontmatterFragment
       }
     }
     mdx {

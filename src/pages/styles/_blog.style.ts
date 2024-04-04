@@ -15,6 +15,6 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
   `,
 
   card: css`
-    ${stylish.sideCard}
+    ${stylish.card}
   `,
 }))

@@ -10,8 +10,8 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
 
   briefDescription: css`
     -webkit-font-smoothing: antialiased;
-    margin-top: 2rem;
-    margin-bottom: 0;
+    margin-block-start: 2rem;
+    margin-block-end: 0;
     font-size: 1rem;
     line-height: 1.4;
     color: ${token.colorTextSecondary};
@@ -19,7 +19,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
     ${r({
       tablet: css`
         font-size: 0.9rem;
-        margin-top: 2rem;
+        margin-block-start: 2rem;
       `,
     })}
   `,
@@ -80,7 +80,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
         flex-wrap: wrap;
         align-content: space-evenly;
         height: 100%;
-        margin-left: 1.2rem;
+        margin-inline-start: 1.2rem;
       }
     `
   ),

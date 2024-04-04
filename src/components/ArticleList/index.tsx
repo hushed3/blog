@@ -5,7 +5,7 @@ import SVGIcon from '@/components/SvgIcon'
 import { useStyles } from './style'
 
 interface ArticleListProps {
-  data: Frontmatter[]
+  data: Frontmatters[]
 }
 
 /**
