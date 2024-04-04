@@ -7,7 +7,7 @@ import { createCustomToken, getAntdTheme, getCustomStylish } from '@/customize-t
 ;(global as any)['__ANTD_CACHE__'] = extractStaticStyle.cache
 
 const SiteThemeProvider = memo(({ children, ...props }: { children: React.ReactNode }) => {
-  const { themeMode } = useThemeMode()
+  const { themeMode, appearance } = useThemeMode()
 
   const getCustomToken = useCallback((params: CustomTokenParams) => {
     const base = createCustomToken(params)

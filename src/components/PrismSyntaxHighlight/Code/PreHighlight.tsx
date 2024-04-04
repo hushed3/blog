@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { memo, useMemo, useRef } from 'react'
 import { Highlight, themes } from 'prism-react-renderer'
 import { useThemeMode } from '@/hooks'
 import { CodeNode, GetLanguageData, calculateLinesToHighlight } from '@/utils/code'
@@ -10,16 +10,18 @@ export interface PreHighlightProps extends GetLanguageData, CodeNode {
   codeString: string
 }
 
-const PreHighlight: React.FC<PreHighlightProps> = (props) => {
+const PreHighlight: React.FC<PreHighlightProps> = memo((props) => {
   const { codeString, language = 'javascript', highlight = '', title } = props
   const highlightRef = useRef<HTMLDivElement>(null)
   const { styles, cx } = useStyles('syntax-preHighlight')
-  const { isDarkMode } = useThemeMode()
+  const { appearance } = useThemeMode()
 
   const shouldHighlightLine = calculateLinesToHighlight(highlight)
 
+  const theme = useMemo(() => (appearance === 'dark' ? themes.oneDark : themes.oneLight), [appearance])
+
   return (
-    <Highlight code={codeString} language={language} theme={isDarkMode ? themes.oneDark : themes.oneLight}>
+    <Highlight code={codeString} language={language} theme={theme}>
       {({ tokens, getLineProps, getTokenProps }) => {
         return (
           <div ref={highlightRef} className={styles.syntaxHighlight}>
@@ -57,6 +59,6 @@ const PreHighlight: React.FC<PreHighlightProps> = (props) => {
       }}
     </Highlight>
   )
-}
+})
 
 export default PreHighlight

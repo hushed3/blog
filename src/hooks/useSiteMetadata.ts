@@ -39,23 +39,24 @@ export type SiteMetadataType = {
 
 type UseSiteMetadataType = SiteMetadataType['site']['siteMetadata']
 
+
 export const useSiteMetadata = (): UseSiteMetadataType => {
-  const { site } = useStaticQuery<SiteMetadataType>(query)
+  const { site } = useStaticQuery<SiteMetadataType>(graphql`
+    query siteMetadata {
+      site {
+        siteMetadata {
+          title
+          description
+          author
+          logo
+          siteUrl
+          feedUrl
+          version
+        }
+      }
+    }
+  `)
   return site.siteMetadata
 }
 
-const query = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-        description
-        author
-        logo
-        siteUrl
-        feedUrl
-        version
-      }
-    }
-  }
-`
+
