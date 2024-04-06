@@ -2674,7 +2674,39 @@ type CategoryPageQueryVariables = Exact<{
 }>;
 
 
-type CategoryPageQuery = { readonly categories: { readonly totalCount: number, readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string, readonly description: string | null, readonly date: string, readonly lastUpdated: string, readonly icon: string, readonly slug: string, readonly template: string, readonly tags: ReadonlyArray<string>, readonly categories: ReadonlyArray<string>, readonly published: boolean } }> }, readonly mdx: { readonly frontmatter: { readonly title: string, readonly description: string | null, readonly date: string, readonly lastUpdated: string, readonly icon: string, readonly slug: string, readonly template: string, readonly tags: ReadonlyArray<string>, readonly categories: ReadonlyArray<string>, readonly published: boolean } } | null };
+type CategoryPageQuery = {
+  readonly categories: {
+    readonly totalCount: number
+    readonly nodes: ReadonlyArray<{
+      readonly frontmatter: {
+        readonly title: string
+        readonly description: string | null
+        readonly date: string
+        readonly lastUpdated: string
+        readonly icon: string
+        readonly slug: string
+        readonly template: string
+        readonly tags: ReadonlyArray<string>
+        readonly categories: ReadonlyArray<string>
+        readonly published: boolean
+      }
+    }>
+  }
+  readonly mdx: {
+    readonly frontmatter: {
+      readonly title: string
+      readonly description: string | null
+      readonly date: string
+      readonly lastUpdated: string
+      readonly icon: string
+      readonly slug: string
+      readonly template: string
+      readonly tags: ReadonlyArray<string>
+      readonly categories: ReadonlyArray<string>
+      readonly published: boolean
+    }
+  } | null
+}
 
 type FrontmatterFragmentFragment = { readonly frontmatter: { readonly title: string, readonly description: string | null, readonly date: string, readonly lastUpdated: string, readonly icon: string, readonly slug: string, readonly template: string, readonly tags: ReadonlyArray<string>, readonly categories: ReadonlyArray<string>, readonly published: boolean } };
 

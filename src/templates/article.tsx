@@ -1,11 +1,10 @@
 import { HeadFC, PageProps, graphql } from 'gatsby'
-import { App, Typography } from 'antd'
+import { Typography } from 'antd'
 
 import SEO from '@/components/SEO'
 import ArticleSidebar from '@/components/Sidebar/ArticleSidebar'
 import PrismSyntaxHighlight from '@/components/PrismSyntaxHighlight'
 import { useStyles } from './styles/style'
-import { useEventListener } from 'ahooks'
 
 /**
  * @description 文章页面
@@ -19,23 +18,12 @@ const ArticleTemplate: React.FC<PageProps<allMdxNodesQuery<'allArticle'> & MdxNo
 }) => {
   const { allArticle, currentArticle } = data
   const { styles } = useStyles()
-  const { message } = App.useApp()
 
   const frontmatter = currentArticle.frontmatter
-  const headings = currentArticle.tableOfContents.items.map((e, i) => ({
-    key: e.title,
-    href: `#${e.title}`,
-    title: e.title,
-  }))
-  const articles = allArticle.nodes.filter((article) => article.frontmatter.slug !== currentArticle.frontmatter.slug)
-
-  useEventListener('copy', (ev) => {
-    message.open({
-      type: 'success',
-      content: 'Copied 🎉',
-      duration: 2,
-    })
-  })
+  const headings = currentArticle.tableOfContents.items.map((e, i) => ({ ...e, href: `#${e.title}`, key: e.title }))
+  const articles = allArticle.nodes.map((e) => ({ ...e.frontmatter })).filter((a) => a.slug !== frontmatter.slug)
+  const tags = frontmatter?.tags.map((t) => ({ name: t, path: `/tags/${t}` }))
+  const categories = frontmatter?.categories.map((c) => ({ name: c, path: `/categories/${c}` }))
 
   return (
     <div className={styles.container}>
@@ -49,8 +37,8 @@ const ArticleTemplate: React.FC<PageProps<allMdxNodesQuery<'allArticle'> & MdxNo
 
       <ArticleSidebar
         date={frontmatter?.date}
-        tags={frontmatter?.tags}
-        categories={frontmatter?.categories}
+        tags={tags}
+        categories={categories}
         icon={frontmatter?.icon}
         headings={headings}
         articles={articles}

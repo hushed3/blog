@@ -25,6 +25,12 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls }) => {
       opacity: 0.8;
     }
   `
+  const hover = css`
+    &:hover {
+      color: ${token.colorPrimaryTextHover};
+      text-decoration: none;
+    }
+  `
 
   return {
     menuBar: cx(
@@ -38,70 +44,47 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls }) => {
 
     item: cx(menuBarItem),
 
+    hover: cx(hover),
+
     title: cx(
       `${prefixCls}-menuBar-title`,
       css`
         color: ${token.colorText};
         font-size: 0.98rem;
         font-weight: 700;
-        margin-block-end: 0.7rem;
-      `
-    ),
+        margin-block-end: 0.6rem;
+        margin-block-start: 0.4rem;
 
-    hover: css`
-      &:hover {
-        color: ${token.colorPrimaryTextHover};
-        text-decoration: none;
-      }
-    `,
-
-    textGroup: cx(
-      `${prefixCls}-menuBar-text-group`,
-      css`
-        display: block;
-        margin-block-end: 1rem;
+        &:first-child {
+          margin-block-start: 0;
+        }
       `
     ),
 
     text: cx(
       `${prefixCls}-menuBar-text`,
-      menuBarItem,
       css`
-        display: flex;
-        align-items: center;
-      `
-    ),
-
-    linkGroup: cx(
-      `${prefixCls}-menuBar-link-group`,
-      css`
-        display: block;
-        margin-block-end: 1rem;
+        ${menuBarItem}
       `
     ),
 
     link: cx(
       `${prefixCls}-menuBar-link`,
-      menuBarItem,
       css`
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: nowrap;
-        &.active {
-          color: ${token.colorPrimary} !important;
-        }
-      `
-    ),
+        ${menuBarItem}
+        ${hover}
 
-    tagGroup: cx(
-      `${prefixCls}-menuBar-tag-group`,
-      css`
-        display: flex;
-        flex-wrap: wrap;
-        padding-inline-start: 0.4rem;
-        gap: 0.5rem 0.8rem;
-        margin-block-end: 1rem;
+        .link {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          color: inherit;
+          width: 100%;
+
+          &.active {
+            color: ${token.colorPrimary} !important;
+          }
+        }
       `
     ),
 
@@ -112,7 +95,7 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls }) => {
         color: ${token.colorTextSecondary};
         background-color: ${token.colorFillTertiary};
         text-transform: capitalize;
-        margin-block-end: 0;
+        margin-block-start: 0.7rem;
 
         &:hover {
           color: ${token.colorPrimaryTextHover}!important;

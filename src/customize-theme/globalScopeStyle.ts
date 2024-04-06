@@ -42,10 +42,7 @@ export const GlobalScopeStyle = createGlobalStyle`
     font-size: ${(p) => p.theme.fontSize}px;
     font-weight: normal;
     font-kerning: normal;
-
-    /* color: ${(p) => p.theme.colorText}; */
     background-color: ${(p) => p.theme.colorBgLayout};
-    transition: background-color ease-out  ${(p) => p.theme.motionDurationFast};
   }
 
   body {

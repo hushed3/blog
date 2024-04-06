@@ -9,11 +9,11 @@ import { Link } from 'gatsby'
 
 interface ArticleSidebarProps {
   date?: string
-  tags?: string[]
-  categories?: string[]
+  tags?: Record<'name' | 'path', string>[]
+  categories?: Record<'name' | 'path', string>[]
   icon?: SVGIconTypes
   headings: AnchorLinkItemProps[]
-  articles: GraphqlNode[]
+  articles: Frontmatter[]
 }
 
 /**
@@ -30,7 +30,6 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({
 }) => {
   const { styles } = useStyles()
 
-  const categorys = categories?.filter((category) => category !== 'Highlight')
   const recentArticles = articles.slice(0, 6)
 
   const handleChange = (link: string) => {
@@ -52,16 +51,16 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({
           <MenuBar.Text>发布于 {date}</MenuBar.Text>
 
           <MenuBar.Title>类别</MenuBar.Title>
-          {categorys.map((c) => (
-            <MenuBar.Link key={`/categories/${c}/`} to={`/categories/${c}/`}>
-              {c}
+          {categories.map((c) => (
+            <MenuBar.Link key={c.path} to={c.path}>
+              {c.name}
             </MenuBar.Link>
           ))}
 
           <MenuBar.Title>标签</MenuBar.Title>
           {tags.map((t) => (
-            <MenuBar.Tag key={`/tags/${t}/`} to={`/tags/${t}/`}>
-              {t}
+            <MenuBar.Tag key={t.path} to={t.path}>
+              {t.name}
             </MenuBar.Tag>
           ))}
         </MenuBar>
@@ -78,9 +77,9 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({
         <MenuBar>
           <MenuBar.Title>近期发布</MenuBar.Title>
           {recentArticles.map((article) => (
-            <Link className={styles.articles} to={`/${article.frontmatter.slug}`} key={article.frontmatter.slug}>
-              <SVGIcon id={article.frontmatter.icon} width="2.2em" height="2.2em"></SVGIcon>
-              <div className="title">{article.frontmatter.title.split('-')[1]}</div>
+            <Link className={styles.articles} to={`/${article.slug}`} key={article.slug}>
+              <SVGIcon id={article.icon} width="2em" height="2em"></SVGIcon>
+              <div className="title">{article.title.split('-')[1]}</div>
             </Link>
           ))}
         </MenuBar>

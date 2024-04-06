@@ -25,7 +25,7 @@ const SiteThemeProvider = memo(({ children, ...props }: { children: React.ReactN
         customStylish={getCustomStylish}
         onAppearanceChange={(state) => {}}
       >
-        <StyleProvider prefix={'site'} cache={extractStaticStyle.cache} speedy={true}>
+        <StyleProvider prefix={'site'} cache={extractStaticStyle.cache}>
           <Layout {...props}>{children}</Layout>
         </StyleProvider>
       </ThemeProvider>

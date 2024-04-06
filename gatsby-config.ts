@@ -26,7 +26,7 @@ const siteMetadata: SiteMetadataType['site']['siteMetadata'] = {
 const config: GatsbyConfigType = {
   jsxRuntime: 'automatic',
   flags: {
-    DEV_SSR: true,
+    DEV_SSR: false,
   },
   graphqlTypegen: false,
   pathPrefix: '/',

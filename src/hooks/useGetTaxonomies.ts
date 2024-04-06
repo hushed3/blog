@@ -29,5 +29,8 @@ export const useGetTaxonomies = () => {
     `
   )
 
-  return { tags: tags.group, categories: categories.group }
+  const Tags = tags.group.map((tag) => ({ ...tag, path: `/tags/${tag.name}/` }))
+  const Categories = categories.group.map((category) => ({ ...category, path: `/categories/${category.name}/` }))
+
+  return { tags: Tags, categories: Categories }
 }

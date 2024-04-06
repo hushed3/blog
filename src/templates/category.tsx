@@ -8,7 +8,6 @@ import SEO from '@/components/SEO'
 import BlogSidebar from '@/components/Sidebar/BlogSidebar'
 import { simplifiedQueryData } from '@/utils/helpers'
 import { useStyles } from './styles/style'
-import { getPathname } from '@/utils/func'
 
 /**
  * @description 类别页面
@@ -16,7 +15,8 @@ import { getPathname } from '@/utils/func'
  * @export
  * @return {*}
  */
-const CategoryTemplate: React.FC<PageProps<allMdxNodesQuery<'categories'> & MdxNodesQuery, CategoryData>> = ({
+// const CategoryTemplate: React.FC<PageProps<allMdxNodesQuery<'categories'> & MdxNodesQuery, CategoryData>> = ({ data, pageContext, }) => {
+const CategoryTemplate: React.FC<PageProps<Queries.CategoryPageQuery, { category: string }>> = ({
   data,
   pageContext,
 }) => {

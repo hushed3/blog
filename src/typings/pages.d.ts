@@ -3,7 +3,7 @@ type TableOfContentsItem = {
   title: string
 }
 
-type Frontmatters = {
+type Frontmatter = {
   title: string
   description: string
   date: string
@@ -29,7 +29,7 @@ type Internal = {
 }
 
 type GraphqlNode = {
-  frontmatter: Frontmatters
+  frontmatter: Frontmatter
   fields: fields
   tableOfContents: tableOfContents
   internal: Internal
@@ -43,11 +43,11 @@ interface TagData {
   tag: string
 }
 
-interface SimplifiedQueryData extends Frontmatters {
+interface SimplifiedQueryData extends Frontmatter {
   id: string
 }
 
-type YearListData = Record<string, Frontmatters[]>
+type YearListData = Record<string, Frontmatter[]>
 
 type MdxQuery = GraphqlNode
 

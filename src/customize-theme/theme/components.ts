@@ -3,5 +3,4 @@ export const components = {
   Button: { borderRadiusSM: 6 },
   Alert: { fontSize: 13, lineWidth: 2 },
   App: { lineHeight: 1.9 },
-  // Typography: {},
 }

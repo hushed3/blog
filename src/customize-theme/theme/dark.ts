@@ -1,6 +1,6 @@
 import { theme, ThemeConfig } from 'antd'
 
-import { genMapTokenAlgorithm } from '../algorithms'
+import { genMapTokenAlgorithm } from '../algorithms/themeAlgorithm'
 import { components } from './components'
 
 const darkMode = genMapTokenAlgorithm()

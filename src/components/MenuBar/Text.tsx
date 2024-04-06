@@ -1,8 +1,5 @@
-import { FunctionComponent, ReactNode, useContext, useRef } from 'react'
-import { createPortal } from 'react-dom'
+import { FunctionComponent, ReactNode } from 'react'
 import { useStyles } from './style'
-import { MenuBarContext } from './MenuBar'
-import { useSSREffect } from '@/hooks'
 
 interface TextProps {
   children: ReactNode
@@ -11,15 +8,7 @@ interface TextProps {
 }
 
 const Text: FunctionComponent<TextProps> = ({ children, marker = true, extra }) => {
-  const { styles, cx, prefixCls } = useStyles()
-  const scopedTextRef = useRef<HTMLDivElement>(null)
-  const { textRef, setTextRef } = useContext(MenuBarContext)
-
-  useSSREffect(() => {
-    if (!textRef) {
-      setTextRef && setTextRef(scopedTextRef.current)
-    }
-  }, [])
+  const { styles, cx } = useStyles()
 
   const ExtraChildren = () => {
     if (typeof extra !== 'object') {
@@ -30,18 +19,12 @@ const Text: FunctionComponent<TextProps> = ({ children, marker = true, extra }) 
   }
 
   return (
-    <div ref={scopedTextRef} className={cx(styles.textGroup)}>
-      {textRef &&
-        createPortal(
-          <div className={cx(styles.text)}>
-            <div>
-              {marker && <span className="inkVisible"></span>}
-              {children}
-            </div>
-            <ExtraChildren />
-          </div>,
-          textRef
-        )}
+    <div className={cx(styles.text)}>
+      <div>
+        {marker && <span className="inkVisible"></span>}
+        {children}
+      </div>
+      <ExtraChildren />
     </div>
   )
 }
