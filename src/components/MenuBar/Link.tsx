@@ -33,7 +33,7 @@ const Link: FunctionComponent<LinkProps> = ({ children, marker = true, extra, to
           {...otherProps}
           to={to}
           className="link"
-          style={{ padding: marker ? '0' : '0 0.6em' }}
+          style={{ paddingInline: marker ? '0' : '0.6em' }}
           activeClassName="active"
         >
           <div>

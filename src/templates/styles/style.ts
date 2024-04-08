@@ -31,19 +31,21 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
   spacerLine: css`
     width: 100%;
     border-block-end: 1px dashed ${token.colorBorder};
-    margin: 0 0 3.2rem;
+    margin-block-end: 3.2rem;
   `,
 
   title: cx(css`
     &.${prefixCls}-typography {
-      padding: 5.6rem 0 4rem;
+      padding-block-start: 5.6rem;
+      padding-block-end: 4rem;
       margin: 0;
       font-weight: bold;
       font-family: ${token.fontFamilyCode};
 
       ${r({
         tablet: css`
-          padding: 3.5rem 0 3rem;
+          padding-block-start: 3.5rem;
+          padding-block-end:  3rem;
           font-size: 23px;
         `,
         mobile: css`

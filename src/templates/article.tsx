@@ -32,7 +32,7 @@ const ArticleTemplate: React.FC<PageProps<allMdxNodesQuery<'allArticle'> & MdxNo
           {frontmatter?.title}
         </Typography.Title>
         <div className={styles.spacerLine}></div>
-        <PrismSyntaxHighlight mdxContent={children as unknown as string}></PrismSyntaxHighlight>
+        <PrismSyntaxHighlight>{children}</PrismSyntaxHighlight>
       </div>
 
       <ArticleSidebar

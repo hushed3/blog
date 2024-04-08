@@ -8,13 +8,13 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token,
       flex-wrap: wrap;
       align-content: space-evenly;
       height: ${token.footerHeight}px;
-      padding: 2.5rem 0;
+      padding-block: 2.5rem;
       margin-block-start: 2rem;
 
       ${r({
         mobile: css`
           height: ${token.footerHeightMobile}px;
-          padding: 0.8rem 0;
+          padding-block: 0.8rem;
         `,
       })}
     `
@@ -32,7 +32,7 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token,
     color: inherit;
     font-size: 0.85rem;
     line-height: 1.2;
-    padding: 0 0.5rem;
+    padding-inline: 0.5rem;
   `,
 
   href: css`
@@ -41,13 +41,14 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token,
     color: inherit !important;
     font-size: 0.85rem;
     line-height: 1.2;
-    padding: 0 0.5rem;
+    padding-inline: 0.5rem;
 
     .image {
       display: inline-block;
       max-height: 20px;
       width: auto;
-      margin: 0.5rem;
+      margin-block: 0.5rem;
+      margin-inline: 0.5rem;
     }
 
     &:hover {

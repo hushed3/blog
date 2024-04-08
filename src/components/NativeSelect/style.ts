@@ -12,7 +12,8 @@ export const useStyles = createStyles(({ css, stylish, cx, token }, prefixCls: s
       overflow-y: auto;
       overscroll-behavior: contain;
       scrollbar-width: none;
-      padding: 5px;
+      padding-inline: 5px;
+      padding-block: 5px;
       outline: 0;
       user-select: none;
       width: 110px;
@@ -23,7 +24,8 @@ export const useStyles = createStyles(({ css, stylish, cx, token }, prefixCls: s
     css`
       all: unset;
       font-size: ${token.fontSize}px;
-      padding: 8px;
+      padding-inline: 8px;
+      padding-block: 8px;
       line-height: 0;
       color: ${token.colorTextSecondary};
       border-radius: ${token.borderRadius}px;

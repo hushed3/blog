@@ -1,6 +1,6 @@
 import { Alert, Tag } from 'antd'
 import _ from 'lodash'
-import type { Components } from '@mdx-js/react/lib/index'
+import { MergeComponents } from '@mdx-js/react/lib'
 
 import { preToCodeParams, toCodeParams } from '@/utils/code'
 import Headings from './Heading'
@@ -10,20 +10,16 @@ import Blockquote from './Blockquote'
 import Lists from './Lists'
 import Table from './Table'
 
-// @ts-ignore
-const components: Components = {
+const components = {
   code: (props) => {
-    const { className, children } = props
+    const { className, children } = toCodeParams(props)
 
-    if (_.isEmpty(className)) {
-      return <CodeHighlight children={children}></CodeHighlight>
-    }
+    return <CodeHighlight children={children}></CodeHighlight>
+  },
+  pre: (props) => {
+    const preProps = preToCodeParams(props)
 
-    if (className && /language\-/.test(className)) {
-      const preProps = toCodeParams(props)
-
-      return <PreHighlight {...preProps}></PreHighlight>
-    }
+    return <PreHighlight {...preProps!}></PreHighlight>
   },
   ...Headings,
   Alert: (props) => {
@@ -39,5 +35,7 @@ const components: Components = {
   blockquote: Blockquote,
   ...Lists,
   table: Table,
-}
-export default components
+} as unknown as MergeComponents
+
+
+export default components 

@@ -23,7 +23,7 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, stylish,
     color: ${token.colorText};
     font-size: 0.9rem;
     border: none;
-    margin: 0 0 1rem !important;
+    margin-block-end: 1rem !important;
     text-transform: uppercase;
     font-weight: 700;
   `,
@@ -69,7 +69,8 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, stylish,
     color: ${token.colorTextSecondary};
     font-size: 0.86rem;
     margin-block-end: 0.6rem;
-    padding: 0.1rem 0.3rem;
+    padding-block: 0.1rem;
+    padding-inline: 0.3rem;
 
     span {
       color: inherit;

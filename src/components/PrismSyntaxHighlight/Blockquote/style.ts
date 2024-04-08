@@ -7,7 +7,8 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
       css`
         width: 100%;
         margin-inline-start: 0;
-        padding: 0.8rem 1rem;
+        padding-block: 0.8rem;
+        padding-inline: 1rem;
         background: ${token.colorPrimaryBg};
         border-radius: ${token.borderRadius}px;
         border-inline-start: 4px solid ${token.colorPrimaryBorder};

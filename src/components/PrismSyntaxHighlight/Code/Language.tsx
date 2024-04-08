@@ -9,7 +9,7 @@ import { useStyles } from './style'
 interface LanguageProps {
   code: string
   language: Languages
-  highlightRef: React.RefObject<HTMLDivElement>
+  highlightRef: React.RefObject<HTMLPreElement>
 }
 
 const Language: React.FC<LanguageProps> = ({ code, language, highlightRef }) => {

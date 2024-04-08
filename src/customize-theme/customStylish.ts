@@ -20,7 +20,7 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
       max-width: ${token.contentMaxWidth}px;
 
       @media screen and (max-width: ${token.screenXL}px) {
-        padding: 0 1.3rem;
+        padding-inline: 1.3rem;
       }
     `,
 
@@ -39,7 +39,8 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
       line-height: 1.75;
       font-size: 0.75rem;
       font-weight: 400;
-      padding: 0.1rem 0.6rem;
+      padding-block: 0.1rem;
+      padding-inline: 0.6rem;
       border: 1px solid ${token.colorFillSecondary};
       border-radius: ${token.borderRadiusSM}px;
       color: ${token.colorText};
@@ -64,7 +65,7 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
 
     card: css`
       width: 100%;
-      margin: 2rem 0 0;
+      margin-block-start: 2rem;
       background-color: ${token.colorBgElevated};
       box-shadow: ${token.boxShadowTertiary} !important;
     `,

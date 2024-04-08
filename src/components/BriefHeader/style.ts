@@ -6,11 +6,11 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
     css`
       position: relative;
       width: 100%;
-      padding: 4rem 0 3rem;
+      padding-block: 4rem 3rem;
 
       ${r({
         mobile: css`
-          padding: 3rem 0 2.5rem;
+          padding-block: 3rem 2.5rem;
         `,
       })}
     `

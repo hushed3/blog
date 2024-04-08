@@ -8,11 +8,11 @@ import Title from './Title'
 
 export interface PreHighlightProps extends GetLanguageData, CodeNode {
   codeString: string
-}
+} 
 
 const PreHighlight: React.FC<PreHighlightProps> = memo((props) => {
   const { codeString, language = 'javascript', highlight = '', title } = props
-  const highlightRef = useRef<HTMLDivElement>(null)
+  const highlightRef = useRef<HTMLPreElement>(null)
   const { styles, cx } = useStyles('syntax-preHighlight')
   const { appearance } = useThemeMode()
 
@@ -24,7 +24,7 @@ const PreHighlight: React.FC<PreHighlightProps> = memo((props) => {
     <Highlight code={codeString} language={language} theme={theme}>
       {({ tokens, getLineProps, getTokenProps }) => {
         return (
-          <div ref={highlightRef} className={styles.syntaxHighlight}>
+          <pre ref={highlightRef} className={styles.syntaxHighlight}>
             <Title title={title} />
 
             <Language code={codeString} language={language} highlightRef={highlightRef} />
@@ -54,7 +54,7 @@ const PreHighlight: React.FC<PreHighlightProps> = memo((props) => {
                 </div>
               </code>
             </div>
-          </div>
+          </pre>
         )
       }}
     </Highlight>

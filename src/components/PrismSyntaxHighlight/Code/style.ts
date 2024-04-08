@@ -9,7 +9,8 @@ export const useStyles = createStyles(({ css, cx, token, isDarkMode, stylish, pr
         position: relative;
         border-radius: ${token.borderRadius}px;
         background-color: ${token.colorBgElevated};
-        margin: 0.8rem 0 1.2rem 0;
+        margin-block-start: 0.8rem;
+        margin-block-end: 1.2rem;
         padding-block-end: 0.8rem;
         overflow: overlay;
       `
@@ -102,9 +103,10 @@ export const useStyles = createStyles(({ css, cx, token, isDarkMode, stylish, pr
         font-size: 0.95rem;
         background-color: ${isDarkMode ? token.colorFillQuaternary : token.colorFillTertiary};
         /* background-color: ${token.colorFillQuaternary}; */
-        padding: 0.2rem 0.35rem;
+        padding-block: 0.2rem;
+        padding-inline: 0.35rem;
         border-radius: ${token.borderRadiusOuter}px;
-        margin: 0 0.3rem;
+        margin-inline: 0.3rem;
         font-family: ${token.fontFamilyHighlighter};
         opacity: 0.95;
       `
@@ -119,7 +121,8 @@ export const useStyles = createStyles(({ css, cx, token, isDarkMode, stylish, pr
         display: flex;
         color: ${token.colorTextSecondary};
         font-size: 0.95rem;
-        padding: 0.5rem 1rem 0.3rem 1.5rem;
+        padding-block: 0.5rem 0.3rem;
+        padding-inline: 1rem 1.5rem;
         gap: 0.8rem;
       `
     ),
@@ -149,7 +152,8 @@ export const useStyles = createStyles(({ css, cx, token, isDarkMode, stylish, pr
 
         .copyButton {
           height: 32px !important;
-          padding: 5px 7px !important;
+          padding-block: 5px !important;
+          padding-inline: 7px !important;
         }
       `
     ),
@@ -160,7 +164,7 @@ export const useStyles = createStyles(({ css, cx, token, isDarkMode, stylish, pr
     //     display: inline-flex;
     //     align-items: center;
     //     text-align: center;
-    //     padding: 0rem 0.6rem;
+    //     padding-inline: 0.6rem;
     //     border-radius: 6px;
     //     letter-spacing: 1px;
     //     text-transform: uppercase;

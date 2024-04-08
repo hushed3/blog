@@ -30,7 +30,8 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
         th {
           position: relative;
           hyphens: auto;
-          padding: 0.5rem;
+          padding-block: 0.5rem;
+          padding-inline: 0.5rem;
           text-align: left;
           word-break: break-word;
           border-block-end: 1px solid ${token.colorBgElevated};

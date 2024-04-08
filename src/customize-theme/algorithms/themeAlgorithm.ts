@@ -33,7 +33,6 @@ export const genMapTokenAlgorithm = (params?: MapTokenAlgorithmParams) => {
   const palettes: ColorPalettes = {
     magenta: generateColorPalette(seedColors.magenta, params).map((c) => c.hex),
   }
-  console.log(palettes)
 
   let tokens = {} as Partial<Record<keyof ColorMapToken, string>>
 

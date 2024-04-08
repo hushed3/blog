@@ -112,22 +112,18 @@ export interface PreNode {
  * @example
  * preToCodeParams(props)
  */
-export const preToCodeParams = (preProps: PreNode): PreHighlightProps | undefined => {
-  if (preProps?.children?.type === `code`) {
-    const { children, className = ``, ...props } = preProps.children.props
+export const preToCodeParams = (preProps): PreHighlightProps => {
+  const { children, className = ``, ...props } = preProps.children.props
 
-    const { language } = getLanguage(className)
+  const { language } = getLanguage(className)
 
-    return {
-      children,
-      codeString: children.trim(),
-      language,
-      className,
-      ...props,
-    }
+  return {
+    children,
+    codeString: children.trim(),
+    language,
+    className,
+    ...props,
   }
-
-  return undefined
 }
 /**
  * @description 将来自 “<code>” MDX标记的道具转换为 “<Code />” 组件的形状

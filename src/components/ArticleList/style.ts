@@ -21,8 +21,8 @@ export const useStyles = createStyles(({ css, responsive: r, token }) => ({
   link: css`
     display: flex;
     align-items: center;
-    padding: 0.3rem 0;
-    margin: 1.6rem 0;
+    padding-block: 0.3rem;
+    margin-block: 1.6rem;
     background-color: transparent;
     transition: all ${token.motionDurationSlow};
     color: inherit;
@@ -36,7 +36,7 @@ export const useStyles = createStyles(({ css, responsive: r, token }) => ({
 
     .infos {
       flex: 1;
-      padding: 0 1.3rem;
+      padding-inline: 1.3rem;
       color: ${token.colorText};
       opacity: 0.7;
       transition: opacity ${token.motionDurationMid};
