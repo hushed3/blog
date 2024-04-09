@@ -5,7 +5,7 @@ import React, { useMemo } from 'react'
 import ArticleList from '@/components/ArticleList'
 import BriefHeader from '@/components/BriefHeader'
 import SEO from '@/components/SEO'
-import BlogSidebar from '@/components/Sidebar/BlogSidebar'
+import ArchiveSidebar from '@/components/Sidebar/ArchiveSidebar'
 import { simplifiedQueryData } from '@/utils/helpers'
 import { useStyles } from './styles/style'
 import { getPathname } from '@/utils/func'
@@ -32,7 +32,7 @@ const TagTemplate: React.FC<PageProps<allMdxNodesQuery<'tags'> & MdxNodesQuery, 
         <BriefHeader highlight={totalCount} description={message} title={tag} />
         <ArticleList data={simplifiedArticles} />
       </div>
-      <BlogSidebar />
+      <ArchiveSidebar />
     </div>
   )
 }

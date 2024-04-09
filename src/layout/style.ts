@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style'
 
-export const useStyles = createStyles(({ css, prefixCls, responsive: r, cx, stylish }) => ({
+export const useStyles = createStyles(({ css, token, prefixCls, responsive: r, cx, stylish }) => ({
   layout: cx(
     `${prefixCls}-layout`,
     css`
@@ -14,6 +14,7 @@ export const useStyles = createStyles(({ css, prefixCls, responsive: r, cx, styl
     `${prefixCls}-layout-content`,
     css`
       flex: 1;
+      min-height: calc(100vh - ${token.headerHeight}px);
     `
   ),
 }))

@@ -5,7 +5,7 @@ import React, { useMemo } from 'react'
 import ArticleList from '@/components/ArticleList'
 import BriefHeader from '@/components/BriefHeader'
 import SEO from '@/components/SEO'
-import BlogSidebar from '@/components/Sidebar/BlogSidebar'
+import ArchiveSidebar from '@/components/Sidebar/ArchiveSidebar'
 import { simplifiedQueryData } from '@/utils/helpers'
 import { useStyles } from './styles/style'
 
@@ -36,7 +36,7 @@ const CategoryTemplate: React.FC<PageProps<Queries.CategoryPageQuery, { category
         <BriefHeader highlight={totalCount} description={message} title={category} />
         <ArticleList data={simplifiedArticles} />
       </div>
-      <BlogSidebar />
+      <ArchiveSidebar />
     </div>
   )
 }

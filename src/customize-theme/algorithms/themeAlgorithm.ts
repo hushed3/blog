@@ -2,6 +2,7 @@ import type { ColorMapToken } from 'antd/es/theme/interface/maps/colors'
 
 import { MapTokenAlgorithmParams, TokenRelationship } from './types'
 import { ColorPalettes, TokenType, generateColorPalette } from './paletteGenerator'
+import config from '@/config'
 
 const defaultRelationship: TokenRelationship = (type) => {
   const key = type.toUpperCase()[0] + type.slice(1)
@@ -21,7 +22,7 @@ const defaultRelationship: TokenRelationship = (type) => {
 }
 
 export const genMapTokenAlgorithm = (params?: MapTokenAlgorithmParams) => {
-  const { relationship = defaultRelationship, brandColor = '#565EFF' } = params || {}
+  const { relationship = defaultRelationship, brandColor = config.themes.brandColor } = params || {}
 
   const seedColors = {
     primary: brandColor,

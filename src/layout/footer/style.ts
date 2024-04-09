@@ -7,9 +7,12 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token,
       display: flex;
       flex-wrap: wrap;
       align-content: space-evenly;
-      height: ${token.footerHeight}px;
+      justify-content: center;
+      min-height: ${token.footerHeight}px;
       padding-block: 2.5rem;
       margin-block-start: 2rem;
+      color: ${token.colorTextTertiary};
+      gap: 1.2rem;
 
       ${r({
         mobile: css`

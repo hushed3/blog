@@ -21,7 +21,7 @@ const MeTemplate: React.FC<PageProps<MdxNodesQuery<'me'>, MdxQuery>> = (props) =
     <div className={styles.container}>
       <div>
         <h2 className={styles.title}>{data.me.frontmatter.title}</h2>
-        <PrismSyntaxHighlight mdxContent={children as unknown as string}></PrismSyntaxHighlight>
+        <PrismSyntaxHighlight>{children}</PrismSyntaxHighlight>
       </div>
 
       <MeSidebar />

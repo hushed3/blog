@@ -5,9 +5,9 @@ import React, { useMemo } from 'react'
 import ArticleList from '@/components/ArticleList'
 import BriefHeader from '@/components/BriefHeader'
 import SEO from '@/components/SEO'
-import BlogSidebar from '@/components/Sidebar/BlogSidebar'
+import ArchiveSidebar from '@/components/Sidebar/ArchiveSidebar'
 import { simplifiedQueryData } from '@/utils/helpers'
-import { useStyles } from './styles/_blog.style'
+import { useStyles } from './styles/_archive.style'
 
 /**
  * @description 归档页面
@@ -15,7 +15,7 @@ import { useStyles } from './styles/_blog.style'
  * @export
  * @return {*}
  */
-const Blog: React.FC<PageProps<allMdxNodesQuery & MdxNodesQuery>> = (props) => {
+const Archive: React.FC<PageProps<allMdxNodesQuery & MdxNodesQuery>> = (props) => {
   const { data } = props
   const title = '文章归档'
   const description = 'Notes & tutorials'
@@ -33,19 +33,19 @@ const Blog: React.FC<PageProps<allMdxNodesQuery & MdxNodesQuery>> = (props) => {
         <ArticleList data={articles} />
       </div>
 
-      <BlogSidebar />
+      <ArchiveSidebar />
     </div>
   )
 }
 
-export default Blog
+export default Archive
 
 export const Head: HeadFC = (props) => {
   const { location } = props
 
   return (
     <>
-      <SEO title="文章归档" description="Notes & tutorials" pathName={location.pathname} />
+      <SEO title="文章归档" description="Notes & tutorials & Archives" pathName={location.pathname} />
     </>
   )
 }

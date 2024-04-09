@@ -9,7 +9,7 @@ import { useGetTaxonomies } from '@/hooks'
  * @description 归档页面 - 侧边类别、标签信息
  */
 
-const BlogSidebar = () => {
+const ArchiveSidebar = () => {
   const { styles } = useStyles()
 
   const { tags, categories } = useGetTaxonomies()
@@ -40,4 +40,4 @@ const BlogSidebar = () => {
   )
 }
 
-export default BlogSidebar
+export default ArchiveSidebar

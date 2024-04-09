@@ -59,14 +59,6 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token,
         }
       }
 
-      .label {
-        display: block;
-      }
-      .icon {
-        display: none;
-        font-size: 1rem;
-      }
-
       .logo {
         line-height: 1.2;
         font-size: 1.4rem;
@@ -76,17 +68,6 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token,
         background-clip: text;
         transition: all ${token.motionDurationSlow};
       }
-
-      ${r({
-        tablet: css`
-          .label {
-            display: none;
-          }
-          .icon {
-            display: flex;
-          }
-        `,
-      })}
     `
   ),
 }))
