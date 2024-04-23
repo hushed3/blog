@@ -5,6 +5,7 @@ import SEO from '@/components/SEO'
 import ArticleSidebar from '@/components/Sidebar/ArticleSidebar'
 import PrismSyntaxHighlight from '@/components/PrismSyntaxHighlight'
 import { useStyles } from './styles/style'
+import { flattenHead } from '@/utils/helpers'
 
 /**
  * @description 文章页面
@@ -20,7 +21,7 @@ const ArticleTemplate: React.FC<PageProps<allMdxNodesQuery<'allArticle'> & MdxNo
   const { styles } = useStyles()
 
   const frontmatter = currentArticle.frontmatter
-  const headings = currentArticle.tableOfContents.items.map((e, i) => ({ ...e, href: `#${e.title}`, key: e.title }))
+  const headings = flattenHead(currentArticle.tableOfContents.items, 1)
   const articles = allArticle.nodes.map((e) => ({ ...e.frontmatter })).filter((a) => a.slug !== frontmatter.slug)
   const tags = frontmatter?.tags.map((t) => ({ name: t, path: `/tags/${t}` }))
   const categories = frontmatter?.categories.map((c) => ({ name: c, path: `/categories/${c}` }))
@@ -75,7 +76,7 @@ export const recentQuery = graphql`
       newFrontmatter: frontmatter {
         date(formatString: "YYYY-MM-DD")
       }
-      tableOfContents(maxDepth: 4)
+      tableOfContents(maxDepth: 5)
     }
   }
 `

@@ -15,6 +15,7 @@ const initialState: SiteStore = {
     description: '',
     feedUrl: '',
     version: '',
+    repository: '',
   },
 }
 

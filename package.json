@@ -16,7 +16,7 @@
   },
   "scripts": {
     "dev": "gatsby clean && gatsby develop -H 0.0.0.0 -p 8008",
-    "build": "gatsby build",
+    "build": "gatsby build --prefix-paths",
     "serve": "gatsby build && gatsby serve -H 0.0.0.0 -o",
     "clean": "gatsby clean",
     "info": "gatsby info -C",
@@ -70,6 +70,7 @@
     "husky": "^8.0.3",
     "jsencrypt": "^3.3.2",
     "node-jsencrypt": "^1.0.0",
+    "node-polyfill-webpack-plugin": "^3.0.0",
     "polished": "^4.2.2",
     "prettier": "^2.8.8",
     "prism-react-renderer": "^2.1.0",

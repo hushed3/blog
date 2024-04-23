@@ -21,11 +21,18 @@ const components = {
 
     return <PreHighlight {...preProps!}></PreHighlight>
   },
+  a: (props) => {
+    return (
+      <a {...props} target="_blank">
+        {props.children}
+      </a>
+    )
+  },
   ...Headings,
   Alert: (props) => {
-    const { children } = props
+    const { children, message } = props
 
-    return <Alert {...props} message={children} />
+    return <Alert {...props} message={children || message} style={{ marginBlockStart: '1.2rem' }} />
   },
   Tag: (props) => (
     <Tag {...props} bordered={false}>
@@ -37,5 +44,4 @@ const components = {
   table: Table,
 } as unknown as MergeComponents
 
-
-export default components 
+export default components

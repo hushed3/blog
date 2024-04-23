@@ -19,6 +19,15 @@ export const GlobalScopeStyle = createGlobalStyle`
     font-display: swap;
   }
 
+  @font-face {
+    font-family: 'Coalhandluketrial';
+    src: url('/fonts/Coalhandluketrial/Coalhandluketrial.woff2') format('woff2'),
+    url('/fonts/Coalhandluketrial/Coalhandluketrial.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
   *,
   *::before,
   *::after {

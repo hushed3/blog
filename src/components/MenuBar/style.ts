@@ -10,7 +10,7 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls }) => {
     text-decoration: none;
     border-radius: ${token.borderRadius};
     color: ${token.colorTextSecondary};
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     font-weight: 500;
     margin-block-end: 0.7rem;
 
@@ -91,9 +91,9 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls }) => {
     tag: cx(
       `${prefixCls}-menuBar-tag`,
       css`
-        font-size: 0.85rem;
+        font-size: 0.88rem;
         color: ${token.colorTextSecondary};
-        background-color: ${token.colorFillTertiary};
+        background-color: ${token.colorFillQuaternary};
         text-transform: capitalize;
         margin-block-start: 0.7rem;
 

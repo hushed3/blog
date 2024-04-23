@@ -21,6 +21,7 @@ const siteMetadata: SiteMetadataType['site']['siteMetadata'] = {
   feedUrl: `${packageJson.homepage}/rss.xml`,
   logo: `${packageJson.homepage}/logo.png`,
   version: packageJson.version,
+  repository: packageJson.repository.url,
 }
 
 const config: GatsbyConfigType = {

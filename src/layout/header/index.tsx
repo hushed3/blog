@@ -14,19 +14,16 @@ export const Header = () => {
     <>
       <header className={styles.header}>
         <div className={styles.headerContainer}>
-          <Space size="middle">
+          <Space size="large">
             <Link to="/" className={styles.navigationLink}>
-              <span className="logo">𝓙</span>
+              <span className="logo">J</span>
             </Link>
 
             {headerMenu.map(
               (item) =>
                 item.show && (
                   <Link className={styles.navigationLink} to={item.url} key={item.label}>
-                    {/* <span className="icon">
-                      <item.icon />
-                    </span> */}
-                    <span className="label">{item.label}</span>
+                    {item.label}
                   </Link>
                 )
             )}

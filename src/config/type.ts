@@ -1,5 +1,4 @@
 import { PrismTheme } from 'prism-react-renderer'
-import { SiteMetadata } from '@/hooks/useSiteMetadata'
 
 interface MenuItem {
   url: string
@@ -15,12 +14,23 @@ interface Theme {
 }
 
 /**
+ * @description 主题配置信息
+ * @date 08/04/2024
+ * @interface Themes
+ */
+interface Themes {
+  brandColor: string
+  light: Theme
+  dark: Theme
+}
+
+/**
  * @description 头部配置信息
  * @date 08/04/2024
  * @interface Headers
  */
 interface Headers {
-  menu: MenuItem[]
+  menu: Omit<MenuItem, 'icon'>[]
   // 导航栏右侧的社交链接
   social: MenuItem[]
 }
@@ -38,24 +48,12 @@ interface Footers {
 }
 
 /**
- * @description 主题配置信息
- * @date 08/04/2024
- * @interface Themes
- */
-interface Themes {
-  brandColor: string
-  light: Theme
-  dark: Theme
-}
-
-/**
  * @description 站点配置信息
  * @date 08/04/2024
  * @interface Config
  * @extends {SiteMetadata}
  */
 interface SiteConfig {
-  site: SiteMetadata
   themes: Themes
   headers: Headers
   footers: Footers

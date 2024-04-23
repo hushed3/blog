@@ -13,11 +13,14 @@ const SEO: React.FC<SEOProps> = (props) => {
   const { title, description, pathName, children } = props
 
   const siteData = useSiteStore((state) => state.siteData)
+
   const seo = {
     title: title ? `${title} | ${siteData.title}` : siteData.title,
     description: description ? description : siteData.description,
-    image: `${siteData.siteUrl}${siteData.logo}`,
-    url: `${siteData.siteUrl}/${pathName}`,
+    image: `${siteData.logo}`,
+    ico: `${siteData.siteUrl}/favicon.ico`,
+    url: `${siteData.siteUrl}${pathName}`,
+    repository: `${siteData.repository}`,
   }
 
   const schemaOrgJSONLD: any[] = [
@@ -75,7 +78,6 @@ const SEO: React.FC<SEOProps> = (props) => {
       <meta property="og:description" content={seo.description} />
       <meta property="og:image" content={seo.image} />
       <meta property="og:type" content="webSite" />
-      <meta property="og:see_also" content="https://github.com/hushed3" />
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:url" content={seo.url} />
@@ -83,7 +85,8 @@ const SEO: React.FC<SEOProps> = (props) => {
       <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:image" content={seo.image} />
 
-      <link rel="shortcut icon" type="image/png" href="/logo.ico" />
+      <link rel="shortcut icon" type="image/png" href={'/favicon.ico'} />
+
       <script type="application/ld+json">{JSON.stringify(schemaOrgJSONLD)}</script>
       {children}
     </>

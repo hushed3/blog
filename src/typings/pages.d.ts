@@ -8,7 +8,7 @@ type Frontmatter = {
   description: string
   date: string
   lastUpdated: string
-  icon: SVGIconTypes
+  icon: any
   slug: string
   template: string
   tags: string[]

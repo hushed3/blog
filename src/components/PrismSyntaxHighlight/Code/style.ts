@@ -5,12 +5,10 @@ export const useStyles = createStyles(({ css, cx, token, isDarkMode, stylish, pr
     syntaxHighlight: cx(
       prefixCls,
       css`
-        /* ${stylish.card} */
+        ${stylish.card}
         position: relative;
         border-radius: ${token.borderRadius}px;
-        background-color: ${token.colorBgElevated};
-        margin-block-start: 0.8rem;
-        margin-block-end: 1.2rem;
+        margin-block: 1.2rem;
         padding-block-end: 0.8rem;
         overflow: overlay;
       `
@@ -101,14 +99,12 @@ export const useStyles = createStyles(({ css, cx, token, isDarkMode, stylish, pr
       css`
         color: ${token.colorPrimary};
         font-size: 0.95rem;
-        background-color: ${isDarkMode ? token.colorFillQuaternary : token.colorFillTertiary};
-        /* background-color: ${token.colorFillQuaternary}; */
+        background-color: ${token.colorFillQuaternary};
         padding-block: 0.2rem;
         padding-inline: 0.35rem;
         border-radius: ${token.borderRadiusOuter}px;
         margin-inline: 0.3rem;
         font-family: ${token.fontFamilyHighlighter};
-        opacity: 0.95;
       `
     ),
 

@@ -65,9 +65,8 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
 
     card: css`
       width: 100%;
-      margin-block-start: 2rem;
       background-color: ${token.colorBgElevated};
-      box-shadow: ${token.boxShadowTertiary} !important;
+      box-shadow: none !important;
     `,
   }
 }

@@ -6,7 +6,8 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
       `${prefixCls}-blockquote`,
       css`
         width: 100%;
-        margin-inline-start: 0;
+        margin-inline: 0;
+        margin-block: 2rem;
         padding-block: 0.8rem;
         padding-inline: 1rem;
         background: ${token.colorPrimaryBg};

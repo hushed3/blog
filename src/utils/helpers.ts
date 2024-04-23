@@ -1,6 +1,7 @@
+import type { AnchorLinkItemProps } from 'antd/es/anchor/Anchor'
+
 type ResponseData<T> = T & SimplifiedQueryData
 
-// 定义函数类型
 type SimplifiedQueryDataFunction = {
   <T>(
     nodes: ReadonlyArray<T extends null ? GraphqlNode : T>,
@@ -8,7 +9,13 @@ type SimplifiedQueryDataFunction = {
   ): ResponseData<T>[]
 }
 
-// 定义泛型函数
+/**
+ * @description 简化查询数据
+ * @date 20/04/2024
+ * @param {ReadonlyArray<T extends null ? GraphqlNode : T>} nodes
+ * @param {(e: ResponseData<T>) => ResponseData<T>} callback
+ * @return {*}  {SimplifiedQueryDataFunction}
+ */
 export const simplifiedQueryData: SimplifiedQueryDataFunction = (nodes, callback) => {
   if (!nodes) return []
   const result = nodes
@@ -29,3 +36,26 @@ export const simplifiedQueryData: SimplifiedQueryDataFunction = (nodes, callback
     .filter((e) => e !== null)
   return result
 }
+
+export type HeadingItem = {
+  level: number
+} & AnchorLinkItemProps
+
+/**
+ * @description 递归扁平化目录
+ * @date 20/04/2024
+ * @param {any[]} arr
+ * @param {number} level
+ * @return {*}  {HeadingItem[]}
+ */
+export const flattenHead = (arr: any[], level: number): HeadingItem[] =>
+  arr.reduce((acc, cur, i) => {
+    if (cur.items) {
+      return [
+        ...acc,
+        { key: cur.title, href: `#${cur.title}`, title: cur.title, className: `level-${level}`, level },
+        ...flattenHead(cur.items, level + 1),
+      ]
+    }
+    return [...acc, { key: cur.title, href: `#${cur.title}`, title: cur.title, className: `level-${level}`, level }]
+  }, [])

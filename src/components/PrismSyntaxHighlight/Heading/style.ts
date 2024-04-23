@@ -68,28 +68,33 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
         color: ${token.colorText};
         font-family: ${token.fontFamilyCode};
       }
+
       a {
-        color: ${token.colorPrimary};
+        color: ${token.colorPrimaryHover};
       }
-      span {
-        &:hover {
-          a {
-            opacity: 1;
-            color: ${token.colorPrimaryHover};
-          }
+
+      &:hover {
+        a {
+          opacity: 1;
+          color: ${token.colorPrimaryHover};
         }
       }
     `,
-    link: css`
-      position: absolute;
-      top: 0;
-      left: 0;
-      scroll-margin-top: 90px;
 
-      transform: translateX(-100%) translateY(3%);
-      padding-inline-end: 4px;
-      opacity: 0;
-      height: 100%;
-    `,
+    link: cx(
+      `${prefixCls}-link`,
+      css`
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        scroll-margin-top: 90px;
+        transform: translateX(-100%);
+        padding-inline-end: 4px;
+        height: 100%;
+        opacity: 0;
+      `
+    ),
   }
 })

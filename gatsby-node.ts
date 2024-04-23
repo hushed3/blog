@@ -2,6 +2,7 @@ import { createFilePath } from 'gatsby-source-filesystem'
 import readingTime from 'reading-time'
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url'
+import NodePolyfillPlugin from 'node-polyfill-webpack-plugin'
 
 import type { GatsbyNode } from 'gatsby'
 
@@ -21,6 +22,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       feedUrl: String!
       logo: String!
       version: String!
+      repository: String!
     }
 
     type Mdx implements Node {
@@ -55,25 +57,14 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ loa
         '@@': path.resolve(__dirname, 'src/assets'),
         '@static': path.resolve(__dirname, 'static'),
       },
-      fallback: {
-        stream: false,
-        crypto: false,
-      },
     },
-    module: {
-      rules: [
-        {
-          test: /jsencrypt/,
-          use: loaders.null(),
-        },
-      ],
-    },
+    plugins: [new NodePolyfillPlugin({ includeAliases: ['path', 'url', 'stream'] })],
   })
   // }
 }
 
 const articlePage = path.resolve('./src/templates/article.tsx')
-const mePage = path.resolve('./src/templates/me.tsx')
+const aboutPage = path.resolve('./src/templates/about.tsx')
 const tagPage = path.resolve('./src/templates/tag.tsx')
 const categoryPage = path.resolve('./src/templates/category.tsx')
 
@@ -152,13 +143,13 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
     })
 
     // =====================================================================================
-    // mePage
+    // aboutPage
     // =====================================================================================
 
     pages.forEach((page) => {
       createPage({
         path: page.frontmatter?.slug!,
-        component: `${mePage}?__contentFilePath=${page.internal.contentFilePath}`,
+        component: `${aboutPage}?__contentFilePath=${page.internal.contentFilePath}`,
         context: {
           slug: page.frontmatter?.slug,
         },

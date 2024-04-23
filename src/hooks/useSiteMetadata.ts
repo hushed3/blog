@@ -14,6 +14,10 @@ export type SiteMetadata = {
    */
   siteUrl: string
   /**
+   * @title 站点仓库地址
+   */
+  repository: string
+  /**
    * @title 站点logo
    */
   logo: string
@@ -39,7 +43,6 @@ export type SiteMetadataType = {
 
 type UseSiteMetadataType = SiteMetadataType['site']['siteMetadata']
 
-
 export const useSiteMetadata = (): UseSiteMetadataType => {
   const { site } = useStaticQuery<SiteMetadataType>(graphql`
     query siteMetadata {
@@ -52,6 +55,7 @@ export const useSiteMetadata = (): UseSiteMetadataType => {
           siteUrl
           feedUrl
           version
+          repository
         }
       }
     }

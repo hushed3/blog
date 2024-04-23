@@ -72,6 +72,6 @@ export const createCustomToken: GetCustomToken<SiteToken> = ({ isDarkMode, token
     highlightBackgroundColor: '',
     boxShadowFourth: isDarkMode
       ? ''
-      : '0 1px 4px 0 rgba(0, 0, 0, 0.04), 0 1px 8px -1px rgba(0, 0, 0, 0.03), 0 2px 6px 0 rgba(0, 0, 0, 0.03)',
+      : '0 1px 4px 0 rgba(0, 0, 0, 0.03), 0 1px 8px -1px rgba(0, 0, 0, 0.025), 0 2px 6px 0 rgba(0, 0, 0, 0.025)',
   }
 }

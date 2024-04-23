@@ -1,9 +1,11 @@
 import { Divider, Space, Typography } from 'antd'
 import config from '@/config'
+import { useSiteMetadata } from '@/hooks'
 import { useStyles } from './style'
 
 export const Footer = () => {
   const { styles } = useStyles()
+  const site = useSiteMetadata()
 
   const footerMenu = config.footers.menu
   const footerFriend = config.footers.friend
@@ -11,7 +13,7 @@ export const Footer = () => {
 
   return (
     <footer className={styles.footer}>
-      <Typography.Text className={styles.text}>Power By {config.site.author}</Typography.Text>
+      <Typography.Text className={styles.text}>Powered By {site.author}</Typography.Text>
 
       <Space size="middle" className={styles.footerContainer}>
         {footerMenu.map((link) => (

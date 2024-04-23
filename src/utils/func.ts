@@ -53,47 +53,31 @@ export const getPathname = (path: string): string => {
 }
 
 /**
- * @description object转换为url参数
- * @param obj
- * @returns
- */
-export const objectToUrlParams = (obj: Record<string, any>) => {
-  const params = new URLSearchParams()
-  for (const key in obj) {
-    if (Object.hasOwn(obj, key)) {
-      params.append(key, obj[key])
-    }
-  }
-  return params.toString()
-}
-/**
- * @description 从字符串提取数字
+ * @description 生成随机字符串
  * @date 15/10/2023
- * @param {string} tag
- * @return {*}  {(number | null)}
+ * @return {*}  {string}
  */
-export const getNumber = (tag: string): number | null => {
-  const number = tag.match(/\d+(\.\d+)?/g)?.join()
+export const randomString = () => Math.random().toString(36).slice(2)
 
-  return number ? Number(number) : null
-}
 
 /**
- * @description 删除所有空的兄弟节点
- * @date 04/04/2024
- * @param {(HTMLDivElement | null)} currentNode
+ * @description 生成随机颜色
+ * @date 15/10/2023
+ * @return {*}  {string}
  */
-export const removeSiblingNodesWithoutChildren = (currentNode: HTMLDivElement | null) => {
-  if (!currentNode) return
-  const childNodes = currentNode.parentNode?.childNodes
-  if (!childNodes) return
-  for (let i = 0; i < childNodes.length; i++) {
-    const node = childNodes[i]
-    if (!node.hasChildNodes()) {
-      safeStartTransition(() => {
-        node.remove()
-        // setTimeout(() => node.remove(), 0)
-      })
-    }
-  }
+export const randomColor = () =>
+  '#' +
+  Math.floor(Math.random() * 0xffffff)
+    .toString(16)
+    .padEnd(6, '0')
+
+/**
+ * @description 解析url参数
+ * @date 15/10/2023
+ * @return {*}  {object}
+ */
+export const parseQuery = (url: string) => {
+  const q = {}
+  url.replace(/([^?&=]+)=([^&]+)/g, (_, k, v) => (q[k] = v))
+  return q
 }

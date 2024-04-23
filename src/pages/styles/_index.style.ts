@@ -8,21 +8,25 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
     `
   ),
 
-  briefDescription: css`
-    -webkit-font-smoothing: antialiased;
-    margin-block-start: 2rem;
-    margin-block-end: 0;
-    font-size: 1rem;
-    line-height: 1.4;
-    color: ${token.colorTextSecondary};
+  briefDescription: cx(
+    `${prefixCls}-home-description`,
+    css`
+      -webkit-font-smoothing: antialiased;
+      margin-block-start: 2rem;
+      margin-block-end: 0;
+      font-size: 1rem;
+      line-height: 1.4;
+      color: ${token.colorTextSecondary};
+      font-family: Coalhandluketrial;
 
-    ${r({
-      tablet: css`
-        font-size: 0.9rem;
-        margin-block-start: 2rem;
-      `,
-    })}
-  `,
+      ${r({
+        tablet: css`
+          font-size: 0.9rem;
+          margin-block-start: 2rem;
+        `,
+      })}
+    `
+  ),
 
   preview: cx(
     `${prefixCls}-home-preview`,
@@ -50,9 +54,8 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
   recentCard: cx(
     `${prefixCls}-recentCard`,
     css`
-      min-height: 9rem;
-      background-color: ${token.colorBgElevated};
-      box-shadow: none !important;
+      ${stylish.card}
+      min-height: 10rem;
 
       .${prefixCls}-card-body {
         display: flex;
@@ -65,9 +68,8 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
   highlightCard: cx(
     `${prefixCls}-highlightCard`,
     css`
-      min-height: 9rem;
-      background-color: ${token.colorBgElevated};
-      box-shadow: none !important;
+      ${stylish.card}
+      min-height: 10rem;
 
       .${prefixCls}-card-body {
         display: flex;
@@ -89,7 +91,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
     `${prefixCls}-card-time`,
     css`
       display: block;
-      color: ${token['magenta-4']};
+      color: ${token['magenta-5']};
       font-size: 0.75rem;
 
       ${r({

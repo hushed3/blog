@@ -27,15 +27,15 @@ const Home: React.FC<PageProps<allMdxNodesQuery<'latest' | 'Highlights'> & MdxNo
 
   return (
     <Space className={styles.container} direction="vertical" size="large">
-      <BriefHeader greeting="Hey, I'm  &nbsp;j">
+      <BriefHeader greeting="Hey, I'm  &nbsp;Jhon">
         <p className={styles.briefDescription}>
-          𝑰 𝒉𝒐𝒑𝒆 𝒚𝒐𝒖 𝒍𝒊𝒗𝒆 𝒂 𝒍𝒊𝒇𝒆 𝒚𝒐𝒖‘𝒓𝒆 𝒑𝒓𝒐𝒖𝒅 𝒐𝒇. 𝑰𝒇 𝒚𝒐𝒖 𝒇𝒊𝒏𝒅 𝒕𝒉𝒂𝒕 𝒚𝒐𝒖’𝒓𝒆 𝒏𝒐𝒕, 𝑰 𝒉𝒐𝒑𝒆 𝒚𝒐𝒖 𝒉𝒂𝒗𝒆 𝒕𝒉𝒆 𝒔𝒕𝒓𝒆𝒏𝒈𝒕𝒉 𝒕𝒐 𝒔𝒕𝒂𝒓𝒕 𝒂𝒍𝒍
-          𝒐𝒗𝒆𝒓 𝒂𝒈𝒂𝒊𝒏.
+          I hope you live a life you're proud of. If you find that you're not, I hope you have the courage to start
+          over.
         </p>
         <p className={styles.briefDescription}>
-          我希望你过着自己引以为傲的生活。 如果你发现事实并非如此，我希望你有勇气重新开始。
+          「 我希望你过着自己引以为傲的生活。如果你发现事实并非如此，我希望你有勇气重新开始 」
         </p>
-        <p className={styles.briefDescription}>𝑯𝒂𝒗𝒆 𝒂 𝒈𝒐𝒐𝒅 𝒅𝒂𝒚... </p>
+        <p className={styles.briefDescription}>Have a good day. </p>
       </BriefHeader>
       <Heading title="最近内容" slug="/archive" />
       <div className={styles.preview}>
