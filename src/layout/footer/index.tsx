@@ -7,8 +7,8 @@ export const Footer = () => {
   const { styles } = useStyles()
   const site = useSiteMetadata()
 
-  const footerMenu = config.footers.menu
-  const footerFriend = config.footers.friend
+  const footerMenu = config.footers.menu.filter((item) => item.show)
+  const footerFriend = config.footers.friend.filter((item) => item.show)
   const ICPRecord = config.footers.ICPRecord
 
   return (

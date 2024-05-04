@@ -7,8 +7,8 @@ import ThemeSwitch from '@/components/ThemeSwitch'
 export const Header = () => {
   const { styles } = useStyles()
 
-  const headerMenu = config.headers.menu
-  const headerSocial = config.headers.social
+  const headerMenu = config.headers.menu.filter((item) => item.show)
+  const headerSocial = config.headers.social.filter((item) => item.show)
 
   return (
     <>
@@ -19,14 +19,11 @@ export const Header = () => {
               <span className="logo">J</span>
             </Link>
 
-            {headerMenu.map(
-              (item) =>
-                item.show && (
-                  <Link className={styles.navigationLink} to={item.url} key={item.label}>
-                    {item.label}
-                  </Link>
-                )
-            )}
+            {headerMenu.map((item) => (
+              <Link className={styles.navigationLink} to={item.url} key={item.label}>
+                {item.label}
+              </Link>
+            ))}
 
             {headerSocial.map((item) => (
               <a className={styles.navigationLink} key={item.label} href={item.url} target="_blank" rel="noreferrer">

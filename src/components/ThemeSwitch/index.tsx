@@ -1,6 +1,7 @@
-import { useThemeMode } from '@/hooks'
 import { useMemo, type FC, memo } from 'react'
 import { Button, Dropdown } from 'antd'
+import { useThemeMode } from '@/hooks'
+import { isSSR } from '@/utils/func'
 
 const IconAuto = () => (
   <span style={{ display: 'flex', marginInlineEnd: '0.6em' }}>
@@ -45,12 +46,37 @@ const items = [
 ]
 
 const ThemeSwitch: FC = memo(() => {
-  const { themeMode, setThemeMode } = useThemeMode()
+  const { themeMode, appearance, setThemeMode } = useThemeMode()
 
   const Icon = useMemo(() => items.find((item) => item?.key === themeMode)?.icon, [themeMode])
 
-  const onClick = ({ key }) => {
+  const onClick = ({ key, domEvent }) => {
     setThemeMode(key)
+
+    const { clientX: x, clientY: y } = domEvent
+
+    // @ts-ignore
+    if (!isSSR && !document.startViewTransition) return
+    // @ts-ignore
+    const transition = document.startViewTransition()
+
+    transition.ready.then(() => {
+      document.documentElement.animate(
+        [
+          {
+            clipPath: `circle(0% at ${x}px ${y}px)`,
+          },
+          {
+            clipPath: `circle(100% at ${x}px ${y}px)`,
+          },
+        ],
+        {
+          duration: 500,
+          easing: 'ease-in',
+          pseudoElement: '::view-transition-new(root)',
+        }
+      )
+    })
   }
 
   return (

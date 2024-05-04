@@ -1,7 +1,6 @@
 const visit = require(`unist-util-visit`)
 
 import type { Plugin, Transformer } from 'unified'
-import _ from 'lodash'
 
 const transformer: Transformer = (ast) => {
   const re = /\b([-\w]+)(?:=(?:"([^"]*)"|'([^']*)'|([^"'\s]+)))?/g

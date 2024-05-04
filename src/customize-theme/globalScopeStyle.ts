@@ -34,12 +34,15 @@ export const GlobalScopeStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-
   ::selection {
     background: ${(p) => p.theme.colorPrimaryBorder};
   }
 
-  
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
 
   html {
     margin: 0;

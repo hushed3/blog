@@ -1,5 +1,4 @@
 import { Alert, Tag } from 'antd'
-import _ from 'lodash'
 import { MergeComponents } from '@mdx-js/react/lib'
 
 import { preToCodeParams, toCodeParams } from '@/utils/code'

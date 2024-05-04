@@ -3,30 +3,22 @@ import { Button, App } from 'antd'
 import { useSpring, animated } from '@react-spring/web'
 import { useDebounceFn, useHover } from 'ahooks'
 import copyToClipboard from 'copy-to-clipboard'
-import { Languages } from '@/utils/code'
 import { useStyles } from './style'
 
-interface LanguageProps {
+interface CopyProps {
   code: string
-  language: Languages
   highlightRef: React.RefObject<HTMLPreElement>
 }
 
-const Language: React.FC<LanguageProps> = ({ code, language, highlightRef }) => {
+const Copy: React.FC<CopyProps> = ({ code, highlightRef }) => {
   const { styles } = useStyles()
   const { message } = App.useApp()
   const [copied, setCopied] = useState<boolean>(false)
   const isHover = useHover(highlightRef)
 
-  // 定义两个不同的样式
-  const languageElementProps = useSpring({
-    opacity: isHover ? 0 : 1,
-    display: isHover ? 'none' : 'block',
-  })
-
   const copyElementProps = useSpring({
     opacity: isHover ? 1 : 0,
-    display: isHover ? 'block' : 'none',
+    display: isHover ? 'flex' : 'none',
   })
 
   const { run } = useDebounceFn(
@@ -49,17 +41,11 @@ const Language: React.FC<LanguageProps> = ({ code, language, highlightRef }) => 
     run()
   }
   return (
-    <div className={styles.language}>
-      <animated.div style={copyElementProps}>
-        <Button size="small" type="dashed" className="copyButton" onClick={copyClick}>
-          {/* {copied ? 'Copied!' : 'Copy'} */}
-          {copied ? <CopiedIcon /> : <CopyIcon />}
-        </Button>
-      </animated.div>
-      <animated.div className="language" style={languageElementProps}>
-        {language}
-      </animated.div>
-    </div>
+    <animated.div style={{ ...copyElementProps, position: 'absolute', top: '0px', right: '0px' }}>
+      <Button className={styles.copy} size="small" type="dashed" onClick={copyClick}>
+        {copied ? <CopiedIcon /> : <CopyIcon />}
+      </Button>
+    </animated.div>
   )
 }
 
@@ -111,4 +97,4 @@ const CopiedIcon = () => {
   )
 }
 
-export default Language
+export default Copy

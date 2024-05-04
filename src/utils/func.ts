@@ -1,5 +1,3 @@
-import { safeStartTransition } from './safeStartTransition'
-
 /**
  * @description 判断是否为SSR
  * @date 30/09/2022
@@ -58,7 +56,6 @@ export const getPathname = (path: string): string => {
  * @return {*}  {string}
  */
 export const randomString = () => Math.random().toString(36).slice(2)
-
 
 /**
  * @description 生成随机颜色

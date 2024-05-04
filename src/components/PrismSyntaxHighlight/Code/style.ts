@@ -85,10 +85,14 @@ export const useStyles = createStyles(({ css, cx, token, isDarkMode, stylish, pr
       `${prefixCls}-code-CodeHighlight`,
       css`
         &.number {
-          background: linear-gradient(90deg, ${token.colorPrimaryHover} 0% 10%, ${token.colorHighlight} 10% 100%);
+          background: linear-gradient(
+            90deg,
+            ${token.colorPrimaryBorderHover} 0% 10%,
+            ${token.colorPrimaryBgHover} 10% 100%
+          );
         }
         &.line {
-          background-color: ${token.colorHighlight};
+          background-color: ${token.colorPrimaryBgHover};
         }
       `
     ),
@@ -110,47 +114,64 @@ export const useStyles = createStyles(({ css, cx, token, isDarkMode, stylish, pr
 
     // title
     TitleBox: cx(
-      `${prefixCls}-titleBlock`,
+      `${prefixCls}-titleBox`,
       css`
-        position: sticky;
+        position: relative;
         left: 0;
         display: flex;
-        color: ${token.colorTextSecondary};
+        color: ${token.colorTextTertiary};
         font-size: 0.95rem;
-        padding-block: 0.5rem 0.3rem;
-        padding-inline: 1rem 1.5rem;
+        padding-block: 0.6rem 0.25rem;
+        padding-inline: 1.5rem 1.2rem;
         gap: 0.8rem;
+        display: flex;
+        justify-content: space-between;
       `
     ),
 
     titleStyle: cx(
-      `${prefixCls}-titleBlock-title`,
+      `${prefixCls}-titleBox-title`,
       css`
-        flex: 1;
         color: ${token.colorTextTertiary};
       `
     ),
 
-    // language
+    stackblitz: cx(
+      `${prefixCls}-titleBox-stackblitz`,
+      css`
+        display: flex;
+        align-items: center;
+        color: ${token.colorTextTertiary};
+        margin-inline-end: 0.3rem;
+        opacity: 0.8;
+      `
+    ),
+
     language: cx(
       `${prefixCls}-language`,
       css`
+        display: flex;
+        align-items: center;
+        font-family: ${token.fontFamilyCode};
+        font-size: 0.95rem;
+      `
+    ),
+
+    copy: cx(
+      `${prefixCls}-copy`,
+      css`
         position: absolute;
-        top: 0.9rem;
-        right: 1rem;
-        z-index: 5;
+        top: 0.85rem;
+        right: 1.2rem;
+        z-index: 10;
+        height: 32px;
+        padding-block: 5px;
+        padding-inline: 7px;
+        /* opacity: 0; */
 
-        .language {
-          color: ${token.colorTextTertiary};
-          font-family: ${token.fontFamilyCode};
-          font-size: 0.85rem;
-        }
-
-        .copyButton {
-          height: 32px !important;
-          padding-block: 5px !important;
-          padding-inline: 7px !important;
-        }
+        /* &:hover {
+          opacity: 1;
+        } */
       `
     ),
 
