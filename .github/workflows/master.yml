@@ -22,20 +22,20 @@ jobs:
         uses: actions/checkout@master
         
       # 使用 nodejs 18
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v4
         with:
             node-version: 18
 
       #缓存依赖
       - name: Cache nodemodules
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         env:
             cache-name: cache-node-modules
         with:
             # 需要缓存的文件的路径
-            path: ./node_modules 
+            path: ~/node_modules 
             # 对缓存的文件指定的唯一标识
-            key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./package.json') }} 
+            key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.json') }} 
             # 用于没有再找目标key的缓存的backup选项
             restore-keys: |
                 ${{ runner.os }}-build-${{ env.cache-name }}-
