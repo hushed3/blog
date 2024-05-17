@@ -80,3 +80,20 @@ export const recentQuery = graphql`
     }
   }
 `
+
+export const FrontmatterFragmentQuery = graphql`
+  fragment FrontmatterFragment on Mdx {
+    frontmatter {
+      title
+      description
+      date(formatString: "MMMM DD, YYYY")
+      lastUpdated(formatString: "MMMM DD, YYYY")
+      icon
+      slug
+      template
+      tags
+      categories
+      published
+    }
+  }
+`

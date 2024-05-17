@@ -1,4 +1,5 @@
 import { App, message } from 'antd'
+import { graphql } from 'graphql'
 import { useEventListener } from 'ahooks'
 import SiteThemeProvider from '@/context/siteThemeProvider'
 import SiteStoreProvider from '@/context/siteStoreProvider'

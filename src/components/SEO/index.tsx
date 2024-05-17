@@ -92,3 +92,4 @@ const SEO: React.FC<SEOProps> = ({ title, description, pathName, children }) => 
 }
 
 export default SEO
+

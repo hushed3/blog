@@ -1,5 +1,4 @@
 import React, { memo, useCallback } from 'react'
-import { graphql } from 'gatsby'
 import { CustomTokenParams, extractStaticStyle, StyleProvider, ThemeProvider } from 'antd-style'
 import { useThemeMode } from '@/hooks/useThemeMode'
 import { createCustomToken, getAntdTheme, getCustomStylish } from '@/customize-theme'
@@ -37,20 +36,3 @@ const SiteThemeProvider = memo(({ children, ...props }: { children: React.ReactN
 })
 
 export default SiteThemeProvider
-
-export const FrontmatterFragmentQuery = graphql`
-  fragment FrontmatterFragment on Mdx {
-    frontmatter {
-      title
-      description
-      date(formatString: "MMMM DD, YYYY")
-      lastUpdated(formatString: "MMMM DD, YYYY")
-      icon
-      slug
-      template
-      tags
-      categories
-      published
-    }
-  }
-`
