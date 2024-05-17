@@ -13,12 +13,11 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token,
       backdrop-filter: saturate(50%) blur(4px);
       background-size: 3px 3px;
       background-image: radial-gradient(transparent 1px, ${token.colorBgLayout} 1px);
-
       ${r({
         mobile: css`
           height: ${token.headerHeightMobile}px;
         `,
-      })}
+      })};
     `
   ),
   headerContainer: cx(

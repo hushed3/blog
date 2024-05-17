@@ -1,6 +1,6 @@
 import { memo, useMemo, useRef } from 'react'
 import { Highlight, themes } from 'prism-react-renderer'
-import { useThemeMode } from '@/hooks'
+import { useThemeMode } from '@/hooks/useThemeMode'
 import { CodeNode, GetLanguageData, calculateLinesToHighlight } from '@/utils/code'
 import Title from './Title'
 import { useStyles } from './style'

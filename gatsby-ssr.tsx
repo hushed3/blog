@@ -3,14 +3,10 @@ import { renderToString } from 'react-dom/server'
 import { extractStaticStyle } from 'antd-style'
 import type { GatsbySSR } from 'gatsby'
 
-import SiteThemeProvider from './src/container/SiteThemeProvider'
+import Layout from './src/layout'
 
 export const wrapPageElement: GatsbySSR['wrapPageElement'] = ({ element, props }) => {
-  return (
-    <>
-      <SiteThemeProvider {...props}>{element}</SiteThemeProvider>
-    </>
-  )
+  return <Layout {...props}>{element}</Layout>
 }
 
 export const replaceRenderer = ({ replaceBodyHTMLString, bodyComponent, setHeadComponents }) => {

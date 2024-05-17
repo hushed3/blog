@@ -1,13 +1,15 @@
 import React, { memo, useCallback } from 'react'
 import { graphql } from 'gatsby'
 import { CustomTokenParams, extractStaticStyle, StyleProvider, ThemeProvider } from 'antd-style'
-import { useThemeMode } from '@/hooks'
-import Layout from '@/layout'
+import { useThemeMode } from '@/hooks/useThemeMode'
 import { createCustomToken, getAntdTheme, getCustomStylish } from '@/customize-theme'
-;(global as any)['__ANTD_CACHE__'] = extractStaticStyle.cache
+import { GlobalScopeStyle } from '@/customize-theme/globalScopeStyle'
+
+// @ts-ignore
+global['__ANTD_CACHE__'] = extractStaticStyle.cache
 
 const SiteThemeProvider = memo(({ children, ...props }: { children: React.ReactNode }) => {
-  const { themeMode, appearance } = useThemeMode()
+  const { themeMode } = useThemeMode()
 
   const getCustomToken = useCallback((params: CustomTokenParams) => {
     const base = createCustomToken(params)
@@ -26,7 +28,8 @@ const SiteThemeProvider = memo(({ children, ...props }: { children: React.ReactN
         onAppearanceChange={(state) => {}}
       >
         <StyleProvider prefix={'site'} cache={extractStaticStyle.cache}>
-          <Layout {...props}>{children}</Layout>
+          <GlobalScopeStyle />
+          {children}
         </StyleProvider>
       </ThemeProvider>
     </>

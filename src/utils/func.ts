@@ -1,10 +1,14 @@
 /**
- * @description 判断是否为SSR
+ * @description 判断是否为SSR模式
  * @date 30/09/2022
  */
 export const isSSR = (function () {
   try {
-    return !(typeof window !== 'undefined' && document !== undefined)
+    return (
+      typeof window === 'undefined' ||
+      !window.navigator ||
+      /ServerSideRendering|^Deno\//.test(window.navigator.userAgent)
+    )
   } catch (e) {
     return true
   }

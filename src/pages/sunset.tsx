@@ -1,8 +1,5 @@
-import { AnimatePresence, LayoutGroup } from 'framer-motion'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import CardImage from '@/components/CardImage'
-import PreviewImage from '@/components/PreviewImage'
 import SEO from '@/components/SEO'
 
 import { useStyles } from './styles/_sunset.style'
@@ -44,19 +41,7 @@ const Sunset = () => {
     init()
   }, [])
 
-  return (
-    <>
-      <LayoutGroup>
-        <div className={styles.container}>
-          {imageList?.map((item, idx: number) => {
-            return <CardImage move={move} key={item.id} row={{ ...item, idx }} onClick={onClick}></CardImage>
-          })}
-        </div>
-
-        <AnimatePresence>{selected && <PreviewImage {...selected} onClick={onClick}></PreviewImage>}</AnimatePresence>
-      </LayoutGroup>
-    </>
-  )
+  return <>Sunset</>
 }
 
 export default Sunset

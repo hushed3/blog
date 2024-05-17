@@ -1,8 +1,9 @@
 import { themes } from 'prism-react-renderer'
 import GithubSvg from '@/assets/svg/github.svg'
 
-import gatsby from '@/assets/image/gatsby.png'
-import github from '@/assets/image/github.png'
+import GatsbyFooterSvg from '@/assets/svg/gatsby-footer.svg'
+import GithubFooterSvg from '@/assets/svg/github-footer.svg'
+
 import SiteConfig from './type'
 
 const siteConfig: SiteConfig = {
@@ -30,8 +31,8 @@ const siteConfig: SiteConfig = {
   },
   footers: {
     menu: [
-      { url: 'https://www.gatsbyjs.org/', label: 'Gatsby', icon: gatsby, show: true },
-      { url: 'https://github.com/jiohon', label: 'GitHub', icon: github, show: true },
+      { url: 'https://www.gatsbyjs.org/', label: 'Gatsby', icon: GatsbyFooterSvg, show: true },
+      { url: 'https://github.com/jiohon', label: 'GitHub', icon: GithubFooterSvg, show: true },
     ],
     friend: [],
     ICPRecord: '蜀ICP备2022009836号',

@@ -1,5 +1,4 @@
 import { create } from 'zustand'
-import { encryp } from '../utils/encryp'
 
 type response<T> = {
   data: T
@@ -21,8 +20,7 @@ const { GATSBY_API_URL } = process.env
 
 export const getServerData = async <T>(): Promise<response<T>> => {
   try {
-    const keywords = encryp(`hushes${new Date().getTime()}`)
-    const res = await fetch(`${GATSBY_API_URL}/sunset/getImages`, { headers: { keywords } })
+    const res = await fetch(`${GATSBY_API_URL}/sunset/getImages`)
     if (!res.ok) throw new Error(`Couldn’t get response!`)
     const { data } = await res.json()
     return {
@@ -46,4 +44,3 @@ export const useImageStore = create<State & Actions>((set, get) => ({
     // set((state) => ({ todoList: data }))
   },
 }))
-

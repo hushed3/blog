@@ -1,11 +1,11 @@
 import { Divider, Space, Typography } from 'antd'
 import config from '@/config'
-import { useSiteMetadata } from '@/hooks'
+import { useSiteStore } from '@/store'
 import { useStyles } from './style'
 
 export const Footer = () => {
   const { styles } = useStyles()
-  const site = useSiteMetadata()
+  const site = useSiteStore((state) => state.siteMetadata)
 
   const footerMenu = config.footers.menu.filter((item) => item.show)
   const footerFriend = config.footers.friend.filter((item) => item.show)
@@ -19,7 +19,7 @@ export const Footer = () => {
         {footerMenu.map((link) => (
           <Typography.Link className={styles.href} key={link.url} href={link.url} title={link.label} target="_blank">
             <span>{link.label}</span>
-            <img className="image" src={link.icon} alt={link.label} />
+            <link.icon className={styles.icon} />
           </Typography.Link>
         ))}
 
@@ -28,7 +28,7 @@ export const Footer = () => {
         {footerFriend.map((link) => (
           <Typography.Link className={styles.href} key={link.url} href={link.url} title={link.label} target="_blank">
             <span>{link.label}</span>
-            <img className="image" src={link.icon} alt={link.label} />
+            <link.icon className={styles.icon} />
           </Typography.Link>
         ))}
       </Space>

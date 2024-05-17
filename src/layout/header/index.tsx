@@ -1,18 +1,29 @@
 import { Link } from 'gatsby'
 import { Space } from 'antd'
-import { useStyles } from './style'
+import { useTheme } from 'antd-style'
+import { animated } from '@react-spring/web'
 import config from '@/config'
 import ThemeSwitch from '@/components/ThemeSwitch'
+import { useAnimatedHeader } from '@/hooks/useAnimatedHeader'
+import { useStyles } from './style'
 
 export const Header = () => {
   const { styles } = useStyles()
+  const token = useTheme()
+
+  const { headerHeight, headerHeightMobile } = token
+
+  const [_styles] = useAnimatedHeader({
+    isHeader: true,
+    heights: [headerHeight, headerHeightMobile],
+  })
 
   const headerMenu = config.headers.menu.filter((item) => item.show)
   const headerSocial = config.headers.social.filter((item) => item.show)
 
   return (
     <>
-      <header className={styles.header}>
+      <animated.header className={styles.header} style={{ ..._styles }}>
         <div className={styles.headerContainer}>
           <Space size="large">
             <Link to="/" className={styles.navigationLink}>
@@ -34,7 +45,7 @@ export const Header = () => {
 
           <ThemeSwitch />
         </div>
-      </header>
+      </animated.header>
     </>
   )
 }

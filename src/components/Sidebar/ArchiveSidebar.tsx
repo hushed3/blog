@@ -3,7 +3,7 @@ import { useStyles } from './style'
 
 import Sticky from '../Sticky'
 import MenuBar from '../MenuBar'
-import { useGetTaxonomies } from '@/hooks'
+import { useGetTaxonomies } from '@/hooks/useGetTaxonomies'
 
 /**
  * @description 归档页面 - 侧边类别、标签信息

@@ -7,7 +7,7 @@ import { safeStartTransition } from '@/utils/safeStartTransition'
  * @description 主题外观模式。
  * @date 23/10/2022
  * @export
- * @return {*}
+ * @return {*} ThemeContextState
  */
 export const useThemeMode = (): ThemeContextState => {
   // const storageTheme = useThemeStore((s) => s.storageTheme)

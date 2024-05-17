@@ -1,6 +1,6 @@
 import { useMemo, type FC, memo } from 'react'
 import { Button, Dropdown } from 'antd'
-import { useThemeMode } from '@/hooks'
+import { useThemeMode } from '@/hooks/useThemeMode'
 import { isSSR } from '@/utils/func'
 
 const IconAuto = () => (
@@ -46,17 +46,18 @@ const items = [
 ]
 
 const ThemeSwitch: FC = memo(() => {
-  const { themeMode, appearance, setThemeMode } = useThemeMode()
+  const { themeMode, setThemeMode } = useThemeMode()
 
   const Icon = useMemo(() => items.find((item) => item?.key === themeMode)?.icon, [themeMode])
 
   const onClick = ({ key, domEvent }) => {
     setThemeMode(key)
 
-    const { clientX: x, clientY: y } = domEvent
-
     // @ts-ignore
     if (!isSSR && !document.startViewTransition) return
+
+    const { clientX: x, clientY: y } = domEvent
+
     // @ts-ignore
     const transition = document.startViewTransition()
 
