@@ -42,12 +42,6 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - name: Install latest Yarn
-        run: corepack enable
-
-      - name: Activate latest Yarn
-        run: yarn set version stable
-
       # install
       - name: Install
         run: yarn
