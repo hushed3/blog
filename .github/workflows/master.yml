@@ -43,7 +43,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install latest Yarn
-        run: corepack prepare yarn@stable --activate
+        run: corepack enable
 
       - name: Activate latest Yarn
         run: yarn set version stable
