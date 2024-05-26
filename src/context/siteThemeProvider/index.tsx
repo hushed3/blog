@@ -8,7 +8,7 @@ import { GlobalScopeStyle } from '@/customize-theme/globalScopeStyle'
 global['__ANTD_CACHE__'] = extractStaticStyle.cache
 
 const SiteThemeProvider = memo(({ children, ...props }: { children: React.ReactNode }) => {
-  const { themeMode } = useThemeMode()
+  const { themeMode, appearance } = useThemeMode()
 
   const getCustomToken = useCallback((params: CustomTokenParams) => {
     const base = createCustomToken(params)
@@ -24,7 +24,6 @@ const SiteThemeProvider = memo(({ children, ...props }: { children: React.ReactN
         theme={getAntdTheme}
         customToken={getCustomToken}
         customStylish={getCustomStylish}
-        onAppearanceChange={(state) => {}}
       >
         <StyleProvider prefix={'site'} cache={extractStaticStyle.cache}>
           <GlobalScopeStyle />

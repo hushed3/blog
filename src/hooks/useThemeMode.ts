@@ -1,7 +1,8 @@
-import { useMemo } from 'react'
 import { ThemeMode, ThemeContextState, useThemeMode as useAntdThemeMode } from 'antd-style'
 import { useThemeStore } from '@/store/useThemeStore'
 import { safeStartTransition } from '@/utils/safeStartTransition'
+import Cookies from 'js-cookie'
+import { useIsomorphicLayoutEffect } from './useIsomorphicEffect'
 
 /**
  * @description 主题外观模式。
@@ -10,23 +11,29 @@ import { safeStartTransition } from '@/utils/safeStartTransition'
  * @return {*} ThemeContextState
  */
 export const useThemeMode = (): ThemeContextState => {
-  // const storageTheme = useThemeStore((s) => s.storageTheme)
   const { storeTheme, setStoreTheme } = useThemeStore()
   const theme = useAntdThemeMode()
 
   const setThemeMode = (mode: ThemeMode) => {
-    safeStartTransition(() => {
-      setStoreTheme(mode)
-      theme.setThemeMode(mode)
-    })
+      console.log('mode', mode)
+      safeStartTransition(() => {
+        setStoreTheme(mode)
+        theme.setThemeMode(mode)
+        Cookies.set('theme', mode)
+      })
   }
 
-  const isDarkMode = useMemo(() => {
-    if (storeTheme === 'auto') {
-      return theme.browserPrefers === 'dark'
-    }
-    return storeTheme === 'dark'
-  }, [storeTheme])
+  useIsomorphicLayoutEffect(() => {
+    const cookieTheme = Cookies.get('theme')
 
-  return { ...theme, themeMode: storeTheme, isDarkMode, setThemeMode }
+    if (cookieTheme) {
+      console.log(cookieTheme, storeTheme)
+      setThemeMode(cookieTheme as ThemeMode)
+    }
+  }, [])
+
+
+  return { ...theme, themeMode: storeTheme, setThemeMode }
 }
+
+// proxy_cookie_path / "/; httponly; secure; SameSite=Lax";

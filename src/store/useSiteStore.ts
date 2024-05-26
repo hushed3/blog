@@ -27,13 +27,17 @@ const useLegacyUpdater = (effect: React.EffectCallback, deps?: React.DependencyL
 
 const useUpdater = typeof (React as any).startTransition === 'function' ? useReact18xUpdater : useLegacyUpdater
 
+export function useStoreApi() {
+  return useContext(StoreContext)
+}
+
 export const useSyncState = <T extends keyof SiteStore>(
   key: T,
   value: SiteStore[T],
   updateMethod?: (key: T, value: SiteStore[T], storeApi: StoreType) => void
   // updateMethod?: (key: T, value: SiteStore[T]) => void
 ) => {
-  const storeApi = useContext(StoreContext)
+  const storeApi = useStoreApi()
   const updater = updateMethod ? updateMethod : (key: T, value: SiteStore[T]) => storeApi.setState({ [key]: value })
 
   // 如果是 Node 环境，直接更新一次 store

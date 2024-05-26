@@ -1,7 +1,8 @@
 import React from 'react'
+import type { GatsbySSR } from 'gatsby'
 import { renderToString } from 'react-dom/server'
 import { extractStaticStyle } from 'antd-style'
-import type { GatsbySSR } from 'gatsby'
+import Cookies from 'js-cookie'
 
 import Layout from './src/layout'
 
@@ -22,4 +23,27 @@ export const replaceRenderer = ({ replaceBodyHTMLString, bodyComponent, setHeadC
     setHeadComponents([<style key={item.key} {...item.style.props} />])
   })
   replaceBodyHTMLString(html)
+}
+
+export const onRenderBody = ({ setHeadComponents }) => {
+  console.log('Cookies-theme', Cookies.get('theme'))
+
+  const theme = Cookies.get('theme') || 'auto'
+
+  setHeadComponents([
+    <script
+      key="themeCookieScript"
+      dangerouslySetInnerHTML={{
+        __html: `document.cookie = "theme=${theme}";`,
+      }}
+    />,
+    // <link
+    //   rel="preload"
+    //   href={}
+    //   as="font"
+    //   type="font/woff2"
+    //   crossOrigin="anonymous"
+    //   key="interFont"
+    // />,
+  ])
 }

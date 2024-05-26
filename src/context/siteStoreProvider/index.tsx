@@ -2,7 +2,7 @@ import { createContext, useRef, useMemo, PropsWithChildren } from 'react'
 import { createStore } from 'zustand'
 
 import { useSiteMetadata } from '@/hooks/useSiteMetadata'
-import { SiteMetadata } from '@/hooks/useSiteMetadata'
+import type { SiteMetadata } from '@/hooks/useSiteMetadata'
 
 import type { ZustandStore } from './zustandTypes'
 
