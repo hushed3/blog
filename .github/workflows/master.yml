@@ -46,7 +46,7 @@ jobs:
         run: corepack prepare yarn@stable --activate
 
       - name: Activate latest Yarn
-        run: yarn set version 4.2.2
+        run: yarn set version stable
 
       # install
       - name: Install
