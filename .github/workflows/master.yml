@@ -4,14 +4,14 @@ on:
   push:
     branches:
       - master
-      
+
 env:
-    SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }} # 服务器私钥
-    REMOTE_HOST: ${{ secrets.HOST }} # 服务器IP地址
-    REMOTE_USER: ${{ secrets.USER }} # 服务器用户名
-    REMOTE_PORT: ${{ secrets.PORT }} # 服务器ssh端口
-    TARGET: '/var/www/blog' # 项目路径
-    cache-name: note
+  SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }} # 服务器私钥
+  REMOTE_HOST: ${{ secrets.HOST }} # 服务器IP地址
+  REMOTE_USER: ${{ secrets.USER }} # 服务器用户名
+  REMOTE_PORT: ${{ secrets.PORT }} # 服务器ssh端口
+  TARGET: '/var/www/blog' # 项目路径
+  cache-name: note
 
 jobs:
   build:
@@ -20,28 +20,34 @@ jobs:
       # 切换分支
       - name: Checkout
         uses: actions/checkout@master
-        
+
       # 使用 nodejs 18
       - uses: actions/setup-node@v4
         with:
-            node-version: 18
+          node-version: 18
 
       #缓存依赖
       - name: Cache nodemodules
         uses: actions/cache@v4
         env:
-            cache-name: cache-node-modules
+          cache-name: cache-node-modules
         with:
-            # 需要缓存的文件的路径
-            path: ~/node_modules 
-            # 对缓存的文件指定的唯一标识
-            key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.json') }} 
-            # 用于没有再找目标key的缓存的backup选项
-            restore-keys: |
-                ${{ runner.os }}-build-${{ env.cache-name }}-
-                ${{ runner.os }}-build-
-                ${{ runner.os }}-
-                
+          # 需要缓存的文件的路径
+          path: ~/node_modules
+          # 对缓存的文件指定的唯一标识
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.json') }}
+          # 用于没有再找目标key的缓存的backup选项
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: Install latest Yarn
+        run: corepack prepare yarn@stable --activate
+
+      - name: Activate latest Yarn
+        run: yarn set version 4.2.2
+
       # install
       - name: Install
         run: yarn
