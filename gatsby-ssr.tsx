@@ -26,24 +26,16 @@ export const replaceRenderer = ({ replaceBodyHTMLString, bodyComponent, setHeadC
 }
 
 export const onRenderBody = ({ setHeadComponents }) => {
-  console.log('Cookies-theme', Cookies.get('theme'))
+  // console.log('Cookies-theme', Cookies.get('theme'))
 
-  const theme = Cookies.get('theme') || 'auto'
+  // const theme = Cookies.get('theme') || 'auto'
 
-  setHeadComponents([
-    <script
-      key="themeCookieScript"
-      dangerouslySetInnerHTML={{
-        __html: `document.cookie = "theme=${theme}";`,
-      }}
-    />,
-    // <link
-    //   rel="preload"
-    //   href={}
-    //   as="font"
-    //   type="font/woff2"
-    //   crossOrigin="anonymous"
-    //   key="interFont"
-    // />,
-  ])
+  // setHeadComponents([
+  //   <script
+  //     key="themeCookieScript"
+  //     dangerouslySetInnerHTML={{
+  //       __html: `document.cookie = "theme=${theme}";`,
+  //     }}
+  //   />,
+  // ])
 }

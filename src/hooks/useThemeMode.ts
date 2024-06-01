@@ -15,25 +15,22 @@ export const useThemeMode = (): ThemeContextState => {
   const theme = useAntdThemeMode()
 
   const setThemeMode = (mode: ThemeMode) => {
-      console.log('mode', mode)
       safeStartTransition(() => {
         setStoreTheme(mode)
         theme.setThemeMode(mode)
-        Cookies.set('theme', mode)
+        // Cookies.set('theme', mode)
       })
   }
 
-  useIsomorphicLayoutEffect(() => {
-    const cookieTheme = Cookies.get('theme')
+  // useIsomorphicLayoutEffect(() => {
+  //   const cookieTheme = Cookies.get('theme')
 
-    if (cookieTheme) {
-      console.log(cookieTheme, storeTheme)
-      setThemeMode(cookieTheme as ThemeMode)
-    }
-  }, [])
+  //   if (cookieTheme) {
+  //     console.log(cookieTheme, storeTheme)
+  //     // setThemeMode(cookieTheme as ThemeMode)
+  //   }
+  // }, [])
 
 
   return { ...theme, themeMode: storeTheme, setThemeMode }
 }
-
-// proxy_cookie_path / "/; httponly; secure; SameSite=Lax";
