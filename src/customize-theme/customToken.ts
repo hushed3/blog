@@ -11,15 +11,15 @@ declare module 'antd-style' {
  */
 export interface SiteToken {
   /**
-   * @title 头部高度
+   * @title 导航栏高度
    */
   headerHeight: number
   /**
-   * @title 头部高度移动端
+   * @title 导航栏高度 - 移动端
    */
   headerHeightMobile: number
   /**
-   * @title 内容最大宽度
+   * @title 页面内容最大宽度
    * @description 文本内容的最大宽度 1100
    */
   contentMaxWidth: number

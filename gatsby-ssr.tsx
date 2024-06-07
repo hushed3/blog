@@ -10,26 +10,20 @@ export const wrapPageElement: GatsbySSR['wrapPageElement'] = ({ element, props }
   return <Layout {...props}>{element}</Layout>
 }
 
-export const replaceRenderer = ({ replaceBodyHTMLString, bodyComponent, setHeadComponents }) => {
-  const html = renderToString(<>{bodyComponent}</>)
+export const onPreRenderHTML: GatsbySSR['onPreRenderHTML'] = ({ getHeadComponents, replaceHeadComponents }) => {
+  const headComponents = getHeadComponents()
 
   const antdCache = (global as any).__ANTD_CACHE__
 
   // 提取 antd-style 样式
-  const styles = extractStaticStyle(html, { antdCache }).map((item) => item)
+  const styles = extractStaticStyle('', { antdCache })
 
-  // 添加 css样式到 head
-  styles.forEach((item) => {
-    setHeadComponents([<style key={item.key} {...item.style.props} />])
-  })
-  replaceBodyHTMLString(html)
+  replaceHeadComponents([...headComponents, ...styles.map((item) => <style key={item.key} {...item.style.props} />)])
 }
 
 export const onRenderBody = ({ setHeadComponents }) => {
   // console.log('Cookies-theme', Cookies.get('theme'))
-
   // const theme = Cookies.get('theme') || 'auto'
-
   // setHeadComponents([
   //   <script
   //     key="themeCookieScript"
