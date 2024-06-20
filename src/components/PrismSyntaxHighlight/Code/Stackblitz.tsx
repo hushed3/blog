@@ -31,7 +31,7 @@ const Stackblitz: React.FC<StackblitzProps> = ({ title, code }) => {
       {
         newWindow: true,
         showSidebar: false,
-        devToolsHeight: 50,
+        devToolsHeight: 100,
       }
     )
   }

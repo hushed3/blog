@@ -3,23 +3,27 @@ import { useStyles } from './style'
 
 import Sticky from '../Sticky'
 import MenuBar from '../MenuBar'
-import { useGetTaxonomies } from '@/hooks/useGetTaxonomies'
+
+interface ArchiveSidebarProps {
+  tags: GroupItem[]
+  categories: GroupItem[]
+}
 
 /**
  * @description 归档页面 - 侧边类别、标签信息
  */
-
-const BlogSidebar = () => {
+const ArchiveSidebar: React.FC<ArchiveSidebarProps> = ({ tags, categories }) => {
   const { styles } = useStyles()
 
-  const { tags, categories } = useGetTaxonomies()
+  const Categories = categories.map((category) => ({ ...category, path: `/categories/${category.name}/` }))
+  const Tags = tags.map((tag) => ({ ...tag, path: `/tags/${tag.name}/` }))
 
   return (
     <Sticky>
       <Card bordered={false} className={styles.card}>
         <MenuBar>
           <MenuBar.Title>类别</MenuBar.Title>
-          {categories.map((c) => (
+          {Categories.map((c) => (
             <MenuBar.Link marker={false} key={c.path} to={c.path} extra={c.totalCount}>
               {c.name}
             </MenuBar.Link>
@@ -29,7 +33,7 @@ const BlogSidebar = () => {
       <Card bordered={false} className={styles.card}>
         <MenuBar>
           <MenuBar.Title>标签</MenuBar.Title>
-          {tags.map((t) => (
+          {Tags.map((t) => (
             <MenuBar.Tag key={t.path} to={t.path}>
               {t.name}
             </MenuBar.Tag>
@@ -40,4 +44,4 @@ const BlogSidebar = () => {
   )
 }
 
-export default BlogSidebar
+export default ArchiveSidebar

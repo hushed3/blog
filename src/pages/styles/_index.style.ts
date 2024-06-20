@@ -33,19 +33,19 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
     css`
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2.4rem;
+      gap: 2.5rem;
 
       ${r({
+        laptop: css`
+          gap: 2.5rem;
+        `,
         tablet: css`
           grid-template-columns: repeat(2, 1fr);
-          gap: 1.9rem;
+          gap: 2rem;
         `,
-      })}
-
-      ${r({
         mobile: css`
           grid-template-columns: repeat(1, 1fr);
-          gap: 1.4rem;
+          gap: 1.5rem;
         `,
       })}
     `
@@ -54,7 +54,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
   recentCard: cx(
     `${prefixCls}-recentCard`,
     css`
-      ${stylish.card}
+      background-color: ${token.colorBgElevated};
       min-height: 10rem;
 
       .${prefixCls}-card-body {
@@ -62,13 +62,25 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
         flex-wrap: wrap;
         height: 100%;
       }
+
+      ${r({
+        laptop: css`
+          min-height: 9rem;
+        `,
+        tablet: css`
+          min-height: 8.5rem;
+        `,
+        mobile: css`
+          min-height: 8rem;
+        `,
+      })}
     `
   ),
 
   highlightCard: cx(
     `${prefixCls}-highlightCard`,
     css`
-      ${stylish.card}
+      background-color: ${token.colorBgElevated};
       min-height: 10rem;
 
       .${prefixCls}-card-body {

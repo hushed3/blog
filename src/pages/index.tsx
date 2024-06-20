@@ -41,7 +41,7 @@ const Home: React.FC<PageProps<allMdxNodesQuery<'latest' | 'Highlights'> & MdxNo
       <div className={styles.preview}>
         {simplifiedLatest.map((item) => {
           return (
-            <Card className={styles.recentCard} key={item.slug} bordered={false}>
+            <Card className={styles.recentCard} key={item.slug} bordered>
               <time className={styles.time}>{item.date}</time>
               <Link className={styles.titleLink} to={item.slug}>
                 {item.title}
@@ -106,7 +106,7 @@ export const pageQuery = graphql`
     latest: allMdx(
       limit: 6
       sort: { frontmatter: { date: DESC } }
-      filter: { frontmatter: { template: { eq: "article" } } }
+      filter: { frontmatter: { template: { eq: "article" }, published: { eq: true } } }
     ) {
       nodes {
         ...FrontmatterFragment
@@ -115,15 +115,11 @@ export const pageQuery = graphql`
     Highlights: allMdx(
       limit: 6
       sort: { frontmatter: { date: DESC } }
-      filter: { frontmatter: { categories: { eq: "Highlight" } } }
+      filter: { frontmatter: { categories: { eq: "Highlight" }, published: { eq: true } } }
     ) {
       nodes {
         ...FrontmatterFragment
       }
-    }
-
-    mdx {
-      ...FrontmatterFragment
     }
   }
 `

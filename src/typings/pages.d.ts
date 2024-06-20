@@ -80,3 +80,10 @@ interface HeadNodeProps<DT = unknown, PT = unknown, CT = unknown, ST = unknown> 
   params: CT
   serverData: ST
 }
+
+interface GroupItem {
+  name: string
+  totalCount: number
+}
+
+type Group = Record<'group', GroupItem[]>

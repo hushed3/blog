@@ -2,12 +2,10 @@ import type { AnchorLinkItemProps } from 'antd/es/anchor/Anchor'
 
 type ResponseData<T> = T & SimplifiedQueryData
 
-type SimplifiedQueryDataFunction = {
-  <T>(
-    nodes: ReadonlyArray<T extends null ? GraphqlNode : T>,
-    callback?: (e: ResponseData<T>) => ResponseData<T>
-  ): ResponseData<T>[]
-}
+type SimplifiedQueryDataFunction = <T>(
+  nodes: ReadonlyArray<T extends null ? GraphqlNode : T>,
+  callback?: (e: ResponseData<T>) => ResponseData<T>
+) => ResponseData<T>[]
 
 /**
  * @description 简化查询数据
@@ -41,6 +39,8 @@ export type HeadingItem = {
   level: number
 } & AnchorLinkItemProps
 
+type FlattenHead = (arr: any[], level: number) => HeadingItem[]
+
 /**
  * @description 递归扁平化目录
  * @date 20/04/2024
@@ -48,7 +48,8 @@ export type HeadingItem = {
  * @param {number} level
  * @return {*}  {HeadingItem[]}
  */
-export const flattenHead = (arr: any[], level: number): HeadingItem[] =>
+
+export const flattenHead: FlattenHead = (arr, level) =>
   arr.reduce((acc, cur, i) => {
     if (cur.items) {
       return [

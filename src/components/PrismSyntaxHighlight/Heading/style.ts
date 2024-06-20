@@ -38,7 +38,7 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
           })}
         }
         &.h4 {
-          margin-block: 3rem 1.4rem;
+          margin-block: 3rem 1.5rem;
           ${r({
             tablet: css`
               font-size: 19.5px;

@@ -3,10 +3,11 @@ import readingTime from 'reading-time'
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url'
 import NodePolyfillPlugin from 'node-polyfill-webpack-plugin'
-
 import type { GatsbyNode } from 'gatsby'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
+
+const { GATSBY_PUBLISHED } = process.env
 
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({ actions }) => {
   actions.createTypes(`
@@ -74,7 +75,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
 
     createRedirect({ fromPath: '/rss', toPath: '/rss.xml', statusCode: 200 })
 
-    const result = await graphql<Queries.PagesDataQuery>(`
+    const result = await graphql<allMdxNodesQuery<'articles'>>(`
       query PagesData {
         articles: allMdx(sort: { frontmatter: { date: DESC } }) {
           nodes {
@@ -104,9 +105,9 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
       return
     }
 
-    const nodes = result?.data?.articles.nodes
-    const articles = nodes.filter((node) => node.frontmatter?.template === 'article')
-    const pages = nodes.filter((node) => node.frontmatter?.template === 'page')
+    const nodes = result?.data.articles.nodes
+    const articles = nodes.filter((node) => node.frontmatter.template === 'article')
+    const pages = nodes.filter((node) => node.frontmatter.template === 'page')
     const tagSet = new Set()
     const categorySet = new Set()
 
@@ -117,27 +118,28 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
       const previous = i === articles.length - 1 ? null : articles[i + 1]
       const next = i === 0 ? null : articles[i - 1]
 
-      if (article.frontmatter?.tags) {
+      if (article.frontmatter.tags) {
         article.frontmatter.tags.forEach((tag) => {
           tagSet.add(tag)
         })
       }
 
-      if (article.frontmatter?.categories) {
+      if (article.frontmatter.categories) {
         article.frontmatter.categories.forEach((category) => {
           categorySet.add(category)
         })
       }
 
       createPage({
-        path: article.frontmatter?.slug!,
+        path: article.frontmatter.slug,
         component: `${articlePage}?__contentFilePath=${article.internal.contentFilePath}`,
         context: {
-          slug: article.frontmatter?.slug,
+          slug: article.frontmatter.slug,
           previous,
           next,
           frontmatter: article.frontmatter,
           tableOfContents: article.tableOfContents,
+          published: true,
         },
       })
     })
@@ -148,10 +150,10 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
 
     pages.forEach((page) => {
       createPage({
-        path: page.frontmatter?.slug!,
+        path: page.frontmatter.slug,
         component: `${aboutPage}?__contentFilePath=${page.internal.contentFilePath}`,
         context: {
-          slug: page.frontmatter?.slug,
+          slug: page.frontmatter.slug,
         },
       })
     })
@@ -167,6 +169,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
         component: tagPage,
         context: {
           tag,
+          published: true,
         },
       })
     })
@@ -182,6 +185,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
         component: categoryPage,
         context: {
           category,
+          published: true,
         },
       })
     })

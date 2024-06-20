@@ -35,7 +35,7 @@ export const GlobalScopeStyle = createGlobalStyle`
   }
 
   ::selection {
-    background: ${(p) => p.theme.colorPrimaryBorder};
+    background: rgba(125,138,255,.35);
   }
 
   ::view-transition-old(root),

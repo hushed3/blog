@@ -13,10 +13,10 @@ import { flattenHead } from '@/utils/helpers'
  * @export
  * @return {*}
  */
-const ArticleTemplate: React.FC<PageProps<allMdxNodesQuery<'allArticle'> & MdxNodesQuery<'currentArticle'>>> = ({
-  children,
-  data,
-}) => {
+const ArticleTemplate: React.FC<PageProps<allMdxNodesQuery<'allArticle'> & MdxNodesQuery<'currentArticle'>>> = (
+  props
+) => {
+  const { children, data } = props
   const { allArticle, currentArticle } = data
   const { styles } = useStyles()
 
@@ -65,7 +65,7 @@ export const recentQuery = graphql`
   query ArticlePage($slug: String!) {
     allArticle: allMdx(
       sort: { frontmatter: { date: DESC } }
-      filter: { frontmatter: { template: { eq: "article" } } }
+      filter: { frontmatter: { template: { eq: "article" }, published: { eq: true } } }
     ) {
       nodes {
         ...FrontmatterFragment

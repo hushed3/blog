@@ -2,6 +2,7 @@ import { Languages } from '@/utils/code'
 import { useStyles } from './style'
 import Copy from './Copy'
 import Stackblitz from './Stackblitz'
+import CodeSandbox from './CodeSandbox'
 
 interface TitleProps {
   title: string
@@ -19,6 +20,7 @@ const Title: React.FC<TitleProps> = ({ title, codeString, language, highlightRef
 
       <div className={styles.language}>
         <Stackblitz title={title} code={codeString} />
+        <CodeSandbox title={title} code={codeString} />
         {language}
       </div>
 

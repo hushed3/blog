@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style'
 
-export const useStyles = createStyles(({ css, token, prefixCls, cx }) => {
+export const useStyles = createStyles(({ css, token, prefixCls, cx, responsive: r }) => {
   return {
     layout: cx(
       `${prefixCls}-layout`,
@@ -8,6 +8,18 @@ export const useStyles = createStyles(({ css, token, prefixCls, cx }) => {
         display: flex;
         flex-direction: column;
         min-height: 100vh;
+
+        ${r({
+          laptop: css`
+            padding-inline: 2.5rem;
+          `,
+          tablet: css`
+            padding-inline: 2rem;
+          `,
+          mobile: css`
+            padding-inline: 1.5rem;
+          `,
+        })}
       `
     ),
 

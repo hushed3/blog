@@ -1,5 +1,6 @@
 import { useMemo, type FC, memo } from 'react'
 import { Button, Dropdown } from 'antd'
+import { useStyles } from './style'
 import { useThemeMode } from '@/hooks/useThemeMode'
 import { isSSR } from '@/utils/func'
 
@@ -46,6 +47,7 @@ const items = [
 ]
 
 const ThemeSwitch: FC = memo(() => {
+  const { styles } = useStyles()
   const { themeMode, setThemeMode } = useThemeMode()
 
   const Icon = useMemo(() => items.find((item) => item?.key === themeMode)?.icon, [themeMode])
@@ -87,7 +89,9 @@ const ThemeSwitch: FC = memo(() => {
         trigger={['click']}
         placement="bottom"
       >
-        <Button type="text">{Icon}</Button>
+        <Button className={styles.button} type="text">
+          {Icon}
+        </Button>
       </Dropdown>
     </>
   )
