@@ -22,7 +22,6 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
     card: css`
       width: 100%;
       background-color: ${token.colorBgElevated};
-      box-shadow: ${token.boxShadowFourth} !important;
     `,
 
     tagLink: css`

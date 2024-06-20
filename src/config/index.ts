@@ -11,8 +11,7 @@ const siteConfig: SiteConfig = {
     brandColor: '#555FFF',
     light: {
       backgroundColor: '#ffffff',
-      cardBackgroundColor: '#ffffff',
-      // cardBackgroundColor: '#f9f9fa',
+      cardBackgroundColor: '#fafafb',
       codeHighlight: themes.oneLight,
     },
     dark: {

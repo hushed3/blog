@@ -54,7 +54,6 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
   recentCard: cx(
     `${prefixCls}-recentCard`,
     css`
-      background-color: ${token.colorBgElevated};
       min-height: 10rem;
 
       .${prefixCls}-card-body {
@@ -80,7 +79,6 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
   highlightCard: cx(
     `${prefixCls}-highlightCard`,
     css`
-      background-color: ${token.colorBgElevated};
       min-height: 10rem;
 
       .${prefixCls}-card-body {

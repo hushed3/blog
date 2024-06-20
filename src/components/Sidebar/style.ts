@@ -79,7 +79,7 @@ export const useStyles = createStyles(
 
               &:hover {
                 &::before {
-                  transform: scale(1.2);
+                  transform: scale(1.16);
                   background-color: ${token.colorPrimaryBorderHover} !important;
                 }
 
@@ -92,7 +92,7 @@ export const useStyles = createStyles(
             .${prefixCls}-anchor-link-active {
               &::before {
                 background-color: ${token.colorPrimaryBorderHover};
-                transform: scale(1.2) !important;
+                transform: scale(1.16) !important;
               }
 
               .${prefixCls}-anchor-link-title {
