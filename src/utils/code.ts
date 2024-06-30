@@ -1,4 +1,4 @@
-import { PreHighlightProps } from '@/components/PrismSyntaxHighlight/Code/PreHighlight'
+import { PreHighlightProps } from '@/components/MDXRenderer/Pre'
 
 export type Languages =
   | 'javascript'
@@ -117,25 +117,7 @@ export interface PreNode {
 }
 
 /**
- * @description 将来自 "<pre>" MDX标记的道具转换为 “<Code />” 组件的形状
- * @example
- * preToCodeParams(props)
- */
-export const preToCodeParams = (preProps): PreHighlightProps => {
-  const { children, className = ``, ...props } = preProps.children.props
-
-  const { language } = getLanguage(className)
-
-  return {
-    children,
-    codeString: children.trim(),
-    language,
-    className,
-    ...props,
-  }
-}
-/**
- * @description 将来自 “<code>” MDX标记的道具转换为 “<Code />” 组件的形状
+ * @description 将来自“code”MDX标记的道具转换为“<Code />”组件的形状
  * @date 02/01/2024
  * @param {*} props
  * @example
@@ -149,6 +131,25 @@ export const toCodeParams = (codeProps): PreHighlightProps => {
   return {
     children,
     codeString: children,
+    language,
+    className,
+    ...props,
+  }
+}
+
+/**
+ * @description 将来自 "<pre>" MDX标记的道具转换为 “<Code />” 组件的形状
+ * @example
+ * preToCodeParams(props)
+ */
+export const ToPreParams = (preProps): PreHighlightProps => {
+  const { children, className = ``, ...props } = preProps.children.props
+
+  const { language } = getLanguage(className)
+
+  return {
+    children,
+    codeString: children.trim(),
     language,
     className,
     ...props,

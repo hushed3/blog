@@ -18,7 +18,7 @@ type GatsbyConfigType = GatsbyConfig & {
 }
 
 const siteMetadata: SiteMetadataType['site']['siteMetadata'] = {
-  title: packageJson.name,
+  title: packageJson.title,
   author: packageJson.author,
   description: packageJson.description,
   siteUrl: packageJson.homepage,

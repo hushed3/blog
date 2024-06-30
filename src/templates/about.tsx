@@ -4,7 +4,7 @@ import React from 'react'
 
 import SEO from '@/components/SEO'
 import MeSidebar from '@/components/Sidebar/MeSidebar'
-import PrismSyntaxHighlight from '@/components/PrismSyntaxHighlight'
+import PrismSyntaxHighlight from '@/components/MDXRenderer'
 import { useStyles } from './styles/style'
 
 /**
@@ -13,7 +13,7 @@ import { useStyles } from './styles/style'
  * @export
  * @return {*}
  */
-const MeTemplate: React.FC<PageProps<MdxNodesQuery<'me'>, MdxQuery>> = (props) => {
+const AboutTemplate: React.FC<PageProps<MdxNodesQuery<'me'>, MdxQuery>> = (props) => {
   const { data, children } = props
   const { styles } = useStyles()
 
@@ -29,7 +29,7 @@ const MeTemplate: React.FC<PageProps<MdxNodesQuery<'me'>, MdxQuery>> = (props) =
   )
 }
 
-export default MeTemplate
+export default AboutTemplate
 
 export const Head: HeadFC<MdxQuery> = ({ location, data }) => {
   const frontmatter = data.frontmatter

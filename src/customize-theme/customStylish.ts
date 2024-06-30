@@ -41,7 +41,7 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
       text-align: center;
 
       &.active {
-        color: ${token.colorPrimary};
+        color: ${token.colorPrimaryActive};
         border-color: ${token.colorPrimaryBgHover};
         background-color: ${token.colorPrimaryBg};
       }

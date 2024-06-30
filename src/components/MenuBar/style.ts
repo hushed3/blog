@@ -98,12 +98,12 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls }) => {
         margin-block-start: 0.7rem;
 
         &:hover {
-          color: ${token.colorPrimaryTextHover}!important;
+          color: ${token.colorPrimary}!important;
           background-color: ${token.colorPrimaryBg}!important;
         }
 
         &.site-tag-checkable-checked {
-          color: ${token.colorPrimary} !important;
+          color: ${token.colorPrimaryActive} !important;
           background-color: ${token.colorPrimaryBg};
         }
       `

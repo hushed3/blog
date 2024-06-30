@@ -3,7 +3,7 @@ import { Typography } from 'antd'
 
 import SEO from '@/components/SEO'
 import ArticleSidebar from '@/components/Sidebar/ArticleSidebar'
-import PrismSyntaxHighlight from '@/components/PrismSyntaxHighlight'
+import MDXRenderer from '@/components/MDXRenderer'
 import { useStyles } from './styles/style'
 import { flattenHead } from '@/utils/helpers'
 
@@ -33,7 +33,7 @@ const ArticleTemplate: React.FC<PageProps<allMdxNodesQuery<'allArticle'> & MdxNo
           {frontmatter?.title}
         </Typography.Title>
         <div className={styles.spacerLine}></div>
-        <PrismSyntaxHighlight>{children}</PrismSyntaxHighlight>
+        <MDXRenderer>{children}</MDXRenderer>
       </div>
 
       <ArticleSidebar

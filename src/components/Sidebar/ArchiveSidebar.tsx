@@ -24,7 +24,7 @@ const ArchiveSidebar: React.FC<ArchiveSidebarProps> = ({ tags, categories }) => 
         <MenuBar>
           <MenuBar.Title>类别</MenuBar.Title>
           {Categories.map((c) => (
-            <MenuBar.Link marker={false} key={c.path} to={c.path} extra={c.totalCount}>
+            <MenuBar.Link marker={false} key={c.name} to={c.path} extra={c.totalCount}>
               {c.name}
             </MenuBar.Link>
           ))}
@@ -34,7 +34,7 @@ const ArchiveSidebar: React.FC<ArchiveSidebarProps> = ({ tags, categories }) => 
         <MenuBar>
           <MenuBar.Title>标签</MenuBar.Title>
           {Tags.map((t) => (
-            <MenuBar.Tag key={t.path} to={t.path}>
+            <MenuBar.Tag key={t.name} to={t.path}>
               {t.name}
             </MenuBar.Tag>
           ))}

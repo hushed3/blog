@@ -1,6 +1,6 @@
 {
   "name": "blog",
-  "title": "John blog",
+  "title": "John Blog",
   "description": "John's personal website.",
   "author": "John",
   "private": true,
@@ -62,6 +62,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@codesandbox/sandpack-react": "^2.14.4",
     "@commitlint/cli": "^17.6.1",
     "@commitlint/config-conventional": "^17.6.1",
     "@graphql-eslint/eslint-plugin": "^3.20.1",
