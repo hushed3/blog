@@ -2,6 +2,21 @@ const visit = require(`unist-util-visit`)
 
 import type { Plugin, Transformer } from 'unified'
 
+const extractData = (inputString: string): string => {
+  // 匹配括号内的数据，这里使用非贪婪模式匹配
+  const regex: RegExp = /\{(.*?)\}/g
+  const matches: string[] = []
+  let match: RegExpExecArray | null
+
+  // 循环匹配所有符合条件的结果
+  while ((match = regex.exec(inputString))) {
+    // 将匹配结果存入数组
+    matches.push(match[1])
+  }
+
+  return matches.join()
+}
+
 const transformer: Transformer = (ast) => {
   const re = /\b([-\w]+)(?:=(?:"([^"]*)"|'([^']*)'|([^"'\s]+)))?/g
 
@@ -23,15 +38,15 @@ const transformer: Transformer = (ast) => {
       while ((match = re.exec(node.data.meta))) {
         if (match[0].includes('=')) {
           const value = match[2] || match[3] || match[4]
-          node.properties[match[1]] = match[1] == 'highlight' ? value.replace(/{|}/g, '') : value
+
+          node.properties[match[1]] = value
           continue
         }
-        if (match[0].includes('-')) {
-          node.properties.highlight = match[1]
-          continue
-        }
+
         node.properties[match[1]] = true
       }
+
+      node.properties.highlight = extractData(node.data.meta)
     }
   })
 }

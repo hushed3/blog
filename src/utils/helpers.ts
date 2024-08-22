@@ -48,7 +48,6 @@ type FlattenHead = (arr: any[], level: number) => HeadingItem[]
  * @param {number} level
  * @return {*}  {HeadingItem[]}
  */
-
 export const flattenHead: FlattenHead = (arr, level) =>
   arr.reduce((acc, cur, i) => {
     if (cur.items) {

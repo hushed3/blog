@@ -35,7 +35,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ data }) => {
           <div className={styles.year}>{year}</div>
           {articleByYear[year].map((node) => (
             <Link className={styles.link} to={`/${node.slug}`} key={node.slug}>
-              <SVGIcon id={node.icon} width="3.2em" height="3.2em"></SVGIcon>
+              <SVGIcon id={node.icon} width="3em" height="3em"></SVGIcon>
               <div className="infos">
                 <h5>{node.title}</h5>
                 <time>{node.date}</time>

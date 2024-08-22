@@ -7,11 +7,7 @@ import rehypeSlug from 'rehype-slug'
 import rehypeMetaAsAttributes from './plugins/rehype-meta-as-attributes'
 import { SiteMetadataType } from './src/hooks/useSiteMetadata'
 
-const dotenv = require('dotenv')
-
-dotenv.config({ path: [`.env`, `.env.${process.env.NODE_ENV}`] }).parsed
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
+// const __dirname = dirname(fileURLToPath(import.meta.url))
 
 type GatsbyConfigType = GatsbyConfig & {
   siteMetadata: SiteMetadataType['site']['siteMetadata']
@@ -158,14 +154,14 @@ const config: GatsbyConfigType = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'pages',
-        path: `.${__dirname}/content/`,
+        path: `./content/`,
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'assets',
-        path: `.${__dirname}/src/assets/`,
+        path: `./src/assets/`,
       },
     },
 

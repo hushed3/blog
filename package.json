@@ -24,37 +24,6 @@
     "prepare": "husky install",
     "preinstall": "npx only-allow yarn"
   },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-conventional-changelog",
-      "types": {
-        "feat": {
-          "description": "新功能（feature）"
-        },
-        "fix": {
-          "description": "修补bug"
-        },
-        "style": {
-          "description": "格式（不影响代码运行的变动）"
-        },
-        "chore": {
-          "description": "构建过程或辅助工具的变动"
-        },
-        "typings": {
-          "description": "Typescript 类型错误"
-        },
-        "docs": {
-          "description": "文档（documentation）"
-        },
-        "refactor": {
-          "description": "重构（既不是新增功能，也不是修改bug的代码变动）"
-        },
-        "test": {
-          "description": "增加或修改测试用例"
-        }
-      }
-    }
-  },
   "dependencies": {
     "gatsby": "^5.13.3",
     "graphql": "^16.8.1",
@@ -62,9 +31,10 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@ant-design/colors": "^7.1.0",
     "@codesandbox/sandpack-react": "^2.14.4",
-    "@commitlint/cli": "^17.6.1",
-    "@commitlint/config-conventional": "^17.6.1",
+    "@commitlint/cli": "^19.4.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@graphql-eslint/eslint-plugin": "^3.20.1",
     "@mdx-js/react": "^3.0.1",
     "@react-spring/web": "^9.7.2",
@@ -83,7 +53,6 @@
     "ahooks": "^3.7.11",
     "antd": "^5.17.0",
     "antd-style": "3.6.1",
-    "chroma-js": "^2.4.2",
     "codesandbox": "^2.2.3",
     "dotenv": "^16.4.5",
     "eslint": "^8.51.0",
@@ -103,7 +72,6 @@
     "gatsby-transformer-sharp": "^5.13.1",
     "husky": "^8.0.3",
     "js-cookie": "^3.0.5",
-    "lodash": "^4.17.21",
     "node-polyfill-webpack-plugin": "^3.0.0",
     "prettier": "^2.8.8",
     "prism-react-renderer": "^2.1.0",

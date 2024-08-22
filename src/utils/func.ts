@@ -82,3 +82,42 @@ export const parseQuery = (url: string) => {
   url.replace(/([^?&=]+)=([^&]+)/g, (_, k, v) => (q[k] = v))
   return q
 }
+
+/**
+ * @description 复制内容到剪贴板
+ * @date 09/08/2024
+ * @export
+ * @param {*} text
+ */
+export function copyToClipboard(text) {
+  if (navigator.clipboard) {
+    //@ts-ignore
+    copyToClipboard = (text) => navigator.clipboard.writeText(text)
+  } else {
+    //@ts-ignore
+    copyToClipboard = (text) => {
+      var textArea = document.createElement('textarea')
+      textArea.value = text
+
+      // Avoid scrolling to bottom
+      textArea.style.top = '0'
+      textArea.style.left = '0'
+      textArea.style.position = 'fixed'
+
+      document.body.appendChild(textArea)
+      textArea.focus()
+      textArea.select()
+
+      try {
+        var successful = document.execCommand('copy')
+        var msg = successful ? 'Copied to clipboard successfully!' : 'Could not copy text'
+        console.log(msg)
+      } catch (err) {
+        console.error('Fallback: Could not copy text: ', err)
+      }
+
+      document.body.removeChild(textArea)
+    }
+  }
+  copyToClipboard(text)
+}

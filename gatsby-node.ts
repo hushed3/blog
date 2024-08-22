@@ -1,13 +1,16 @@
+import type { GatsbyNode } from 'gatsby'
 import { createFilePath } from 'gatsby-source-filesystem'
+import * as dotenv from 'dotenv'
 import readingTime from 'reading-time'
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url'
 import NodePolyfillPlugin from 'node-polyfill-webpack-plugin'
-import type { GatsbyNode } from 'gatsby'
+
+dotenv.config({ path: [`.env`, `.env.${process.env.NODE_ENV}`], override: true })
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-const { GATSBY_PUBLISHED } = process.env
+const GATSBY_PUBLISHED = JSON.parse(process.env.GATSBY_PUBLISHED)
 
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({ actions }) => {
   actions.createTypes(`
@@ -49,8 +52,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   `)
 }
 
-export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ loaders, actions }) => {
-  // if (stage === 'build-html' || stage === 'develop-html') {
+export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ loaders, actions, getConfig }) => {
   actions.setWebpackConfig({
     resolve: {
       alias: {
@@ -61,7 +63,6 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ loa
     },
     plugins: [new NodePolyfillPlugin({ includeAliases: ['path', 'url', 'stream'] })],
   })
-  // }
 }
 
 const articlePage = path.resolve('./src/templates/article.tsx')
@@ -139,7 +140,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
           next,
           frontmatter: article.frontmatter,
           tableOfContents: article.tableOfContents,
-          published: true,
+          published: GATSBY_PUBLISHED,
         },
       })
     })
@@ -169,7 +170,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
         component: tagPage,
         context: {
           tag,
-          published: true,
+          published: GATSBY_PUBLISHED,
         },
       })
     })
@@ -185,7 +186,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
         component: categoryPage,
         context: {
           category,
-          published: true,
+          published: GATSBY_PUBLISHED,
         },
       })
     })

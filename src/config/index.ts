@@ -8,7 +8,7 @@ import SiteConfig from './type'
 
 const siteConfig: SiteConfig = {
   themes: {
-    brandColor: '#555AFF',
+    brandColor: '#4C4Bff',
     light: {
       backgroundColor: '#ffffff',
       cardBackgroundColor: '#fafafb',

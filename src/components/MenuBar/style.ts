@@ -27,7 +27,7 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls }) => {
   `
   const hover = css`
     &:hover {
-      color: ${token.colorPrimaryTextHover};
+      color: ${token.colorPrimary};
       text-decoration: none;
     }
   `

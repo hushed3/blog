@@ -1,7 +1,7 @@
 import { createStyles } from 'antd-style'
 
 const Cardinality = 0.28
-const Interval = 0.5
+const Interval = 0.55
 
 export const useStyles = createStyles(
   ({ css, cx, token, responsive: r, stylish, prefixCls, isDarkMode }, level: number) => {
@@ -20,16 +20,20 @@ export const useStyles = createStyles(
 
           .${prefixCls}-anchor-link-title {
             font-weight: ${level > 1 && currentLevel === level ? 'bold' : ''};
-          }
 
-          &::before {
-            content: '';
-            width: ${width}rem;
-            height: 0.25rem;
-            border-radius: 2rem;
-            margin-inline-end: 1rem;
-            margin-inline-start: -0.8rem;
-            transition: all 0.6s;
+            &::before {
+              content: '';
+              position: absolute;
+              display: inline-block;
+              width: ${width}rem;
+              height: 0.26rem;
+              border-radius: 2rem;
+              margin-inline-end: 1rem;
+              margin-inline-start: -1.7rem;
+              margin-block-start: 0.64rem;
+              background-color: ${isDarkMode ? '#373737' : '#e5e5e5'};
+              transition: all 0.45s;
+            }
           }
         }
       `
@@ -61,57 +65,53 @@ export const useStyles = createStyles(
           .${prefixCls}-anchor {
             font-size: 0.9rem;
 
+            ${anchorLevel}
+
             &-ink {
               display: none !important;
             }
 
-            .${prefixCls}-anchor-link {
-              &::before {
-                background-color: ${isDarkMode ? '#373737' : '#e5e5e5'};
-              }
-
-              &-title {
-                color: ${token.colorTextSecondary};
-                letter-spacing: 0.5px;
-                opacity: 0;
-                transition: all 0.5s;
-              }
-
-              &:hover {
-                &::before {
-                  transform: scale(1.16);
-                  background-color: ${token.colorPrimaryBorderHover} !important;
-                }
-
-                .${prefixCls}-anchor-link-title {
-                  color: ${token.colorPrimaryHover};
-                }
-              }
-            }
-
-            .${prefixCls}-anchor-link-active {
-              &::before {
-                background-color: ${token.colorPrimaryBorderHover};
-                transform: scale(1.16) !important;
-              }
-
-              .${prefixCls}-anchor-link-title {
-                color: ${token.colorPrimaryHover};
-                opacity: 1;
-              }
-            }
-
             &::before {
-              border-inline-start: none !important;
+              border-inline-start: 0px !important;
             }
 
             &:hover {
               .${prefixCls}-anchor-link-title {
-                opacity: 1;
+                color: ${token.colorTextSecondary};
               }
             }
 
-            ${anchorLevel}
+            .${prefixCls}-anchor-link {
+              position: relative;
+            }
+
+            .${prefixCls}-anchor-link-title {
+              overflow: visible;
+              color: ${token.colorTextSecondary};
+              margin-inline-start: 1rem;
+              letter-spacing: 0.5px;
+              transition: all 0.45s;
+              color: transparent;
+
+              &:hover {
+                color: ${token.colorPrimaryHover};
+
+                &::before {
+                  transform: scale(1.16);
+                  background-color: ${token.colorPrimaryBorderHover};
+                }
+              }
+            }
+
+            .${prefixCls}-anchor-link-title-active {
+              color: ${token.colorPrimary} !important;
+
+              &::before {
+                content: '';
+                background-color: ${token.colorPrimaryBorderHover} !important;
+                transform: scale(1.12);
+              }
+            }
           }
         `
       ),
@@ -178,7 +178,7 @@ export const useStyles = createStyles(
           flex-wrap: nowrap;
           align-items: center;
           gap: 1rem;
-          color: ${token.colorTextSecondary};
+          color: ${token.colorText};
           margin-block-end: 0.6rem;
           margin-inline-start: 0.5rem;
 

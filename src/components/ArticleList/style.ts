@@ -30,7 +30,7 @@ export const useStyles = createStyles(({ css, responsive: r, token }) => ({
     &:hover {
       transform: translate3d(0.85rem, 0px, 0px);
       .infos {
-        opacity: 1;
+        color: ${token.colorPrimary};
       }
     }
 
@@ -38,8 +38,6 @@ export const useStyles = createStyles(({ css, responsive: r, token }) => ({
       flex: 1;
       padding-inline: 1.3rem;
       color: ${token.colorText};
-      opacity: 0.7;
-      transition: opacity ${token.motionDurationMid};
     }
     h5 {
       flex: 1;
@@ -48,6 +46,8 @@ export const useStyles = createStyles(({ css, responsive: r, token }) => ({
       font-weight: 600;
       line-height: 1.5;
       color: inherit;
+      transition: all 0.3s;
+      margin-bottom: 2px;
 
       ${r({
         tablet: css`
@@ -59,7 +59,7 @@ export const useStyles = createStyles(({ css, responsive: r, token }) => ({
     time {
       display: block;
       margin-inline-start: auto;
-      color: inherit;
+      color: ${token.colorTextDescription};
       font-size: 0.8rem;
       font-weight: 500;
     }

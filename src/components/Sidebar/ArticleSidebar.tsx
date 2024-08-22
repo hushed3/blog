@@ -81,7 +81,7 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({
           <MenuBar.Title>近期发布</MenuBar.Title>
           {recentArticles.map((article) => (
             <Link className={styles.articles} to={`/${article.slug}`} key={article.slug}>
-              <SVGIcon id={article.icon} width="2em" height="2em"></SVGIcon>
+              <SVGIcon id={article.icon} width="1.8em" height="1.8em"></SVGIcon>
               <div className="title">{article.title.split('-')[1]}</div>
             </Link>
           ))}
