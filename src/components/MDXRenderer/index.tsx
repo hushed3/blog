@@ -3,7 +3,7 @@ import { MDXProvider } from '@mdx-js/react'
 import components from './components'
 
 export type MDXRendererProps = {
-  children:React.ReactNode
+  children: React.ReactNode
 }
 
 export const MDXRenderer: React.FC<React.PropsWithChildren<MDXRendererProps>> = ({ children }) => {
@@ -11,5 +11,3 @@ export const MDXRenderer: React.FC<React.PropsWithChildren<MDXRendererProps>> = 
 }
 
 export default MDXRenderer
-
-// PrismSyntaxHighlight

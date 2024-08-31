@@ -65,7 +65,7 @@ export type OverridesKeys = keyof typeof OVERRIDES
 /**
  * @description 语言映射
  */
-type OverridesValues = (typeof OVERRIDES)[OverridesKeys]
+export type OverridesValues = (typeof OVERRIDES)[OverridesKeys]
 
 export interface GetLanguageData {
   language: Languages

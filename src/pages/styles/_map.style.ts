@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style'
 
-export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r, prefixCls }) => ({
+export const useStyles = createStyles(({ css, token, stylish, responsive: r }) => ({
   container: css`
     ${stylish.container}
     height: calc(100vh - ${token.headerHeight}px - ${token.footerHeight}px);

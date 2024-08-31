@@ -15,7 +15,7 @@ interface TitleProps {
 }
 
 const Title: React.FC<TitleProps> = ({ title, codeString, language, highlightRef }) => {
-  const { styles, cx } = useStyles('syntax-preHighlight')
+  const { styles } = useStyles('syntax-preHighlight')
 
   const handleToStackblitz = () => {
     stackblitzSdk.openProject(
@@ -82,7 +82,7 @@ const Title: React.FC<TitleProps> = ({ title, codeString, language, highlightRef
           </Button>
         </Tooltip>
 
-        <span>{language}</span>
+        <span> {language}</span>
       </div>
 
       <Copy code={codeString} highlightRef={highlightRef} />

@@ -29,7 +29,7 @@ const components = {
     return <Alert {...props} message={children || message} style={{ marginBlockStart: '1.2rem' }} />
   },
   Tag: (props) => {
-    return <Tag {...props} bordered={false} />
+    return <Tag {...props} bordered={false} style={{ fontWeight: props.bold ? 'bold' : 'inherit' }} />
   },
   ...Headings,
   ...Lists,

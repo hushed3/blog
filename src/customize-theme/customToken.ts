@@ -37,10 +37,6 @@ export interface SiteToken {
   gradientLogo: string
 
   /**
-   * @title 代码块字体
-   */
-  fontFamilyHighlighter: string
-  /**
    * @title 表格head背景色
    */
   tableHeaderBg: string
@@ -62,7 +58,7 @@ export const createCustomToken: GetCustomToken<SiteToken> = ({ isDarkMode, token
 
     gradientLogo: `linear-gradient(30deg,#90d5ff 35%,${token.colorPrimary})`,
 
-    fontFamilyHighlighter: 'SF Mono',
+    fontFamilyCode: `SF Mono Medium,${token.fontFamilyCode}`,
 
     colorHighlight: isDarkMode ? '#16182c' : '#ebf1ff',
     borderRadius: 8,

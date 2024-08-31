@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style'
 
-export const useStyles = createStyles(({ css, cx, token, responsive: r, stylish, prefixCls }) => ({
+export const useStyles = createStyles(({ css, token, responsive: r }) => ({
   sticky: css`
     display: flex;
     justify-content: center;

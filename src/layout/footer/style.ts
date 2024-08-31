@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style'
 
-export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token, prefixCls }) => ({
+export const useStyles = createStyles(({ css, responsive: r, cx, token, prefixCls }) => ({
   footer: cx(
     `${prefixCls}-layout-footer`,
     css`

@@ -2,7 +2,6 @@ import { Anchor, Card } from 'antd'
 import { Link } from 'gatsby'
 import { useStyles } from './style'
 
-import { AnchorLinkItemProps } from 'antd/es/anchor/Anchor'
 import SVGIcon from '../SvgIcon'
 import MenuBar from '../MenuBar'
 import Sticky from '../Sticky'

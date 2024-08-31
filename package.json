@@ -22,7 +22,9 @@
     "clean": "gatsby clean",
     "info": "gatsby info -C",
     "prepare": "husky install",
-    "preinstall": "npx only-allow yarn"
+    "preinstall": "npx only-allow yarn",
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix"
   },
   "dependencies": {
     "gatsby": "^5.13.3",
@@ -56,7 +58,10 @@
     "codesandbox": "^2.2.3",
     "dotenv": "^16.4.5",
     "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
     "gatsby-plugin-env-variables": "^2.3.0",
     "gatsby-plugin-feed": "^5.13.1",
     "gatsby-plugin-image": "^3.13.1",
@@ -87,5 +92,6 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  }
+  },
+  "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72"
 }

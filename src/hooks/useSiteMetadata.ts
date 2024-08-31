@@ -62,5 +62,3 @@ export const useSiteMetadata = (): UseSiteMetadataType => {
   `)
   return site.siteMetadata
 }
-
-

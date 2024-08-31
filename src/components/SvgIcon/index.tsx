@@ -11,7 +11,7 @@ type SVGIconProps = {
 /**
  * Using a SVG sprite for performance reasons
  */
-const SVGIcon = ({ id, style, ...props }: SVGIconProps) => {
+const SVGIcon = ({ id, ...props }: SVGIconProps) => {
   return (
     <svg aria-hidden focusable="false" {...props}>
       <use href={`/svg/languages.svg#${id}`} />

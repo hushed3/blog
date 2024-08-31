@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style'
 
-export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r, prefixCls }) => ({
+export const useStyles = createStyles(({ css, stylish, responsive: r }) => ({
   container: css`
     ${stylish.container}
     display: grid;

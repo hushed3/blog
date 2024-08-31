@@ -13,6 +13,7 @@ const useReact18xUpdater = (effect: React.EffectCallback, deps?: React.Dependenc
     ;(React as any).startTransition(() => {
       effect()
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps)
 }
 const useLegacyUpdater = (effect: React.EffectCallback, deps?: React.DependencyList) => {

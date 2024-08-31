@@ -1,4 +1,3 @@
-import React from 'react'
 import { HeadFC, navigate } from 'gatsby'
 import { Button } from 'antd'
 

@@ -20,7 +20,6 @@ type ArchiveProps = PageProps<allMdxNodesQuery<'archive'> & Record<'tags' | 'cat
 const Archive: React.FC<ArchiveProps> = (props) => {
   const { data } = props
   const title = '文章归档'
-  const description = 'Notes & tutorials'
 
   const nodes = data.archive.nodes
   const categories = data.categories.group
@@ -28,7 +27,7 @@ const Archive: React.FC<ArchiveProps> = (props) => {
 
   const { styles } = useStyles()
 
-  const articles = useMemo(() => simplifiedQueryData(nodes), [data])
+  const articles = useMemo(() => simplifiedQueryData(nodes), [nodes])
 
   return (
     <div className={styles.container}>

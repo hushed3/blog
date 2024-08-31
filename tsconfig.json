@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": ["dom", "esnext"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "jsx": "react-jsx",
 
     /* Modules */
@@ -20,10 +20,10 @@
     "skipLibCheck": true,
     "noImplicitAny": false,
     "resolveJsonModule": true,
-    // "isolatedModules": true,
+    "isolatedModules": true,
 
     "incremental": true
   },
-  "include": ["src/**/*", "gatsby-node.ts", "gatsby-config.ts", "./plugins/**/*", "./src/typings/*.d.ts", "plugins"],
+  "include": ["src/**/*", "**/*.tsx", "gatsby-node.ts", "gatsby-config.ts", "./plugins/**/*", "./src/typings/*.d.ts"],
   "exclude": ["public", "node_modules"]
 }

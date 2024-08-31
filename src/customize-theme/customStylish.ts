@@ -11,7 +11,7 @@ export interface SiteStylish {
   tagLink: string
 }
 
-export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, isDarkMode }) => {
+export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token }) => {
   return {
     container: css`
       display: flex;

@@ -17,7 +17,7 @@ const Tag: FunctionComponent<TagProps> = ({ to, children }) => {
     return location.pathname
   }, [])
 
-  const checked = useMemo(() => to === pathname, [pathname])
+  const checked = useMemo(() => to === pathname, [to, pathname])
 
   return (
     <>

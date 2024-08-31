@@ -35,7 +35,7 @@ export const getServerData = async <T>(): Promise<response<T>> => {
   }
 }
 
-export const useImageStore = create<State & Actions>((set, get) => ({
+export const useImageStore = create<State & Actions>(() => ({
   list: [],
 
   // 初始获取

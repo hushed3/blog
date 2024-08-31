@@ -45,7 +45,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r,
       ${r({
         tablet: css`
           padding-block-start: 3.5rem;
-          padding-block-end:  3rem;
+          padding-block-end: 3rem;
           font-size: 23px;
         `,
         mobile: css`

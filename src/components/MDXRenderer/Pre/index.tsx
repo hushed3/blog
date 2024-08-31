@@ -13,8 +13,8 @@ export interface PreHighlightProps extends GetLanguageData, CodeNode {
 }
 
 const PreHighlight: React.FC<PreHighlightProps> = (props) => {
-  const { codeString, language = 'javascript', highlight = '', title = '', template, environment } = props
-  const { styles, cx } = useStyles('pre')
+  const { codeString, language = 'javascript', title = '', template, environment } = props
+  const { styles } = useStyles('pre')
 
   const highlightRef = useRef<HTMLPreElement>(null)
 

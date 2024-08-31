@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style'
 
-export const useStyles = createStyles(({ css, cx, token, stylish, responsive: r, prefixCls }) => ({
+export const useStyles = createStyles(({ css, responsive: r }) => ({
   container: css`
     padding-block-start: 3rem;
     display: grid;

@@ -22,15 +22,15 @@ const Home: React.FC<PageProps<allMdxNodesQuery<'latest' | 'Highlights'> & MdxNo
   const latest = data.latest.nodes
   const Highlights = data.Highlights.nodes
 
-  const simplifiedLatest = useMemo(() => simplifiedQueryData(latest), [data])
-  const simplifiedHighlights = useMemo(() => simplifiedQueryData(Highlights), [data])
+  const simplifiedLatest = useMemo(() => simplifiedQueryData(latest), [latest])
+  const simplifiedHighlights = useMemo(() => simplifiedQueryData(Highlights), [Highlights])
 
   return (
     <Space className={styles.container} direction="vertical" size="large">
       <BriefHeader greeting="Hey, I'm  &nbsp;Jhon">
         <p className={styles.briefDescription}>
-          I hope you live a life you're proud of. If you find that you're not, I hope you have the courage to start
-          over.
+          I hope you live a life you&rsquo;re proud of. If you find that you&rsquo;re not, I hope you have the courage
+          to start over.
         </p>
         <p className={styles.briefDescription}>
           「 我希望你过着自己引以为傲的生活。如果你发现事实并非如此，我希望你有勇气重新开始 」

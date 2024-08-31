@@ -1,4 +1,4 @@
-import React, { memo, useMemo, useRef } from 'react'
+import React, { memo, useMemo } from 'react'
 import { Highlight, themes } from 'prism-react-renderer'
 import { useThemeMode } from '@/hooks/useThemeMode'
 import { CodeNode, GetLanguageData, calculateLinesToHighlight } from '@/utils/code'
@@ -9,10 +9,9 @@ export interface PrismSyntaxHighlightProps extends GetLanguageData, CodeNode {
 }
 
 const PrismSyntaxHighlight: React.FC<PrismSyntaxHighlightProps> = memo((props) => {
-  const { codeString, language = 'javascript', highlight = '', title = '' } = props
+  const { codeString, language = 'javascript', highlight = '' } = props
   const { styles, cx } = useStyles('prism')
 
-  const highlightRef = useRef<HTMLPreElement>(null)
   const { appearance } = useThemeMode()
 
   const shouldHighlightLine = calculateLinesToHighlight(highlight)

@@ -9,6 +9,14 @@ export const GlobalScopeStyle = createGlobalStyle`
     font-style: normal;
     font-display: swap;
   }
+  @font-face {
+    font-family: 'SF Mono Medium';
+    src: url('/fonts/SFMono/SFMono-Medium.woff2') format('woff2'),
+    url('/fonts/SFMono/SFMono-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
 
   @font-face {
     font-family: 'Prisma';

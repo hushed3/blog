@@ -1,3 +1,4 @@
-import { Sandpack } from '@codesandbox/sandpack-react';
+// @ts-ignore
+import { Sandpack } from '@codesandbox/sandpack-react'
 
-export default Sandpack;
+export default Sandpack

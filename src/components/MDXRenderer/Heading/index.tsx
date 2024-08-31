@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { Typography, Button } from 'antd'
+import { Typography } from 'antd'
 import { useStyles } from './style'
 
 const { Title, Link } = Typography

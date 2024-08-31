@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unknown-property */
-
 import React, { Suspense, startTransition, useState } from 'react'
 import * as THREE from 'three'
 import { Canvas, extend, useLoader } from '@react-three/fiber'

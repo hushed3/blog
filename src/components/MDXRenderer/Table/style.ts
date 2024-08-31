@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style'
 
-export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCls }) => {
+export const useStyles = createStyles(({ css, cx, token, prefixCls }) => {
   return {
     table: cx(
       `${prefixCls}-table`,

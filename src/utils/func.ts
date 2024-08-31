@@ -1,6 +1,7 @@
 /**
  * @description 判断是否为SSR模式
  * @date 30/09/2022
+ * @return {*}  boolean
  */
 export const isSSR = (function () {
   try {
@@ -15,49 +16,9 @@ export const isSSR = (function () {
 })()
 
 /**
- * @description 提取href值
- * @date 16/11/2022
- * @param {string} str
- * @return {*}  {string}
- */
-export const getHref = (str: string): string => {
-  const value = /(?<=<a.*href=").*(?=")/.exec(str)
-  return value?.length ? value[0] : ''
-}
-
-/**
- * @description 提取标签内的值
- * @date 16/11/2022
- * @param {string} str
- * @return {*}  {string}
- */
-export const getValue = (str: string): string => {
-  const value = /(?<=">).*(?=<\/a)/.exec(str)
-  return value?.length ? value[0] : ''
-}
-
-/**
- * @description 提取标签的id
- * @date 16/11/2022
- * @param {string} str
- * @return {*}  {string}
- */
-export const getID = (str: string): string => {
-  const value = str.match(/(?<=<h4.*id=").*(?="\sstyle)/)
-  return value?.length ? value[0].replace(/-/g, ' ') : ''
-}
-
-/**
- * @description 获取path
- */
-export const getPathname = (path: string): string => {
-  return path.split('/')[2]
-}
-
-/**
  * @description 生成随机字符串
  * @date 15/10/2023
- * @return {*}  {string}
+ * @return {*}  string
  */
 export const randomString = () => Math.random().toString(36).slice(2)
 
@@ -75,7 +36,7 @@ export const randomColor = () =>
 /**
  * @description 解析url参数
  * @date 15/10/2023
- * @return {*}  {object}
+ * @return {*}  object
  */
 export const parseQuery = (url: string) => {
   const q = {}
@@ -86,17 +47,16 @@ export const parseQuery = (url: string) => {
 /**
  * @description 复制内容到剪贴板
  * @date 09/08/2024
- * @export
- * @param {*} text
+ * @param {string} text
  */
-export function copyToClipboard(text) {
+export function copyToClipboard(text: string) {
   if (navigator.clipboard) {
     //@ts-ignore
     copyToClipboard = (text) => navigator.clipboard.writeText(text)
   } else {
     //@ts-ignore
     copyToClipboard = (text) => {
-      var textArea = document.createElement('textarea')
+      const textArea = document.createElement('textarea')
       textArea.value = text
 
       // Avoid scrolling to bottom
@@ -109,8 +69,8 @@ export function copyToClipboard(text) {
       textArea.select()
 
       try {
-        var successful = document.execCommand('copy')
-        var msg = successful ? 'Copied to clipboard successfully!' : 'Could not copy text'
+        const successful = document.execCommand('copy')
+        const msg = successful ? 'Copied to clipboard successfully!' : 'Could not copy text'
         console.log(msg)
       } catch (err) {
         console.error('Fallback: Could not copy text: ', err)

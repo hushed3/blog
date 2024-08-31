@@ -1,4 +1,4 @@
-import { createContext, useRef, useMemo, PropsWithChildren } from 'react'
+import { createContext, useRef, PropsWithChildren } from 'react'
 import { createStore } from 'zustand'
 
 import { useSiteMetadata } from '@/hooks/useSiteMetadata'
@@ -22,7 +22,6 @@ export const SiteStoreProvider = ({ children }: PropsWithChildren) => {
   const storeRef = useRef<StoreType>()
   const siteMetadata = useSiteMetadata()
 
-  const initState = useMemo(() => ({ ...siteMetadata }), [])
   if (!storeRef.current) {
     storeRef.current = createStore(() => ({
       siteMetadata,

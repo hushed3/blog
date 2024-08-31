@@ -25,7 +25,7 @@ interface SandpackSyntaxHighlightProps extends SandpackProps {
 }
 
 const SandpackSyntaxHighlight: React.FC<React.PropsWithChildren<SandpackSyntaxHighlightProps>> = (props) => {
-  const { customSetup, options, files, template, codeString } = props
+  const { options, codeString } = props
 
   const { styles } = useStyles()
   const token = useTheme()
@@ -57,7 +57,7 @@ const SandpackSyntaxHighlight: React.FC<React.PropsWithChildren<SandpackSyntaxHi
 
   const insideFiles = useMemo(() => {
     return getReactFiles(appearance === 'dark', codeString)
-  }, [appearance, template])
+  }, [appearance, codeString])
 
   return (
     <Suspense fallback={<SandpackFallback />}>

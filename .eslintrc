@@ -8,13 +8,11 @@
     "plugin:react-hooks/recommended",
     "prettier"
   ],
-  "plugins": ["react", "@typescript-eslint/eslint-plugin"],
-  "globals": {
-    "__PATH_PREFIX__": true
-  },
+  "plugins": ["react", "@typescript-eslint/eslint-plugin", "react-hooks", "prettier"],
+  // "globals": {
+  //   "__PATH_PREFIX__": true
+  // },
   "parserOptions": {
-    "project": "./tsconfig.json",
-    "ecmaVersion": 12,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
@@ -29,7 +27,7 @@
   "rules": {
     "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": 0,
+    "react-hooks/exhaustive-deps": "warn",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-non-null-assertion": 0,
     "jsx-a11y/accessible-emoji": 0,

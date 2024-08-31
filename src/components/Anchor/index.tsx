@@ -1,6 +1,4 @@
-type AnchorProps = {}
-
-const Anchor: React.FC<AnchorProps> = () => {
+const Anchor: React.FC = () => {
   return <></>
 }
 
