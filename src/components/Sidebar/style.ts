@@ -1,12 +1,13 @@
 import { createStyles } from 'antd-style'
 
 const Cardinality = 0.28
-const Interval = 0.55
+const Interval = 0.5
 
 export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isDarkMode }, level: number) => {
   const anchorLevel = Array.from({ length: level }).map((_, i) => {
     const currentLevel = level - i
     const maxWidth = Cardinality + Interval * level
+    console.log(level, currentLevel, maxWidth)
 
     const width = Cardinality + Interval * currentLevel
 
