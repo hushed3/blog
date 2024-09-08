@@ -70,5 +70,6 @@ export const GlobalScopeStyle = createGlobalStyle`
     overflow: overlay;
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
   }
 `

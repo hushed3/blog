@@ -71,7 +71,14 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({
       <Card bordered={false} className={styles.card}>
         <MenuBar>
           <MenuBar.Title>目录</MenuBar.Title>
-          <Anchor className={styles.anchor} offsetTop={90} affix={false} items={headings} onChange={handleChange} />
+          <Anchor
+            className={styles.anchor}
+            offsetTop={90}
+            affix={false}
+            replace
+            items={headings}
+            onChange={handleChange}
+          />
         </MenuBar>
       </Card>
 

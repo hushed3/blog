@@ -1,36 +1,31 @@
 import { createStyles } from 'antd-style'
 
-const Cardinality = 0.28
-const Interval = 0.5
+const Cardinality = 5
+const Interval = 5
 
 export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isDarkMode }, level: number) => {
   const anchorLevel = Array.from({ length: level }).map((_, i) => {
     const currentLevel = level - i
-    const maxWidth = Cardinality + Interval * level
-    console.log(level, currentLevel, maxWidth)
+    const maxWidth = level === 1 ? 15 : Cardinality + Interval * level
 
-    const width = Cardinality + Interval * currentLevel
+    const width = level === 1 ? 15 : Cardinality + Interval * currentLevel
 
     return css`
       .level-${i + 1} {
         display: flex;
         align-items: center;
-        padding-block: 0.3rem;
-        text-indent: calc(${maxWidth}rem - ${width}rem);
+        padding-inline-start: ${maxWidth + 15 + i * 6}px;
 
         .${prefixCls}-anchor-link-title {
-          font-weight: ${level > 1 && currentLevel === level ? 'bold' : ''};
-
           &::before {
             content: '';
             position: absolute;
+            left: 4px;
+            top: calc(50% - 2px);
             display: inline-block;
-            width: ${width}rem;
-            height: 0.26rem;
+            width: ${width}px;
+            height: 4px;
             border-radius: 2rem;
-            margin-inline-end: 1rem;
-            margin-inline-start: -1.7rem;
-            margin-block-start: 0.64rem;
             background-color: ${isDarkMode ? '#373737' : '#e5e5e5'};
             transition: all 0.45s;
           }
@@ -64,6 +59,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
       css`
         .${prefixCls}-anchor {
           font-size: 0.9rem;
+          font-family: SF Mono Medium;
 
           ${anchorLevel}
 
@@ -87,8 +83,8 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
 
           .${prefixCls}-anchor-link-title {
             overflow: visible;
+            position: static;
             color: ${token.colorTextSecondary};
-            margin-inline-start: 1rem;
             letter-spacing: 0.5px;
             transition: all 0.45s;
             color: transparent;
@@ -97,7 +93,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
               color: ${token.colorPrimaryHover};
 
               &::before {
-                transform: scale(1.16);
+                transform: scale(1.1);
                 background-color: ${token.colorPrimaryBorderHover};
               }
             }
@@ -109,7 +105,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
             &::before {
               content: '';
               background-color: ${token.colorPrimaryBorderHover} !important;
-              transform: scale(1.12);
+              transform: scale(1.08);
             }
           }
         }

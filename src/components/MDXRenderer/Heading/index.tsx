@@ -17,10 +17,12 @@ const heading =
     const linkRef = useRef<HTMLElement>(null)
     const ID = children
 
-    const handleClick = (e: React.MouseEvent<HTMLElement>, href) => {
-      e.preventDefault()
+    const handleClick = async (e: React.MouseEvent<HTMLElement>, href) => {
+      // e.preventDefault()
+      const { origin, pathname } = window.location
 
-      linkRef.current?.scrollIntoView({ behavior: 'smooth' })
+      await linkRef.current?.scrollIntoView({ behavior: 'smooth' })
+      history.replaceState(null, '', `${origin}${pathname}#${href}`)
     }
 
     return (
