@@ -1,16 +1,16 @@
 import { createStyles } from 'antd-style'
 
-export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls: prefix }, prefixCls: string) => {
+export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls }, componentPrefixCls: string) => {
   return {
     Pre: cx(
-      `${prefix}-${prefixCls}`,
+      `${prefixCls}-${componentPrefixCls}`,
       css`
         ${stylish.card}
         position: relative;
         display: grid;
         gap: 0.15rem;
         border-radius: ${token.borderRadius * 1.3}px;
-        margin-block: 1.6rem;
+        margin-block: 3rem 2rem;
         padding-block: 0.6rem 0.7rem;
         border: 1px solid ${token.colorBorderSecondary};
         overflow: overlay;
@@ -20,7 +20,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls: pre
 
     // title
     TitleBox: cx(
-      `${prefix}-${prefixCls}-titleBox`,
+      `${prefixCls}-${componentPrefixCls}-titleBox`,
       css`
         position: relative;
         left: 0;
@@ -36,7 +36,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls: pre
     ),
 
     titleStyle: cx(
-      `${prefix}-${prefixCls}-titleBox-title`,
+      `${prefixCls}-${componentPrefixCls}-titleBox-title`,
       css`
         color: inherit;
         font-family: inherit;
@@ -44,7 +44,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls: pre
     ),
 
     language: cx(
-      `${prefix}-${prefixCls}-titleBox-language`,
+      `${prefixCls}-${componentPrefixCls}-titleBox-language`,
       css`
         display: flex;
         align-items: center;
@@ -55,7 +55,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls: pre
     ),
 
     stackblitz: cx(
-      `${prefix}-${prefixCls}-titleBox-stackblitz`,
+      `${prefixCls}-${componentPrefixCls}-titleBox-stackblitz`,
       css`
         display: flex;
         align-items: center;
@@ -66,7 +66,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls: pre
     ),
 
     copy: cx(
-      `${prefix}-${prefixCls}-copy`,
+      `${prefixCls}-${componentPrefixCls}-copy`,
       css`
         position: absolute;
         top: 2rem;
@@ -76,6 +76,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls: pre
         padding-block: 5px;
         padding-inline: 7px;
         box-shadow: ${token.boxShadowFourth};
+        z-index: 1000;
       `
     ),
   }

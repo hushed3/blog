@@ -29,13 +29,14 @@ export const useStyles = createStyles(({ css, responsive: r, cx, token, prefixCl
     width: 100%;
   `,
 
-  text: css`
+  author: css`
     display: flex;
     align-items: center;
     color: inherit;
     font-size: 0.85rem;
     line-height: 1.2;
     padding-inline: 0.5rem;
+    font-weight: bold;
   `,
 
   href: css`

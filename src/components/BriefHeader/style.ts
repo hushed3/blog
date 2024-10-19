@@ -22,7 +22,7 @@ export const useStyles = createStyles(({ css, cx, responsive: r, token, prefixCl
       color: ${token.colorTextDescription};
       font-weight: 500;
       font-size: 1.2rem;
-      margin-block-end: 0.4rem;
+      margin-block-end: 0.8rem;
 
       span {
         color: ${token.colorPrimaryHover};
@@ -37,16 +37,16 @@ export const useStyles = createStyles(({ css, cx, responsive: r, token, prefixCl
     css`
       line-height: 1.2;
       font-weight: 700;
-      font-size: 2rem;
+      font-size: 2.6rem;
       letter-spacing: 0.1rem;
       margin: 0 !important;
 
       ${r({
         tablet: css`
-          font-size: 1.9rem;
+          font-size: 2.2rem;
         `,
         mobile: css`
-          font-size: 1.8rem;
+          font-size: 2rem;
         `,
       })}
     `

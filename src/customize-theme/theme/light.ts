@@ -1,20 +1,16 @@
 import { ThemeConfig } from 'antd'
-import { generate } from '@ant-design/colors'
 import { components } from './components'
-import { transformerColors } from './generate'
+import { generatePresetPalette } from './generate'
 import config from '@/config'
 
-const magentaDarkColors = generate('#D952b1', {
-  theme: 'default',
-  backgroundColor: config.themes.light.backgroundColor,
-})
+const grayColors = generatePresetPalette('gray', '#bfbfbf', 'default')
 
 export const lightTheme: ThemeConfig = {
   components,
   token: {
     colorPrimary: config.themes.brandColor,
 
-    ...transformerColors('magenta', magentaDarkColors),
+    ...grayColors,
 
     colorBgLayout: config.themes.light.backgroundColor, // Layout 颜色
     colorBgElevated: config.themes.light.cardBackgroundColor, // Card 背景色

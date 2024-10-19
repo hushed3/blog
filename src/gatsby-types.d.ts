@@ -366,10 +366,6 @@ type DuotoneGradient = {
 type FieldSelectorEnum =
   | 'SELECT';
 
-type Fields = {
-  readonly slug: Scalars['String'];
-};
-
 type File = Node & {
   readonly absolutePath: Scalars['String'];
   readonly accessTime: Scalars['Date'];
@@ -708,74 +704,6 @@ type FloatQueryOperatorInput = {
   readonly lte: InputMaybe<Scalars['Float']>;
   readonly ne: InputMaybe<Scalars['Float']>;
   readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Float']>>>;
-};
-
-type Frontmatter = {
-  readonly categories: ReadonlyArray<Scalars['String']>;
-  readonly date: Scalars['Date'];
-  readonly description: Maybe<Scalars['String']>;
-  readonly icon: Scalars['String'];
-  readonly lastUpdated: Scalars['Date'];
-  readonly published: Scalars['Boolean'];
-  readonly slug: Scalars['String'];
-  readonly tags: ReadonlyArray<Scalars['String']>;
-  readonly template: Scalars['String'];
-  readonly title: Scalars['String'];
-};
-
-
-type Frontmatter_dateArgs = {
-  difference: InputMaybe<Scalars['String']>;
-  formatString: InputMaybe<Scalars['String']>;
-  fromNow: InputMaybe<Scalars['Boolean']>;
-  locale: InputMaybe<Scalars['String']>;
-};
-
-
-type Frontmatter_lastUpdatedArgs = {
-  difference: InputMaybe<Scalars['String']>;
-  formatString: InputMaybe<Scalars['String']>;
-  fromNow: InputMaybe<Scalars['Boolean']>;
-  locale: InputMaybe<Scalars['String']>;
-};
-
-type FrontmatterFieldSelector = {
-  readonly categories: InputMaybe<FieldSelectorEnum>;
-  readonly date: InputMaybe<FieldSelectorEnum>;
-  readonly description: InputMaybe<FieldSelectorEnum>;
-  readonly icon: InputMaybe<FieldSelectorEnum>;
-  readonly lastUpdated: InputMaybe<FieldSelectorEnum>;
-  readonly published: InputMaybe<FieldSelectorEnum>;
-  readonly slug: InputMaybe<FieldSelectorEnum>;
-  readonly tags: InputMaybe<FieldSelectorEnum>;
-  readonly template: InputMaybe<FieldSelectorEnum>;
-  readonly title: InputMaybe<FieldSelectorEnum>;
-};
-
-type FrontmatterFilterInput = {
-  readonly categories: InputMaybe<StringQueryOperatorInput>;
-  readonly date: InputMaybe<DateQueryOperatorInput>;
-  readonly description: InputMaybe<StringQueryOperatorInput>;
-  readonly icon: InputMaybe<StringQueryOperatorInput>;
-  readonly lastUpdated: InputMaybe<DateQueryOperatorInput>;
-  readonly published: InputMaybe<BooleanQueryOperatorInput>;
-  readonly slug: InputMaybe<StringQueryOperatorInput>;
-  readonly tags: InputMaybe<StringQueryOperatorInput>;
-  readonly template: InputMaybe<StringQueryOperatorInput>;
-  readonly title: InputMaybe<StringQueryOperatorInput>;
-};
-
-type FrontmatterSortInput = {
-  readonly categories: InputMaybe<SortOrderEnum>;
-  readonly date: InputMaybe<SortOrderEnum>;
-  readonly description: InputMaybe<SortOrderEnum>;
-  readonly icon: InputMaybe<SortOrderEnum>;
-  readonly lastUpdated: InputMaybe<SortOrderEnum>;
-  readonly published: InputMaybe<SortOrderEnum>;
-  readonly slug: InputMaybe<SortOrderEnum>;
-  readonly tags: InputMaybe<SortOrderEnum>;
-  readonly template: InputMaybe<SortOrderEnum>;
-  readonly title: InputMaybe<SortOrderEnum>;
 };
 
 type GatsbyImageDataQueryOperatorInput = {
@@ -1324,7 +1252,7 @@ type Mdx = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly fields: Maybe<MdxFields>;
-  readonly frontmatter: Frontmatter;
+  readonly frontmatter: Maybe<MdxFrontmatter>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly parent: Maybe<Node>;
@@ -1391,7 +1319,7 @@ type MdxFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly excerpt: InputMaybe<FieldSelectorEnum>;
   readonly fields: InputMaybe<MdxFieldsFieldSelector>;
-  readonly frontmatter: InputMaybe<FrontmatterFieldSelector>;
+  readonly frontmatter: InputMaybe<MdxFrontmatterFieldSelector>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly parent: InputMaybe<NodeFieldSelector>;
@@ -1451,7 +1379,7 @@ type MdxFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly excerpt: InputMaybe<StringQueryOperatorInput>;
   readonly fields: InputMaybe<MdxFieldsFilterInput>;
-  readonly frontmatter: InputMaybe<FrontmatterFilterInput>;
+  readonly frontmatter: InputMaybe<MdxFrontmatterFilterInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
@@ -1460,6 +1388,70 @@ type MdxFilterInput = {
 
 type MdxFilterListInput = {
   readonly elemMatch: InputMaybe<MdxFilterInput>;
+};
+
+type MdxFrontmatter = {
+  readonly date: Maybe<Scalars['Date']>;
+  readonly description: Maybe<Scalars['String']>;
+  readonly icon: Maybe<Scalars['String']>;
+  readonly lastUpdated: Maybe<Scalars['Date']>;
+  readonly published: Maybe<Scalars['Boolean']>;
+  readonly slug: Maybe<Scalars['String']>;
+  readonly tags: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly template: Maybe<Scalars['String']>;
+  readonly title: Maybe<Scalars['String']>;
+};
+
+
+type MdxFrontmatter_dateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type MdxFrontmatter_lastUpdatedArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type MdxFrontmatterFieldSelector = {
+  readonly date: InputMaybe<FieldSelectorEnum>;
+  readonly description: InputMaybe<FieldSelectorEnum>;
+  readonly icon: InputMaybe<FieldSelectorEnum>;
+  readonly lastUpdated: InputMaybe<FieldSelectorEnum>;
+  readonly published: InputMaybe<FieldSelectorEnum>;
+  readonly slug: InputMaybe<FieldSelectorEnum>;
+  readonly tags: InputMaybe<FieldSelectorEnum>;
+  readonly template: InputMaybe<FieldSelectorEnum>;
+  readonly title: InputMaybe<FieldSelectorEnum>;
+};
+
+type MdxFrontmatterFilterInput = {
+  readonly date: InputMaybe<DateQueryOperatorInput>;
+  readonly description: InputMaybe<StringQueryOperatorInput>;
+  readonly icon: InputMaybe<StringQueryOperatorInput>;
+  readonly lastUpdated: InputMaybe<DateQueryOperatorInput>;
+  readonly published: InputMaybe<BooleanQueryOperatorInput>;
+  readonly slug: InputMaybe<StringQueryOperatorInput>;
+  readonly tags: InputMaybe<StringQueryOperatorInput>;
+  readonly template: InputMaybe<StringQueryOperatorInput>;
+  readonly title: InputMaybe<StringQueryOperatorInput>;
+};
+
+type MdxFrontmatterSortInput = {
+  readonly date: InputMaybe<SortOrderEnum>;
+  readonly description: InputMaybe<SortOrderEnum>;
+  readonly icon: InputMaybe<SortOrderEnum>;
+  readonly lastUpdated: InputMaybe<SortOrderEnum>;
+  readonly published: InputMaybe<SortOrderEnum>;
+  readonly slug: InputMaybe<SortOrderEnum>;
+  readonly tags: InputMaybe<SortOrderEnum>;
+  readonly template: InputMaybe<SortOrderEnum>;
+  readonly title: InputMaybe<SortOrderEnum>;
 };
 
 type MdxGroupConnection = {
@@ -1508,7 +1500,7 @@ type MdxSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly excerpt: InputMaybe<SortOrderEnum>;
   readonly fields: InputMaybe<MdxFieldsSortInput>;
-  readonly frontmatter: InputMaybe<FrontmatterSortInput>;
+  readonly frontmatter: InputMaybe<MdxFrontmatterSortInput>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly parent: InputMaybe<NodeSortInput>;
@@ -1780,7 +1772,7 @@ type Query_mdxArgs = {
   children: InputMaybe<NodeFilterListInput>;
   excerpt: InputMaybe<StringQueryOperatorInput>;
   fields: InputMaybe<MdxFieldsFilterInput>;
-  frontmatter: InputMaybe<FrontmatterFilterInput>;
+  frontmatter: InputMaybe<MdxFrontmatterFilterInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   parent: InputMaybe<NodeFilterInput>;
@@ -2698,22 +2690,18 @@ type WebPOptions = {
   readonly quality: InputMaybe<Scalars['Int']>;
 };
 
+type ArchivePageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type ArchivePageQuery = { readonly archive: { readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly description: string | null, readonly date: string | null, readonly lastUpdated: string | null, readonly icon: string | null, readonly slug: string | null, readonly template: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly published: boolean | null } | null, readonly fields: { readonly timeToRead: { readonly minutes: number | null, readonly time: number | null, readonly words: number | null, readonly text: string | null } | null } | null }> }, readonly tags: { readonly group: ReadonlyArray<{ readonly totalCount: number, readonly name: string | null }> } };
+
 type ArticlePageQueryVariables = Exact<{
   slug: Scalars['String'];
-}>;
-
-
-type ArticlePageQuery = { readonly allArticle: { readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string, readonly description: string | null, readonly date: string, readonly lastUpdated: string, readonly icon: string, readonly slug: string, readonly template: string, readonly tags: ReadonlyArray<string>, readonly categories: ReadonlyArray<string>, readonly published: boolean } }> }, readonly currentArticle: { readonly tableOfContents: Record<string, unknown> | null, readonly newFrontmatter: { readonly date: string }, readonly frontmatter: { readonly title: string, readonly description: string | null, readonly date: string, readonly lastUpdated: string, readonly icon: string, readonly slug: string, readonly template: string, readonly tags: ReadonlyArray<string>, readonly categories: ReadonlyArray<string>, readonly published: boolean } } | null };
-
-type CategoryPageQueryVariables = Exact<{
-  category: InputMaybe<Scalars['String']>;
   published: InputMaybe<Scalars['Boolean']>;
 }>;
 
 
-type CategoryPageQuery = { readonly articles: { readonly totalCount: number, readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string, readonly description: string | null, readonly date: string, readonly lastUpdated: string, readonly icon: string, readonly slug: string, readonly template: string, readonly tags: ReadonlyArray<string>, readonly categories: ReadonlyArray<string>, readonly published: boolean } }> }, readonly tags: { readonly group: ReadonlyArray<{ readonly totalCount: number, readonly name: string | null }> }, readonly categories: { readonly group: ReadonlyArray<{ readonly totalCount: number, readonly name: string | null }> } };
-
-type FrontmatterFragmentFragment = { readonly frontmatter: { readonly title: string, readonly description: string | null, readonly date: string, readonly lastUpdated: string, readonly icon: string, readonly slug: string, readonly template: string, readonly tags: ReadonlyArray<string>, readonly categories: ReadonlyArray<string>, readonly published: boolean } };
+type ArticlePageQuery = { readonly allArticle: { readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly description: string | null, readonly date: string | null, readonly lastUpdated: string | null, readonly icon: string | null, readonly slug: string | null, readonly template: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly published: boolean | null } | null, readonly fields: { readonly timeToRead: { readonly minutes: number | null, readonly time: number | null, readonly words: number | null, readonly text: string | null } | null } | null }> }, readonly currentArticle: { readonly tableOfContents: Record<string, unknown> | null, readonly newFrontmatter: { readonly date: string | null } | null, readonly frontmatter: { readonly title: string | null, readonly description: string | null, readonly date: string | null, readonly lastUpdated: string | null, readonly icon: string | null, readonly slug: string | null, readonly template: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly published: boolean | null } | null, readonly fields: { readonly timeToRead: { readonly minutes: number | null, readonly time: number | null, readonly words: number | null, readonly text: string | null } | null } | null } | null };
 
 type GatsbyImageSharpFixedFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
 
@@ -2741,12 +2729,14 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = { readonly tracedSVG: st
 
 type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: number, readonly maxWidth: number };
 
+type InformationFragmentFragment = { readonly frontmatter: { readonly title: string | null, readonly description: string | null, readonly date: string | null, readonly lastUpdated: string | null, readonly icon: string | null, readonly slug: string | null, readonly template: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly published: boolean | null } | null, readonly fields: { readonly timeToRead: { readonly minutes: number | null, readonly time: number | null, readonly words: number | null, readonly text: string | null } | null } | null };
+
 type MeBySlugQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
 
 
-type MeBySlugQuery = { readonly me: { readonly frontmatter: { readonly title: string, readonly description: string | null, readonly date: string, readonly lastUpdated: string, readonly icon: string, readonly slug: string, readonly template: string, readonly tags: ReadonlyArray<string>, readonly categories: ReadonlyArray<string>, readonly published: boolean } } | null };
+type MeBySlugQuery = { readonly me: { readonly frontmatter: { readonly title: string | null, readonly description: string | null, readonly date: string | null, readonly lastUpdated: string | null, readonly icon: string | null, readonly slug: string | null, readonly template: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly published: boolean | null } | null, readonly fields: { readonly timeToRead: { readonly minutes: number | null, readonly time: number | null, readonly words: number | null, readonly text: string | null } | null } | null } | null };
 
 type siteMetadataQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2759,12 +2749,12 @@ type TagPageQueryVariables = Exact<{
 }>;
 
 
-type TagPageQuery = { readonly articles: { readonly totalCount: number, readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string, readonly description: string | null, readonly date: string, readonly lastUpdated: string, readonly icon: string, readonly slug: string, readonly template: string, readonly tags: ReadonlyArray<string>, readonly categories: ReadonlyArray<string>, readonly published: boolean } }> }, readonly tags: { readonly group: ReadonlyArray<{ readonly totalCount: number, readonly name: string | null }> }, readonly categories: { readonly group: ReadonlyArray<{ readonly totalCount: number, readonly name: string | null }> } };
+type TagPageQuery = { readonly articles: { readonly totalCount: number, readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly description: string | null, readonly date: string | null, readonly lastUpdated: string | null, readonly icon: string | null, readonly slug: string | null, readonly template: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly published: boolean | null } | null, readonly fields: { readonly timeToRead: { readonly minutes: number | null, readonly time: number | null, readonly words: number | null, readonly text: string | null } | null } | null }> }, readonly tags: { readonly group: ReadonlyArray<{ readonly totalCount: number, readonly name: string | null }> } };
 
 type PagesDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type PagesDataQuery = { readonly articles: { readonly nodes: ReadonlyArray<{ readonly tableOfContents: Record<string, unknown> | null, readonly frontmatter: { readonly title: string, readonly description: string | null, readonly date: string, readonly lastUpdated: string, readonly icon: string, readonly slug: string, readonly template: string, readonly tags: ReadonlyArray<string>, readonly categories: ReadonlyArray<string>, readonly published: boolean }, readonly internal: { readonly contentFilePath: string | null } }> } };
+type PagesDataQuery = { readonly articles: { readonly nodes: ReadonlyArray<{ readonly body: string | null, readonly tableOfContents: Record<string, unknown> | null, readonly frontmatter: { readonly title: string | null, readonly description: string | null, readonly date: string | null, readonly lastUpdated: string | null, readonly icon: string | null, readonly slug: string | null, readonly template: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly published: boolean | null } | null, readonly internal: { readonly contentFilePath: string | null } }> } };
 
 
 }

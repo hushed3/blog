@@ -1,13 +1,15 @@
-import { FunctionComponent, ReactNode } from 'react'
+import { FunctionComponent, ReactNode, CSSProperties } from 'react'
 import { useStyles } from './style'
 
 interface TextProps {
+  className?: string
+  style?: CSSProperties
   children: ReactNode
   extra?: ReactNode
   marker?: boolean
 }
 
-const Text: FunctionComponent<TextProps> = ({ children, marker = true, extra }) => {
+const Text: FunctionComponent<TextProps> = ({ className, children, marker = true, extra, ...otherProps }) => {
   const { styles, cx } = useStyles()
 
   const ExtraChildren = () => {
@@ -19,7 +21,7 @@ const Text: FunctionComponent<TextProps> = ({ children, marker = true, extra }) 
   }
 
   return (
-    <div className={cx(styles.text)}>
+    <div className={cx(styles.text, className)} {...otherProps}>
       <div>
         {marker && <span className="inkVisible"></span>}
         {children}

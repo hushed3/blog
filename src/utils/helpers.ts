@@ -35,27 +35,60 @@ export const simplifiedQueryData: SimplifiedQueryDataFunction = (nodes, callback
   return result
 }
 
-export type HeadingItem = {
+interface MenuItem {
+  url: string
+  title: string
+  items?: MenuItem[] // 可选的子项
+}
+
+export interface HeadingItem extends AnchorLinkItemProps {
   level: number
-} & AnchorLinkItemProps
-
-type FlattenHead = (arr: any[], level: number) => HeadingItem[]
-
+  children?: HeadingItem[]
+}
 /**
- * @description 递归扁平化目录
- * @date 20/04/2024
- * @param {any[]} arr
- * @param {number} level
+ * @description 转换heading格式
+ * @date 19/10/2024
+ * @param {MenuItem[]} items
+ * @param {number} [level=1]
  * @return {*}  {HeadingItem[]}
  */
-export const flattenHead: FlattenHead = (arr, level) =>
-  arr.reduce((acc, cur) => {
-    if (cur.items) {
-      return [
-        ...acc,
-        { key: cur.title, href: `#${cur.title}`, title: cur.title, className: `level-${level}`, level },
-        ...flattenHead(cur.items, level + 1),
-      ]
+export function transformHeading(tree: MenuItem[], level = 1): HeadingItem[] {
+  return tree.map((item) => {
+    const transformedItem: HeadingItem = {
+      key: item.title,
+      href: `#${item.title}`,
+      title: item.title,
+      className: `level-${level}`,
+      level: level,
     }
-    return [...acc, { key: cur.title, href: `#${cur.title}`, title: cur.title, className: `level-${level}`, level }]
-  }, [])
+
+    // 递归处理子项
+    if (item.items) {
+      transformedItem.children = transformHeading(item.items, level + 1)
+    }
+
+    return transformedItem
+  })
+}
+/**
+ * @description 查询当前树的最大层级
+ * @date 19/10/2024
+ * @param {HeadingItem[]} tree
+ * @param {number} [currentLevel=1]
+ * @return {*}  {number}
+ */
+export function findMaxLevel(tree: HeadingItem[], currentLevel = 1): number {
+  // 初始化最大层级为当前层级
+  let maxLevel = currentLevel
+
+  tree.forEach((item) => {
+    if (item.children && item.children.length > 0) {
+      // 如果存在子项，递归计算子项的最大层级
+      const childMaxLevel = findMaxLevel(item.children, currentLevel + 1)
+      // 更新最大层级
+      maxLevel = Math.max(maxLevel, childMaxLevel)
+    }
+  })
+
+  return maxLevel
+}

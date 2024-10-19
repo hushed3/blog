@@ -9,7 +9,7 @@ import ArchiveSidebar from '@/components/Sidebar/ArchiveSidebar'
 import { simplifiedQueryData } from '@/utils/helpers'
 import { useStyles } from './styles/style'
 
-type TagTemplateProps = PageProps<allMdxNodesQuery<'articles'> & Record<'tags' | 'categories', Group>, { tag: string }>
+type TagTemplateProps = PageProps<allMdxNodesQuery<'articles'> & Record<'tags', Group>, { tag: string }>
 
 /**
  * @description 标签页面
@@ -23,7 +23,6 @@ const TagTemplate: React.FC<TagTemplateProps> = (props) => {
 
   const totalCount = data.articles.totalCount
   const nodes = data.articles.nodes
-  const categories = data.categories.group
   const tags = data.tags.group
   const message = totalCount === 1 ? ' Article tagged:' : ' Articles tagged:'
   const { tag } = pageContext
@@ -36,7 +35,7 @@ const TagTemplate: React.FC<TagTemplateProps> = (props) => {
         <BriefHeader highlight={totalCount} description={message} title={tag} />
         <ArticleList data={simplifiedArticles} />
       </div>
-      <ArchiveSidebar tags={tags} categories={categories} />
+      <ArchiveSidebar tags={tags} />
     </div>
   )
 }
@@ -62,17 +61,11 @@ export const pageQuery = graphql`
     ) {
       totalCount
       nodes {
-        ...FrontmatterFragment
+        ...InformationFragment
       }
     }
     tags: allMdx(filter: { frontmatter: { published: { eq: $published } } }) {
       group(field: { frontmatter: { tags: SELECT } }) {
-        name: fieldValue
-        totalCount
-      }
-    }
-    categories: allMdx(filter: { frontmatter: { published: { eq: $published } } }) {
-      group(field: { frontmatter: { categories: SELECT } }) {
         name: fieldValue
         totalCount
       }

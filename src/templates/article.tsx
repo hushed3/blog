@@ -1,11 +1,17 @@
-import { HeadFC, PageProps, graphql } from 'gatsby'
-import { Typography } from 'antd'
+import { HeadFC, PageProps, graphql, navigate } from 'gatsby'
+import { Space, Typography, Tag, Tooltip } from 'antd'
+import dayjs from 'dayjs'
 
 import SEO from '@/components/SEO'
 import ArticleSidebar from '@/components/Sidebar/ArticleSidebar'
 import MDXRenderer from '@/components/MDXRenderer'
+import NeonLighting from '@/components/NeonLighting'
+
+import Calendar from '@/components/Icons/Calendar'
+import { ClockCircleOutlined } from '@ant-design/icons'
+
 import { useStyles } from './styles/style'
-import { flattenHead } from '@/utils/helpers'
+import { transformHeading } from '@/utils/helpers'
 
 /**
  * @description 文章页面
@@ -13,37 +19,52 @@ import { flattenHead } from '@/utils/helpers'
  * @export
  * @return {*}
  */
-const ArticleTemplate: React.FC<PageProps<allMdxNodesQuery<'allArticle'> & MdxNodesQuery<'currentArticle'>>> = (
-  props
-) => {
-  const { children, data } = props
+const ArticleTemplate: React.FC<PageProps<allMdxNodesQuery<'allArticle'> & MdxNodesQuery<'currentArticle'>>> = ({
+  children,
+  data,
+}) => {
   const { allArticle, currentArticle } = data
   const { styles } = useStyles()
 
+  const timeToRead = currentArticle.fields.timeToRead
   const frontmatter = currentArticle.frontmatter
-  const headings = flattenHead(currentArticle.tableOfContents.items, 1)
+
+  const headings = transformHeading(currentArticle.tableOfContents.items)
+
   const articles = allArticle.nodes.map((e) => ({ ...e.frontmatter })).filter((a) => a.slug !== frontmatter.slug)
   const tags = frontmatter?.tags.map((t) => ({ name: t, path: `/tags/${t}` }))
-  const categories = frontmatter?.categories.map((c) => ({ name: c, path: `/categories/${c}` }))
 
   return (
     <div className={styles.container}>
       <div className="content">
-        <Typography.Title level={3} className={styles.title}>
+        <Typography.Title level={2} className={styles.title}>
           {frontmatter?.title}
         </Typography.Title>
-        <div className={styles.spacerLine}></div>
+
+        <div className={styles.information}>
+          <Space className="times" align="center">
+            <Tooltip placement="bottom" title={`最后修改于 ${dayjs(frontmatter?.lastUpdated).format('YYYY-MM-DD')}`}>
+              <Space>
+                <Calendar />
+                {frontmatter?.lastUpdated}
+              </Space>
+            </Tooltip>
+
+            <ClockCircleOutlined style={{ marginLeft: '1rem' }} />
+            {timeToRead.text}
+          </Space>
+
+          {tags.map((i) => (
+            <Tag key={i.path} bordered={false} onClick={() => navigate(i.path)}>
+              # {i.name}
+            </Tag>
+          ))}
+        </div>
+
         <MDXRenderer>{children}</MDXRenderer>
       </div>
 
-      <ArticleSidebar
-        date={frontmatter?.date}
-        tags={tags}
-        categories={categories}
-        icon={frontmatter?.icon}
-        headings={headings}
-        articles={articles}
-      />
+      <ArticleSidebar date={frontmatter?.date} icon={frontmatter?.icon} headings={headings} articles={articles} />
     </div>
   )
 }
@@ -62,17 +83,17 @@ export const Head: HeadFC<allMdxNodesQuery<'allArticle'> & MdxNodesQuery<'curren
 }
 
 export const recentQuery = graphql`
-  query ArticlePage($slug: String!) {
+  query ArticlePage($slug: String!, $published: Boolean) {
     allArticle: allMdx(
       sort: { frontmatter: { date: DESC } }
-      filter: { frontmatter: { template: { eq: "article" }, published: { eq: true } } }
+      filter: { frontmatter: { template: { eq: "article" }, published: { eq: $published } } }
     ) {
       nodes {
-        ...FrontmatterFragment
+        ...InformationFragment
       }
     }
     currentArticle: mdx(frontmatter: { slug: { eq: $slug } }) {
-      ...FrontmatterFragment
+      ...InformationFragment
       newFrontmatter: frontmatter {
         date(formatString: "YYYY-MM-DD")
       }
@@ -81,8 +102,8 @@ export const recentQuery = graphql`
   }
 `
 
-export const FrontmatterFragmentQuery = graphql`
-  fragment FrontmatterFragment on Mdx {
+export const InformationFragmentQuery = graphql`
+  fragment InformationFragment on Mdx {
     frontmatter {
       title
       description
@@ -92,8 +113,15 @@ export const FrontmatterFragmentQuery = graphql`
       slug
       template
       tags
-      categories
       published
+    }
+    fields {
+      timeToRead {
+        minutes
+        time
+        words
+        text
+      }
     }
   }
 `

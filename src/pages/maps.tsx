@@ -20,7 +20,7 @@ export default function Maps() {
   return (
     <>
       <div className={styles.container}>
-        <Canvas camera={{ position: [0, 0, 5], fov: 35 }}>
+        {/* <Canvas camera={{ position: [0, 0, 5], fov: 35 }}>
           <ambientLight intensity={0.5} />
           <directionalLight intensity={0.5} />
           <Sphere args={[1, 64, 64]}>
@@ -34,7 +34,7 @@ export default function Maps() {
             autoRotateSpeed={0.2}
             enablePan={false}
           />
-        </Canvas>
+        </Canvas> */}
       </div>
     </>
   )

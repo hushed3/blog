@@ -16,7 +16,7 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
           })}
         }
         &.h2 {
-          margin-block: 7rem 3rem;
+          margin-block: 7.5rem 3.5rem;
           ${r({
             tablet: css`
               font-size: 29.5px;
@@ -27,7 +27,7 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
           })}
         }
         &.h3 {
-          margin-block: 5rem 2rem;
+          margin-block: 5.5rem 2.5rem;
           ${r({
             tablet: css`
               font-size: 23.5px;
@@ -38,7 +38,7 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
           })}
         }
         &.h4 {
-          margin-block: 3rem 1.5rem;
+          margin-block: 3.5rem 2rem;
           ${r({
             tablet: css`
               font-size: 19.5px;
@@ -70,13 +70,14 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
       }
 
       a {
-        color: ${token.colorPrimaryHover};
+        color: ${token.colorTextDisabled};
+        font-size: 1.75rem;
+        font-weight: bold;
       }
 
       &:hover {
         a {
           opacity: 1;
-          color: ${token.colorPrimaryHover};
         }
       }
     `,
@@ -90,10 +91,12 @@ export const useStyles = createStyles(({ css, cx, token, responsive: r, prefixCl
         display: flex;
         align-items: center;
         scroll-margin-top: 90px;
-        transform: translateX(-100%);
+        transform: translateX(calc(-100% - 0.2rem));
         padding-inline-end: 4px;
         height: 100%;
         opacity: 0;
+
+        color: ${token.colorPrimaryHover};
       `
     ),
   }

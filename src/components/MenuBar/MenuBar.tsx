@@ -1,16 +1,20 @@
-import { FunctionComponent, ReactNode } from 'react'
+import { FunctionComponent, ReactNode, CSSProperties } from 'react'
 import { useStyles } from './style'
 
 interface MenuBarProps {
+  className?: string
+  style?: CSSProperties
   children?: ReactNode
 }
 
-const MenuBar: FunctionComponent<MenuBarProps> = (props) => {
-  const { styles } = useStyles()
+const MenuBar: FunctionComponent<MenuBarProps> = ({ className, children, ...otherProps }) => {
+  const { styles, cx } = useStyles()
 
   return (
     <>
-      <div className={styles.menuBar}>{props.children}</div>
+      <div className={cx(styles.menuBar, className)} {...otherProps}>
+        {children}
+      </div>
     </>
   )
 }

@@ -1,14 +1,20 @@
-import { FunctionComponent, ReactNode } from 'react'
+import { FunctionComponent, ReactNode, CSSProperties } from 'react'
 import { useStyles } from './style'
 
 interface HeadProps {
+  className?: string
+  style?: CSSProperties
   children: ReactNode
 }
 
-const Head: FunctionComponent<HeadProps> = ({ children }) => {
-  const { styles } = useStyles()
+const Head: FunctionComponent<HeadProps> = ({ className, children, ...otherProps }) => {
+  const { styles, cx } = useStyles()
 
-  return <div className={styles.title}>{children}</div>
+  return (
+    <div className={cx(styles.title, className)} {...otherProps}>
+      {children}
+    </div>
+  )
 }
 
 export default Head

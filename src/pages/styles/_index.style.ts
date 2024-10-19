@@ -101,7 +101,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
     `${prefixCls}-card-time`,
     css`
       display: block;
-      color: ${token['magenta-5']};
+      color: ${token.magenta5};
       font-size: 0.75rem;
 
       ${r({

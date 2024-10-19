@@ -12,12 +12,19 @@ type Frontmatter = {
   slug: string
   template: string
   tags: string[]
-  categories: string[]
   published: boolean
+}
+
+type TimeToRead = {
+  minutes: number
+  time: number
+  words: number
+  text: string
 }
 
 type fields = {
   slug: string
+  timeToRead: TimeToRead
 }
 
 type tableOfContents = {
@@ -29,6 +36,7 @@ type Internal = {
 }
 
 type GraphqlNode = {
+  body: string
   frontmatter: Frontmatter
   fields: fields
   tableOfContents: tableOfContents

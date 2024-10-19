@@ -9,7 +9,7 @@ import ArchiveSidebar from '@/components/Sidebar/ArchiveSidebar'
 import { simplifiedQueryData } from '@/utils/helpers'
 import { useStyles } from './styles/_archive.style'
 
-type ArchiveProps = PageProps<allMdxNodesQuery<'archive'> & Record<'tags' | 'categories', Group>>
+type ArchiveProps = PageProps<allMdxNodesQuery<'archive'> & Record<'tags', Group>>
 
 /**
  * @description 归档页面
@@ -22,7 +22,6 @@ const Archive: React.FC<ArchiveProps> = (props) => {
   const title = '文章归档'
 
   const nodes = data.archive.nodes
-  const categories = data.categories.group
   const tags = data.tags.group
 
   const { styles } = useStyles()
@@ -36,7 +35,7 @@ const Archive: React.FC<ArchiveProps> = (props) => {
         <ArticleList data={articles} />
       </div>
 
-      <ArchiveSidebar tags={tags} categories={categories} />
+      <ArchiveSidebar tags={tags} />
     </div>
   )
 }
@@ -54,23 +53,17 @@ export const Head: HeadFC = (props) => {
 }
 
 export const blogQuery = graphql`
-  query {
+  query ArchivePage {
     archive: allMdx(
       sort: { frontmatter: { date: DESC } }
-      filter: { frontmatter: { template: { eq: "article" }, published: { eq: true } } }
+      filter: { frontmatter: { template: { eq: "article" }, published: { ne: null } } }
     ) {
       nodes {
-        ...FrontmatterFragment
+        ...InformationFragment
       }
     }
     tags: allMdx(filter: { frontmatter: { published: { eq: true } } }) {
       group(field: { frontmatter: { tags: SELECT } }) {
-        name: fieldValue
-        totalCount
-      }
-    }
-    categories: allMdx(filter: { frontmatter: { published: { eq: true } } }) {
-      group(field: { frontmatter: { categories: SELECT } }) {
         name: fieldValue
         totalCount
       }

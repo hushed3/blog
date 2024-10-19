@@ -28,32 +28,12 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       version: String!
       repository: String!
     }
-
-    type Mdx implements Node {
-				frontmatter: Frontmatter!
-		}
-
-    type Frontmatter {
-      title: String!
-      date: Date! @dateformat
-      lastUpdated: Date! @dateformat
-      icon: String!
-      slug: String!
-      template: String!
-      tags: [String!]!
-      categories: [String!]!
-      published: Boolean!
-      description: String
-    }
-
-    type Fields {
-      slug: String!
-    }
   `)
 }
 
-export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ loaders, actions, getConfig }) => {
+export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ actions }) => {
   actions.setWebpackConfig({
+    ignoreWarnings: [/defaultProps will be removed/],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),
@@ -68,7 +48,6 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ loa
 const articlePage = path.resolve('./src/templates/article.tsx')
 const aboutPage = path.resolve('./src/templates/about.tsx')
 const tagPage = path.resolve('./src/templates/tag.tsx')
-const categoryPage = path.resolve('./src/templates/category.tsx')
 
 export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions, reporter }) => {
   try {
@@ -80,6 +59,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
       query PagesData {
         articles: allMdx(sort: { frontmatter: { date: DESC } }) {
           nodes {
+            body
             frontmatter {
               title
               description
@@ -89,7 +69,6 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
               slug
               template
               tags
-              categories
               published
             }
             tableOfContents(maxDepth: 4)
@@ -110,7 +89,6 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
     const articles = nodes.filter((node) => node.frontmatter.template === 'article')
     const pages = nodes.filter((node) => node.frontmatter.template === 'page')
     const tagSet = new Set()
-    const categorySet = new Set()
 
     // =====================================================================================
     // articles
@@ -125,12 +103,6 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
         })
       }
 
-      if (article.frontmatter.categories) {
-        article.frontmatter.categories.forEach((category) => {
-          categorySet.add(category)
-        })
-      }
-
       createPage({
         path: article.frontmatter.slug,
         component: `${articlePage}?__contentFilePath=${article.internal.contentFilePath}`,
@@ -138,8 +110,6 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
           slug: article.frontmatter.slug,
           previous,
           next,
-          frontmatter: article.frontmatter,
-          tableOfContents: article.tableOfContents,
           published: GATSBY_PUBLISHED,
         },
       })
@@ -170,22 +140,6 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
         component: tagPage,
         context: {
           tag,
-          published: GATSBY_PUBLISHED,
-        },
-      })
-    })
-
-    // =====================================================================================
-    // Categories
-    // =====================================================================================
-
-    const categoryList = Array.from(categorySet)
-    categoryList.forEach((category) => {
-      createPage({
-        path: `/categories/${category}/`,
-        component: categoryPage,
-        context: {
-          category,
           published: GATSBY_PUBLISHED,
         },
       })

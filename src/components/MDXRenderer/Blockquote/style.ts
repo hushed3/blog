@@ -11,7 +11,7 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls }) => {
         padding-block: 0.8rem;
         padding-inline: 1rem;
         background: ${token.colorPrimaryBg};
-        border-radius: ${token.borderRadius}px;
+        border-radius: ${token.borderRadiusSM}px;
         border-inline-start: 4px solid ${token.colorPrimaryBorder};
 
         code {

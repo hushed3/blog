@@ -15,7 +15,6 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls }) => {
         margin-block-start: 0;
         margin-block-end: 1.5rem;
         border: 1px solid ${token.colorBorderSecondary};
-        border-block-end: none;
         border-radius: ${token.borderRadiusLG}px;
         overflow: hidden;
 
@@ -58,6 +57,12 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls }) => {
 
         th {
           background: ${token.colorBgElevated};
+        }
+
+        tbody {
+          tr:last-child > td {
+            border-block-end: none;
+          }
         }
       `
     ),

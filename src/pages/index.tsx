@@ -47,12 +47,12 @@ const Home: React.FC<PageProps<allMdxNodesQuery<'latest' | 'Highlights'> & MdxNo
                 {item.title}
               </Link>
               <div className={styles.tagLinks}>
-                {item.categories &&
-                  item.categories
+                {item.tags &&
+                  item.tags
                     .filter((cat) => cat !== 'Highlight')
                     .map((cat) => {
                       return (
-                        <Link to={`/categories/${cat}`} key={`cat-${cat}`}>
+                        <Link to={`/tags/${cat}`} key={`cat-${cat}`}>
                           {cat}
                         </Link>
                       )
@@ -109,16 +109,16 @@ export const pageQuery = graphql`
       filter: { frontmatter: { template: { eq: "article" }, published: { eq: true } } }
     ) {
       nodes {
-        ...FrontmatterFragment
+        ...InformationFragment
       }
     }
     Highlights: allMdx(
       limit: 6
       sort: { frontmatter: { date: DESC } }
-      filter: { frontmatter: { categories: { eq: "Highlight" }, published: { eq: true } } }
+      filter: { frontmatter: { tags: { eq: "Highlight" }, published: { eq: true } } }
     ) {
       nodes {
-        ...FrontmatterFragment
+        ...InformationFragment
       }
     }
   }

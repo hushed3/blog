@@ -9,7 +9,7 @@ export interface PrismSyntaxHighlightProps extends GetLanguageData, CodeNode {
 }
 
 const PrismSyntaxHighlight: React.FC<PrismSyntaxHighlightProps> = memo((props) => {
-  const { codeString, language = 'javascript', highlight = '' } = props
+  const { codeString, language = 'javascript', highlight = '', lineNumbers = true } = props
   const { styles, cx } = useStyles('prism')
 
   const { appearance } = useThemeMode()
@@ -24,20 +24,23 @@ const PrismSyntaxHighlight: React.FC<PrismSyntaxHighlightProps> = memo((props) =
         return (
           <div className={styles.PrismScorll}>
             <code className={styles.PrismCode}>
-              <div className={styles.lineNumbers}>
-                {tokens.map((line, i) => (
-                  <span key={`number-${i}`} className={cx('number', shouldHighlightLine(i) && styles.LineHighlight)}>
-                    {i + 1}
-                    {shouldHighlightLine(i)}
-                  </span>
-                ))}
-              </div>
+              {lineNumbers && (
+                <div className={styles.lineNumbers}>
+                  {tokens.map((line, i) => (
+                    <span key={`number-${i}`} className={cx('number', shouldHighlightLine(i) && styles.LineHighlight)}>
+                      {i + 1}
+                      {shouldHighlightLine(i)}
+                    </span>
+                  ))}
+                </div>
+              )}
               <div className={styles.lines}>
                 {tokens.map((line, i) => (
                   <div
                     key={`line-${i}`}
                     {...getLineProps({ line })}
                     className={cx('line', shouldHighlightLine(i) && styles.LineHighlight)}
+                    style={{ paddingInlineStart: lineNumbers ? '0' : '1.2rem' }}
                   >
                     {line.map((token, key) => (
                       <span key={key} {...getTokenProps({ token })} />

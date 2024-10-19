@@ -8,6 +8,7 @@ import CodeHighlight from './Code'
 import Blockquote from './Blockquote'
 import Lists from './Lists'
 import Table from './Table'
+import A from './A'
 
 const components = {
   code: (props) => {
@@ -20,9 +21,6 @@ const components = {
 
     return <PreHighlight {...preProps!} />
   },
-  a: (props) => {
-    return <a {...props} target="_blank" />
-  },
   Alert: (props) => {
     const { children, message } = props
 
@@ -31,10 +29,18 @@ const components = {
   Tag: (props) => {
     return <Tag {...props} bordered={false} style={{ fontWeight: props.bold ? 'bold' : 'inherit' }} />
   },
-  ...Headings,
-  ...Lists,
+  p: (props) => {
+    return <p {...props}></p>
+  },
+  sup: (props) => {
+    console.log(props)
+    return <></>
+  },
+  a: A,
   blockquote: Blockquote,
   table: Table,
+  ...Headings,
+  ...Lists,
 } as unknown as MergeComponents
 
 export default components

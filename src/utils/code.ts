@@ -99,6 +99,7 @@ export interface CodeNode {
   className?: GetLanguageInput
   highlight?: string
   title?: string
+  lineNumbers?: boolean
 
   // [key: string]: any
 }
@@ -146,6 +147,11 @@ export const ToPreParams = (preProps): PreHighlightProps => {
   const { children, className = ``, ...props } = preProps.children.props
 
   const { language } = getLanguage(className)
+
+  for (const key in props) {
+    if (props[key] === 'true') props[key] = true
+    if (props[key] === 'false') props[key] = false
+  }
 
   return {
     children,

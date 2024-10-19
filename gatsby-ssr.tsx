@@ -1,6 +1,4 @@
-import React from 'react'
 import type { GatsbySSR } from 'gatsby'
-import { renderToString } from 'react-dom/server'
 import { extractStaticStyle } from 'antd-style'
 import Cookies from 'js-cookie'
 

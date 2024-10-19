@@ -3,7 +3,9 @@ import packageJson from './package.json'
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math'
 import rehypeSlug from 'rehype-slug'
+import rehypeKatex from 'rehype-katex'
 import rehypeMetaAsAttributes from './plugins/rehype-meta-as-attributes'
 import { SiteMetadataType } from './src/hooks/useSiteMetadata'
 
@@ -33,19 +35,21 @@ const config: GatsbyConfigType = {
   pathPrefix: '/',
   siteMetadata,
   plugins: [
-    // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-page-creator
-    // {
-    //   resolve: `gatsby-plugin-page-creator`,
-    //   options: {
-    //     path: `${__dirname}/src/pages`,
-    //   },
-    // },
-    // {
-    //   resolve: `gatsby-plugin-page-creator`,
-    //   options: {
-    //     path: `${__dirname}/src/templates`,
-    //   },
-    // },
+    // @see: https://www.gatsbyjs.com/plugins/gatsby-source-filesystem/
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'pages',
+        path: `./content/`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'assets',
+        path: `./src/assets/`,
+      },
+    },
 
     // ===================================================================================
     // Meta
@@ -93,7 +97,6 @@ const config: GatsbyConfigType = {
                             slug
                             template
                             tags
-                            categories
                             published
                           }
                         }
@@ -148,23 +151,6 @@ const config: GatsbyConfigType = {
     // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-image/
     'gatsby-plugin-image',
 
-    // @see: https://www.gatsbyjs.com/plugins/gatsby-source-filesystem/
-
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'pages',
-        path: `./content/`,
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'assets',
-        path: `./src/assets/`,
-      },
-    },
-
     // ===================================================================================
     // Markdown
     // ===================================================================================
@@ -175,8 +161,8 @@ const config: GatsbyConfigType = {
       options: {
         extensions: [`.mdx`, `.md`],
         mdxOptions: {
-          remarkPlugins: [remarkGfm],
-          rehypePlugins: [rehypeMetaAsAttributes],
+          remarkPlugins: [remarkGfm, remarkMath],
+          rehypePlugins: [rehypeMetaAsAttributes, rehypeKatex],
         },
         gatsbyRemarkPlugins: [
           // @see: https://www.gatsbyjs.com/plugins/gatsby-remark-images/

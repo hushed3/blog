@@ -61,15 +61,17 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token,
       padding: 0;
       border: none;
       border-radius: 0;
+      transition: all ${token.motionDurationSlow};
 
       &:hover {
         color: ${token.colorText};
-        .logo {
-          transform: scale(1.15);
+
+        &.logo {
+          transform: scale(1.16);
         }
       }
 
-      .logo {
+      &.logo {
         width: 100%;
         height: 100%;
         font-size: 1rem;

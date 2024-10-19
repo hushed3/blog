@@ -6,21 +6,20 @@ const Interval = 5
 export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isDarkMode }, level: number) => {
   const anchorLevel = Array.from({ length: level }).map((_, i) => {
     const currentLevel = level - i
-    const maxWidth = level === 1 ? 15 : Cardinality + Interval * level
-
-    const width = level === 1 ? 15 : Cardinality + Interval * currentLevel
+    const width = Cardinality + Interval * currentLevel
 
     return css`
       .level-${i + 1} {
-        display: flex;
-        align-items: center;
-        padding-inline-start: ${maxWidth + 15 + i * 6}px;
+        padding-inline: 8px 0;
 
         .${prefixCls}-anchor-link-title {
+          overflow: visible;
+          transition: all 0.45s;
+
           &::before {
             content: '';
             position: absolute;
-            left: 4px;
+            left: ${(currentLevel - 1) * 8}px;
             top: calc(50% - 2px);
             display: inline-block;
             width: ${width}px;
@@ -28,6 +27,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
             border-radius: 2rem;
             background-color: ${isDarkMode ? '#373737' : '#e5e5e5'};
             transition: all 0.45s;
+            margin-inline: -2.4rem 0;
           }
         }
       }
@@ -37,7 +37,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
   return {
     card: css`
       ${stylish.card}
-      margin-block-start: 1rem;
+      margin-block-start: 2rem;
       background-color: transparent !important;
       box-shadow: none !important;
     `,
@@ -58,8 +58,10 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
       `.${prefixCls}-sidebar-anchor`,
       css`
         .${prefixCls}-anchor {
+          position: relative;
           font-size: 0.9rem;
           font-family: SF Mono Medium;
+          padding-inline: 1.6rem 0;
 
           ${anchorLevel}
 
@@ -77,16 +79,10 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
             }
           }
 
-          .${prefixCls}-anchor-link {
-            position: relative;
-          }
-
           .${prefixCls}-anchor-link-title {
             overflow: visible;
-            position: static;
             color: ${token.colorTextSecondary};
             letter-spacing: 0.5px;
-            transition: all 0.45s;
             color: transparent;
 
             &:hover {
@@ -99,50 +95,18 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
             }
           }
 
-          .${prefixCls}-anchor-link-title-active {
-            color: ${token.colorPrimary} !important;
+          .${prefixCls}-anchor-link:has(.${prefixCls}-anchor-link-active),
+          .${prefixCls}-anchor-link-active {
+            > .${prefixCls}-anchor-link-title {
+              color: ${token.colorPrimary};
 
-            &::before {
-              content: '';
-              background-color: ${token.colorPrimaryBorderHover} !important;
-              transform: scale(1.08);
+              &::before {
+                content: '';
+                background-color: ${token.colorPrimaryBorderHover};
+                transform: scale(1.08);
+              }
             }
           }
-        }
-      `
-    ),
-
-    link: cx(
-      `.${prefixCls}-sidebar-link`,
-      css`
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        text-decoration: none;
-        background-color: transparent;
-        border-radius: ${token.borderRadius};
-        color: ${token.colorTextSecondary};
-        font-size: 0.86rem;
-        margin-block-end: 0.6rem;
-        padding-block: 0.1rem;
-        padding-inline: 0.3rem;
-
-        span {
-          color: inherit;
-        }
-
-        &:last-child {
-          margin-block-end: 0rem;
-        }
-
-        &.active {
-          color: ${token.colorPrimary};
-          font-weight: bold;
-        }
-
-        &:hover {
-          color: ${token.colorPrimaryHover};
-          text-decoration: none;
         }
       `
     ),
@@ -150,25 +114,16 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
     tag: cx(
       `.${prefixCls}-sidebar-tag`,
       css`
-        cursor: pointer;
-        font-size: 0.8rem;
-        color: ${token.colorTextSecondary};
-        text-transform: capitalize;
-
-        &.${prefixCls}-tag-checkable-checked {
-          color: ${token.colorPrimary};
-          background-color: ${token.colorPrimaryBg};
-        }
-
-        &:hover {
-          color: ${token.colorPrimary};
-          background-color: ${token.colorPrimaryBg};
+        &.${prefixCls}-tag {
+          padding-block: 0.15rem;
+          padding-inline: 0.7rem;
+          border-radius: 2rem;
         }
       `
     ),
 
-    articles: cx(
-      `.${prefixCls}-sidebar-articles`,
+    recents: cx(
+      `.${prefixCls}-sidebar-recents`,
       css`
         display: flex;
         flex-wrap: nowrap;

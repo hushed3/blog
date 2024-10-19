@@ -1,35 +1,27 @@
-import { FunctionComponent, ReactNode, useMemo } from 'react'
-import { navigate } from 'gatsby'
-import { Tag as AntdTag } from 'antd'
-import { isSSR } from '@/utils/func'
+import { FunctionComponent, ReactNode, CSSProperties } from 'react'
+import { Link as GatsbyLink } from 'gatsby'
 import { useStyles } from './style'
 
 interface TagProps {
+  className?: string
+  style?: CSSProperties
   to: string
   children: ReactNode
 }
 
-const Tag: FunctionComponent<TagProps> = ({ to, children }) => {
-  const { styles, cx } = useStyles()
-
-  const pathname = useMemo(() => {
-    if (isSSR) return ''
-    return location.pathname
-  }, [])
-
-  const checked = useMemo(() => to === pathname, [to, pathname])
+const Tag: FunctionComponent<TagProps> = ({ to, children, className, ...otherProps }) => {
+  const { styles, cx, prefixCls } = useStyles()
 
   return (
     <>
-      <AntdTag.CheckableTag
-        className={cx(styles.tag)}
-        checked={checked}
-        onClick={() => {
-          navigate(to)
-        }}
+      <GatsbyLink
+        className={cx(`${prefixCls}-tag`, styles.tag, className)}
+        activeClassName={cx(`${prefixCls}-tag-checked`)}
+        to={to}
+        {...otherProps}
       >
         {children}
-      </AntdTag.CheckableTag>
+      </GatsbyLink>
     </>
   )
 }

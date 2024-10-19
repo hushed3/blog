@@ -1,9 +1,9 @@
 import { createStyles } from 'antd-style'
 
-export const useStyles = createStyles(({ css, cx, token, prefixCls: prefix }, prefixCls: string) => {
+export const useStyles = createStyles(({ css, cx, token, prefixCls }, componentPrefixCls: string) => {
   return {
     PrismScorll: cx(
-      `${prefix}-${prefixCls}-code-scorll`,
+      `${prefixCls}-${componentPrefixCls}-code-scorll`,
       css`
         overflow: overlay;
         font-family: inherit;
@@ -11,7 +11,7 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls: prefix }, pr
     ),
 
     PrismCode: cx(
-      `${prefix}-${prefixCls}-code`,
+      `${prefixCls}-${componentPrefixCls}-code`,
       css`
         display: inline-flex;
         flex-wrap: nowrap;
@@ -33,7 +33,7 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls: prefix }, pr
     ),
 
     lineNumbers: cx(
-      `${prefix}-${prefixCls}-code-lineNumbers`,
+      `${prefixCls}-${componentPrefixCls}-code-lineNumbers`,
       css`
         display: flex;
         flex-direction: column;
@@ -46,8 +46,7 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls: prefix }, pr
         .number {
           display: inline-block;
           user-select: none;
-          padding-inline-start: 1rem;
-          padding-inline-end: 0.4rem;
+          padding-inline: 1rem;
           text-align: right;
           background-color: ${token.colorBgElevated};
           color: ${token.colorTextQuaternary};
@@ -56,7 +55,7 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls: prefix }, pr
     ),
 
     lines: cx(
-      `${prefix}-${prefixCls}-code-lines`,
+      `${prefixCls}-${componentPrefixCls}-code-lines`,
       css`
         font-family: inherit;
         flex: 1;
@@ -74,7 +73,7 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls: prefix }, pr
     ),
 
     LineHighlight: cx(
-      `${prefix}-${prefixCls}-code-CodeHighlight`,
+      `${prefixCls}-${componentPrefixCls}-code-CodeHighlight`,
       css`
         &.number {
           background: linear-gradient(

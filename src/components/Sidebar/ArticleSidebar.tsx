@@ -5,12 +5,11 @@ import { useStyles } from './style'
 import SVGIcon from '../SvgIcon'
 import MenuBar from '../MenuBar'
 import Sticky from '../Sticky'
-import { HeadingItem } from '@/utils/helpers'
+import { findMaxLevel } from '@/utils/helpers'
+import type { HeadingItem } from '@/utils/helpers'
 
 interface ArticleSidebarProps {
   date?: string
-  tags?: Record<'name' | 'path', string>[]
-  categories?: Record<'name' | 'path', string>[]
   icon?: any
   headings: HeadingItem[]
   articles: Frontmatter[]
@@ -20,25 +19,10 @@ interface ArticleSidebarProps {
  * @description 文章详细信息侧边
  */
 
-const ArticleSidebar: React.FC<ArticleSidebarProps> = ({
-  tags = [],
-  date,
-  categories = [],
-  icon,
-  headings,
-  articles,
-}) => {
-  const getLevel = () => headings.reduce((acc, cur) => (acc > cur.level ? acc : cur.level), 1)
+const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ icon, headings, articles }) => {
+  const { styles } = useStyles(findMaxLevel(headings))
 
-  const { styles } = useStyles(getLevel())
-
-  const recentArticles = articles.slice(0, 6)
-
-  const handleChange = (link: string) => {
-    if (!link || link === location.hash) return
-
-    // history.pushState(null, '', link)
-  }
+  const recents = articles.slice(0, 6)
 
   return (
     <Sticky>
@@ -49,46 +33,18 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({
 
       <Card bordered={false} className={styles.card}>
         <MenuBar>
-          <MenuBar.Title>日期</MenuBar.Title>
-          <MenuBar.Text>发布于 {date}</MenuBar.Text>
-
-          <MenuBar.Title>类别</MenuBar.Title>
-          {categories.map((c) => (
-            <MenuBar.Link key={c.path} to={c.path}>
-              {c.name}
-            </MenuBar.Link>
-          ))}
-
-          <MenuBar.Title>标签</MenuBar.Title>
-          {tags.map((t) => (
-            <MenuBar.Tag key={t.path} to={t.path}>
-              {t.name}
-            </MenuBar.Tag>
-          ))}
-        </MenuBar>
-      </Card>
-
-      <Card bordered={false} className={styles.card}>
-        <MenuBar>
           <MenuBar.Title>目录</MenuBar.Title>
-          <Anchor
-            className={styles.anchor}
-            offsetTop={90}
-            affix={false}
-            replace
-            items={headings}
-            onChange={handleChange}
-          />
+          <Anchor className={styles.anchor} offsetTop={90} affix={false} replace items={headings} />
         </MenuBar>
       </Card>
 
       <Card bordered={false} className={styles.card}>
         <MenuBar>
           <MenuBar.Title>近期发布</MenuBar.Title>
-          {recentArticles.map((article) => (
-            <Link className={styles.articles} to={`/${article.slug}`} key={article.slug}>
-              <SVGIcon id={article.icon} width="1.8em" height="1.8em"></SVGIcon>
-              <div className="title">{article.title.split('-')[1]}</div>
+          {recents.map((recent) => (
+            <Link className={styles.recents} to={`/${recent.slug}`} key={recent.slug}>
+              <SVGIcon id={recent.icon} width="1.8em" height="1.8em"></SVGIcon>
+              <div className="title">{recent.title.split('-')[1]}</div>
             </Link>
           ))}
         </MenuBar>

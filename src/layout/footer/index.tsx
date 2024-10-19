@@ -7,25 +7,25 @@ export const Footer = () => {
   const { styles } = useStyles()
   const site = useSiteStore((state) => state.siteMetadata)
 
-  const footerMenu = config.footers.menu.filter((item) => item.show)
-  const footerFriend = config.footers.friend.filter((item) => item.show)
+  const menu = config.footers.menu.filter((item) => item.show)
+  const friend = config.footers.friend.filter((item) => item.show)
   const ICPRecord = config.footers.ICPRecord
 
   return (
     <footer className={styles.footer}>
-      <Typography.Text className={styles.text}>Powered By {site.author}</Typography.Text>
+      <Typography.Text className={styles.author}>Powered By {site.author}</Typography.Text>
 
       <Space size="middle" className={styles.footerContainer}>
-        {footerMenu.map((link) => (
+        {menu.map((link) => (
           <Typography.Link className={styles.href} key={link.url} href={link.url} title={link.label} target="_blank">
             <span>{link.label}</span>
             <link.icon className={styles.icon} />
           </Typography.Link>
         ))}
 
-        {footerFriend.length > 0 && <Divider type="vertical" />}
+        {friend.length > 0 && <Divider type="vertical" />}
 
-        {footerFriend.map((link) => (
+        {friend.map((link) => (
           <Typography.Link className={styles.href} key={link.url} href={link.url} title={link.label} target="_blank">
             <span>{link.label}</span>
             <link.icon className={styles.icon} />

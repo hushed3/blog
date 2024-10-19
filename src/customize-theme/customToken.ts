@@ -1,8 +1,9 @@
 import type { GetCustomToken } from 'antd-style'
+import { GeneratePresetTypes } from '@/customize-theme/theme/generate'
 
 declare module 'antd-style' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  export interface CustomToken extends SiteToken {}
+  export interface CustomToken extends SiteToken, GeneratePresetTypes<'gray'> {}
 }
 
 /**
@@ -56,7 +57,7 @@ export const createCustomToken: GetCustomToken<SiteToken> = ({ isDarkMode, token
     footerHeight: 160,
     footerHeightMobile: 130,
 
-    gradientLogo: `linear-gradient(30deg,#90d5ff 35%,${token.colorPrimary})`,
+    gradientLogo: `linear-gradient(45deg,#90d5ff 45%,${token.colorPrimary})`,
 
     fontFamilyCode: `SF Mono Medium,${token.fontFamilyCode}`,
 

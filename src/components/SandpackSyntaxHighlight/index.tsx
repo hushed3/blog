@@ -1,6 +1,5 @@
 import React, { Suspense, useMemo } from 'react'
 import { Skeleton } from 'antd'
-import { useTheme } from 'antd-style'
 import { useThemeMode } from '@/hooks/useThemeMode'
 import type { SandpackProps } from '@codesandbox/sandpack-react'
 import { getReactFiles } from './files'
@@ -27,8 +26,7 @@ interface SandpackSyntaxHighlightProps extends SandpackProps {
 const SandpackSyntaxHighlight: React.FC<React.PropsWithChildren<SandpackSyntaxHighlightProps>> = (props) => {
   const { options, codeString } = props
 
-  const { styles } = useStyles()
-  const token = useTheme()
+  const { styles, theme: token } = useStyles()
   const { appearance } = useThemeMode()
 
   const insideOptions = {

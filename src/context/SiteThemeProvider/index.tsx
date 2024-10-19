@@ -1,5 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { CustomTokenParams, extractStaticStyle, StyleProvider, ThemeProvider } from 'antd-style'
+import { ThemeProvider, StyleProvider, extractStaticStyle } from 'antd-style'
+import type { CustomTokenParams } from 'antd-style'
 import { useThemeMode } from '@/hooks/useThemeMode'
 import { createCustomToken, getAntdTheme, getCustomStylish } from '@/customize-theme'
 import { GlobalScopeStyle } from '@/customize-theme/globalScopeStyle'

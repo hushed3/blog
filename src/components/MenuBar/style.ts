@@ -10,7 +10,7 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls }) => {
     text-decoration: none;
     border-radius: ${token.borderRadius};
     color: ${token.colorTextSecondary};
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     font-weight: 500;
     margin-block-end: 0.7rem;
 
@@ -50,10 +50,10 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls }) => {
       `${prefixCls}-menuBar-title`,
       css`
         color: ${token.colorText};
-        font-size: 0.98rem;
+        font-size: 1rem;
         font-weight: 700;
-        margin-block-end: 0.6rem;
-        margin-block-start: 0.4rem;
+        margin-block-start: 0.6rem;
+        margin-block-end: 0.8rem;
 
         &:first-child {
           margin-block-start: 0;
@@ -91,20 +91,35 @@ export const useStyles = createStyles(({ css, cx, token, prefixCls }) => {
     tag: cx(
       `${prefixCls}-menuBar-tag`,
       css`
-        font-size: 0.88rem;
-        color: ${token.colorTextSecondary};
-        background-color: ${token.colorFillQuaternary};
-        text-transform: capitalize;
-        margin-block-start: 0.7rem;
+        &.${prefixCls}-tag {
+          box-sizing: border-box;
+          display: inline-block;
+          font-size: 0.85rem;
+          font-weight: 500;
+          height: auto;
+          line-height: 20px;
+          color: ${token.colorTextSecondary};
+          background-color: ${token.colorFillQuaternary};
+          text-transform: capitalize;
+          margin-block-start: 0.7rem;
+          margin-inline-end: 0.6rem;
+          padding-block: 0.2rem;
+          padding-inline: 8px;
+          border-radius: ${token.borderRadiusSM}px;
 
-        &:hover {
-          color: ${token.colorPrimary}!important;
-          background-color: ${token.colorPrimaryBg}!important;
-        }
+          &:hover {
+            color: ${token.colorPrimaryHover};
+            background-color: ${token.colorPrimaryBgHover};
+          }
 
-        &.site-tag-checkable-checked {
-          color: ${token.colorPrimaryActive} !important;
-          background-color: ${token.colorPrimaryBg};
+          &:active {
+            color: ${token.colorPrimaryActive};
+          }
+
+          &.${prefixCls}-tag-checked {
+            color: ${token.colorPrimary};
+            background-color: ${token.colorPrimaryBg};
+          }
         }
       `
     ),

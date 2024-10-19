@@ -1,52 +1,56 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const visit = require(`unist-util-visit`)
 
 import type { Plugin, Transformer } from 'unified'
 
-const extractData = (inputString: string): string => {
-  // 匹配括号内的数据，这里使用非贪婪模式匹配
-  const regex: RegExp = /\{(.*?)\}/g
-  const matches: string[] = []
-  let match: RegExpExecArray | null
+const parseMetaProps = (str): Record<string, any> => {
+  const props = {}
+  // 正则表达式捕获完整的键值对、简写属性和花括号内容
+  const regex = /(\w+)(?:=({[^}]*}|"[^"]*"|\S+))?|({[^}]*})/g
+  let match
 
-  // 循环匹配所有符合条件的结果
-  while ((match = regex.exec(inputString))) {
-    // 将匹配结果存入数组
-    matches.push(match[1])
+  while ((match = regex.exec(str)) !== null) {
+    if (match[1]) {
+      // 处理键值对或简写形式
+      const key = match[1]
+      let value = match[2]
+
+      if (value === undefined) {
+        // 如果属性值不存在，默认赋值为 true（简写属性）
+        value = true
+      }
+
+      // 去除引号的字符串
+      if ([/^\{([^}]+)\}$/, /^"([^}]+)"$/].some((i) => i.test(value))) {
+        value = value.replace(/^[{|"|']([^}]+)[}|"|']$/, '$1')
+      }
+
+      // 布尔值处理
+      // if (['true', '{true}'].includes(value)) {
+      //   value = true
+      // } else if (['false', '{false}'].includes(value)) {
+      //   value = false
+      // }
+
+      props[key] = value
+    } else if (match[3]) {
+      const bracesMatch = match[3].match(/^\{([^}]+)\}$/)
+
+      if (bracesMatch) {
+        props['highlight'] = bracesMatch[1]
+      }
+    }
   }
 
-  return matches.join()
+  return props
 }
 
 const transformer: Transformer = (ast) => {
-  const re = /\b([-\w]+)(?:=(?:"([^"]*)"|'([^']*)'|([^"'\s]+)))?/g
-
   visit(ast, `element`, (node: any) => {
-    let match
-    if (node.tagName === `code` && node.children[0].value) {
-      let inputString = node.children[0].value
-      // 找到最后一个换行符的索引
-      var lastIndex = inputString.lastIndexOf('\n')
-      // 如果找到了换行符
-      if (lastIndex !== -1) {
-        // 删除最后一个换行符
-        var modifiedString = inputString.substring(0, lastIndex) + inputString.substring(lastIndex + 1)
-        node.children[0].value = modifiedString
-      }
-    }
     if (node.tagName === `code` && node.data && node.data.meta) {
-      re.lastIndex = 0 // Reset regex.
-      while ((match = re.exec(node.data.meta))) {
-        if (match[0].includes('=')) {
-          const value = match[2] || match[3] || match[4]
+      const metaProps = parseMetaProps(node.data.meta)
 
-          node.properties[match[1]] = value
-          continue
-        }
-
-        node.properties[match[1]] = true
-      }
-
-      node.properties.highlight = extractData(node.data.meta)
+      node.properties = { ...node.properties, ...metaProps }
     }
   })
 }

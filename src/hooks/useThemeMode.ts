@@ -1,6 +1,17 @@
-import { ThemeMode, ThemeContextState, useThemeMode as useAntdThemeMode } from 'antd-style'
+import { useCallback, useEffect, useMemo } from 'react'
+import { useThemeMode as useAntdThemeMode } from 'antd-style'
+import type { ThemeMode, ThemeContextState } from 'antd-style'
 import { useThemeStore } from '@/store/useThemeStore'
 import { safeStartTransition } from '@/utils/safeStartTransition'
+import { isSSR } from '@/utils/func'
+
+const THEME = '(prefers-color-scheme: dark)'
+
+/**
+ * @description 获取系统当前外观模式
+ * @date 30/09/2022
+ */
+const osTheme = () => (!isSSR && window?.matchMedia(THEME).matches ? 'dark' : 'light')
 
 /**
  * @description 主题外观模式。
@@ -12,22 +23,24 @@ export const useThemeMode = (): ThemeContextState => {
   const { storeTheme, setStoreTheme } = useThemeStore()
   const theme = useAntdThemeMode()
 
-  const setThemeMode = (mode: ThemeMode) => {
-    safeStartTransition(() => {
-      setStoreTheme(mode)
-      theme.setThemeMode(mode)
-      // Cookies.set('theme', mode)
-    })
-  }
+  const appearance = useMemo(() => {
+    if (storeTheme === 'auto') {
+      return osTheme()
+    } else {
+      return storeTheme
+    }
+  }, [storeTheme])
 
-  // useIsomorphicLayoutEffect(() => {
-  //   const cookieTheme = Cookies.get('theme')
+  const setThemeMode = useCallback(
+    (mode: ThemeMode) => {
+      safeStartTransition(() => {
+        setStoreTheme(mode)
+        theme.setThemeMode(mode)
+        theme.setAppearance(appearance)
+      })
+    },
+    [theme, appearance, setStoreTheme]
+  )
 
-  //   if (cookieTheme) {
-  //     console.log(cookieTheme, storeTheme)
-  //     // setThemeMode(cookieTheme as ThemeMode)
-  //   }
-  // }, [])
-
-  return { ...theme, themeMode: storeTheme, setThemeMode }
+  return { ...theme, themeMode: storeTheme, setThemeMode, appearance }
 }

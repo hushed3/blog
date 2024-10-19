@@ -43,7 +43,7 @@ export const GlobalScopeStyle = createGlobalStyle`
   }
 
   ::selection {
-    background: rgba(125,138,255,.35);
+    background: rgba(125,138,255,.26);
   }
 
   ::view-transition-old(root),
