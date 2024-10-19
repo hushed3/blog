@@ -14,8 +14,6 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
 
     return css`
       .level-${currentLevel} {
-        padding-inline: 8px 0;
-
         > .${prefixCls}-anchor-link-title {
           overflow: visible;
           position: relative;
@@ -24,7 +22,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
           &::before {
             content: '';
             position: absolute;
-            left: -${(currentLevel - 1) * 8}px;
+            left: -${(currentLevel - 1) * 6}px;
             top: calc(50% - 2px);
             display: inline-block;
             width: ${width}px;
@@ -32,7 +30,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
             border-radius: 2rem;
             background-color: ${isDarkMode ? '#373737' : '#e5e5e5'};
             transition: all 0.45s;
-            margin-inline: -1.8rem 0;
+            margin-inline: -2rem 0;
           }
         }
       }
@@ -66,7 +64,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
           position: relative;
           font-size: 0.9rem;
           font-family: SF Mono Medium;
-          padding-inline: 1.75rem 0;
+          padding-inline: 2rem 0;
 
           ${anchorLevel}
 
@@ -82,6 +80,11 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
             .${prefixCls}-anchor-link-title {
               color: ${token.colorTextSecondary};
             }
+          }
+
+          .${prefixCls}-anchor-link {
+            padding-block: 5px;
+            padding-inline: 6px 0;
           }
 
           .${prefixCls}-anchor-link-title {
