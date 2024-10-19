@@ -42,7 +42,7 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ icon, headings, article
         <MenuBar>
           <MenuBar.Title>近期发布</MenuBar.Title>
           {recents.map((recent) => (
-            <Link className={styles.recents} to={`/${recent.slug}`} key={recent.slug}>
+            <Link className={styles.recent} to={`/${recent.slug}`} key={recent.slug}>
               <SVGIcon id={recent.icon} width="1.8em" height="1.8em"></SVGIcon>
               <div className="title">{recent.title.split('-')[1]}</div>
             </Link>

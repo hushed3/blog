@@ -83,7 +83,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
 
       .${prefixCls}-card-body {
         display: flex;
-        align-items: center;
+        align-content: space-between;
         height: 100%;
       }
 
@@ -101,6 +101,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
     `${prefixCls}-card-time`,
     css`
       display: block;
+      width: 100%;
       color: ${token.magenta5};
       font-size: 0.75rem;
 
@@ -115,20 +116,22 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
   titleLink: cx(
     `${prefixCls}-card-titleLink`,
     css`
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      width: 100%;
       font-size: 0.95rem;
-      line-height: 1.2;
       color: ${token.colorText};
       font-weight: 600;
       padding: 0;
       border: 0;
-      text-decoration: none;
+      background: linear-gradient(to right, ${token.colorTextSecondary}, ${token.colorTextSecondary}) no-repeat;
+      background-size: 0 1px;
+      background-position: right bottom;
+      transition: background-size 0.25s;
 
       &:hover {
-        text-decoration: underline;
         color: ${token.colorText};
+        background-size: 100% 1px;
+        background-position: left bottom;
       }
 
       ${r({
@@ -142,15 +145,20 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
   tagLinks: cx(
     `${prefixCls}-card-tagLinks`,
     css`
-      display: flex;
-      align-items: flex-end;
+      width: 100%;
 
       a {
         font-size: 0.75rem;
         color: ${token.colorTextDescription};
+        background: linear-gradient(to right, ${token.colorTextSecondary}, ${token.colorTextSecondary}) no-repeat;
+        background-size: 0 1px;
+        background-position: right bottom;
+        transition: background-size 0.3s;
+
         &:hover {
-          text-decoration: underline;
           color: ${token.colorText};
+          background-size: 100% 1px;
+          background-position: left bottom;
         }
 
         ${r({

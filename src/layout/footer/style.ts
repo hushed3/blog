@@ -29,14 +29,18 @@ export const useStyles = createStyles(({ css, responsive: r, cx, token, prefixCl
     width: 100%;
   `,
 
-  author: css`
+  powered: css`
     display: flex;
     align-items: center;
     color: inherit;
     font-size: 0.85rem;
     line-height: 1.2;
     padding-inline: 0.5rem;
-    font-weight: bold;
+
+    .author {
+      font-weight: bold;
+      margin-left: 0.2rem;
+    }
   `,
 
   href: css`

@@ -23,7 +23,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
             content: '';
             position: absolute;
             left: -${(currentLevel - 1) * 6}px;
-            top: calc(50% - 2px);
+            top: calc(50% - 1px);
             display: inline-block;
             width: ${width}px;
             height: 4px;
@@ -83,7 +83,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
           }
 
           .${prefixCls}-anchor-link {
-            padding-block: 5px;
+            padding-block: 0px !important;
             padding-inline: 6px 0;
           }
 
@@ -91,6 +91,8 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
             overflow: visible;
             color: ${token.colorTextSecondary};
             letter-spacing: 0.5px;
+            padding-block: 5px;
+            margin-block: 0px;
             color: transparent;
 
             &:hover {
@@ -104,15 +106,13 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
           }
 
           .${prefixCls}-anchor-link:has(.${prefixCls}-anchor-link-active),
-          .${prefixCls}-anchor-link-active {
-            > .${prefixCls}-anchor-link-title {
-              color: ${token.colorPrimary};
+          .${prefixCls}-anchor-link-active > .${prefixCls}-anchor-link-title {
+            color: ${token.colorPrimary};
 
-              &::before {
-                content: '';
-                background-color: ${token.colorPrimaryBorderHover};
-                transform: scale(1.08);
-              }
+            &::before {
+              content: '';
+              background-color: ${token.colorPrimaryBorderHover};
+              transform: scale(1.08);
             }
           }
         }
@@ -130,16 +130,16 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
       `
     ),
 
-    recents: cx(
-      `.${prefixCls}-sidebar-recents`,
+    recent: cx(
+      `.${prefixCls}-sidebar-recent`,
       css`
         display: flex;
         flex-wrap: nowrap;
         align-items: center;
         gap: 1rem;
         color: ${token.colorText};
-        margin-block-end: 0.6rem;
-        margin-inline-start: 0.3rem;
+        margin-block: 0 0.6rem;
+        margin-inline: 0.3rem 0;
 
         .title {
           font-size: 0.9rem;

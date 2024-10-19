@@ -13,7 +13,9 @@ export const Footer = () => {
 
   return (
     <footer className={styles.footer}>
-      <Typography.Text className={styles.author}>Powered By {site.author}</Typography.Text>
+      <Typography.Text className={styles.powered}>
+        Powered By <span className="author">{site.author}</span>
+      </Typography.Text>
 
       <Space size="middle" className={styles.footerContainer}>
         {menu.map((link) => (
