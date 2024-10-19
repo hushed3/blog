@@ -6,20 +6,25 @@ const Interval = 5
 export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isDarkMode }, level: number) => {
   const anchorLevel = Array.from({ length: level }).map((_, i) => {
     const currentLevel = level - i
-    const width = Cardinality + Interval * currentLevel
+
+    const width = level === 1 ? 15 : Cardinality + Interval * (i + 1)
+
+    const maxWidth = Cardinality + Interval * level
+    const minWidth = Cardinality + Interval * 1
 
     return css`
-      .level-${i + 1} {
+      .level-${currentLevel} {
         padding-inline: 8px 0;
 
-        .${prefixCls}-anchor-link-title {
+        > .${prefixCls}-anchor-link-title {
           overflow: visible;
+          position: relative;
           transition: all 0.45s;
 
           &::before {
             content: '';
             position: absolute;
-            left: ${(currentLevel - 1) * 8}px;
+            left: -${(currentLevel - 1) * 8}px;
             top: calc(50% - 2px);
             display: inline-block;
             width: ${width}px;
@@ -27,7 +32,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
             border-radius: 2rem;
             background-color: ${isDarkMode ? '#373737' : '#e5e5e5'};
             transition: all 0.45s;
-            margin-inline: -2.4rem 0;
+            margin-inline: -1.8rem 0;
           }
         }
       }
@@ -61,7 +66,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
           position: relative;
           font-size: 0.9rem;
           font-family: SF Mono Medium;
-          padding-inline: 1.6rem 0;
+          padding-inline: 1.75rem 0;
 
           ${anchorLevel}
 
@@ -131,7 +136,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
         gap: 1rem;
         color: ${token.colorText};
         margin-block-end: 0.6rem;
-        margin-inline-start: 0.5rem;
+        margin-inline-start: 0.3rem;
 
         .title {
           font-size: 0.9rem;
