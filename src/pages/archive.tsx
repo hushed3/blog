@@ -56,7 +56,7 @@ export const blogQuery = graphql`
   query ArchivePage {
     archive: allMdx(
       sort: { frontmatter: { date: DESC } }
-      filter: { frontmatter: { template: { eq: "article" }, published: { ne: null } } }
+      filter: { frontmatter: { template: { eq: "article" }, published: { ne: false } } }
     ) {
       nodes {
         ...InformationFragment
