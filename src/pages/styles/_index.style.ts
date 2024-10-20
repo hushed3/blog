@@ -1,8 +1,8 @@
 import { createStyles } from 'antd-style'
 
 export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token, prefixCls }) => ({
-  container: cx(
-    `${prefixCls}-home`,
+  home: cx(
+    `${prefixCls}-home-container`,
     css`
       ${stylish.container}
     `
@@ -28,8 +28,8 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
     `
   ),
 
-  preview: cx(
-    `${prefixCls}-home-preview`,
+  wrapper: cx(
+    `${prefixCls}-home-wrapper`,
     css`
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -51,15 +51,17 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
     `
   ),
 
-  recentCard: cx(
-    `${prefixCls}-recentCard`,
+  latestCard: cx(
+    `${prefixCls}-home-latest-card`,
     css`
       min-height: 10rem;
 
       .${prefixCls}-card-body {
         display: flex;
         flex-wrap: wrap;
+        align-content: space-between;
         height: 100%;
+        padding-block: 14px;
       }
 
       ${r({
@@ -77,14 +79,15 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
   ),
 
   highlightCard: cx(
-    `${prefixCls}-highlightCard`,
+    `${prefixCls}-home-highlight-card`,
     css`
       min-height: 10rem;
 
       .${prefixCls}-card-body {
         display: flex;
-        align-content: space-between;
+        align-items: center;
         height: 100%;
+        padding-block: 14px;
       }
 
       .content {
@@ -98,7 +101,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
   ),
 
   time: cx(
-    `${prefixCls}-card-time`,
+    `${prefixCls}-home-time`,
     css`
       display: block;
       width: 100%;
@@ -114,7 +117,7 @@ export const useStyles = createStyles(({ css, stylish, cx, responsive: r, token,
   ),
 
   titleLink: cx(
-    `${prefixCls}-card-titleLink`,
+    `${prefixCls}-home-titleLink`,
     css`
       display: inline-flex;
       align-items: center;

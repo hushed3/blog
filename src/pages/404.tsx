@@ -14,7 +14,7 @@ const FourOhFour = () => {
   return (
     <>
       <div className={styles.container}>
-        <div className={styles[404]}>404</div>
+        <div className="tip">404</div>
         <Button type="text" onClick={ToHome}>
           Back to home page
         </Button>

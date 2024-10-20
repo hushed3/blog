@@ -5,21 +5,21 @@ import { OrbitControls, Environment, Effects, useTexture } from '@react-three/dr
 import { Sphere } from '@react-three/drei'
 import { useStyles } from './styles/_map.style'
 
-function Model() {
-  const texture = useLoader(
-    THREE.TextureLoader,
-    'https://res.hc-cdn.com/cpage-pep-home-page/2.0.10/images/global-site-3d/%E5%9C%B0%E5%9B%BE.jpg'
-  )
+// function Model() {
+//   const texture = useLoader(
+//     THREE.TextureLoader,
+//     'https://res.hc-cdn.com/cpage-pep-home-page/2.0.10/images/global-site-3d/%E5%9C%B0%E5%9B%BE.jpg'
+//   )
 
-  return <meshBasicMaterial attach="material" map={texture} />
-}
+//   return <meshBasicMaterial attach="material" map={texture} />
+// }
 
 export default function Maps() {
   const { styles } = useStyles()
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.map}>
         {/* <Canvas camera={{ position: [0, 0, 5], fov: 35 }}>
           <ambientLight intensity={0.5} />
           <directionalLight intensity={0.5} />

@@ -31,7 +31,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ data }) => {
   return (
     <>
       {years.map((year) => (
-        <div className={styles.years} key={year}>
+        <article className={styles.article} key={year}>
           <div className={styles.year}>{year}</div>
           {articleByYear[year].map((node) => (
             <Link className={styles.link} to={`/${node.slug}`} key={node.slug}>
@@ -44,7 +44,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ data }) => {
               <ArrowRight />
             </Link>
           ))}
-        </div>
+        </article>
       ))}
     </>
   )

@@ -22,7 +22,7 @@ interface ArticleSidebarProps {
 const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ icon, headings, articles }) => {
   const { styles } = useStyles(findMaxLevel(headings))
 
-  const recents = articles.slice(0, 6)
+  const latest = articles.slice(0, 6)
 
   return (
     <Sticky>
@@ -41,10 +41,10 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ icon, headings, article
       <Card bordered={false} className={styles.card}>
         <MenuBar>
           <MenuBar.Title>近期发布</MenuBar.Title>
-          {recents.map((recent) => (
-            <Link className={styles.recent} to={`/${recent.slug}`} key={recent.slug}>
-              <SVGIcon id={recent.icon} width="1.8em" height="1.8em"></SVGIcon>
-              <div className="title">{recent.title.split('-')[1]}</div>
+          {latest.map((l) => (
+            <Link className={styles.latest} to={`/${l.slug}`} key={l.slug}>
+              <SVGIcon id={l.icon} width="1.8em" height="1.8em"></SVGIcon>
+              <div className="title">{l.title.split('-')[1]}</div>
             </Link>
           ))}
         </MenuBar>

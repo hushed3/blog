@@ -3,7 +3,7 @@ import { createStyles } from 'antd-style'
 export const useStyles = createStyles(({ css, prefixCls, cx, responsive: r }) => {
   return {
     layout: cx(
-      `${prefixCls}-layout`,
+      `${prefixCls}-layout-container`,
       css`
         display: flex;
         flex-direction: column;

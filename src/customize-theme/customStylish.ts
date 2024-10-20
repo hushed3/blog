@@ -7,6 +7,7 @@ declare module 'antd-style' {
 
 export interface SiteStylish {
   container: string
+  template: string
   card: string
   tagLink: string
 }
@@ -17,6 +18,23 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token }) 
       display: flex;
       margin: 0 auto;
       max-width: ${token.contentMaxWidth}px;
+    `,
+
+    template: css`
+      display: grid;
+      grid-template-columns: auto 260px;
+      gap: 4rem;
+      margin: 0 auto;
+      max-width: ${token.contentMaxWidth}px;
+
+      .content {
+        & > pre:last-child {
+          margin-block-end: 0px;
+          > div {
+            margin-block-end: 0px;
+          }
+        }
+      }
     `,
 
     card: css`

@@ -10,7 +10,7 @@ import NeonLighting from '@/components/NeonLighting'
 import Calendar from '@/components/Icons/Calendar'
 import { ClockCircleOutlined } from '@ant-design/icons'
 
-import { useStyles } from './styles/style'
+import { useStyles } from './styles/article.style'
 import { transformHeading } from '@/utils/helpers'
 
 /**
@@ -35,7 +35,7 @@ const ArticleTemplate: React.FC<PageProps<allMdxNodesQuery<'allArticle'> & MdxNo
   const tags = frontmatter?.tags.map((t) => ({ name: t, path: `/tags/${t}` }))
 
   return (
-    <div className={styles.container}>
+    <div className={styles.article}>
       <div className="content">
         <Typography.Title level={2} className={styles.title}>
           {frontmatter?.title}

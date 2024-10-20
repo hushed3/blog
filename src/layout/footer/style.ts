@@ -23,41 +23,50 @@ export const useStyles = createStyles(({ css, responsive: r, cx, token, prefixCl
     `
   ),
 
-  footerContainer: css`
-    justify-content: center;
-    color: ${token.colorTextTertiary};
-    width: 100%;
-  `,
+  powered: cx(
+    `${prefixCls}-layout-footer-powered`,
+    css`
+      display: flex;
+      align-items: center;
+      color: inherit;
+      font-size: 0.85rem;
+      line-height: 1.2;
+      padding-inline: 0.5rem;
 
-  powered: css`
-    display: flex;
-    align-items: center;
-    color: inherit;
-    font-size: 0.85rem;
-    line-height: 1.2;
-    padding-inline: 0.5rem;
+      .author {
+        font-weight: bold;
+        margin-left: 0.2rem;
+      }
+    `
+  ),
 
-    .author {
-      font-weight: bold;
-      margin-left: 0.2rem;
-    }
-  `,
+  wrapper: cx(
+    `${prefixCls}-layout-footer-wrapper`,
+    css`
+      justify-content: center;
+      color: ${token.colorTextTertiary};
+      width: 100%;
+    `
+  ),
 
-  href: css`
-    display: flex;
-    align-items: center;
-    color: inherit !important;
-    font-size: 0.85rem;
-    line-height: 1.2;
-    padding-inline: 0.5rem;
+  href: cx(
+    `${prefixCls}-layout-footer-wrapper-href`,
+    css`
+      display: flex;
+      align-items: center;
+      color: inherit !important;
+      font-size: 0.85rem;
+      line-height: 1.2;
+      padding-inline: 0.5rem;
 
-    &:hover {
-      text-decoration: underline;
-      color: ${token.colorText} !important;
-    }
-  `,
+      svg {
+        margin-inline: 0.5rem;
+      }
 
-  icon: css`
-    margin-inline-start: 0.5rem;
-  `,
+      &:hover {
+        text-decoration: underline;
+        color: ${token.colorText} !important;
+      }
+    `
+  ),
 }))

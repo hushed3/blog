@@ -130,8 +130,8 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
       `
     ),
 
-    recent: cx(
-      `.${prefixCls}-sidebar-recent`,
+    latest: cx(
+      `.${prefixCls}-sidebar-latest`,
       css`
         display: flex;
         flex-wrap: nowrap;

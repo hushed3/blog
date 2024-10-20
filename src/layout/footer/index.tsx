@@ -17,11 +17,11 @@ export const Footer = () => {
         Powered By <span className="author">{site.author}</span>
       </Typography.Text>
 
-      <Space size="middle" className={styles.footerContainer}>
+      <Space size="middle" className={styles.wrapper}>
         {menu.map((link) => (
           <Typography.Link className={styles.href} key={link.url} href={link.url} title={link.label} target="_blank">
             <span>{link.label}</span>
-            <link.icon className={styles.icon} />
+            <link.icon />
           </Typography.Link>
         ))}
 
@@ -30,7 +30,7 @@ export const Footer = () => {
         {friend.map((link) => (
           <Typography.Link className={styles.href} key={link.url} href={link.url} title={link.label} target="_blank">
             <span>{link.label}</span>
-            <link.icon className={styles.icon} />
+            <link.icon />
           </Typography.Link>
         ))}
       </Space>

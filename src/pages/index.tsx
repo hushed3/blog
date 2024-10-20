@@ -26,7 +26,7 @@ const Home: React.FC<PageProps<allMdxNodesQuery<'latest' | 'Highlights'> & MdxNo
   const simplifiedHighlights = useMemo(() => simplifiedQueryData(Highlights), [Highlights])
 
   return (
-    <Space className={styles.container} direction="vertical" size="large">
+    <Space className={styles.home} direction="vertical" size={[0, 40]}>
       <BriefHeader greeting="Hey, I'm  &nbsp;Jhon">
         <p className={styles.briefDescription}>
           I hope you live a life you&rsquo;re proud of. If you find that you&rsquo;re not, I hope you have the courage
@@ -37,11 +37,12 @@ const Home: React.FC<PageProps<allMdxNodesQuery<'latest' | 'Highlights'> & MdxNo
         </p>
         <p className={styles.briefDescription}>Have a good day. </p>
       </BriefHeader>
+
       <Heading title="最近内容" slug="/archive" />
-      <div className={styles.preview}>
+      <div className={styles.wrapper}>
         {simplifiedLatest.map((item) => {
           return (
-            <Card className={styles.recentCard} key={item.slug} bordered>
+            <Card className={styles.latestCard} key={item.slug} bordered>
               <time className={styles.time}>{item.date}</time>
               <Link className={styles.titleLink} to={item.slug}>
                 {item.title}
@@ -67,8 +68,7 @@ const Home: React.FC<PageProps<allMdxNodesQuery<'latest' | 'Highlights'> & MdxNo
       {simplifiedHighlights.length > 0 && (
         <>
           <Heading title="热门内容" />
-
-          <div className={styles.preview}>
+          <div className={styles.wrapper}>
             {simplifiedHighlights.map((item) => {
               return (
                 <Card className={styles.highlightCard} key={`Highlight-${item.slug}`} bordered={false}>

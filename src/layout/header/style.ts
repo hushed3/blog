@@ -20,8 +20,9 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token,
       })};
     `
   ),
-  headerContainer: cx(
-    `${prefixCls}-layout-header-container`,
+
+  wrapper: cx(
+    `${prefixCls}-layout-header-wrapper`,
     css`
       ${stylish.container}
 
@@ -46,8 +47,8 @@ export const useStyles = createStyles(({ css, stylish, responsive: r, cx, token,
     `
   ),
 
-  navigationLink: cx(
-    `${prefixCls}-layout-header-container-link`,
+  link: cx(
+    `${prefixCls}-layout-header-wrapper-link`,
     css`
       display: flex;
       align-items: center;

@@ -29,7 +29,7 @@ const Archive: React.FC<ArchiveProps> = (props) => {
   const articles = useMemo(() => simplifiedQueryData(nodes), [nodes])
 
   return (
-    <div className={styles.container}>
+    <div className={styles.archive}>
       <div>
         <BriefHeader title={title} />
         <ArticleList data={articles} />

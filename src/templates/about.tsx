@@ -5,7 +5,7 @@ import React from 'react'
 import SEO from '@/components/SEO'
 import MeSidebar from '@/components/Sidebar/MeSidebar'
 import PrismSyntaxHighlight from '@/components/MDXRenderer'
-import { useStyles } from './styles/style'
+import { useStyles } from './styles/about.style'
 
 /**
  * @description 个人介绍页面
@@ -18,7 +18,7 @@ const AboutTemplate: React.FC<PageProps<MdxNodesQuery<'me'>, MdxQuery>> = (props
   const { styles } = useStyles()
 
   return (
-    <div className={styles.container}>
+    <div className={styles.about}>
       <div>
         <h2 className={styles.title}>{data.me.frontmatter.title}</h2>
         <PrismSyntaxHighlight>{children}</PrismSyntaxHighlight>

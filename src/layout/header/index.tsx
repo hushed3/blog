@@ -22,20 +22,20 @@ export const Header = () => {
   return (
     <>
       <animated.header className={styles.header} style={{ ..._styles }}>
-        <div className={styles.headerContainer}>
+        <div className={styles.wrapper}>
           <Space size="large">
-            <Link to="/" className={cx(styles.navigationLink, 'logo')}>
+            <Link to="/" className={cx(styles.link, 'logo')}>
               J
             </Link>
 
             {menu.map((item) => (
-              <Link className={styles.navigationLink} to={item.url} key={item.label}>
+              <Link className={styles.link} to={item.url} key={item.label}>
                 {item.label}
               </Link>
             ))}
 
             {social.map((item) => (
-              <a className={styles.navigationLink} key={item.label} href={item.url} target="_blank" rel="noreferrer">
+              <a className={styles.link} key={item.label} href={item.url} target="_blank" rel="noreferrer">
                 <item.icon />
               </a>
             ))}
