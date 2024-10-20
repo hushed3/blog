@@ -26,7 +26,7 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ icon, headings, article
 
   return (
     <Sticky>
-      <SVGIcon id={icon!} width="7em" height="7em"></SVGIcon>
+      <SVGIcon id={icon!} width="8em" height="8em" style={{ marginBlock: '0 1rem' }}></SVGIcon>
       {/* <Card bordered={false} className={styles.card}>
           <h2>About me</h2>
         </Card> */}

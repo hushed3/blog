@@ -6,10 +6,10 @@ import { useStyles } from './style'
  */
 
 interface BriefHeaderProps {
-  title?: string
-  greeting?: string
+  title?: React.ReactNode
+  greeting?: React.ReactNode
   highlight?: number
-  description?: string
+  description?: React.ReactNode
   children?: React.ReactNode
 }
 

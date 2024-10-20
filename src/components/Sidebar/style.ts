@@ -40,7 +40,6 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
   return {
     card: css`
       ${stylish.card}
-      margin-block-start: 2rem;
       background-color: transparent !important;
       box-shadow: none !important;
     `,
@@ -87,6 +86,19 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
             padding-inline: 6px 0;
           }
 
+          .${prefixCls}-anchor-link:has(.${prefixCls}-anchor-link-active),
+          .${prefixCls}-anchor-link-active {
+            > .${prefixCls}-anchor-link-title {
+              color: ${token.colorPrimary};
+
+              &::before {
+                content: '';
+                background-color: ${token.colorPrimaryBorderHover};
+                transform: scale(1.08);
+              }
+            }
+          }
+
           .${prefixCls}-anchor-link-title {
             overflow: visible;
             color: ${token.colorTextSecondary};
@@ -102,17 +114,6 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls, isD
                 transform: scale(1.1);
                 background-color: ${token.colorPrimaryBorderHover};
               }
-            }
-          }
-
-          .${prefixCls}-anchor-link:has(.${prefixCls}-anchor-link-active),
-          .${prefixCls}-anchor-link-active > .${prefixCls}-anchor-link-title {
-            color: ${token.colorPrimary};
-
-            &::before {
-              content: '';
-              background-color: ${token.colorPrimaryBorderHover};
-              transform: scale(1.08);
             }
           }
         }

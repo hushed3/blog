@@ -6,11 +6,11 @@ export const useStyles = createStyles(({ css, cx, responsive: r, token, prefixCl
     css`
       position: relative;
       width: 100%;
-      padding-block: 4rem 3rem;
+      padding-block: 6rem 5.5rem;
 
       ${r({
         mobile: css`
-          padding-block: 3rem 2.5rem;
+          padding-block: 3.5rem 3rem;
         `,
       })}
     `
@@ -22,7 +22,7 @@ export const useStyles = createStyles(({ css, cx, responsive: r, token, prefixCl
       color: ${token.colorTextDescription};
       font-weight: 500;
       font-size: 1.2rem;
-      margin-block-end: 0.8rem;
+      margin-block-end: 1rem;
 
       span {
         color: ${token.colorPrimaryHover};
@@ -35,7 +35,6 @@ export const useStyles = createStyles(({ css, cx, responsive: r, token, prefixCl
   title: cx(
     `${prefixCls}-briefHeader-title`,
     css`
-      line-height: 1.2;
       font-weight: 700;
       font-size: 2.6rem;
       letter-spacing: 0.1rem;
@@ -59,7 +58,6 @@ export const useStyles = createStyles(({ css, cx, responsive: r, token, prefixCl
       font-weight: normal;
       letter-spacing: 0.15rem;
       font-size: 2.2rem;
-      line-height: 1.2;
       letter-spacing: 0.3rem;
       margin: 0 !important;
 

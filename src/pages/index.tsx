@@ -7,6 +7,7 @@ import BriefHeader from '@/components/BriefHeader'
 import Heading from '@/components/Heading'
 import SEO from '@/components/SEO'
 import SVGIcon from '@/components/SvgIcon'
+import { useSiteStore } from '@/store'
 import { simplifiedQueryData } from '@/utils/helpers'
 import { useStyles } from './styles/_index.style'
 
@@ -19,6 +20,8 @@ import { useStyles } from './styles/_index.style'
 const Home: React.FC<PageProps<allMdxNodesQuery<'latest' | 'Highlights'> & MdxNodesQuery>> = ({ data }) => {
   const { styles } = useStyles()
 
+  const site = useSiteStore((state) => state.siteMetadata)
+
   const latest = data.latest.nodes
   const Highlights = data.Highlights.nodes
 
@@ -27,7 +30,7 @@ const Home: React.FC<PageProps<allMdxNodesQuery<'latest' | 'Highlights'> & MdxNo
 
   return (
     <Space className={styles.home} direction="vertical" size={[0, 40]}>
-      <BriefHeader greeting="Hey, I'm  &nbsp;Jhon">
+      <BriefHeader greeting={<>Hey, I&rsquo;m &nbsp;&nbsp;{site.author}</>}>
         <p className={styles.briefDescription}>
           I hope you live a life you&rsquo;re proud of. If you find that you&rsquo;re not, I hope you have the courage
           to start over.
