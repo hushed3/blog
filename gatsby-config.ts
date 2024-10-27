@@ -108,8 +108,8 @@ const config: GatsbyConfigType = {
                 return Object.assign({}, frontmatter, {
                   description: excerpt,
                   date: frontmatter.date,
-                  url: siteMetadata.siteUrl + frontmatter.slug,
-                  guid: siteMetadata.siteUrl + frontmatter.slug,
+                  url: `${siteMetadata.siteUrl}/${frontmatter.slug}`,
+                  guid: `${siteMetadata.siteUrl}/${frontmatter.slug}`,
                   custom_elements: [{ 'content:encoded': html }, { author: site.author }],
                 })
               })
