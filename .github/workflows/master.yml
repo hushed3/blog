@@ -26,6 +26,14 @@ jobs:
         with:
           node-version: 18
 
+      # 启用 Corepack
+      - name: Enable Corepack
+        run: corepack enable
+
+      # 使用正确版本的 Yarn
+      - name: Set Yarn Version
+        run: corepack prepare yarn@4.0.0 --activate
+
       # 缓存依赖
       - name: Cache Yarn
         uses: actions/cache@v4
