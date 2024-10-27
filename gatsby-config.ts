@@ -72,9 +72,10 @@ const config: GatsbyConfigType = {
           {
             site {
               siteMetadata {
+                author
                 title
                 description
-                site_url: siteUrl
+                siteUrl
               }
             }
           }
