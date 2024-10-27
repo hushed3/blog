@@ -67,9 +67,9 @@ yarn.lock
 .pnp/
 .pnp.js
 .yarn/
+
 # Yarn Integrity file
 .yarn-integrity
 
-taniarascia-content
-
+# content
 content/.obsidian/
