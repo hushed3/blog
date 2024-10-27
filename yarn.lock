@@ -6201,6 +6201,7 @@ __metadata:
   resolution: "blog@workspace:."
   dependencies:
     "@ant-design/colors": "npm:^7.1.0"
+    "@ant-design/icons": "npm:^5.5.1"
     "@codesandbox/sandpack-react": "npm:^2.14.4"
     "@commitlint/cli": "npm:^19.4.0"
     "@commitlint/config-conventional": "npm:^19.2.2"

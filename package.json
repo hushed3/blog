@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@ant-design/colors": "^7.1.0",
+    "@ant-design/icons": "^5.5.1",
     "@codesandbox/sandpack-react": "^2.14.4",
     "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",
