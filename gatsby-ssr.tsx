@@ -1,6 +1,5 @@
 import type { GatsbySSR } from 'gatsby'
 import { extractStaticStyle } from 'antd-style'
-import Cookies from 'js-cookie'
 
 import Layout from './src/layout'
 
@@ -17,17 +16,4 @@ export const onPreRenderHTML: GatsbySSR['onPreRenderHTML'] = ({ getHeadComponent
   const styles = extractStaticStyle('', { antdCache })
 
   replaceHeadComponents([...headComponents, ...styles.map((item) => <style key={item.key} {...item.style.props} />)])
-}
-
-export const onRenderBody = ({ setHeadComponents }) => {
-  // console.log('Cookies-theme', Cookies.get('theme'))
-  // const theme = Cookies.get('theme') || 'auto'
-  // setHeadComponents([
-  //   <script
-  //     key="themeCookieScript"
-  //     dangerouslySetInnerHTML={{
-  //       __html: `document.cookie = "theme=${theme}";`,
-  //     }}
-  //   />,
-  // ])
 }

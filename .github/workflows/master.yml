@@ -32,7 +32,7 @@ jobs:
 
       # 使用正确版本的 Yarn
       - name: Set Yarn Version
-        run: corepack prepare yarn@4.0.0 --activate
+        run: corepack prepare yarn@latest --activate
 
       # 缓存依赖
       - name: Cache Yarn

@@ -6242,7 +6242,6 @@ __metadata:
     gatsby-transformer-sharp: "npm:^5.13.1"
     graphql: "npm:^16.8.1"
     husky: "npm:^8.0.3"
-    js-cookie: "npm:^3.0.5"
     node-polyfill-webpack-plugin: "npm:^3.0.0"
     prettier: "npm:^2.8.8"
     prism-react-renderer: "npm:^2.1.0"
