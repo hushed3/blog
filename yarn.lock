@@ -3867,17 +3867,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-spring/rafz@npm:^9.7.5, @react-spring/rafz@npm:~9.7.5":
+  version: 9.7.5
+  resolution: "@react-spring/rafz@npm:9.7.5"
+  checksum: 8bdad180feaa9a0e870a513043a5e98a4e9b7292a9f887575b7e6fadab2677825bc894b7ff16c38511b35bfe6cc1072df5851c5fee64448d67551559578ca759
+  languageName: node
+  linkType: hard
+
 "@react-spring/rafz@npm:~9.6.1":
   version: 9.6.1
   resolution: "@react-spring/rafz@npm:9.6.1"
   checksum: 56ec6f7540f782e45160a8270bb2f305320ab1bfafc1ce4fe69f35126bbf3e68ea69f42f23f2cfb571e9952e50850d09fa54b520fb1df5975a511a1bd6d4767d
-  languageName: node
-  linkType: hard
-
-"@react-spring/rafz@npm:~9.7.5":
-  version: 9.7.5
-  resolution: "@react-spring/rafz@npm:9.7.5"
-  checksum: 8bdad180feaa9a0e870a513043a5e98a4e9b7292a9f887575b7e6fadab2677825bc894b7ff16c38511b35bfe6cc1072df5851c5fee64448d67551559578ca759
   languageName: node
   linkType: hard
 
@@ -6207,6 +6207,7 @@ __metadata:
     "@commitlint/config-conventional": "npm:^19.2.2"
     "@graphql-eslint/eslint-plugin": "npm:^3.20.1"
     "@mdx-js/react": "npm:^3.0.1"
+    "@react-spring/rafz": "npm:^9.7.5"
     "@react-spring/web": "npm:^9.7.2"
     "@react-three/drei": "npm:^9.80.1"
     "@react-three/fiber": "npm:^8.14.3"
