@@ -1,6 +1,3 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-
 export default function HTML(props) {
   return (
     <html {...props.htmlAttributes}>
@@ -18,13 +15,4 @@ export default function HTML(props) {
       </body>
     </html>
   )
-}
-
-HTML.propTypes = {
-  htmlAttributes: PropTypes.object,
-  headComponents: PropTypes.array,
-  bodyAttributes: PropTypes.object,
-  preBodyComponents: PropTypes.array,
-  body: PropTypes.string,
-  postBodyComponents: PropTypes.array,
 }
