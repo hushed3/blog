@@ -52,7 +52,7 @@ jobs:
 
       # install
       - name: Install
-        run: yarn install --mode=update-lockfile
+        run: yarn
 
       # 打包
       - name: Build
