@@ -41,7 +41,7 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ act
         '@static': path.resolve(__dirname, 'static'),
       },
     },
-    plugins: [new NodePolyfillPlugin({ includeAliases: ['path', 'url', 'stream', 'buffer'] })],
+    plugins: [new NodePolyfillPlugin({ includeAliases: ['path', 'url', 'stream', 'buffer', 'events'] })],
   })
 }
 
