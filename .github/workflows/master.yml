@@ -43,7 +43,7 @@ jobs:
             .yarn/patches
             .yarn/plugins
             .yarn/releases
-            .yarn/sdks
+            .yarn/sdksimmutable
             .yarn/versions
           key: ${{ runner.os }}-yarn-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
@@ -52,7 +52,7 @@ jobs:
 
       # install
       - name: Install
-        run: yarn
+        run: yarn install --mode=update-lockfile
 
       # 打包
       - name: Build
