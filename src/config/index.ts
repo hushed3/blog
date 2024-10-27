@@ -1,15 +1,14 @@
 import { themes } from 'prism-react-renderer'
-import GithubSvg from '@/assets/svg/github.svg'
+import GithubSvg from '@/components/Icons/Github'
 
-import GatsbyFooterSvg from '@/assets/svg/gatsby-footer.svg'
-import GithubFooterSvg from '@/assets/svg/github-footer.svg'
+import GatsbyFooterSvg from '@/components/Icons/GatsbyFooter'
+import GithubFooterSvg from '@/components/Icons/GithubFooter'
 
 import SiteConfig from './type'
 
 const siteConfig: SiteConfig = {
   themes: {
-    brandColor: '#445AFF',
-    // brandColor: '#485AFF',
+    brandColor: '#4443FF',
     light: {
       backgroundColor: '#ffffff',
       cardBackgroundColor: '#fafafb',

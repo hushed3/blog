@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { Link } from 'gatsby'
 import SVGIcon from '@/components/SvgIcon'
-import ArrowRight from '@/assets/svg/arrow-right.svg'
+import ArrowRight from '@/components/Icons/ArrowRight'
 
 import { useStyles } from './style'
 

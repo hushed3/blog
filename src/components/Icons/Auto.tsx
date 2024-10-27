@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Calendar: React.FC<IconProps> = (props) => {
+const Auto: React.FC<IconProps> = (props) => {
   return (
     <svg
       width="1em"
@@ -16,4 +16,4 @@ const Calendar: React.FC<IconProps> = (props) => {
   )
 }
 
-export default Calendar
+export default Auto

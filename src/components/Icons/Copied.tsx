@@ -1,7 +1,7 @@
 import React from 'react'
 import { useStyles } from './style'
 
-const Calendar: React.FC<IconProps> = (props) => {
+const Copied: React.FC<IconProps> = (props) => {
   const { theme } = useStyles()
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18" height={18} width={18} {...props}>
@@ -25,4 +25,4 @@ const Calendar: React.FC<IconProps> = (props) => {
   )
 }
 
-export default Calendar
+export default Copied

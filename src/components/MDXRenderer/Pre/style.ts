@@ -27,7 +27,7 @@ export const useStyles = createStyles(({ css, cx, token, stylish, prefixCls }, c
         display: flex;
         color: ${token.colorTextQuaternary};
         font-size: 0.95rem;
-        padding-inline: 1.5rem 1.2rem;
+        padding-inline: 1.4rem;
         gap: 0.8rem;
         display: flex;
         justify-content: space-between;

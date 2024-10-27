@@ -3,7 +3,7 @@ import { PrismTheme } from 'prism-react-renderer'
 interface MenuItem {
   url: string
   label: string
-  icon?: any
+  icon: React.FC<IconProps>
   show: boolean
 }
 

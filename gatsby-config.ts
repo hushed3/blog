@@ -88,6 +88,7 @@ const config: GatsbyConfigType = {
                         filter: {frontmatter: {published: {eq: true}}}
                       ) {
                         nodes {
+                          body
                           frontmatter {
                             title
                             description
@@ -102,10 +103,9 @@ const config: GatsbyConfigType = {
                         }
                       }
                     }`,
-
             serialize: ({ query: { site, allMdx } }) => {
               return allMdx.nodes.map((node) => {
-                const { frontmatter } = node
+                const { frontmatter, body } = node
                 const { siteMetadata } = site
 
                 return Object.assign({}, frontmatter, {
@@ -113,11 +113,7 @@ const config: GatsbyConfigType = {
                   date: frontmatter.date,
                   url: siteMetadata.siteUrl + frontmatter.slug,
                   guid: siteMetadata.siteUrl + frontmatter.slug,
-                  custom_elements: [
-                    {
-                      'content:encoded': `<p>${frontmatter.description}</p><div style="margin-top: 50px; font-style: italic;"><strong><a href="${siteMetadata.siteUrl}${frontmatter.slug}">Keep reading</a>.</strong></div><br /> <br />`,
-                    },
-                  ],
+                  custom_elements: [{ 'content:encoded': body }, { author: 'Johon' }],
                 })
               })
             },
