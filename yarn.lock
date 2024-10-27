@@ -4535,7 +4535,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prop-types@npm:*":
+"@types/prop-types@npm:*, @types/prop-types@npm:^15":
   version: 15.7.13
   resolution: "@types/prop-types@npm:15.7.13"
   checksum: 1b20fc67281902c6743379960247bc161f3f0406ffc0df8e7058745a85ea1538612109db0406290512947f9632fe9e10e7337bf0ce6338a91d6c948df16a7c61
@@ -6213,6 +6213,7 @@ __metadata:
     "@react-three/fiber": "npm:^8.14.3"
     "@stackblitz/sdk": "npm:^1.9.0"
     "@types/node": "npm:^20.12.2"
+    "@types/prop-types": "npm:^15"
     "@types/react": "npm:^18.0.38"
     "@types/react-dom": "npm:^18.0.11"
     "@types/three": "npm:^0.155.0"
@@ -6246,6 +6247,7 @@ __metadata:
     prettier: "npm:^2.8.8"
     prism-react-renderer: "npm:^2.1.0"
     prismjs: "npm:^1.29.0"
+    prop-types: "npm:^15.8.1"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     reading-time: "npm:^1.5.0"
