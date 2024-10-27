@@ -82,38 +82,34 @@ const config: GatsbyConfigType = {
         feeds: [
           {
             query: `{
-                      allMdx(
+                      allMarkdownRemark(
                         limit: 30
                         sort: {frontmatter: {date: DESC}}
                         filter: {frontmatter: {published: {eq: true}}}
                       ) {
                         nodes {
-                          body
+                          html
                           frontmatter {
                             title
-                            description
-                            date(formatString: "MMMM DD, YYYY")
-                            lastUpdated(formatString: "MMMM DD, YYYY")
-                            icon
                             slug
-                            template
-                            tags
-                            published
+                            date
+                            description
                           }
+                          excerpt
                         }
                       }
                     }`,
-            serialize: ({ query: { site, allMdx } }) => {
-              return allMdx.nodes.map((node) => {
-                const { frontmatter, body } = node
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.nodes.map((node) => {
+                const { frontmatter, html, excerpt } = node
                 const { siteMetadata } = site
 
                 return Object.assign({}, frontmatter, {
-                  description: frontmatter.description,
+                  description: excerpt,
                   date: frontmatter.date,
                   url: siteMetadata.siteUrl + frontmatter.slug,
                   guid: siteMetadata.siteUrl + frontmatter.slug,
-                  custom_elements: [{ 'content:encoded': body }, { author: 'Johon' }],
+                  custom_elements: [{ 'content:encoded': html }, { author: site.author }],
                 })
               })
             },
@@ -150,7 +146,7 @@ const config: GatsbyConfigType = {
     // ===================================================================================
     // Markdown
     // ===================================================================================
-
+    'gatsby-transformer-remark',
     // @see: https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/
     {
       resolve: `gatsby-plugin-mdx`,
