@@ -15,7 +15,7 @@
 [gatsby-badge]: https://img.shields.io/badge/Gatsby-%23663399?logo=gatsby&logoColor=white
 [gatsby-url]: https://www.gatsbyjs.com
 [mdx-badge]: https://img.shields.io/badge/MDX-%236659D3?logo=mdx&logoColor=white
-[mdx-url]: https://www.gatsbyjs.com
+[mdx-url]: https://mdxjs.com
 [antd-badge]: https://img.shields.io/badge/Ant%20Design-%230170FE?logo=ant-design&logoColor=white
 [antd-url]: https://ant.design
 
@@ -34,13 +34,19 @@
 ### Installation
 
 1. `cd blog` to go into the project root
-3. `yarn` to install the website's npm dependencies
+2. `yarn` to install the website's npm dependencies
 
 ### Running locally
 
 1. `yarn dev` to start the development server
 1. `open http://localhost:8008` to open the site in your favorite browser
 
+## Acknowledgments
+
+This project is based on the source code from [taniarascia.com](https://github.com/taniarascia/taniarascia.com).
+
+Please refer to the original project for detailed license information.
+Original repository: [taniarascia.com](https://github.com/taniarascia/taniarascia.com)
 
 ## License
 

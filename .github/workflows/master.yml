@@ -9,48 +9,32 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # 切换分支
       - name: Checkout
         uses: actions/checkout@master
 
-      # 使用 nodejs 18
       - uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      # 启用 Corepack
-      - name: Enable Corepack
-        run: corepack enable
+      - name: Install pnpm
+        run: npm install -g pnpm
 
-      # 使用正确版本的 Yarn
-      - name: Set Yarn Version
-        run: corepack prepare yarn@4.5.1 --activate
-
-      # 缓存依赖
-      - name: Cache Yarn
+      - name: Cache pnpm
         uses: actions/cache@v4
         with:
           path: |
-            .yarn/cache
-            .yarn/patches
-            .yarn/plugins
-            .yarn/releases
-            .yarn/sdksimmutable
-            .yarn/versions
-          key: ${{ runner.os }}-yarn-blog-${{ hashFiles('**/yarn.lock') }}
+            ~/.pnpm-store
+            node_modules
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-blog-
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-pnpm-store-
 
-      # install
       - name: Install
         run: yarn
 
-      # 打包
       - name: Build
         run: yarn build
 
-      # Deploy
       - name: ssh deploy
         uses: easingthemes/ssh-deploy@main
         with:
