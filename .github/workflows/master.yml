@@ -30,10 +30,10 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install
-        run: yarn
+        run: pnpm install
 
       - name: Build
-        run: yarn build
+        run: pnpm build
 
       - name: ssh deploy
         uses: easingthemes/ssh-deploy@main
