@@ -57,6 +57,7 @@ jspm_packages/
 # gatsby files
 .cache/
 public/
+content/
 
 # Mac files
 .DS_Store
@@ -78,3 +79,5 @@ pnpm-lock.yaml
 
 # bun
 bun.lockb
+
+content/
