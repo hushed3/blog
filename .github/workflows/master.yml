@@ -32,6 +32,9 @@ jobs:
       - name: Install
         run: pnpm install
 
+      - name: update-submodule
+        run: pnpm update-submodule
+
       - name: Build
         run: pnpm build
 
