@@ -1,40 +1,47 @@
-#### 快速上手
+<div align="center"><a name="readme-top"></a>
 
-- 本项目需要安装`Gatsby`与`Node`，如果没有安装的话，可以参考以下步骤进行安装。
-- `node`版本需要`=>18.0.0`
+<h1>Blog</h1>
 
-#### 📦 Node >= 18
->windows 安装 node
+[![LICENSE][license-badge]][license-url]
+[![Node][node-badge]][node-url]
+[![Gatsby][gatsby-badge]][gatsby-url]
+[![Mdx][mdx-badge]][mdx-url]
+[![And-Design][antd-badge]][antd-url]
 
-[下载node](https://nodejs.org/download/release/v18.0.0/)
+[license-badge]: https://img.shields.io/badge/License-MIT-Green.svg
+[license-url]: https://github.com/Jiohon/blog/blob/master/LICENSE
+[node-badge]: https://img.shields.io/badge/Node.js-%23339933?logo=node.js&logoColor=white
+[node-url]: https://nodejs.org
+[gatsby-badge]: https://img.shields.io/badge/Gatsby-%23663399?logo=gatsby&logoColor=white
+[gatsby-url]: https://www.gatsbyjs.com
+[mdx-badge]: https://img.shields.io/badge/MDX-%236659D3?logo=mdx&logoColor=white
+[mdx-url]: https://www.gatsbyjs.com
+[antd-badge]: https://img.shields.io/badge/Ant%20Design-%230170FE?logo=ant-design&logoColor=white
+[antd-url]: https://ant.design
 
->mac 安装 node
-``` bash
-brew install node@18
-```
+</div>
 
-#### 📦 Gatsby
-``` bash
-npm install -g gatsby-cli
-```
+## Getting started
 
-#### 安装依赖
-``` bash
-npm i
-# or
-yarn
-```
+### Prerequisites
 
-#### 启动项目
-``` bash
-npm run dev
-# or
-yarn dev
-```
+1. Git
+2. Node: any 18.x version starting with v18.0.0 or greater
+3. Gatsby: See [Gatsby website for installation instructions](https://www.gatsbyjs.com/docs/tutorial/getting-started/part-0/#gatsby-cli)
+4. Yarn: See [Yarn website for installation instructions](https://yarnpkg.com/lang/en/docs/install/)
+5. A clone of the [blog](https://github.com/jiohon/blog) on your local
 
-#### 打包
-``` bash
-npm run build
-# or
-yarn build
-```
+### Installation
+
+1. `cd blog` to go into the project root
+3. `yarn` to install the website's npm dependencies
+
+### Running locally
+
+1. `yarn dev` to start the development server
+1. `open http://localhost:8008` to open the site in your favorite browser
+
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).

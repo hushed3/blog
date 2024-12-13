@@ -22,7 +22,6 @@
     "clean": "gatsby clean",
     "info": "gatsby info -C",
     "prepare": "husky install",
-    "preinstall": "npx only-allow yarn",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix"
   },
@@ -92,6 +91,5 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  },
-  "packageManager": "yarn@4.5.1"
+  }
 }

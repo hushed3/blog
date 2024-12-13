@@ -62,8 +62,7 @@ public/
 .DS_Store
 
 # Yarn
-yarn-error.log
-# yarn.lock
+yarn.lock
 .pnp/
 .pnp.js
 .yarn/
@@ -71,5 +70,11 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 
-# content
-content/.obsidian/
+# npm
+package-lock.json
+
+# pnpm
+pnpm-lock.yaml
+
+# bun
+bun.lockb
