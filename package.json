@@ -21,7 +21,7 @@
     "serve": "gatsby build && gatsby serve -H 0.0.0.0 -o",
     "clean": "gatsby clean",
     "info": "gatsby info -C",
-    "update-submodule": "git submodule update --remote",
+    "update-submodule": "git submodule sync && git submodule update --init --recursive",
     "prepare": "husky install",
     "commitlint": "commitlint --edit",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
